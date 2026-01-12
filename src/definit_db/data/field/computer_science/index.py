@@ -75,11 +75,13 @@ from definit_db.data.field.computer_science.definitions.fundamental.cache import
 from definit_db.data.field.computer_science.definitions.fundamental.call_stack import CALL_STACK
 from definit_db.data.field.computer_science.definitions.fundamental.computer import COMPUTER
 from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
+from definit_db.data.field.computer_science.definitions.fundamental.conceptual_test import CONCEPTUAL_TEST
 from definit_db.data.field.computer_science.definitions.fundamental.concurrency import CONCURRENCY
 from definit_db.data.field.computer_science.definitions.fundamental.core import CORE
 from definit_db.data.field.computer_science.definitions.fundamental.data import DATA
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
+from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
@@ -91,7 +93,9 @@ from definit_db.data.field.computer_science.definitions.fundamental.operation im
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
+from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
 from definit_db.data.field.computer_science.definitions.fundamental.right_shift import RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.special_case import SPECIAL_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.stack_memory import STACK_MEMORY
@@ -104,6 +108,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.variable imp
 field_index: list[Definition] = [
     OBJECT,
     DATA,
+    DATASET,
     DATA_STRUCTURE,
     DATA_TYPE,
     OPERATION,
@@ -122,9 +127,11 @@ field_index: list[Definition] = [
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    PSEUDOCODE,
     BRANCH,
     RANDOM_ACCESS_MEMORY,
     RIGHT_SHIFT,
+    REVERSE_ENGINEERING,
     HEAP_MEMORY,
     HEAP_OVERFLOW,
     LOGICAL_RIGHT_SHIFT,
@@ -133,6 +140,7 @@ field_index: list[Definition] = [
     CACHE,
     STACK_OVERFLOW,
     TEST,
+    CONCEPTUAL_TEST,
     TEST_CASE,
     EDGE_CASE,
     SPECIAL_CASE,

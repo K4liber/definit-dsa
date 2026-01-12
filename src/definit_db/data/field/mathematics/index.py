@@ -31,11 +31,15 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.objecti
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.off_by_one import OFF_BY_ONE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.p_class import P_CLASS
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.precomputation import PRECOMPUTATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_world_performance import (
     REAL_WORLD_PERFORMANCE,
 )
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.space_complexity import SPACE_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_vs_space_tradeoff import (
+    TIME_VS_SPACE_TRADE_OFF,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.worst_case import WORST_CASE
 from definit_db.data.field.mathematics.definitions.algorithm.graph.a_star_algorithm import A_STAR_ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.graph.bellman_ford_algorithm import BELLMAN_FORD_ALGORITHM
@@ -72,6 +76,9 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
     NONDETERMINISTIC_TURING_MACHINE,
 )
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
+from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
+from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
+from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
@@ -86,10 +93,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
 from definit_db.data.field.mathematics.definitions.fundamental.multiset import MULTISET
+from definit_db.data.field.mathematics.definitions.fundamental.natural_number import NATURAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
@@ -128,6 +137,7 @@ from definit_db.data.field.mathematics.definitions.problem.complement_problem im
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
 from definit_db.data.field.mathematics.definitions.problem.criterion import CRITERION
 from definit_db.data.field.mathematics.definitions.problem.feasible_solution import FEASIBLE_SOLUTION
+from definit_db.data.field.mathematics.definitions.problem.mathematical_induction import MATHEMATICAL_INDUCTION
 from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.optimal_substructure import OPTIMAL_SUBSTRUCTURE
 from definit_db.data.field.mathematics.definitions.problem.overlapping_subproblems import OVERLAPPING_SUBPROBLEMS
@@ -155,6 +165,7 @@ from definit_db.data.field.mathematics.definitions.tree.unbalanced_binary_tree i
 
 field_index: list[Definition] = [
     OBJECT,
+    ITEM,
     INFORMATION,
     SEQUENCE,
     FINITE_SEQUENCE,
@@ -200,6 +211,7 @@ field_index: list[Definition] = [
     ASYMPTOTIC_RUNTIME,
     TIME_COMPLEXITY,
     SPACE_COMPLEXITY,
+    TIME_VS_SPACE_TRADE_OFF,
     LOGARITHMIC_COMPLEXITY,
     REAL_WORLD_PERFORMANCE,
     BEST_CONCEIVABLE_RUNTIME,
@@ -207,6 +219,7 @@ field_index: list[Definition] = [
     BUD,
     DYNAMIC_PROGRAMMING,
     MEMOIZATION,
+    PRECOMPUTATION,
     CO_NP_CLASS,
     NP_CLASS,
     NP_COMPLETE_CLASS,
@@ -246,6 +259,7 @@ field_index: list[Definition] = [
     HEAP_TREE,
     REDUCTION,
     BASE_CASE,
+    MATHEMATICAL_INDUCTION,
     RECURSION,
     GREEDY_ALGORITHM,
     DIVIDE_AND_CONQUER,
@@ -262,9 +276,13 @@ field_index: list[Definition] = [
     SQUARE_ROOT,
     PERFECT_SQUARE,
     INTEGER,
+    NATURAL_NUMBER,
     PRIME_NUMBER,
     PRIME_FACTORIZATION,
     FACTORIAL,
+    COMBINATORICS,
+    COMBINATION,
+    BINOMIAL_COEFFICIENT,
     PRODUCT,
     REORDERING,
     UNIQUENESS,
