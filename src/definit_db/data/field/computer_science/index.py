@@ -64,6 +64,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.operation
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.boolean import BOOLEAN
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.integer import INTEGER
 from definit_db.data.field.computer_science.definitions.fundamental.arithmetic_right_shift import ARITHMETIC_RIGHT_SHIFT
+from definit_db.data.field.computer_science.definitions.fundamental.assertion import ASSERTION
 from definit_db.data.field.computer_science.definitions.fundamental.binary_fractions import BINARY_FRACTIONS
 from definit_db.data.field.computer_science.definitions.fundamental.binary_representation import BINARY_REPRESENTATION
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
@@ -86,11 +87,15 @@ from definit_db.data.field.computer_science.definitions.fundamental.edge_case im
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
+from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.memory_allocation import MEMORY_ALLOCATION
+from definit_db.data.field.computer_science.definitions.fundamental.memory_management import MEMORY_MANAGEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.object import OBJECT
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
+from definit_db.data.field.computer_science.definitions.fundamental.over_optimization import OVER_OPTIMIZATION
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
+from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
@@ -114,6 +119,7 @@ field_index: list[Definition] = [
     OPERATION,
     BIT,
     BINARY_REPRESENTATION,
+    HEXADECIMAL_CODE,
     BINARY_FRACTIONS,
     BITWISE_OPERATION,
     BOTTLENECK,
@@ -122,11 +128,13 @@ field_index: list[Definition] = [
     HARDWARE,
     COMPUTER,
     COMPUTER_MEMORY,
+    POINTER,
     CONCURRENCY,
     CORE,
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    OVER_OPTIMIZATION,
     PSEUDOCODE,
     BRANCH,
     RANDOM_ACCESS_MEMORY,
@@ -139,12 +147,14 @@ field_index: list[Definition] = [
     CALL_STACK,
     CACHE,
     STACK_OVERFLOW,
+    ASSERTION,
     TEST,
     CONCEPTUAL_TEST,
     TEST_CASE,
     EDGE_CASE,
     SPECIAL_CASE,
     MEMORY_ALLOCATION,
+    MEMORY_MANAGEMENT,
     VARIABLE,
     TWOS_COMPLEMENT,
     ABSTRACT_DATA_TYPE,

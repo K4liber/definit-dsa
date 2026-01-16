@@ -2,6 +2,9 @@ from definit.definition.definition import Definition
 
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.amortized_time import AMORTIZED_TIME
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.asymptotic_efficiency import (
+    ASYMPTOTIC_EFFICIENCY,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.asymptotic_runtime import ASYMPTOTIC_RUNTIME
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.best_case import BEST_CASE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.best_conceivable_runtime import (
@@ -14,6 +17,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.co_np_c
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complexity import COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.divide_and_conquer import DIVIDE_AND_CONQUER
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.dynamic_programming import DYNAMIC_PROGRAMMING
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.expected_case import EXPECTED_CASE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.greedy_algorithm import GREEDY_ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.heuristic import HEURISTIC
@@ -32,6 +36,9 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.off_by_
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.p_class import P_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.precomputation import PRECOMPUTATION
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_life_efficiency import (
+    REAL_LIFE_EFFICIENCY,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_world_performance import (
     REAL_WORLD_PERFORMANCE,
 )
@@ -96,10 +103,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.intersection impo
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
+from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
 from definit_db.data.field.mathematics.definitions.fundamental.multiset import MULTISET
 from definit_db.data.field.mathematics.definitions.fundamental.natural_number import NATURAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.numeral_system import NUMERAL_SYSTEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
@@ -171,6 +180,7 @@ field_index: list[Definition] = [
     FINITE_SEQUENCE,
     FIBONACCI,
     VECTOR,
+    MATRIX,
     INSTRUCTION,
     INDEX,
     LOOP,
@@ -191,6 +201,7 @@ field_index: list[Definition] = [
     BOUND,
     UPPER_BOUND,
     BIG_O_NOTATION,
+    ASYMPTOTIC_EFFICIENCY,
     TURING_MACHINE,
     DETERMINISTIC_TURING_MACHINE,
     NONDETERMINISTIC_TURING_MACHINE,
@@ -207,6 +218,7 @@ field_index: list[Definition] = [
     ALGORITHM,
     HEURISTIC,
     COMPLEXITY,
+    EFFICIENCY,
     AMORTIZED_TIME,
     ASYMPTOTIC_RUNTIME,
     TIME_COMPLEXITY,
@@ -214,6 +226,7 @@ field_index: list[Definition] = [
     TIME_VS_SPACE_TRADE_OFF,
     LOGARITHMIC_COMPLEXITY,
     REAL_WORLD_PERFORMANCE,
+    REAL_LIFE_EFFICIENCY,
     BEST_CONCEIVABLE_RUNTIME,
     BRUTE_FORCE,
     BUD,
@@ -287,6 +300,7 @@ field_index: list[Definition] = [
     REORDERING,
     UNIQUENESS,
     RADIX,
+    NUMERAL_SYSTEM,
     RADIX_SORT,
     BUBBLE_SORT,
     HEAP_SORT,
