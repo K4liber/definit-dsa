@@ -101,6 +101,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.finite_sequence i
 from definit_db.data.field.mathematics.definitions.fundamental.finite_set import FINITE_SET
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.hash_function import HASH_FUNCTION
+from definit_db.data.field.mathematics.definitions.fundamental.histogram import HISTOGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.independence import INDEPENDENCE
 from definit_db.data.field.mathematics.definitions.fundamental.index import INDEX
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
@@ -113,8 +114,10 @@ from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
+from definit_db.data.field.mathematics.definitions.fundamental.median import MEDIAN
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
 from definit_db.data.field.mathematics.definitions.fundamental.multiset import MULTISET
+from definit_db.data.field.mathematics.definitions.fundamental.mutual_exclusivity import MUTUAL_EXCLUSIVITY
 from definit_db.data.field.mathematics.definitions.fundamental.natural_number import NATURAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.not_operator import NOT_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
@@ -122,6 +125,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.numeral_system im
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
+from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
@@ -380,4 +384,8 @@ field_index: list[Definition] = [
     BAYES_THEOREM,
     CONDITIONAL_PROBABILITY,
     INDEPENDENCE,
+    MUTUAL_EXCLUSIVITY,
+    PARTITIONING,
+    MEDIAN,
+    HISTOGRAM,
 ]

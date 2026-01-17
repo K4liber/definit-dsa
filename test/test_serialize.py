@@ -15,7 +15,7 @@ def test_generate_and_load() -> None:
     db = DatabaseMd(data_md_path=db_path, load_cache=True)
     index = db.get_index()
     # Then
-    assert len(index) == 261
+    assert len(index) == 275
 
 
 @pytest.mark.parametrize("field", _FIELDS)

@@ -15,6 +15,7 @@ from definit_db.data.field.computer_science.definitions.algorithms.problems.hash
 from definit_db.data.field.computer_science.definitions.algorithms.searching.string.rabin_karp_algorithm import (
     RABIN_KARP_ALGORITHM,
 )
+from definit_db.data.field.computer_science.definitions.computation.mapreduce import MAPREDUCE
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.associative_array import (
     ASSOCIATIVE_ARRAY,
 )
@@ -68,6 +69,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.primitive
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.integer import INTEGER
 from definit_db.data.field.computer_science.definitions.fundamental.arithmetic_right_shift import ARITHMETIC_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.assertion import ASSERTION
+from definit_db.data.field.computer_science.definitions.fundamental.auxiliary_space import AUXILIARY_SPACE
 from definit_db.data.field.computer_science.definitions.fundamental.binary_fractions import BINARY_FRACTIONS
 from definit_db.data.field.computer_science.definitions.fundamental.binary_representation import BINARY_REPRESENTATION
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
@@ -77,6 +79,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.branch impor
 from definit_db.data.field.computer_science.definitions.fundamental.bug import BUG
 from definit_db.data.field.computer_science.definitions.fundamental.cache import CACHE
 from definit_db.data.field.computer_science.definitions.fundamental.call_stack import CALL_STACK
+from definit_db.data.field.computer_science.definitions.fundamental.clustering import CLUSTERING
 from definit_db.data.field.computer_science.definitions.fundamental.computer import COMPUTER
 from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.conceptual_test import CONCEPTUAL_TEST
@@ -94,13 +97,18 @@ from definit_db.data.field.computer_science.definitions.fundamental.heap_memory 
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
 from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
+from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
+from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
 from definit_db.data.field.computer_science.definitions.fundamental.memory_allocation import MEMORY_ALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.memory_management import MEMORY_MANAGEMENT
+from definit_db.data.field.computer_science.definitions.fundamental.null import NULL
 from definit_db.data.field.computer_science.definitions.fundamental.object import OBJECT
+from definit_db.data.field.computer_science.definitions.fundamental.operating_system import OPERATING_SYSTEM
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.over_optimization import OVER_OPTIMIZATION
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
+from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
@@ -112,8 +120,10 @@ from definit_db.data.field.computer_science.definitions.fundamental.stack_memory
 from definit_db.data.field.computer_science.definitions.fundamental.stack_overflow import STACK_OVERFLOW
 from definit_db.data.field.computer_science.definitions.fundamental.test import TEST
 from definit_db.data.field.computer_science.definitions.fundamental.test_case import TEST_CASE
+from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
 from definit_db.data.field.computer_science.definitions.fundamental.twos_complement import TWOS_COMPLEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.variable import VARIABLE
+from definit_db.data.field.computer_science.definitions.fundamental.worker import WORKER
 
 field_index: list[Definition] = [
     OBJECT,
@@ -166,6 +176,7 @@ field_index: list[Definition] = [
     BIT_FIELD,
     COLLECTION,
     MAP,
+    MAPREDUCE,
     PRIMITIVE_DATA_TYPE,
     ASSOCIATIVE_ARRAY,
     HASH_TABLE,
@@ -200,4 +211,13 @@ field_index: list[Definition] = [
     BIT_MANIPULATION,
     FLOAT,
     DOUBLE,
+    AUXILIARY_SPACE,
+    CLUSTERING,
+    LOPSIDED,
+    NULL,
+    WORKER,
+    PROCESS,
+    THREAD,
+    MACHINE,
+    OPERATING_SYSTEM,
 ]
