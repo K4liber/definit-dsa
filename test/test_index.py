@@ -8,7 +8,10 @@ import definit_db
 from definit_db.data.field import FieldName
 from definit_db.data.field.index import get_index
 
-_field_to_index_length = {FieldName.COMPUTER_SCIENCE: 64, FieldName.MATHEMATICS: 118}
+_field_to_index_length = {
+    FieldName.COMPUTER_SCIENCE: 94,
+    FieldName.MATHEMATICS: 181,
+}
 
 
 def test_indexes_load_and_length() -> None:

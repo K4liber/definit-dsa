@@ -15,3 +15,5 @@ Remember to add any definition that is not created yet, but is used in the <defi
 
 Make sure you do not create circular dependencies between definitions and between fields. 
 For example, a definition from mathematics should not depend on any definition from computer_science.
+
+Please create a definition for "Asymptotic runtime". First check all the available categories (subdirectories) under src\definit_db\data\field and if any fits, put it there. If there is no a good category, please create one. Remember to keep the definition simple and add all available references (dependencies on other definitions).

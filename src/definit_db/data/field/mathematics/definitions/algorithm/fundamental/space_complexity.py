@@ -18,7 +18,7 @@ Space complexity describes how the memory requirements grow with increasing inpu
 
 SPACE_COMPLEXITY = _SpaceComplexity(
     key=DefinitionKey(
-        name="space_complexity",
+        name="space complexity",
         field=FieldName.MATHEMATICS,
     )
 )

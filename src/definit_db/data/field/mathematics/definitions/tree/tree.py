@@ -10,9 +10,7 @@ class _Tree(Definition):
     def _get_content(self) -> str:
         return f"""
 A tree is a {DIRECTED_ACYCLIC_GRAPH.key.get_reference(phrase="directed acyclic graph")} with the restriction that 
-a child can only have one parent. Each tree has a root {NODE.key.get_reference(phrase="node")}, which is the 
-topmost node in the hierarchy, and each node can have zero or more child nodes. Each node has only one parent 
-node, except for the root node, which has no parent.
+a child can only have one parent. Each {NODE.key.get_reference(phrase="node")} can have zero or more child nodes.
 """
 
 

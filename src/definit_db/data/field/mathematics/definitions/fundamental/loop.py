@@ -12,9 +12,10 @@ class _Loop(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a control structure that repeats a {SEQUENCE.key.get_reference()} of {INSTRUCTION.key.get_reference("instructions")} 
-multiple times until a specified condition is met or for a predetermined number of iterations. Loops enable efficient 
-execution of repetitive tasks and are fundamental to iterating over data structures.
+{self.key.get_reference()} is a control structure that repeats a {SEQUENCE.key.get_reference()} of 
+{INSTRUCTION.key.get_reference("instructions")} multiple times until a specified condition is met or for a 
+predetermined number of iterations. Loops enable efficient execution of repetitive tasks and are fundamental to 
+iterating over data structures.
 """
 
 
