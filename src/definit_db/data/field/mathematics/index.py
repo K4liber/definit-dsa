@@ -42,6 +42,9 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_li
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_world_performance import (
     REAL_WORLD_PERFORMANCE,
 )
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.sieve_of_eratosthenes import (
+    SIEVE_OF_ERATOSTHENES,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.space_complexity import SPACE_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_vs_space_tradeoff import (
@@ -83,10 +86,13 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
     NONDETERMINISTIC_TURING_MACHINE,
 )
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
+from definit_db.data.field.mathematics.definitions.fundamental.and_operator import AND_OPERATOR
+from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem import BAYES_THEOREM
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
+from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
@@ -95,6 +101,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.finite_sequence i
 from definit_db.data.field.mathematics.definitions.fundamental.finite_set import FINITE_SET
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.hash_function import HASH_FUNCTION
+from definit_db.data.field.mathematics.definitions.fundamental.independence import INDEPENDENCE
 from definit_db.data.field.mathematics.definitions.fundamental.index import INDEX
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
@@ -109,6 +116,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.matrix import MAT
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
 from definit_db.data.field.mathematics.definitions.fundamental.multiset import MULTISET
 from definit_db.data.field.mathematics.definitions.fundamental.natural_number import NATURAL_NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.not_operator import NOT_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.numeral_system import NUMERAL_SYSTEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
@@ -123,15 +131,18 @@ from definit_db.data.field.mathematics.definitions.fundamental.probability impor
 from definit_db.data.field.mathematics.definitions.fundamental.product import PRODUCT
 from definit_db.data.field.mathematics.definitions.fundamental.pure_function import PURE_FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
+from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.fundamental.reordering import REORDERING
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
+from definit_db.data.field.mathematics.definitions.fundamental.unary_operation import UNARY_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribution import UNIFORM_DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.union import UNION
 from definit_db.data.field.mathematics.definitions.fundamental.uniqueness import UNIQUENESS
 from definit_db.data.field.mathematics.definitions.fundamental.vector import VECTOR
+from definit_db.data.field.mathematics.definitions.fundamental.venn_diagram import VENN_DIAGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.xor import XOR
 from definit_db.data.field.mathematics.definitions.graph.acyclic_graph import ACYCLIC_GRAPH
 from definit_db.data.field.mathematics.definitions.graph.adjacency_list import ADJACENCY_LIST
@@ -358,6 +369,15 @@ field_index: list[Definition] = [
     EXPECTED_VALUE,
     PERMUTATION,
     LOGICAL_OPERATOR,
+    NOT_OPERATOR,
     OR_OPERATOR,
     XOR,
+    AND_OPERATOR,
+    UNARY_OPERATION,
+    REAL_NUMBER,
+    SIEVE_OF_ERATOSTHENES,
+    VENN_DIAGRAM,
+    BAYES_THEOREM,
+    CONDITIONAL_PROBABILITY,
+    INDEPENDENCE,
 ]

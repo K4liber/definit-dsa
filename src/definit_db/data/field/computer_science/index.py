@@ -86,7 +86,9 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
+from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
+from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
@@ -196,4 +198,6 @@ field_index: list[Definition] = [
     ROLLING_HASH,
     RABIN_KARP_ALGORITHM,
     BIT_MANIPULATION,
+    FLOAT,
+    DOUBLE,
 ]
