@@ -15,13 +15,13 @@ def test_generate_and_load() -> None:
     db = DatabaseMd(data_md_path=db_path, load_cache=True)
     index = db.get_index()
     # Then
-    assert len(index) == 230
+    assert len(index) == 250
 
 
 @pytest.mark.parametrize("field", _FIELDS)
 def test_verify_definitions_package(repo_root_dir: Path, field: FieldName) -> None:
     # Given
-    definitions_path = repo_root_dir / "src/definit_db" / "data" / "field" / field / "definitions"
+    definitions_path = repo_root_dir / "src" / "definit_db" / "data" / "field" / field / "definitions"
     # When
     verify_definitions_package(definitions_path=definitions_path)
     # Then

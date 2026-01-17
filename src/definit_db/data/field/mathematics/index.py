@@ -84,6 +84,7 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
 )
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
+from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
@@ -102,6 +103,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.integer import IN
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
+from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
@@ -111,6 +113,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 from definit_db.data.field.mathematics.definitions.fundamental.numeral_system import NUMERAL_SYSTEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
+from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
@@ -129,8 +132,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribut
 from definit_db.data.field.mathematics.definitions.fundamental.union import UNION
 from definit_db.data.field.mathematics.definitions.fundamental.uniqueness import UNIQUENESS
 from definit_db.data.field.mathematics.definitions.fundamental.vector import VECTOR
+from definit_db.data.field.mathematics.definitions.fundamental.xor import XOR
+from definit_db.data.field.mathematics.definitions.graph.acyclic_graph import ACYCLIC_GRAPH
 from definit_db.data.field.mathematics.definitions.graph.adjacency_list import ADJACENCY_LIST
+from definit_db.data.field.mathematics.definitions.graph.adjacency_matrix import ADJACENCY_MATRIX
 from definit_db.data.field.mathematics.definitions.graph.bipartite_graph import BIPARTITE_GRAPH
+from definit_db.data.field.mathematics.definitions.graph.connected_graph import CONNECTED_GRAPH
 from definit_db.data.field.mathematics.definitions.graph.cycle import CYCLE
 from definit_db.data.field.mathematics.definitions.graph.directed_acyclic_graph import DIRECTED_ACYCLIC_GRAPH
 from definit_db.data.field.mathematics.definitions.graph.directed_graph import DIRECTED_GRAPH
@@ -139,6 +146,7 @@ from definit_db.data.field.mathematics.definitions.graph.graph import GRAPH
 from definit_db.data.field.mathematics.definitions.graph.graph_distance import GRAPH_DISTANCE
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.graph.path import PATH
+from definit_db.data.field.mathematics.definitions.graph.subgraph import SUBGRAPH
 from definit_db.data.field.mathematics.definitions.graph.weighted_graph import WEIGHTED_GRAPH
 from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 from definit_db.data.field.mathematics.definitions.problem.base_case import BASE_CASE
@@ -159,15 +167,26 @@ from definit_db.data.field.mathematics.definitions.problem.subproblem import SUB
 from definit_db.data.field.mathematics.definitions.tree.avl_tree import AVL_TREE
 from definit_db.data.field.mathematics.definitions.tree.b_tree import B_TREE
 from definit_db.data.field.mathematics.definitions.tree.balanced_binary_tree import BALANCED_BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.binary_heap import BINARY_HEAP
 from definit_db.data.field.mathematics.definitions.tree.binary_search_tree import BINARY_SEARCH_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal import BINARY_TREE_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.complete_binary_tree import COMPLETE_BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.full_binary_tree import FULL_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.heap_tree import HEAP_TREE
+from definit_db.data.field.mathematics.definitions.tree.in_order_traversal import IN_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.interval_tree import INTERVAL_TREE
 from definit_db.data.field.mathematics.definitions.tree.k_ary_tree import K_ARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
+from definit_db.data.field.mathematics.definitions.tree.max_heap import MAX_HEAP
+from definit_db.data.field.mathematics.definitions.tree.min_heap import MIN_HEAP
 from definit_db.data.field.mathematics.definitions.tree.minimum_spanning_tree import MINIMUM_SPANNING_TREE
+from definit_db.data.field.mathematics.definitions.tree.n_ary_tree import N_ARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.perfect_binary_tree import PERFECT_BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.post_order_traversal import POST_ORDER_TRAVERSAL
+from definit_db.data.field.mathematics.definitions.tree.pre_order_traversal import PRE_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.red_black_tree import RED_BLACK_TREE
+from definit_db.data.field.mathematics.definitions.tree.root import ROOT
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 from definit_db.data.field.mathematics.definitions.tree.unbalanced_binary_tree import UNBALANCED_BINARY_TREE
@@ -176,6 +195,7 @@ field_index: list[Definition] = [
     OBJECT,
     ITEM,
     INFORMATION,
+    BOOLEAN_EXPRESSION,
     SEQUENCE,
     FINITE_SEQUENCE,
     FIBONACCI,
@@ -248,22 +268,37 @@ field_index: list[Definition] = [
     NODE,
     EDGE,
     ADJACENCY_LIST,
+    ADJACENCY_MATRIX,
+    ACYCLIC_GRAPH,
     BIPARTITE_GRAPH,
     CYCLE,
     DIRECTED_ACYCLIC_GRAPH,
     DIRECTED_GRAPH,
     GRAPH_DISTANCE,
     PATH,
+    SUBGRAPH,
+    CONNECTED_GRAPH,
     WEIGHTED_GRAPH,
     AVL_TREE,
     B_TREE,
     BALANCED_BINARY_TREE,
+    FULL_BINARY_TREE,
+    PERFECT_BINARY_TREE,
     BINARY_SEARCH_TREE,
     BINARY_TREE,
+    BINARY_TREE_TRAVERSAL,
+    IN_ORDER_TRAVERSAL,
+    PRE_ORDER_TRAVERSAL,
+    POST_ORDER_TRAVERSAL,
     COMPLETE_BINARY_TREE,
+    BINARY_HEAP,
+    MIN_HEAP,
+    MAX_HEAP,
     INTERVAL_TREE,
     K_ARY_TREE,
+    N_ARY_TREE,
     LEAF,
+    ROOT,
     MINIMUM_SPANNING_TREE,
     RED_BLACK_TREE,
     SUBTREE,
@@ -322,4 +357,7 @@ field_index: list[Definition] = [
     EXPECTED_CASE,
     EXPECTED_VALUE,
     PERMUTATION,
+    LOGICAL_OPERATOR,
+    OR_OPERATOR,
+    XOR,
 ]

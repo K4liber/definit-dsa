@@ -33,6 +33,9 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.stack import STACK
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.trie import TRIE
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.array import ARRAY
+from definit_db.data.field.computer_science.definitions.data_structure.collection.list.circular_linked_list import (
+    CIRCULAR_LINKED_LIST,
+)
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.linked_list import LINKED_LIST
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.list import LIST
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.ascii import ASCII
@@ -168,6 +171,7 @@ field_index: list[Definition] = [
     SET,
     ARRAY,
     LINKED_LIST,
+    CIRCULAR_LINKED_LIST,
     LIST,
     PRIORITY_QUEUE,
     QUEUE,
