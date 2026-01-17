@@ -9,10 +9,29 @@
       "level": 0
     },
     {
+      "id": "mathematics/fundamental/item",
+      "title": "item",
+      "category": "mathematics/fundamental/item",
+      "content": "# item\r\n\r\n\r\nAn [item](mathematics/item) is a single [object](mathematics/object) considered as an element of a\r\n[set](mathematics/set).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/object",
+        "mathematics/fundamental/set"
+      ],
+      "level": 2
+    },
+    {
       "id": "mathematics/fundamental/information",
       "title": "information",
       "category": "mathematics/fundamental/information",
       "content": "# information\r\n\r\n\r\nAn abstract concept that refers to something which has the power to inform. \r\nAt the most fundamental level, it pertains to the interpretation (perhaps formally) of that which may be \r\nsensed, or their abstractions. Any natural process that is not completely random and any observable \r\npattern in any medium can be said to convey some amount of information.\r\n\r\n",
+      "deps": [],
+      "level": 0
+    },
+    {
+      "id": "mathematics/fundamental/boolean_expression",
+      "title": "boolean expression",
+      "category": "mathematics/fundamental/boolean_expression",
+      "content": "# boolean expression\r\n\r\n\r\nA [boolean expression](mathematics/boolean_expression) is an expression that evaluates to either true or false.\r\n\r\n",
       "deps": [],
       "level": 0
     },
@@ -36,6 +55,39 @@
         "mathematics/fundamental/object"
       ],
       "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/fibonacci",
+      "title": "fibonacci",
+      "category": "mathematics/fundamental/fibonacci",
+      "content": "# fibonacci\r\n\r\n\r\n[Fibonacci](mathematics/fibonacci) commonly refers to the Fibonacci \r\n[sequence](mathematics/sequence) (F0, F1, F2, ...) defined by:\r\n\r\n- F0 = 0\r\n- F1 = 1\r\n- Fn = Fn-1 + Fn-2 for n ≥ 2\r\n\r\nEach term is an [integer](mathematics/integer).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/sequence",
+        "mathematics/fundamental/integer"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/vector",
+      "title": "vector",
+      "category": "mathematics/fundamental/vector",
+      "content": "# vector\r\n\r\n\r\nA [vector](mathematics/vector) is an ordered [sequence](mathematics/sequence) of\r\n[numbers](mathematics/number), often used to represent a point or a direction in space.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/sequence",
+        "mathematics/fundamental/number"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/matrix",
+      "title": "matrix",
+      "category": "mathematics/fundamental/matrix",
+      "content": "# matrix\r\n\r\n\r\nA [matrix](mathematics/matrix) is a rectangular arrangement of [numbers](mathematics/number) \r\nin rows and columns.\r\n\r\nA matrix can be viewed as a collection of [vectors](mathematics/vector) (rows or columns).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/number",
+        "mathematics/fundamental/vector"
+      ],
+      "level": 3
     },
     {
       "id": "mathematics/fundamental/instruction",
@@ -62,7 +114,7 @@
       "id": "mathematics/fundamental/loop",
       "title": "loop",
       "category": "mathematics/fundamental/loop",
-      "content": "# loop\r\n\r\n\r\n[loop](mathematics/loop) is a control structure that repeats a [sequence](mathematics/sequence) of [instructions](mathematics/instruction) \r\nmultiple times until a specified condition is met or for a predetermined number of iterations. Loops enable efficient \r\nexecution of repetitive tasks and are fundamental to iterating over data structures.\r\n\r\n",
+      "content": "# loop\r\n\r\n\r\n[loop](mathematics/loop) is a control structure that repeats a [sequence](mathematics/sequence) of \r\n[instructions](mathematics/instruction) multiple times until a specified condition is met or for a \r\npredetermined number of iterations. Loops enable efficient execution of repetitive tasks and are fundamental to \r\niterating over data structures.\r\n\r\n",
       "deps": [
         "mathematics/fundamental/sequence",
         "mathematics/fundamental/instruction"
@@ -108,6 +160,26 @@
         "mathematics/fundamental/object"
       ],
       "level": 1
+    },
+    {
+      "id": "mathematics/fundamental/intersection",
+      "title": "intersection",
+      "category": "mathematics/fundamental/intersection",
+      "content": "# intersection\r\n\r\n\r\nThe [intersection](mathematics/intersection) of two [sets](mathematics/set) A and B is the set of elements that are in\r\nboth A and B.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/set"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/union",
+      "title": "union",
+      "category": "mathematics/fundamental/union",
+      "content": "# union\r\n\r\n\r\nThe [union](mathematics/union) of two [sets](mathematics/set) A and B is the set of elements that are in\r\nA or in B (or in both).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/set"
+      ],
+      "level": 2
     },
     {
       "id": "mathematics/fundamental/finite_set",
@@ -187,11 +259,12 @@
       "id": "mathematics/analysis/asymptotic_behavior",
       "title": "asymptotic_behavior",
       "category": "mathematics/analysis/asymptotic_behavior",
-      "content": "# asymptotic_behavior\r\n\r\n\r\nThe behavior of a [function](mathematics/function) as its input approaches infinity or some other limit value. \r\nAsymptotic behavior describes how a function grows or behaves in the limit, focusing on the dominant terms and \r\nignoring lower-order terms and constant factors.\r\n\r\n",
+      "content": "# asymptotic_behavior\r\n\r\n\r\nThe behavior of a [function](mathematics/function) as its [input](mathematics/input_data) \r\napproaches infinity or some other limit value. \r\nAsymptotic behavior describes how a function grows or behaves in the limit, focusing on the dominant terms and \r\nignoring lower-order terms and constant factors.\r\n\r\n",
       "deps": [
-        "mathematics/fundamental/function"
+        "mathematics/fundamental/function",
+        "mathematics/fundamental/input_data"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/analysis/bound",
@@ -218,7 +291,7 @@
       "id": "mathematics/algorithm/fundamental/big_o_notation",
       "title": "big_o_notation",
       "category": "mathematics/algorithm/fundamental/big_o_notation",
-      "content": "# big_o_notation\r\n\r\n\r\nA mathematical notation used to describe the [asymptotic_behavior](mathematics/asymptotic_behavior) of a \r\n[function](mathematics/function), particularly the [upper_bound](mathematics/upper_bound) of \r\n[time_complexity](mathematics/time_complexity) or [space_complexity](mathematics/space_complexity) as the input size grows. \r\nBig O notation characterizes the worst-case growth rate, allowing comparison of algorithm efficiency \r\nindependent of implementation details.\r\n\r\n",
+      "content": "# big_o_notation\r\n\r\n\r\nA mathematical notation used to describe the [asymptotic_behavior](mathematics/asymptotic_behavior) of a \r\n[function](mathematics/function), particularly the [upper_bound](mathematics/upper_bound) of \r\n[time_complexity](mathematics/time_complexity) or [space complexity](mathematics/space_complexity) as the input size grows. \r\nBig O notation characterizes the worst-case growth rate, allowing comparison of algorithm efficiency \r\nindependent of implementation details.\r\n\r\n",
       "deps": [
         "mathematics/analysis/asymptotic_behavior",
         "mathematics/fundamental/function",
@@ -227,6 +300,18 @@
         "mathematics/algorithm/fundamental/space_complexity"
       ],
       "level": 6
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/asymptotic_efficiency",
+      "title": "asymptotic efficiency",
+      "category": "mathematics/algorithm/fundamental/asymptotic_efficiency",
+      "content": "# asymptotic efficiency\r\n\r\n\r\n[asymptotic efficiency](mathematics/asymptotic_efficiency) is a notion of [efficiency](mathematics/efficiency) that focuses on the \r\n[asymptotic behavior](mathematics/asymptotic_behavior) of resource usage as input size grows.\r\n\r\nIt is commonly expressed using [Big O notation](mathematics/big_o_notation).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/efficiency",
+        "mathematics/analysis/asymptotic_behavior",
+        "mathematics/algorithm/fundamental/big_o_notation"
+      ],
+      "level": 7
     },
     {
       "id": "mathematics/computation/turing_machine",
@@ -408,6 +493,18 @@
       "level": 4
     },
     {
+      "id": "mathematics/algorithm/fundamental/efficiency",
+      "title": "efficiency",
+      "category": "mathematics/algorithm/fundamental/efficiency",
+      "content": "# efficiency\r\n\r\n\r\n[efficiency](mathematics/efficiency) is how well a method uses resources to achieve a result.\r\n\r\nIn [algorithm](mathematics/algorithm) analysis, efficiency is typically described using \r\n[time complexity](mathematics/time_complexity) and \r\n[space complexity](mathematics/space_complexity).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/space_complexity"
+      ],
+      "level": 6
+    },
+    {
       "id": "mathematics/algorithm/fundamental/amortized_time",
       "title": "amortized time",
       "category": "mathematics/algorithm/fundamental/amortized_time",
@@ -420,6 +517,18 @@
         "mathematics/analysis/bound"
       ],
       "level": 6
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/asymptotic_runtime",
+      "title": "asymptotic runtime",
+      "category": "mathematics/algorithm/fundamental/asymptotic_runtime",
+      "content": "# asymptotic runtime\r\n\r\n\r\nThe [asymptotic runtime](mathematics/asymptotic_runtime) is the theoretical running time of an algorithm as the input size grows,\r\nignoring constant factors and lower-order terms.\r\n\r\nIt is typically expressed as a [Big O](mathematics/big_o_notation) \r\n[time complexity](mathematics/time_complexity) that describes the \r\n[asymptotic](mathematics/asymptotic_behavior) growth of the runtime.\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/big_o_notation",
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/analysis/asymptotic_behavior"
+      ],
+      "level": 7
     },
     {
       "id": "mathematics/algorithm/fundamental/time_complexity",
@@ -435,15 +544,27 @@
     },
     {
       "id": "mathematics/algorithm/fundamental/space_complexity",
-      "title": "space_complexity",
+      "title": "space complexity",
       "category": "mathematics/algorithm/fundamental/space_complexity",
-      "content": "# space_complexity\r\n\r\n\r\nA measure of [complexity](mathematics/complexity) that quantifies the amount of memory or storage space an \r\n[algorithm](mathematics/algorithm) requires as a [function](mathematics/function) of the input size. \r\nSpace complexity describes how the memory requirements grow with increasing input size.\r\n\r\n",
+      "content": "# space complexity\r\n\r\n\r\nA measure of [complexity](mathematics/complexity) that quantifies the amount of memory or storage space an \r\n[algorithm](mathematics/algorithm) requires as a [function](mathematics/function) of the input size. \r\nSpace complexity describes how the memory requirements grow with increasing input size.\r\n\r\n",
       "deps": [
         "mathematics/algorithm/fundamental/complexity",
         "mathematics/algorithm/fundamental/algorithm",
         "mathematics/fundamental/function"
       ],
       "level": 5
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/time_vs_space_trade_off",
+      "title": "time vs space trade-off",
+      "category": "mathematics/algorithm/fundamental/time_vs_space_trade_off",
+      "content": "# time vs space trade-off\r\n\r\n\r\nThe [time vs space trade-off](mathematics/time_vs_space_trade_off) is a common design trade-off where improving \r\n[time complexity](mathematics/time_complexity) usually requires using more \r\n[space complexity](mathematics/space_complexity), and reducing memory usage may increase\r\n[runtime](mathematics/asymptotic_runtime).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/space_complexity",
+        "mathematics/algorithm/fundamental/asymptotic_runtime"
+      ],
+      "level": 8
     },
     {
       "id": "mathematics/algorithm/fundamental/logarithmic_complexity",
@@ -475,6 +596,18 @@
         "mathematics/fundamental/input_data"
       ],
       "level": 6
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/real_life_efficiency",
+      "title": "real-life efficiency",
+      "category": "mathematics/algorithm/fundamental/real_life_efficiency",
+      "content": "# real-life efficiency\r\n\r\n\r\n[real-life efficiency](mathematics/real_life_efficiency) is [efficiency](mathematics/efficiency) as observed in practice.\r\n\r\nIt is closely related to [real-world performance](mathematics/real_world_performance), \r\nand depends on factors such as the implementation, constant factors, and typical \r\n[inputs](mathematics/input_data).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/efficiency",
+        "mathematics/algorithm/fundamental/real_world_performance",
+        "mathematics/fundamental/input_data"
+      ],
+      "level": 7
     },
     {
       "id": "mathematics/algorithm/fundamental/best_conceivable_runtime",
@@ -546,6 +679,18 @@
         "mathematics/problem/solution"
       ],
       "level": 7
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/precomputation",
+      "title": "precomputation",
+      "category": "mathematics/algorithm/fundamental/precomputation",
+      "content": "# precomputation\r\n\r\n\r\n[precomputation](mathematics/precomputation) is a technique where some results are computed in advance and stored, so they can be\r\nreused later to reduce computation time.\r\n\r\nPrecomputation often improves [time complexity](mathematics/time_complexity) at the cost of higher\r\n[space complexity](mathematics/space_complexity), illustrating a \r\n[time vs space trade-off](mathematics/time_vs_space_trade_off).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/space_complexity",
+        "mathematics/algorithm/fundamental/time_vs_space_trade_off"
+      ],
+      "level": 9
     },
     {
       "id": "mathematics/algorithm/fundamental/co_np_class",
@@ -777,6 +922,30 @@
       "level": 5
     },
     {
+      "id": "mathematics/graph/adjacency_matrix",
+      "title": "adjacency matrix",
+      "category": "mathematics/graph/adjacency_matrix",
+      "content": "# adjacency matrix\r\n\r\n\r\nAn [adjacency matrix](mathematics/adjacency_matrix) is a way of representing a [graph](mathematics/graph) as a \r\n[matrix](mathematics/matrix).\r\n\r\nIf the rows and columns correspond to the [nodes](mathematics/node) of the graph, then the \r\nentry in row i, column j indicates whether there is an [edge](mathematics/edge) from node i to node j.\r\n\r\n",
+      "deps": [
+        "mathematics/graph/graph",
+        "mathematics/fundamental/matrix",
+        "mathematics/graph/node",
+        "mathematics/graph/edge"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/graph/acyclic_graph",
+      "title": "acyclic graph",
+      "category": "mathematics/graph/acyclic_graph",
+      "content": "# acyclic graph\r\n\r\n\r\nAn [acyclic graph](mathematics/acyclic_graph) is a [graph](mathematics/graph) that contains no \r\n[cycles](mathematics/cycle).\r\n\r\n",
+      "deps": [
+        "mathematics/graph/graph",
+        "mathematics/graph/cycle"
+      ],
+      "level": 7
+    },
+    {
       "id": "mathematics/graph/bipartite_graph",
       "title": "bipartite_graph",
       "category": "mathematics/graph/bipartite_graph",
@@ -850,6 +1019,30 @@
       "level": 5
     },
     {
+      "id": "mathematics/graph/subgraph",
+      "title": "subgraph",
+      "category": "mathematics/graph/subgraph",
+      "content": "# subgraph\r\n\r\n\r\nA [subgraph](mathematics/subgraph) is a [graph](mathematics/graph) formed from a subset of the \r\n[nodes](mathematics/node) and [edges](mathematics/edge) of another graph.\r\n\r\n",
+      "deps": [
+        "mathematics/graph/graph",
+        "mathematics/graph/node",
+        "mathematics/graph/edge"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/graph/connected_graph",
+      "title": "connected graph",
+      "category": "mathematics/graph/connected_graph",
+      "content": "# connected graph\r\n\r\n\r\nA [connected graph](mathematics/connected_graph) is a [graph](mathematics/graph) in which every pair of \r\n[nodes](mathematics/node) is connected by a [path](mathematics/path).\r\n\r\n",
+      "deps": [
+        "mathematics/graph/graph",
+        "mathematics/graph/node",
+        "mathematics/graph/path"
+      ],
+      "level": 6
+    },
+    {
       "id": "mathematics/graph/weighted_graph",
       "title": "weighted graph",
       "category": "mathematics/graph/weighted_graph",
@@ -895,7 +1088,32 @@
         "mathematics/tree/binary_tree",
         "mathematics/graph/node"
       ],
-      "level": 11
+      "level": 12
+    },
+    {
+      "id": "mathematics/tree/full_binary_tree",
+      "title": "full binary tree",
+      "category": "mathematics/tree/full_binary_tree",
+      "content": "# full binary tree\r\n\r\n\r\nA [full binary tree](mathematics/full_binary_tree) is a [binary tree](mathematics/binary_tree) \r\nin which every [node](mathematics/node) has either 0 or 2 children.\r\n\r\nEquivalently, every internal (non-[leaf](mathematics/leaf)) node has exactly two children.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_tree",
+        "mathematics/graph/node",
+        "mathematics/tree/leaf"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/tree/perfect_binary_tree",
+      "title": "perfect binary tree",
+      "category": "mathematics/tree/perfect_binary_tree",
+      "content": "# perfect binary tree\r\n\r\n\r\nA [perfect binary tree](mathematics/perfect_binary_tree) is a [binary tree](mathematics/binary_tree) in which every internal \r\n(non-[leaf](mathematics/leaf)) [node](mathematics/node) has exactly two children \r\nand all [leaf](mathematics/leaf) nodes are at the same depth.\r\n\r\nEquivalently, a perfect binary tree is [full](mathematics/full_binary_tree) \r\nand all leaves are at the same depth.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_tree",
+        "mathematics/tree/leaf",
+        "mathematics/graph/node",
+        "mathematics/tree/full_binary_tree"
+      ],
+      "level": 13
     },
     {
       "id": "mathematics/tree/binary_search_tree",
@@ -912,12 +1130,63 @@
       "id": "mathematics/tree/binary_tree",
       "title": "binary_tree",
       "category": "mathematics/tree/binary_tree",
-      "content": "# binary_tree\r\n\r\n\r\nA [tree](mathematics/tree) in which each node has at most two children, referred to as the left \r\nchild and the right child. A binary tree is a special case of a [k-ary tree](mathematics/k_ary_tree) \r\nwhere k = 2.\r\n\r\n",
+      "content": "# binary_tree\r\n\r\n\r\nA [tree](mathematics/tree) in which each node has at most two children, referred to as the left \r\nchild and the right child.\r\n\r\nA binary tree is a special case of an [n-ary tree](mathematics/n_ary_tree) and a \r\n[k-ary tree](mathematics/k_ary_tree) where k = 2.\r\n\r\n",
       "deps": [
         "mathematics/tree/tree",
+        "mathematics/tree/n_ary_tree",
         "mathematics/tree/k_ary_tree"
       ],
-      "level": 10
+      "level": 11
+    },
+    {
+      "id": "mathematics/tree/binary_tree_traversal",
+      "title": "binary tree traversal",
+      "category": "mathematics/tree/binary_tree_traversal",
+      "content": "# binary tree traversal\r\n\r\n\r\nA [binary tree traversal](mathematics/binary_tree_traversal) is a procedure for visiting each [node](mathematics/node) in a\r\n[binary tree](mathematics/binary_tree) in a specified order.\r\n\r\n",
+      "deps": [
+        "mathematics/graph/node",
+        "mathematics/tree/binary_tree"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/tree/in_order_traversal",
+      "title": "in-order traversal",
+      "category": "mathematics/tree/in_order_traversal",
+      "content": "# in-order traversal\r\n\r\n\r\nAn [in-order traversal](mathematics/in_order_traversal) is a [binary tree traversal](mathematics/binary_tree_traversal) of a\r\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left \r\n[subtree](mathematics/subtree) is visited first, then the node itself, and then the right subtree.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_tree_traversal",
+        "mathematics/tree/binary_tree",
+        "mathematics/graph/node",
+        "mathematics/tree/subtree"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/tree/pre_order_traversal",
+      "title": "pre-order traversal",
+      "category": "mathematics/tree/pre_order_traversal",
+      "content": "# pre-order traversal\r\n\r\n\r\nA [pre-order traversal](mathematics/pre_order_traversal) is a [binary tree traversal](mathematics/binary_tree_traversal) of a\r\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), \r\nthe node itself is visited first, then the left [subtree](mathematics/subtree), \r\nand then the right subtree.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_tree_traversal",
+        "mathematics/tree/binary_tree",
+        "mathematics/graph/node",
+        "mathematics/tree/subtree"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/tree/post_order_traversal",
+      "title": "post-order traversal",
+      "category": "mathematics/tree/post_order_traversal",
+      "content": "# post-order traversal\r\n\r\n\r\nA [post-order traversal](mathematics/post_order_traversal) is a [binary tree traversal](mathematics/binary_tree_traversal) of a\r\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left\r\n[subtree](mathematics/subtree) is visited first, then the right subtree, and then the node itself.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_tree_traversal",
+        "mathematics/tree/binary_tree",
+        "mathematics/graph/node",
+        "mathematics/tree/subtree"
+      ],
+      "level": 13
     },
     {
       "id": "mathematics/tree/complete_binary_tree",
@@ -928,7 +1197,42 @@
         "mathematics/tree/binary_tree",
         "mathematics/graph/node"
       ],
-      "level": 11
+      "level": 12
+    },
+    {
+      "id": "mathematics/tree/binary_heap",
+      "title": "binary heap",
+      "category": "mathematics/tree/binary_heap",
+      "content": "# binary heap\r\n\r\n\r\nA [binary heap](mathematics/binary_heap) is a [heap](mathematics/heap_tree) that is structured as a\r\n[complete binary tree](mathematics/complete_binary_tree).\r\n\r\n",
+      "deps": [
+        "mathematics/tree/heap_tree",
+        "mathematics/tree/complete_binary_tree"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/tree/min_heap",
+      "title": "min-heap",
+      "category": "mathematics/tree/min_heap",
+      "content": "# min-heap\r\n\r\n\r\nA [min-heap](mathematics/min_heap) is a [binary heap](mathematics/binary_heap) in which the key at each\r\n[node](mathematics/node) is less than or equal to the keys of its children.\r\n\r\nEquivalently, the minimum element is stored at the [root](mathematics/root).\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_heap",
+        "mathematics/graph/node",
+        "mathematics/tree/root"
+      ],
+      "level": 14
+    },
+    {
+      "id": "mathematics/tree/max_heap",
+      "title": "max-heap",
+      "category": "mathematics/tree/max_heap",
+      "content": "# max-heap\r\n\r\n\r\nA [max-heap](mathematics/max_heap) is a [binary heap](mathematics/binary_heap) in which the key at each\r\n[node](mathematics/node) is greater than or equal to the keys of its children.\r\n\r\nEquivalently, the maximum element is stored at the [root](mathematics/root).\r\n\r\n",
+      "deps": [
+        "mathematics/tree/binary_heap",
+        "mathematics/graph/node",
+        "mathematics/tree/root"
+      ],
+      "level": 14
     },
     {
       "id": "mathematics/tree/interval_tree",
@@ -941,13 +1245,24 @@
         "mathematics/tree/tree",
         "mathematics/tree/balanced_binary_tree"
       ],
-      "level": 12
+      "level": 13
     },
     {
       "id": "mathematics/tree/k_ary_tree",
       "title": "k_ary_tree",
       "category": "mathematics/tree/k_ary_tree",
-      "content": "# k_ary_tree\r\n\r\n\r\nA [tree](mathematics/tree) in which each [node](mathematics/node) has at most k \r\nchildren. The maximum number of nodes at level h of a k-ary tree is k^h, and the maximum number of nodes in a \r\nk-ary tree of height h is (k^(h+1) - 1) / (k - 1).\r\n\r\n",
+      "content": "# k_ary_tree\r\n\r\n\r\nA [k_ary_tree](mathematics/k_ary_tree) is an [n-ary tree](mathematics/n_ary_tree) in which each \r\n[node](mathematics/node) has at most k children.\r\n\r\nThe maximum number of nodes at level h of a k-ary tree is k^h, and the maximum number of nodes in a \r\nk-ary tree of height h is (k^(h+1) - 1) / (k - 1).\r\n\r\n",
+      "deps": [
+        "mathematics/tree/n_ary_tree",
+        "mathematics/graph/node"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/tree/n_ary_tree",
+      "title": "n-ary tree",
+      "category": "mathematics/tree/n_ary_tree",
+      "content": "# n-ary tree\r\n\r\n\r\nAn [n-ary tree](mathematics/n_ary_tree) is a [tree](mathematics/tree) in which each \r\n[node](mathematics/node) can have an arbitrary number of children.\r\n\r\n",
       "deps": [
         "mathematics/tree/tree",
         "mathematics/graph/node"
@@ -963,6 +1278,17 @@
         "mathematics/graph/node"
       ],
       "level": 2
+    },
+    {
+      "id": "mathematics/tree/root",
+      "title": "root",
+      "category": "mathematics/tree/root",
+      "content": "# root\r\n\r\n\r\nThe [root](mathematics/root) of a [tree](mathematics/tree) is the unique \r\n[node](mathematics/node) with no parent.\r\n\r\n",
+      "deps": [
+        "mathematics/tree/tree",
+        "mathematics/graph/node"
+      ],
+      "level": 9
     },
     {
       "id": "mathematics/tree/minimum_spanning_tree",
@@ -1005,7 +1331,7 @@
       "id": "mathematics/tree/tree",
       "title": "tree",
       "category": "mathematics/tree/tree",
-      "content": "# tree\r\n\r\n\r\nA tree is a [directed acyclic graph](mathematics/directed_acyclic_graph) with the restriction that \r\na child can only have one parent. Each tree has a root [node](mathematics/node), which is the \r\ntopmost node in the hierarchy, and each node can have zero or more child nodes. Each node has only one parent \r\nnode, except for the root node, which has no parent.\r\n\r\n",
+      "content": "# tree\r\n\r\n\r\nA tree is a [directed acyclic graph](mathematics/directed_acyclic_graph) with the restriction that \r\na child can only have one parent. Each [node](mathematics/node) can have zero or more child nodes.\r\n\r\n",
       "deps": [
         "mathematics/graph/directed_acyclic_graph",
         "mathematics/graph/node"
@@ -1023,7 +1349,7 @@
         "mathematics/tree/subtree",
         "mathematics/graph/node"
       ],
-      "level": 12
+      "level": 13
     },
     {
       "id": "mathematics/tree/heap_tree",
@@ -1058,6 +1384,17 @@
         "mathematics/problem/reduction"
       ],
       "level": 4
+    },
+    {
+      "id": "mathematics/problem/mathematical_induction",
+      "title": "mathematical induction",
+      "category": "mathematics/problem/mathematical_induction",
+      "content": "# mathematical induction\r\n\r\n\r\n[mathematical induction](mathematics/mathematical_induction) is a proof technique used to show that a statement holds for all \r\n[natural numbers](mathematics/natural_number).\r\n\r\nIt typically consists of proving a [base case](mathematics/base_case) and then proving that if the \r\nstatement holds for one value, it also holds for the next.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/natural_number",
+        "mathematics/problem/base_case"
+      ],
+      "level": 5
     },
     {
       "id": "mathematics/problem/recursion",
@@ -1142,9 +1479,10 @@
       "id": "mathematics/fundamental/probability",
       "title": "probability",
       "category": "mathematics/fundamental/probability",
-      "content": "# probability\r\n\r\n\r\nProbability is a measure that quantifies the likelihood of elements in a [set](mathematics/set) or events, \r\ntypically expressed as a number between 0 and 1. Probabilities indicate how likely different \r\n[objects](mathematics/object) or outcomes are to occur.\r\n\r\n",
+      "content": "# probability\r\n\r\n\r\nProbability is a measure that quantifies the likelihood of elements in a [set](mathematics/set) \r\nor events, typically expressed as a [number](mathematics/number) between 0 and 1. Probabilities indicate \r\nhow likely different [objects](mathematics/object) or outcomes are to occur.\r\n\r\n",
       "deps": [
         "mathematics/fundamental/set",
+        "mathematics/fundamental/number",
         "mathematics/fundamental/object"
       ],
       "level": 2
@@ -1221,6 +1559,27 @@
       "level": 1
     },
     {
+      "id": "mathematics/fundamental/square_root",
+      "title": "square root",
+      "category": "mathematics/fundamental/square_root",
+      "content": "# square root\r\n\r\n\r\nThe [square root](mathematics/square_root) of a non-negative [number](mathematics/number) x is a non-negative\r\nnumber y such that y² = x.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/number"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/perfect_square",
+      "title": "perfect square",
+      "category": "mathematics/fundamental/perfect_square",
+      "content": "# perfect square\r\n\r\n\r\nA [perfect square](mathematics/perfect_square) is a non-negative [integer](mathematics/integer) that can be written as n² for\r\nsome integer n.\r\n\r\nEquivalently, x is a perfect square if [the square root](mathematics/square_root) of x is an integer.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/integer",
+        "mathematics/fundamental/square_root"
+      ],
+      "level": 3
+    },
+    {
       "id": "mathematics/fundamental/integer",
       "title": "integer",
       "category": "mathematics/fundamental/integer",
@@ -1231,12 +1590,136 @@
       "level": 2
     },
     {
+      "id": "mathematics/fundamental/natural_number",
+      "title": "natural number",
+      "category": "mathematics/fundamental/natural_number",
+      "content": "# natural number\r\n\r\n\r\nA natural [number](mathematics/number) is a non-negative [integer](mathematics/integer).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/number",
+        "mathematics/fundamental/integer"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/prime_number",
+      "title": "prime number",
+      "category": "mathematics/fundamental/prime_number",
+      "content": "# prime number\r\n\r\n\r\nA [prime number](mathematics/prime_number) is a positive [integer](mathematics/integer) greater than 1 that has\r\nexactly two positive divisors: 1 and itself.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/integer"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/prime_factorization",
+      "title": "prime factorization",
+      "category": "mathematics/fundamental/prime_factorization",
+      "content": "# prime factorization\r\n\r\n\r\nThe [prime factorization](mathematics/prime_factorization) of a positive [integer](mathematics/integer) greater than 1 is a\r\nrepresentation of the number as a [product](mathematics/product) of\r\n[prime numbers](mathematics/prime_number).\r\n\r\nUp to [reordering](mathematics/reordering), this factorization is\r\n[unique](mathematics/uniqueness).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/integer",
+        "mathematics/fundamental/product",
+        "mathematics/fundamental/prime_number",
+        "mathematics/fundamental/reordering",
+        "mathematics/fundamental/uniqueness"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/fundamental/factorial",
+      "title": "factorial",
+      "category": "mathematics/fundamental/factorial",
+      "content": "# factorial\r\n\r\n\r\nThe [factorial](mathematics/factorial) of a non-negative [integer](mathematics/integer) n, written n!, is the\r\n[product](mathematics/product) of all positive integers up to n.\r\n\r\nBy convention, 0! = 1.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/integer",
+        "mathematics/fundamental/product"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/combinatorics",
+      "title": "combinatorics",
+      "category": "mathematics/fundamental/combinatorics",
+      "content": "# combinatorics\r\n\r\n\r\n[combinatorics](mathematics/combinatorics) is a branch of mathematics concerned with counting, arranging, and selecting\r\n[objects](mathematics/object). It studies concepts such as \r\n[permutations](mathematics/permutation), [combinations](mathematics/combination) and \r\n[factorials](mathematics/factorial).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/object",
+        "mathematics/fundamental/permutation",
+        "mathematics/fundamental/combination",
+        "mathematics/fundamental/factorial"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/fundamental/combination",
+      "title": "combination",
+      "category": "mathematics/fundamental/combination",
+      "content": "# combination\r\n\r\n\r\nA [combination](mathematics/combination) is a way of selecting [objects](mathematics/object) from a \r\n[set](mathematics/set) where the order of selection does not matter.\r\n\r\nCombinations are related to [permutations](mathematics/permutation) and are often computed using\r\n[factorials](mathematics/factorial).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/object",
+        "mathematics/fundamental/set",
+        "mathematics/fundamental/permutation",
+        "mathematics/fundamental/factorial"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/fundamental/binomial_coefficient",
+      "title": "binomial coefficient",
+      "category": "mathematics/fundamental/binomial_coefficient",
+      "content": "# binomial coefficient\r\n\r\n\r\nA [binomial coefficient](mathematics/binomial_coefficient) is a number that counts how many ways to choose k [items](mathematics/item) \r\nfrom n [items](mathematics/item), ignoring order.\r\n\r\nIt is closely related to [combinations](mathematics/combination) and is commonly written as \"n choose k\".\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/item",
+        "mathematics/fundamental/combination"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/fundamental/product",
+      "title": "product",
+      "category": "mathematics/fundamental/product",
+      "content": "# product\r\n\r\n\r\nA [product](mathematics/product) is the result of applying the multiplication\r\n[operation](mathematics/operation) to two or more [numbers](mathematics/number).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/operation",
+        "mathematics/fundamental/number"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/reordering",
+      "title": "reordering",
+      "category": "mathematics/fundamental/reordering",
+      "content": "# reordering\r\n\r\n\r\nA [reordering](mathematics/reordering) is a change in the order of items in a\r\n[sequence](mathematics/sequence), without changing which items are present.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/sequence"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/uniqueness",
+      "title": "uniqueness",
+      "category": "mathematics/fundamental/uniqueness",
+      "content": "# uniqueness\r\n\r\n\r\n[Uniqueness](mathematics/uniqueness) means that there is exactly one\r\n[object](mathematics/object) satisfying a given description, within the intended context.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/object"
+      ],
+      "level": 1
+    },
+    {
       "id": "mathematics/fundamental/radix",
       "title": "radix",
       "category": "mathematics/fundamental/radix",
       "content": "# radix\r\n\r\n\r\nA radix is the base of a positional number system. It is the number of unique digits, including the digit zero, \r\nused to represent numbers. For example, base-10 (decimal) has radix 10. \r\n\r\n",
       "deps": [],
       "level": 0
+    },
+    {
+      "id": "mathematics/fundamental/numeral_system",
+      "title": "numeral system",
+      "category": "mathematics/fundamental/numeral_system",
+      "content": "# numeral system\r\n\r\n\r\nA [numeral system](mathematics/numeral_system) is a method for representing [numbers](mathematics/number) \r\nusing a set of symbols and rules.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/number"
+      ],
+      "level": 2
     },
     {
       "id": "mathematics/algorithm/sorting/radix_sort",
@@ -1456,6 +1939,242 @@
       "level": 4
     },
     {
+      "id": "mathematics/algorithm/fundamental/best_case",
+      "title": "best case",
+      "category": "mathematics/algorithm/fundamental/best_case",
+      "content": "# best case\r\n\r\n\r\nThe [best case](mathematics/best_case) is the minimum [time complexity](mathematics/time_complexity) an\r\n[algorithm](mathematics/algorithm) can take for some [input](mathematics/input_data) of a given size.\r\n\r\nIt describes the most favorable inputs or [conditions](mathematics/criterion) under which the algorithm\r\nperforms as fast as possible.\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/input_data",
+        "mathematics/problem/criterion"
+      ],
+      "level": 6
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/worst_case",
+      "title": "worst case",
+      "category": "mathematics/algorithm/fundamental/worst_case",
+      "content": "# worst case\r\n\r\n\r\nThe [worst case](mathematics/worst_case) is the maximum [time complexity](mathematics/time_complexity) an\r\n[algorithm](mathematics/algorithm) can take over all [inputs](mathematics/input_data) of a given size.\r\n\r\nIt describes the least favorable inputs or [conditions](mathematics/criterion) under which the algorithm\r\nperforms as slowly as possible.\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/input_data",
+        "mathematics/problem/criterion"
+      ],
+      "level": 6
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/expected_case",
+      "title": "expected case",
+      "category": "mathematics/algorithm/fundamental/expected_case",
+      "content": "# expected case\r\n\r\n\r\nThe [expected case](mathematics/expected_case) is the [expected value](mathematics/expected_value) of the\r\n[time complexity](mathematics/time_complexity) of an [algorithm](mathematics/algorithm) over a\r\n[probability distribution](mathematics/distribution) of [inputs](mathematics/input_data).\r\n\r\nIt describes the algorithm's typical runtime under the assumed input distribution.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/expected_value",
+        "mathematics/algorithm/fundamental/time_complexity",
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/distribution",
+        "mathematics/fundamental/input_data"
+      ],
+      "level": 6
+    },
+    {
+      "id": "mathematics/fundamental/expected_value",
+      "title": "expected value",
+      "category": "mathematics/fundamental/expected_value",
+      "content": "# expected value\r\n\r\n\r\nThe [expected value](mathematics/expected_value) is the long-run average value of a random outcome.\r\n\r\nFor a [distribution](mathematics/distribution), the expected value is computed by weighting each\r\npossible value by its [probability](mathematics/probability) and summing the results.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/distribution",
+        "mathematics/fundamental/probability"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/fundamental/permutation",
+      "title": "permutation",
+      "category": "mathematics/fundamental/permutation",
+      "content": "# permutation\r\n\r\n\r\nA [permutation](mathematics/permutation) is a [reordering](mathematics/reordering) of the elements of a\r\n[sequence](mathematics/sequence), i.e., the same elements arranged in a different order.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/reordering",
+        "mathematics/fundamental/sequence"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/logical_operator",
+      "title": "Logical operator",
+      "category": "mathematics/fundamental/logical_operator",
+      "content": "# Logical operator\r\n\r\n\r\n[Logical operator](mathematics/logical_operator) is an operator that takes one or more\r\n[boolean expressions](mathematics/boolean_expression) as input and produces a boolean output.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/boolean_expression"
+      ],
+      "level": 1
+    },
+    {
+      "id": "mathematics/fundamental/not",
+      "title": "NOT",
+      "category": "mathematics/fundamental/not",
+      "content": "# NOT\r\n\r\n\r\n[NOT](mathematics/not) is a [unary operation](mathematics/unary_operation) and\r\n[logical operator](mathematics/logical_operator) that inverts the truth value of its input.\r\n\r\nFor a [boolean expression](mathematics/boolean_expression) A:\r\n- NOT A is true when A is false.\r\n- NOT A is false when A is true.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/unary_operation",
+        "mathematics/fundamental/logical_operator",
+        "mathematics/fundamental/boolean_expression"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/or",
+      "title": "OR",
+      "category": "mathematics/fundamental/or",
+      "content": "# OR\r\n\r\n\r\n[OR](mathematics/or) is a [logical operator](mathematics/logical_operator) that is true\r\nif at least one of its inputs is true.\r\n\r\nEquivalently, for two [boolean expressions](mathematics/boolean_expression) A and B, A OR B is false\r\nonly when both A and B are false.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/logical_operator",
+        "mathematics/fundamental/boolean_expression"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/xor",
+      "title": "XOR",
+      "category": "mathematics/fundamental/xor",
+      "content": "# XOR\r\n\r\n\r\n[XOR](mathematics/xor) is a [logical operator](mathematics/logical_operator) that is true\r\nexactly when one of its inputs is true and the other is false.\r\n\r\nEquivalently, for two [boolean expressions](mathematics/boolean_expression) A and B, A XOR B is true\r\nwhen A and B have different truth values.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/logical_operator",
+        "mathematics/fundamental/boolean_expression"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/and",
+      "title": "AND",
+      "category": "mathematics/fundamental/and",
+      "content": "# AND\r\n\r\n\r\n[AND](mathematics/and) is a [logical operator](mathematics/logical_operator) that is true\r\nonly when all of its inputs are true.\r\n\r\nFor two [boolean expressions](mathematics/boolean_expression) A and B, A AND B is true exactly when\r\nboth A and B are true.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/logical_operator",
+        "mathematics/fundamental/boolean_expression"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/unary_operation",
+      "title": "Unary operation",
+      "category": "mathematics/fundamental/unary_operation",
+      "content": "# Unary operation\r\n\r\n\r\n[Unary operation](mathematics/unary_operation) is an [operation](mathematics/operation) that takes\r\nexactly one input (one operand).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/operation"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/real_number",
+      "title": "Real number",
+      "category": "mathematics/fundamental/real_number",
+      "content": "# Real number\r\n\r\n\r\n[Real number](mathematics/real_number) is a [number](mathematics/number) that can represent a\r\nquantity on the continuous number line.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/number"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/algorithm/fundamental/sieve_of_eratosthenes",
+      "title": "Sieve of Eratosthenes",
+      "category": "mathematics/algorithm/fundamental/sieve_of_eratosthenes",
+      "content": "# Sieve of Eratosthenes\r\n\r\n\r\n[Sieve of Eratosthenes](mathematics/sieve_of_eratosthenes) is an [algorithm](mathematics/algorithm) that finds all\r\n[prime numbers](mathematics/prime_number) up to a given bound n.\r\n\r\nIt works by iteratively marking multiples of each prime starting from 2; any unmarked number remaining is prime.\r\n\r\nThe input bound n is typically a [natural number](mathematics/natural_number).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/prime_number",
+        "mathematics/fundamental/natural_number"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/fundamental/venn_diagram",
+      "title": "Venn diagram",
+      "category": "mathematics/fundamental/venn_diagram",
+      "content": "# Venn diagram\r\n\r\n\r\nA [Venn diagram](mathematics/venn_diagram) is a diagram that represents one or more\r\n[sets](mathematics/set) as overlapping regions (often circles) to visualize their relationships.\r\n\r\nIn particular, it can illustrate set operations such as [union](mathematics/union) and\r\n[intersection](mathematics/intersection).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/set",
+        "mathematics/fundamental/union",
+        "mathematics/fundamental/intersection"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/bayes_theorem",
+      "title": "Bayes theorem",
+      "category": "mathematics/fundamental/bayes_theorem",
+      "content": "# Bayes theorem\r\n\r\n\r\n[Bayes theorem](mathematics/bayes_theorem) is a rule for calculating \r\n[conditional probabilities](mathematics/conditional_probability).\r\n\r\nFor two events A and B with P(B) != 0, it relates P(A | B) to P(B | A) using [probability](mathematics/probability).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/conditional_probability",
+        "mathematics/fundamental/probability"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/fundamental/conditional_probability",
+      "title": "conditional probability",
+      "category": "mathematics/fundamental/conditional_probability",
+      "content": "# conditional probability\r\n\r\n\r\n[Conditional probability](mathematics/conditional_probability) is the [probability](mathematics/probability) of an event A\r\noccurring given that another event B has occurred.\r\n\r\nIt is typically written as P(A | B).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/probability"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/independence",
+      "title": "independence",
+      "category": "mathematics/fundamental/independence",
+      "content": "# independence\r\n\r\n\r\n[independence](mathematics/independence) describes a [relationship](mathematics/relation) \r\nbetween events where the occurrence of one event does not change the [probability](mathematics/probability) of the other.\r\n\r\nTwo events A and B are independent if P(A and B) = P(A) * P(B).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/relation",
+        "mathematics/fundamental/probability"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/mutual_exclusivity",
+      "title": "mutual exclusivity",
+      "category": "mathematics/fundamental/mutual_exclusivity",
+      "content": "# mutual exclusivity\r\n\r\n\r\n[Mutual exclusivity](mathematics/mutual_exclusivity) means that two events cannot occur at the same time.\r\n\r\nIn set terms, two [sets](mathematics/set) A and B are mutually exclusive if their\r\n[intersection](mathematics/intersection) is empty.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/set",
+        "mathematics/fundamental/intersection"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/partitioning",
+      "title": "partitioning",
+      "category": "mathematics/fundamental/partitioning",
+      "content": "# partitioning\r\n\r\n\r\n[partitioning](mathematics/partitioning) is the process of dividing a [set](mathematics/set) into a collection of\r\nnon-empty, pairwise-disjoint subsets whose [union](mathematics/union) is the original set.\r\n\r\nEquivalently, a partition is a set of subsets whose pairwise [intersection](mathematics/intersection) is empty.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/set",
+        "mathematics/fundamental/union",
+        "mathematics/fundamental/intersection"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/fundamental/median",
+      "title": "median",
+      "category": "mathematics/fundamental/median",
+      "content": "# median\r\n\r\n\r\nThe [median](mathematics/median) of a [sequence](mathematics/sequence) of values is the middle value when the values\r\nare ordered.\r\n\r\nIf there is an even number of values, the median is typically taken to be the average of the two middle values.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/sequence"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/fundamental/histogram",
+      "title": "histogram",
+      "category": "mathematics/fundamental/histogram",
+      "content": "# histogram\r\n\r\n\r\nA [histogram](mathematics/histogram) is a chart that summarizes how values are \r\n[distributed](mathematics/distribution) by grouping them into ranges (bins) and showing \r\nthe frequency in each bin.\r\n\r\nA histogram is often used to visualize a distribution.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/distribution"
+      ],
+      "level": 4
+    },
+    {
       "id": "computer_science/fundamental/object",
       "title": "object",
       "category": "computer_science/fundamental/object",
@@ -1474,6 +2193,17 @@
         "mathematics/fundamental/information"
       ],
       "level": 1
+    },
+    {
+      "id": "computer_science/fundamental/dataset",
+      "title": "dataset",
+      "category": "computer_science/fundamental/dataset",
+      "content": "# dataset\r\n\r\n\r\nA [dataset](computer_science/dataset) is a group of [data](computer_science/data), \r\ntypically organized for analysis, training, or testing.\r\n\r\nA dataset can be viewed as a [set](mathematics/set) of records or examples.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/data",
+        "mathematics/fundamental/set"
+      ],
+      "level": 2
     },
     {
       "id": "computer_science/fundamental/data_structure",
@@ -1531,6 +2261,17 @@
       "level": 3
     },
     {
+      "id": "computer_science/fundamental/hexadecimal_code",
+      "title": "hexadecimal code",
+      "category": "computer_science/fundamental/hexadecimal_code",
+      "content": "# hexadecimal code\r\n\r\n\r\n[hexadecimal code](computer_science/hexadecimal_code) is a representation of a value written in the hexadecimal \r\n[numeral system](mathematics/numeral_system).\r\n\r\nHexadecimal is a positional numeral system with [radix](mathematics/radix) 16, \r\ncommonly using digits 0-9 and letters A-F.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/numeral_system",
+        "mathematics/fundamental/radix"
+      ],
+      "level": 3
+    },
+    {
       "id": "computer_science/fundamental/binary_fractions",
       "title": "binary fractions",
       "category": "computer_science/fundamental/binary_fractions",
@@ -1554,6 +2295,31 @@
         "computer_science/fundamental/data"
       ],
       "level": 5
+    },
+    {
+      "id": "computer_science/fundamental/bottleneck",
+      "title": "bottleneck",
+      "category": "computer_science/fundamental/bottleneck",
+      "content": "# bottleneck\r\n\r\n\r\nA [bottleneck](computer_science/bottleneck) is a part of a system that limits overall\r\n[performance](mathematics/real_world_performance) because it is the slowest or most\r\n[constrained](mathematics/constraint) step.\r\n\r\nIn [algorithm](mathematics/algorithm) analysis, a bottleneck is often the\r\n[operation](computer_science/operation) that dominates the\r\n[complexity](mathematics/complexity).\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/real_world_performance",
+        "mathematics/problem/constraint",
+        "mathematics/algorithm/fundamental/algorithm",
+        "computer_science/fundamental/operation",
+        "mathematics/algorithm/fundamental/complexity"
+      ],
+      "level": 7
+    },
+    {
+      "id": "computer_science/fundamental/bug",
+      "title": "bug",
+      "category": "computer_science/fundamental/bug",
+      "content": "# bug\r\n\r\n\r\nA [bug](computer_science/bug) is an error or defect in a system, [program](computer_science/program), or\r\n[algorithm](mathematics/algorithm) that causes it to behave incorrectly or produce unexpected results.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/program",
+        "mathematics/algorithm/fundamental/algorithm"
+      ],
+      "level": 6
     },
     {
       "id": "computer_science/fundamental/arithmetic_right_shift",
@@ -1604,6 +2370,17 @@
         "computer_science/fundamental/operation"
       ],
       "level": 5
+    },
+    {
+      "id": "computer_science/fundamental/pointer",
+      "title": "pointer",
+      "category": "computer_science/fundamental/pointer",
+      "content": "# pointer\r\n\r\n\r\nA [pointer](computer_science/pointer) is a value that refers to a location in [computer memory](computer_science/computer_memory).\r\n\r\nA pointer can be used to indirectly access [information](mathematics/information) stored at that location.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/computer_memory",
+        "mathematics/fundamental/information"
+      ],
+      "level": 6
     },
     {
       "id": "computer_science/fundamental/concurrency",
@@ -1670,6 +2447,40 @@
       "level": 5
     },
     {
+      "id": "computer_science/fundamental/over_optimization",
+      "title": "over-optimization",
+      "category": "computer_science/fundamental/over_optimization",
+      "content": "# over-optimization\r\n\r\n\r\n[over-optimization](computer_science/over_optimization) is the act of applying [optimization](mathematics/optimization) \r\nbeyond what is justified by the requirements.\r\n\r\nOver-optimization can make a [program](computer_science/program) harder to understand and maintain, \r\nand may not yield meaningful [performance](mathematics/real_world_performance) benefits.\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/optimization",
+        "computer_science/fundamental/program",
+        "mathematics/algorithm/fundamental/real_world_performance"
+      ],
+      "level": 7
+    },
+    {
+      "id": "computer_science/fundamental/pseudocode",
+      "title": "pseudocode",
+      "category": "computer_science/fundamental/pseudocode",
+      "content": "# pseudocode\r\n\r\n\r\n[pseudocode](computer_science/pseudocode) is an informal, human-readable description of the steps of an \r\n[algorithm](mathematics/algorithm) or [program](computer_science/program), \r\nwritten in a way that resembles code but is not tied to any specific programming language.\r\nPseudocode is used to communicate ideas and logic without implementation details.\r\n\r\n",
+      "deps": [
+        "mathematics/algorithm/fundamental/algorithm",
+        "computer_science/fundamental/program"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/branch",
+      "title": "branch",
+      "category": "computer_science/fundamental/branch",
+      "content": "# branch\r\n\r\n\r\nA [branch](computer_science/branch) is one possible [path](mathematics/path) of execution in a\r\n[program](computer_science/program), typically chosen by a control decision.\r\n\r\n",
+      "deps": [
+        "mathematics/graph/path",
+        "computer_science/fundamental/program"
+      ],
+      "level": 6
+    },
+    {
       "id": "computer_science/fundamental/random_access_memory",
       "title": "random access memory",
       "category": "computer_science/fundamental/random_access_memory",
@@ -1691,6 +2502,18 @@
         "computer_science/fundamental/bit",
         "computer_science/fundamental/binary_representation",
         "mathematics/fundamental/integer"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/reverse_engineering",
+      "title": "reverse engineering",
+      "category": "computer_science/fundamental/reverse_engineering",
+      "content": "# reverse engineering\r\n\r\n\r\n[reverse engineering](computer_science/reverse_engineering) is the process of analyzing a [program](computer_science/program) or system to \r\ndiscover its components, structure, and [operation](computer_science/operation), often by examining its \r\n[data](computer_science/data) and behavior, without access to its source code. \r\nReverse engineering is used to understand how something works.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/program",
+        "computer_science/fundamental/operation",
+        "computer_science/fundamental/data"
       ],
       "level": 6
     },
@@ -1790,6 +2613,77 @@
       "level": 9
     },
     {
+      "id": "computer_science/fundamental/assert",
+      "title": "assert",
+      "category": "computer_science/fundamental/assert",
+      "content": "# assert\r\n\r\n\r\nAn [assert](computer_science/assert) is a statement in code that checks whether a \r\n[condition](mathematics/criterion) holds.\r\n\r\nAssertions are commonly used in [tests](computer_science/test) to detect unexpected states.\r\n\r\n",
+      "deps": [
+        "mathematics/problem/criterion",
+        "computer_science/fundamental/test"
+      ],
+      "level": 3
+    },
+    {
+      "id": "computer_science/fundamental/test",
+      "title": "test",
+      "category": "computer_science/fundamental/test",
+      "content": "# test\r\n\r\n\r\nA [test](computer_science/test) is a procedure or experiment used to evaluate whether a system or component\r\nbehaves as expected under specified [conditions](mathematics/criterion).\r\n\r\nA test typically takes some [data](computer_science/data) (inputs) and produces observations (outputs)\r\nthat can be compared to expected results.\r\n\r\n",
+      "deps": [
+        "mathematics/problem/criterion",
+        "computer_science/fundamental/data"
+      ],
+      "level": 2
+    },
+    {
+      "id": "computer_science/fundamental/conceptual_test",
+      "title": "conceptual test",
+      "category": "computer_science/fundamental/conceptual_test",
+      "content": "# conceptual test\r\n\r\n\r\nA [conceptual test](computer_science/conceptual_test) is a [test](computer_science/test) used to check understanding of an idea,\r\nmodel, or design, rather than to execute code.\r\n\r\nA conceptual test evaluates whether some [criteria](mathematics/criterion) are satisfied.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/test",
+        "mathematics/problem/criterion"
+      ],
+      "level": 3
+    },
+    {
+      "id": "computer_science/fundamental/test_case",
+      "title": "test case",
+      "category": "computer_science/fundamental/test_case",
+      "content": "# test case\r\n\r\n\r\nA [test case](computer_science/test_case) is a single instance of a [test](computer_science/test), defined by a specific\r\nset of [inputs](mathematics/input_data), evaluation [criteria](mathematics/criterion), \r\nand expected results.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/test",
+        "mathematics/fundamental/input_data",
+        "mathematics/problem/criterion"
+      ],
+      "level": 5
+    },
+    {
+      "id": "computer_science/fundamental/edge_case",
+      "title": "edge case",
+      "category": "computer_science/fundamental/edge_case",
+      "content": "# edge case\r\n\r\n\r\nAn [edge case](computer_science/edge_case) is a [test case](computer_science/test_case) designed to cover unusual or\r\n[boundary](mathematics/bound) [conditions](mathematics/criterion) where a system, \r\n[algorithm](mathematics/algorithm), or [function](mathematics/function) \r\nmay behave differently.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/test_case",
+        "mathematics/analysis/bound",
+        "mathematics/problem/criterion",
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/function"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/special_case",
+      "title": "special case",
+      "category": "computer_science/fundamental/special_case",
+      "content": "# special case\r\n\r\n\r\nA [special case](computer_science/special_case) is a particular [test case](computer_science/test_case) that satisfies additional\r\n[conditions](mathematics/criterion), making it a more specific situation within a broader category.\r\n\r\nSpecial cases may be related to [edge cases](computer_science/edge_case), but they are not necessarily \r\nboundary conditions.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/test_case",
+        "mathematics/problem/criterion",
+        "computer_science/fundamental/edge_case"
+      ],
+      "level": 7
+    },
+    {
       "id": "computer_science/fundamental/memory_allocation",
       "title": "memory allocation",
       "category": "computer_science/fundamental/memory_allocation",
@@ -1802,6 +2696,19 @@
         "mathematics/fundamental/information"
       ],
       "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/memory_management",
+      "title": "memory management",
+      "category": "computer_science/fundamental/memory_management",
+      "content": "# memory management\r\n\r\n\r\n[memory management](computer_science/memory_management) is the [operation](computer_science/operation) of controlling how a [program](computer_science/program) \r\nuses [computer memory](computer_science/computer_memory).\r\n\r\nIt includes when and how [memory is allocated](computer_science/memory_allocation) and freed, \r\nand aims to use memory efficiently and safely.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/operation",
+        "computer_science/fundamental/program",
+        "computer_science/fundamental/computer_memory",
+        "computer_science/fundamental/memory_allocation"
+      ],
+      "level": 7
     },
     {
       "id": "computer_science/fundamental/variable",
@@ -1871,6 +2778,19 @@
         "computer_science/fundamental/data_structure"
       ],
       "level": 3
+    },
+    {
+      "id": "computer_science/computation/mapreduce",
+      "title": "MapReduce",
+      "category": "computer_science/computation/mapreduce",
+      "content": "# MapReduce\r\n\r\n\r\n[MapReduce](computer_science/mapreduce) is a programming model for processing large [datasets](computer_science/dataset)\r\nby splitting work into two phases:\r\n\r\n- map: transform input records into intermediate key/value pairs (conceptually a [map](computer_science/map)).\r\n- reduce: aggregate the intermediate values for each key.\r\n\r\nMapReduce enables [parallelism](computer_science/parallelism) by distributing the map and reduce work across many\r\n[workers](computer_science/worker).\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/dataset",
+        "computer_science/data_structure/fundamental/map",
+        "computer_science/fundamental/parallelism",
+        "computer_science/fundamental/worker"
+      ],
+      "level": 10
     },
     {
       "id": "computer_science/data_structure/fundamental/primitive_data_type",
@@ -1951,6 +2871,18 @@
         "mathematics/graph/node"
       ],
       "level": 7
+    },
+    {
+      "id": "computer_science/data_structure/collection/list/circular_linked_list",
+      "title": "circular linked list",
+      "category": "computer_science/data_structure/collection/list/circular_linked_list",
+      "content": "# circular linked list\r\n\r\n\r\nA [circular linked list](computer_science/circular_linked_list) is a [linked list](computer_science/linked_list) in which the last \r\n[node](mathematics/node) points back to the first node.\r\n\r\nThis forms a [cycle](mathematics/cycle) and allows traversal to wrap around indefinitely.\r\n\r\n",
+      "deps": [
+        "computer_science/data_structure/collection/list/linked_list",
+        "mathematics/graph/node",
+        "mathematics/graph/cycle"
+      ],
+      "level": 8
     },
     {
       "id": "computer_science/data_structure/collection/list/list",
@@ -2112,6 +3044,17 @@
       "level": 5
     },
     {
+      "id": "computer_science/data_structure/operation/string_concatenation",
+      "title": "string concatenation",
+      "category": "computer_science/data_structure/operation/string_concatenation",
+      "content": "# string concatenation\r\n\r\n\r\n[String concatenation](computer_science/string_concatenation) is the [operation](mathematics/operation) of \r\njoining two or more [strings](computer_science/string) end-to-end to form a new string.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/operation",
+        "computer_science/data_structure/collection/string/string"
+      ],
+      "level": 6
+    },
+    {
       "id": "computer_science/data_structure/collection/string/substring",
       "title": "substring",
       "category": "computer_science/data_structure/collection/string/substring",
@@ -2220,9 +3163,144 @@
         "mathematics/algorithm/fundamental/algorithm"
       ],
       "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/float",
+      "title": "Float",
+      "category": "computer_science/fundamental/float",
+      "content": "# Float\r\n\r\n\r\n[Float](computer_science/float) is a floating-point data type used to represent an approximation of a\r\n[real number](mathematics/real_number) with finite precision.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/real_number"
+      ],
+      "level": 3
+    },
+    {
+      "id": "computer_science/fundamental/double",
+      "title": "Double",
+      "category": "computer_science/fundamental/double",
+      "content": "# Double\r\n\r\n\r\n[Double](computer_science/double) is a floating-point data type used to represent an approximation of a\r\n[real number](mathematics/real_number) with finite precision.\r\n\r\nIn many systems, a double provides about twice the precision of a [float](computer_science/float).\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/real_number",
+        "computer_science/fundamental/float"
+      ],
+      "level": 4
+    },
+    {
+      "id": "computer_science/fundamental/auxiliary_space",
+      "title": "auxiliary space",
+      "category": "computer_science/fundamental/auxiliary_space",
+      "content": "# auxiliary space\r\n\r\n\r\n[auxiliary space](computer_science/auxiliary_space) is the extra [memory](computer_science/computer_memory) an\r\n[algorithm](mathematics/algorithm) uses beyond the space needed to store its \r\n[input](mathematics/input_data) (or output).\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/computer_memory",
+        "mathematics/algorithm/fundamental/algorithm",
+        "mathematics/fundamental/input_data"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/clustering",
+      "title": "clustering",
+      "category": "computer_science/fundamental/clustering",
+      "content": "# clustering\r\n\r\n\r\n[clustering](computer_science/clustering) is the task of [partitioning](mathematics/partitioning) a \r\n[dataset](computer_science/dataset) into multiple groups (clusters) such that items in the same cluster \r\nare more similar to each other than to items in other clusters.\r\n\r\nThe resulting clusters can be assigned a [label](mathematics/label) \r\n(e.g., a cluster id) for downstream use.\r\n\r\nClustering [algorithms](mathematics/algorithm) typically learn structure from unlabeled data.\r\n\r\n",
+      "deps": [
+        "mathematics/fundamental/partitioning",
+        "computer_science/fundamental/dataset",
+        "mathematics/notations/label",
+        "mathematics/algorithm/fundamental/algorithm"
+      ],
+      "level": 4
+    },
+    {
+      "id": "computer_science/fundamental/lopsided",
+      "title": "lopsided",
+      "category": "computer_science/fundamental/lopsided",
+      "content": "# lopsided\r\n\r\n\r\n[lopsided](computer_science/lopsided) describes a situation where something is unbalanced or heavily skewed toward one side.\r\n\r\nIn computer science, it often refers to a [data structure](computer_science/data_structure) or workload\r\nwhose shape or [distribution](mathematics/distribution) is highly uneven.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/data_structure",
+        "mathematics/fundamental/distribution"
+      ],
+      "level": 4
+    },
+    {
+      "id": "computer_science/fundamental/null",
+      "title": "null",
+      "category": "computer_science/fundamental/null",
+      "content": "# null\r\n\r\n\r\n[null](computer_science/null) is a special value that represents \"no value\" or \r\n\"no [object](computer_science/object)\".\r\n\r\nIt is often used to indicate that a [pointer](computer_science/pointer) does not refer to\r\na valid [memory](computer_science/computer_memory) location (i.e., it points to nothing).\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/object",
+        "computer_science/fundamental/pointer",
+        "computer_science/fundamental/computer_memory"
+      ],
+      "level": 7
+    },
+    {
+      "id": "computer_science/fundamental/worker",
+      "title": "worker",
+      "category": "computer_science/fundamental/worker",
+      "content": "# worker\r\n\r\n\r\nA [worker](computer_science/worker) is a [process](computer_science/process), \r\n[thread](computer_science/thread), or [machine](computer_science/machine) \r\nthat performs a unit of work as part of a larger computation.\r\n\r\nIn distributed or [parallel](computer_science/parallelism) systems, workers execute parts of a\r\n[program](computer_science/program) (tasks) assigned by a coordinator.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/process",
+        "computer_science/fundamental/thread",
+        "computer_science/fundamental/machine",
+        "computer_science/fundamental/parallelism",
+        "computer_science/fundamental/program"
+      ],
+      "level": 9
+    },
+    {
+      "id": "computer_science/fundamental/process",
+      "title": "process",
+      "category": "computer_science/fundamental/process",
+      "content": "# process\r\n\r\n\r\nA [process](computer_science/process) is an instance of a [program](computer_science/program)\r\nthat is being executed by the [operating system](computer_science/operating_system).\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/program",
+        "computer_science/fundamental/operating_system"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/thread",
+      "title": "thread",
+      "category": "computer_science/fundamental/thread",
+      "content": "# thread\r\n\r\n\r\nA [thread](computer_science/thread) is a unit of execution within a [process](computer_science/process).\r\n\r\nThreads within the same process typically share [memory](computer_science/computer_memory) and resources,\r\nbut can run different [operations](computer_science/operation).\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/process",
+        "computer_science/fundamental/computer_memory",
+        "computer_science/fundamental/operation"
+      ],
+      "level": 7
+    },
+    {
+      "id": "computer_science/fundamental/machine",
+      "title": "machine",
+      "category": "computer_science/fundamental/machine",
+      "content": "# machine\r\n\r\n\r\nIn computing, a [machine](computer_science/machine) is a physical or virtual [computer](computer_science/computer)\r\nthat can run [programs](computer_science/program) and perform computation.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/computer",
+        "computer_science/fundamental/program"
+      ],
+      "level": 6
+    },
+    {
+      "id": "computer_science/fundamental/operating_system",
+      "title": "operating system",
+      "category": "computer_science/fundamental/operating_system",
+      "content": "# operating system\r\n\r\n\r\nAn [operating system](computer_science/operating_system) is system software that manages a [computer](computer_science/computer)'s \r\nhardware and software resources.\r\n\r\n",
+      "deps": [
+        "computer_science/fundamental/computer"
+      ],
+      "level": 3
     }
   ],
   "edges": [
+    {
+      "source": "mathematics/fundamental/item",
+      "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/item",
+      "target": "mathematics/fundamental/set"
+    },
     {
       "source": "mathematics/fundamental/sequence",
       "target": "mathematics/fundamental/object"
@@ -2234,6 +3312,30 @@
     {
       "source": "mathematics/fundamental/finite_sequence",
       "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/fibonacci",
+      "target": "mathematics/fundamental/sequence"
+    },
+    {
+      "source": "mathematics/fundamental/fibonacci",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/vector",
+      "target": "mathematics/fundamental/sequence"
+    },
+    {
+      "source": "mathematics/fundamental/vector",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/matrix",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/matrix",
+      "target": "mathematics/fundamental/vector"
     },
     {
       "source": "mathematics/fundamental/instruction",
@@ -2270,6 +3372,14 @@
     {
       "source": "mathematics/fundamental/set",
       "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/intersection",
+      "target": "mathematics/fundamental/set"
+    },
+    {
+      "source": "mathematics/fundamental/union",
+      "target": "mathematics/fundamental/set"
     },
     {
       "source": "mathematics/fundamental/finite_set",
@@ -2320,6 +3430,10 @@
       "target": "mathematics/fundamental/function"
     },
     {
+      "source": "mathematics/analysis/asymptotic_behavior",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
       "source": "mathematics/analysis/bound",
       "target": "mathematics/fundamental/function"
     },
@@ -2350,6 +3464,18 @@
     {
       "source": "mathematics/algorithm/fundamental/big_o_notation",
       "target": "mathematics/algorithm/fundamental/space_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/asymptotic_efficiency",
+      "target": "mathematics/algorithm/fundamental/efficiency"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/asymptotic_efficiency",
+      "target": "mathematics/analysis/asymptotic_behavior"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/asymptotic_efficiency",
+      "target": "mathematics/algorithm/fundamental/big_o_notation"
     },
     {
       "source": "mathematics/computation/turing_machine",
@@ -2500,6 +3626,18 @@
       "target": "mathematics/fundamental/function"
     },
     {
+      "source": "mathematics/algorithm/fundamental/efficiency",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/efficiency",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/efficiency",
+      "target": "mathematics/algorithm/fundamental/space_complexity"
+    },
+    {
       "source": "mathematics/algorithm/fundamental/amortized_time",
       "target": "mathematics/algorithm/fundamental/time_complexity"
     },
@@ -2520,6 +3658,18 @@
       "target": "mathematics/analysis/bound"
     },
     {
+      "source": "mathematics/algorithm/fundamental/asymptotic_runtime",
+      "target": "mathematics/algorithm/fundamental/big_o_notation"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/asymptotic_runtime",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/asymptotic_runtime",
+      "target": "mathematics/analysis/asymptotic_behavior"
+    },
+    {
       "source": "mathematics/algorithm/fundamental/time_complexity",
       "target": "mathematics/algorithm/fundamental/complexity"
     },
@@ -2542,6 +3692,18 @@
     {
       "source": "mathematics/algorithm/fundamental/space_complexity",
       "target": "mathematics/fundamental/function"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/time_vs_space_trade_off",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/time_vs_space_trade_off",
+      "target": "mathematics/algorithm/fundamental/space_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/time_vs_space_trade_off",
+      "target": "mathematics/algorithm/fundamental/asymptotic_runtime"
     },
     {
       "source": "mathematics/algorithm/fundamental/logarithmic_complexity",
@@ -2593,6 +3755,18 @@
     },
     {
       "source": "mathematics/algorithm/fundamental/real_world_performance",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/real_life_efficiency",
+      "target": "mathematics/algorithm/fundamental/efficiency"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/real_life_efficiency",
+      "target": "mathematics/algorithm/fundamental/real_world_performance"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/real_life_efficiency",
       "target": "mathematics/fundamental/input_data"
     },
     {
@@ -2698,6 +3872,18 @@
     {
       "source": "mathematics/algorithm/fundamental/memoization",
       "target": "mathematics/problem/solution"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/precomputation",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/precomputation",
+      "target": "mathematics/algorithm/fundamental/space_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/precomputation",
+      "target": "mathematics/algorithm/fundamental/time_vs_space_trade_off"
     },
     {
       "source": "mathematics/algorithm/fundamental/co_np_class",
@@ -3076,6 +4262,30 @@
       "target": "mathematics/graph/node"
     },
     {
+      "source": "mathematics/graph/adjacency_matrix",
+      "target": "mathematics/graph/graph"
+    },
+    {
+      "source": "mathematics/graph/adjacency_matrix",
+      "target": "mathematics/fundamental/matrix"
+    },
+    {
+      "source": "mathematics/graph/adjacency_matrix",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/graph/adjacency_matrix",
+      "target": "mathematics/graph/edge"
+    },
+    {
+      "source": "mathematics/graph/acyclic_graph",
+      "target": "mathematics/graph/graph"
+    },
+    {
+      "source": "mathematics/graph/acyclic_graph",
+      "target": "mathematics/graph/cycle"
+    },
+    {
       "source": "mathematics/graph/bipartite_graph",
       "target": "mathematics/graph/graph"
     },
@@ -3152,6 +4362,30 @@
       "target": "mathematics/graph/node"
     },
     {
+      "source": "mathematics/graph/subgraph",
+      "target": "mathematics/graph/graph"
+    },
+    {
+      "source": "mathematics/graph/subgraph",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/graph/subgraph",
+      "target": "mathematics/graph/edge"
+    },
+    {
+      "source": "mathematics/graph/connected_graph",
+      "target": "mathematics/graph/graph"
+    },
+    {
+      "source": "mathematics/graph/connected_graph",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/graph/connected_graph",
+      "target": "mathematics/graph/path"
+    },
+    {
       "source": "mathematics/graph/weighted_graph",
       "target": "mathematics/graph/graph"
     },
@@ -3200,6 +4434,34 @@
       "target": "mathematics/graph/node"
     },
     {
+      "source": "mathematics/tree/full_binary_tree",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/full_binary_tree",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/full_binary_tree",
+      "target": "mathematics/tree/leaf"
+    },
+    {
+      "source": "mathematics/tree/perfect_binary_tree",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/perfect_binary_tree",
+      "target": "mathematics/tree/leaf"
+    },
+    {
+      "source": "mathematics/tree/perfect_binary_tree",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/perfect_binary_tree",
+      "target": "mathematics/tree/full_binary_tree"
+    },
+    {
       "source": "mathematics/tree/binary_search_tree",
       "target": "mathematics/tree/b_tree"
     },
@@ -3213,7 +4475,67 @@
     },
     {
       "source": "mathematics/tree/binary_tree",
+      "target": "mathematics/tree/n_ary_tree"
+    },
+    {
+      "source": "mathematics/tree/binary_tree",
       "target": "mathematics/tree/k_ary_tree"
+    },
+    {
+      "source": "mathematics/tree/binary_tree_traversal",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/binary_tree_traversal",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/in_order_traversal",
+      "target": "mathematics/tree/binary_tree_traversal"
+    },
+    {
+      "source": "mathematics/tree/in_order_traversal",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/in_order_traversal",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/in_order_traversal",
+      "target": "mathematics/tree/subtree"
+    },
+    {
+      "source": "mathematics/tree/pre_order_traversal",
+      "target": "mathematics/tree/binary_tree_traversal"
+    },
+    {
+      "source": "mathematics/tree/pre_order_traversal",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/pre_order_traversal",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/pre_order_traversal",
+      "target": "mathematics/tree/subtree"
+    },
+    {
+      "source": "mathematics/tree/post_order_traversal",
+      "target": "mathematics/tree/binary_tree_traversal"
+    },
+    {
+      "source": "mathematics/tree/post_order_traversal",
+      "target": "mathematics/tree/binary_tree"
+    },
+    {
+      "source": "mathematics/tree/post_order_traversal",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/post_order_traversal",
+      "target": "mathematics/tree/subtree"
     },
     {
       "source": "mathematics/tree/complete_binary_tree",
@@ -3222,6 +4544,38 @@
     {
       "source": "mathematics/tree/complete_binary_tree",
       "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/binary_heap",
+      "target": "mathematics/tree/heap_tree"
+    },
+    {
+      "source": "mathematics/tree/binary_heap",
+      "target": "mathematics/tree/complete_binary_tree"
+    },
+    {
+      "source": "mathematics/tree/min_heap",
+      "target": "mathematics/tree/binary_heap"
+    },
+    {
+      "source": "mathematics/tree/min_heap",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/min_heap",
+      "target": "mathematics/tree/root"
+    },
+    {
+      "source": "mathematics/tree/max_heap",
+      "target": "mathematics/tree/binary_heap"
+    },
+    {
+      "source": "mathematics/tree/max_heap",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/max_heap",
+      "target": "mathematics/tree/root"
     },
     {
       "source": "mathematics/tree/interval_tree",
@@ -3241,14 +4595,30 @@
     },
     {
       "source": "mathematics/tree/k_ary_tree",
-      "target": "mathematics/tree/tree"
+      "target": "mathematics/tree/n_ary_tree"
     },
     {
       "source": "mathematics/tree/k_ary_tree",
       "target": "mathematics/graph/node"
     },
     {
+      "source": "mathematics/tree/n_ary_tree",
+      "target": "mathematics/tree/tree"
+    },
+    {
+      "source": "mathematics/tree/n_ary_tree",
+      "target": "mathematics/graph/node"
+    },
+    {
       "source": "mathematics/tree/leaf",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "mathematics/tree/root",
+      "target": "mathematics/tree/tree"
+    },
+    {
+      "source": "mathematics/tree/root",
       "target": "mathematics/graph/node"
     },
     {
@@ -3342,6 +4712,14 @@
     {
       "source": "mathematics/problem/base_case",
       "target": "mathematics/problem/reduction"
+    },
+    {
+      "source": "mathematics/problem/mathematical_induction",
+      "target": "mathematics/fundamental/natural_number"
+    },
+    {
+      "source": "mathematics/problem/mathematical_induction",
+      "target": "mathematics/problem/base_case"
     },
     {
       "source": "mathematics/problem/recursion",
@@ -3449,6 +4827,10 @@
     },
     {
       "source": "mathematics/fundamental/probability",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/probability",
       "target": "mathematics/fundamental/object"
     },
     {
@@ -3520,7 +4902,119 @@
       "target": "mathematics/fundamental/object"
     },
     {
+      "source": "mathematics/fundamental/square_root",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/perfect_square",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/perfect_square",
+      "target": "mathematics/fundamental/square_root"
+    },
+    {
       "source": "mathematics/fundamental/integer",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/natural_number",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/natural_number",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/prime_number",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/prime_factorization",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/prime_factorization",
+      "target": "mathematics/fundamental/product"
+    },
+    {
+      "source": "mathematics/fundamental/prime_factorization",
+      "target": "mathematics/fundamental/prime_number"
+    },
+    {
+      "source": "mathematics/fundamental/prime_factorization",
+      "target": "mathematics/fundamental/reordering"
+    },
+    {
+      "source": "mathematics/fundamental/prime_factorization",
+      "target": "mathematics/fundamental/uniqueness"
+    },
+    {
+      "source": "mathematics/fundamental/factorial",
+      "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "mathematics/fundamental/factorial",
+      "target": "mathematics/fundamental/product"
+    },
+    {
+      "source": "mathematics/fundamental/combinatorics",
+      "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/combinatorics",
+      "target": "mathematics/fundamental/permutation"
+    },
+    {
+      "source": "mathematics/fundamental/combinatorics",
+      "target": "mathematics/fundamental/combination"
+    },
+    {
+      "source": "mathematics/fundamental/combinatorics",
+      "target": "mathematics/fundamental/factorial"
+    },
+    {
+      "source": "mathematics/fundamental/combination",
+      "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/combination",
+      "target": "mathematics/fundamental/set"
+    },
+    {
+      "source": "mathematics/fundamental/combination",
+      "target": "mathematics/fundamental/permutation"
+    },
+    {
+      "source": "mathematics/fundamental/combination",
+      "target": "mathematics/fundamental/factorial"
+    },
+    {
+      "source": "mathematics/fundamental/binomial_coefficient",
+      "target": "mathematics/fundamental/item"
+    },
+    {
+      "source": "mathematics/fundamental/binomial_coefficient",
+      "target": "mathematics/fundamental/combination"
+    },
+    {
+      "source": "mathematics/fundamental/product",
+      "target": "mathematics/fundamental/operation"
+    },
+    {
+      "source": "mathematics/fundamental/product",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/fundamental/reordering",
+      "target": "mathematics/fundamental/sequence"
+    },
+    {
+      "source": "mathematics/fundamental/uniqueness",
+      "target": "mathematics/fundamental/object"
+    },
+    {
+      "source": "mathematics/fundamental/numeral_system",
       "target": "mathematics/fundamental/number"
     },
     {
@@ -3816,12 +5310,208 @@
       "target": "mathematics/fundamental/index"
     },
     {
+      "source": "mathematics/algorithm/fundamental/best_case",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/best_case",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/best_case",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/best_case",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/worst_case",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/worst_case",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/worst_case",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/worst_case",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/expected_case",
+      "target": "mathematics/fundamental/expected_value"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/expected_case",
+      "target": "mathematics/algorithm/fundamental/time_complexity"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/expected_case",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/expected_case",
+      "target": "mathematics/fundamental/distribution"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/expected_case",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "mathematics/fundamental/expected_value",
+      "target": "mathematics/fundamental/distribution"
+    },
+    {
+      "source": "mathematics/fundamental/expected_value",
+      "target": "mathematics/fundamental/probability"
+    },
+    {
+      "source": "mathematics/fundamental/permutation",
+      "target": "mathematics/fundamental/reordering"
+    },
+    {
+      "source": "mathematics/fundamental/permutation",
+      "target": "mathematics/fundamental/sequence"
+    },
+    {
+      "source": "mathematics/fundamental/logical_operator",
+      "target": "mathematics/fundamental/boolean_expression"
+    },
+    {
+      "source": "mathematics/fundamental/not",
+      "target": "mathematics/fundamental/unary_operation"
+    },
+    {
+      "source": "mathematics/fundamental/not",
+      "target": "mathematics/fundamental/logical_operator"
+    },
+    {
+      "source": "mathematics/fundamental/not",
+      "target": "mathematics/fundamental/boolean_expression"
+    },
+    {
+      "source": "mathematics/fundamental/or",
+      "target": "mathematics/fundamental/logical_operator"
+    },
+    {
+      "source": "mathematics/fundamental/or",
+      "target": "mathematics/fundamental/boolean_expression"
+    },
+    {
+      "source": "mathematics/fundamental/xor",
+      "target": "mathematics/fundamental/logical_operator"
+    },
+    {
+      "source": "mathematics/fundamental/xor",
+      "target": "mathematics/fundamental/boolean_expression"
+    },
+    {
+      "source": "mathematics/fundamental/and",
+      "target": "mathematics/fundamental/logical_operator"
+    },
+    {
+      "source": "mathematics/fundamental/and",
+      "target": "mathematics/fundamental/boolean_expression"
+    },
+    {
+      "source": "mathematics/fundamental/unary_operation",
+      "target": "mathematics/fundamental/operation"
+    },
+    {
+      "source": "mathematics/fundamental/real_number",
+      "target": "mathematics/fundamental/number"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/sieve_of_eratosthenes",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/sieve_of_eratosthenes",
+      "target": "mathematics/fundamental/prime_number"
+    },
+    {
+      "source": "mathematics/algorithm/fundamental/sieve_of_eratosthenes",
+      "target": "mathematics/fundamental/natural_number"
+    },
+    {
+      "source": "mathematics/fundamental/venn_diagram",
+      "target": "mathematics/fundamental/set"
+    },
+    {
+      "source": "mathematics/fundamental/venn_diagram",
+      "target": "mathematics/fundamental/union"
+    },
+    {
+      "source": "mathematics/fundamental/venn_diagram",
+      "target": "mathematics/fundamental/intersection"
+    },
+    {
+      "source": "mathematics/fundamental/bayes_theorem",
+      "target": "mathematics/fundamental/conditional_probability"
+    },
+    {
+      "source": "mathematics/fundamental/bayes_theorem",
+      "target": "mathematics/fundamental/probability"
+    },
+    {
+      "source": "mathematics/fundamental/conditional_probability",
+      "target": "mathematics/fundamental/probability"
+    },
+    {
+      "source": "mathematics/fundamental/independence",
+      "target": "mathematics/fundamental/relation"
+    },
+    {
+      "source": "mathematics/fundamental/independence",
+      "target": "mathematics/fundamental/probability"
+    },
+    {
+      "source": "mathematics/fundamental/mutual_exclusivity",
+      "target": "mathematics/fundamental/set"
+    },
+    {
+      "source": "mathematics/fundamental/mutual_exclusivity",
+      "target": "mathematics/fundamental/intersection"
+    },
+    {
+      "source": "mathematics/fundamental/partitioning",
+      "target": "mathematics/fundamental/set"
+    },
+    {
+      "source": "mathematics/fundamental/partitioning",
+      "target": "mathematics/fundamental/union"
+    },
+    {
+      "source": "mathematics/fundamental/partitioning",
+      "target": "mathematics/fundamental/intersection"
+    },
+    {
+      "source": "mathematics/fundamental/median",
+      "target": "mathematics/fundamental/sequence"
+    },
+    {
+      "source": "mathematics/fundamental/histogram",
+      "target": "mathematics/fundamental/distribution"
+    },
+    {
       "source": "computer_science/fundamental/object",
       "target": "computer_science/fundamental/data_structure"
     },
     {
       "source": "computer_science/fundamental/data",
       "target": "mathematics/fundamental/information"
+    },
+    {
+      "source": "computer_science/fundamental/dataset",
+      "target": "computer_science/fundamental/data"
+    },
+    {
+      "source": "computer_science/fundamental/dataset",
+      "target": "mathematics/fundamental/set"
     },
     {
       "source": "computer_science/fundamental/data_structure",
@@ -3864,6 +5554,14 @@
       "target": "mathematics/fundamental/number"
     },
     {
+      "source": "computer_science/fundamental/hexadecimal_code",
+      "target": "mathematics/fundamental/numeral_system"
+    },
+    {
+      "source": "computer_science/fundamental/hexadecimal_code",
+      "target": "mathematics/fundamental/radix"
+    },
+    {
       "source": "computer_science/fundamental/binary_fractions",
       "target": "mathematics/fundamental/number"
     },
@@ -3890,6 +5588,34 @@
     {
       "source": "computer_science/fundamental/bitwise_operation",
       "target": "computer_science/fundamental/data"
+    },
+    {
+      "source": "computer_science/fundamental/bottleneck",
+      "target": "mathematics/algorithm/fundamental/real_world_performance"
+    },
+    {
+      "source": "computer_science/fundamental/bottleneck",
+      "target": "mathematics/problem/constraint"
+    },
+    {
+      "source": "computer_science/fundamental/bottleneck",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/bottleneck",
+      "target": "computer_science/fundamental/operation"
+    },
+    {
+      "source": "computer_science/fundamental/bottleneck",
+      "target": "mathematics/algorithm/fundamental/complexity"
+    },
+    {
+      "source": "computer_science/fundamental/bug",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/bug",
+      "target": "mathematics/algorithm/fundamental/algorithm"
     },
     {
       "source": "computer_science/fundamental/arithmetic_right_shift",
@@ -3946,6 +5672,14 @@
     {
       "source": "computer_science/fundamental/computer_memory",
       "target": "computer_science/fundamental/operation"
+    },
+    {
+      "source": "computer_science/fundamental/pointer",
+      "target": "computer_science/fundamental/computer_memory"
+    },
+    {
+      "source": "computer_science/fundamental/pointer",
+      "target": "mathematics/fundamental/information"
     },
     {
       "source": "computer_science/fundamental/concurrency",
@@ -4024,6 +5758,34 @@
       "target": "computer_science/fundamental/operation"
     },
     {
+      "source": "computer_science/fundamental/over_optimization",
+      "target": "mathematics/algorithm/fundamental/optimization"
+    },
+    {
+      "source": "computer_science/fundamental/over_optimization",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/over_optimization",
+      "target": "mathematics/algorithm/fundamental/real_world_performance"
+    },
+    {
+      "source": "computer_science/fundamental/pseudocode",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/pseudocode",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/branch",
+      "target": "mathematics/graph/path"
+    },
+    {
+      "source": "computer_science/fundamental/branch",
+      "target": "computer_science/fundamental/program"
+    },
+    {
       "source": "computer_science/fundamental/random_access_memory",
       "target": "computer_science/fundamental/computer_memory"
     },
@@ -4050,6 +5812,18 @@
     {
       "source": "computer_science/fundamental/right_shift",
       "target": "mathematics/fundamental/integer"
+    },
+    {
+      "source": "computer_science/fundamental/reverse_engineering",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/reverse_engineering",
+      "target": "computer_science/fundamental/operation"
+    },
+    {
+      "source": "computer_science/fundamental/reverse_engineering",
+      "target": "computer_science/fundamental/data"
     },
     {
       "source": "computer_science/fundamental/heap_memory",
@@ -4180,6 +5954,74 @@
       "target": "computer_science/fundamental/variable"
     },
     {
+      "source": "computer_science/fundamental/assert",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/assert",
+      "target": "computer_science/fundamental/test"
+    },
+    {
+      "source": "computer_science/fundamental/test",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/test",
+      "target": "computer_science/fundamental/data"
+    },
+    {
+      "source": "computer_science/fundamental/conceptual_test",
+      "target": "computer_science/fundamental/test"
+    },
+    {
+      "source": "computer_science/fundamental/conceptual_test",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/test_case",
+      "target": "computer_science/fundamental/test"
+    },
+    {
+      "source": "computer_science/fundamental/test_case",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "computer_science/fundamental/test_case",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/edge_case",
+      "target": "computer_science/fundamental/test_case"
+    },
+    {
+      "source": "computer_science/fundamental/edge_case",
+      "target": "mathematics/analysis/bound"
+    },
+    {
+      "source": "computer_science/fundamental/edge_case",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/edge_case",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/edge_case",
+      "target": "mathematics/fundamental/function"
+    },
+    {
+      "source": "computer_science/fundamental/special_case",
+      "target": "computer_science/fundamental/test_case"
+    },
+    {
+      "source": "computer_science/fundamental/special_case",
+      "target": "mathematics/problem/criterion"
+    },
+    {
+      "source": "computer_science/fundamental/special_case",
+      "target": "computer_science/fundamental/edge_case"
+    },
+    {
       "source": "computer_science/fundamental/memory_allocation",
       "target": "computer_science/fundamental/operation"
     },
@@ -4198,6 +6040,22 @@
     {
       "source": "computer_science/fundamental/memory_allocation",
       "target": "mathematics/fundamental/information"
+    },
+    {
+      "source": "computer_science/fundamental/memory_management",
+      "target": "computer_science/fundamental/operation"
+    },
+    {
+      "source": "computer_science/fundamental/memory_management",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/memory_management",
+      "target": "computer_science/fundamental/computer_memory"
+    },
+    {
+      "source": "computer_science/fundamental/memory_management",
+      "target": "computer_science/fundamental/memory_allocation"
     },
     {
       "source": "computer_science/fundamental/variable",
@@ -4258,6 +6116,22 @@
     {
       "source": "computer_science/data_structure/fundamental/map",
       "target": "computer_science/fundamental/data_structure"
+    },
+    {
+      "source": "computer_science/computation/mapreduce",
+      "target": "computer_science/fundamental/dataset"
+    },
+    {
+      "source": "computer_science/computation/mapreduce",
+      "target": "computer_science/data_structure/fundamental/map"
+    },
+    {
+      "source": "computer_science/computation/mapreduce",
+      "target": "computer_science/fundamental/parallelism"
+    },
+    {
+      "source": "computer_science/computation/mapreduce",
+      "target": "computer_science/fundamental/worker"
     },
     {
       "source": "computer_science/data_structure/fundamental/primitive_data_type",
@@ -4326,6 +6200,18 @@
     {
       "source": "computer_science/data_structure/collection/list/linked_list",
       "target": "mathematics/graph/node"
+    },
+    {
+      "source": "computer_science/data_structure/collection/list/circular_linked_list",
+      "target": "computer_science/data_structure/collection/list/linked_list"
+    },
+    {
+      "source": "computer_science/data_structure/collection/list/circular_linked_list",
+      "target": "mathematics/graph/node"
+    },
+    {
+      "source": "computer_science/data_structure/collection/list/circular_linked_list",
+      "target": "mathematics/graph/cycle"
     },
     {
       "source": "computer_science/data_structure/collection/list/list",
@@ -4460,6 +6346,14 @@
       "target": "computer_science/data_structure/collection/string/character_encoding"
     },
     {
+      "source": "computer_science/data_structure/operation/string_concatenation",
+      "target": "mathematics/fundamental/operation"
+    },
+    {
+      "source": "computer_science/data_structure/operation/string_concatenation",
+      "target": "computer_science/data_structure/collection/string/string"
+    },
+    {
       "source": "computer_science/data_structure/collection/string/substring",
       "target": "computer_science/data_structure/collection/string/string"
     },
@@ -4574,6 +6468,118 @@
     {
       "source": "computer_science/algorithms/bit/bit_manipulation",
       "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/float",
+      "target": "mathematics/fundamental/real_number"
+    },
+    {
+      "source": "computer_science/fundamental/double",
+      "target": "mathematics/fundamental/real_number"
+    },
+    {
+      "source": "computer_science/fundamental/double",
+      "target": "computer_science/fundamental/float"
+    },
+    {
+      "source": "computer_science/fundamental/auxiliary_space",
+      "target": "computer_science/fundamental/computer_memory"
+    },
+    {
+      "source": "computer_science/fundamental/auxiliary_space",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/auxiliary_space",
+      "target": "mathematics/fundamental/input_data"
+    },
+    {
+      "source": "computer_science/fundamental/clustering",
+      "target": "mathematics/fundamental/partitioning"
+    },
+    {
+      "source": "computer_science/fundamental/clustering",
+      "target": "computer_science/fundamental/dataset"
+    },
+    {
+      "source": "computer_science/fundamental/clustering",
+      "target": "mathematics/notations/label"
+    },
+    {
+      "source": "computer_science/fundamental/clustering",
+      "target": "mathematics/algorithm/fundamental/algorithm"
+    },
+    {
+      "source": "computer_science/fundamental/lopsided",
+      "target": "computer_science/fundamental/data_structure"
+    },
+    {
+      "source": "computer_science/fundamental/lopsided",
+      "target": "mathematics/fundamental/distribution"
+    },
+    {
+      "source": "computer_science/fundamental/null",
+      "target": "computer_science/fundamental/object"
+    },
+    {
+      "source": "computer_science/fundamental/null",
+      "target": "computer_science/fundamental/pointer"
+    },
+    {
+      "source": "computer_science/fundamental/null",
+      "target": "computer_science/fundamental/computer_memory"
+    },
+    {
+      "source": "computer_science/fundamental/worker",
+      "target": "computer_science/fundamental/process"
+    },
+    {
+      "source": "computer_science/fundamental/worker",
+      "target": "computer_science/fundamental/thread"
+    },
+    {
+      "source": "computer_science/fundamental/worker",
+      "target": "computer_science/fundamental/machine"
+    },
+    {
+      "source": "computer_science/fundamental/worker",
+      "target": "computer_science/fundamental/parallelism"
+    },
+    {
+      "source": "computer_science/fundamental/worker",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/process",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/process",
+      "target": "computer_science/fundamental/operating_system"
+    },
+    {
+      "source": "computer_science/fundamental/thread",
+      "target": "computer_science/fundamental/process"
+    },
+    {
+      "source": "computer_science/fundamental/thread",
+      "target": "computer_science/fundamental/computer_memory"
+    },
+    {
+      "source": "computer_science/fundamental/thread",
+      "target": "computer_science/fundamental/operation"
+    },
+    {
+      "source": "computer_science/fundamental/machine",
+      "target": "computer_science/fundamental/computer"
+    },
+    {
+      "source": "computer_science/fundamental/machine",
+      "target": "computer_science/fundamental/program"
+    },
+    {
+      "source": "computer_science/fundamental/operating_system",
+      "target": "computer_science/fundamental/computer"
     }
   ]
 }
