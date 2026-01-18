@@ -1,7 +1,6 @@
 export type DefNode = {
   /**
    * Unique id used throughout the visualization.
-   * In the current generator this equals category (slashes preserved).
    */
   id: string;
 

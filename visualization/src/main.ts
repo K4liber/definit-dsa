@@ -136,7 +136,7 @@ function recomputeIncludedSetFromReady(rawGraph: Raw) {
   for (const n of rawGraph.def.nodes) {
     if (learnStateForNode(n) !== 'ready') continue;
 
-    const parts = splitPath(n.id);
+    const parts = splitCategory(n.category);
     const parentDepth = Math.max(1, parts.length - 1);
     const parent = groupIdForPath(parts, parentDepth);
     if (parent) readyParentPrefixes.add(parent);
@@ -144,11 +144,12 @@ function recomputeIncludedSetFromReady(rawGraph: Raw) {
 
   // If nothing is ready, empty the state.
   if (!readyParentPrefixes.size) {
+    console.log("No ready categories found.");
     includedIds = null;
     try {
       localStorage.removeItem(VISIBILITY_STORAGE_KEY);
     } catch {
-      // ignore
+      console.warn("Failed to clear included IDs from storage.");
     }
     return;
   }
@@ -162,13 +163,14 @@ function recomputeIncludedSetFromReady(rawGraph: Raw) {
 
   // Include all when parent category is ready
   for (const leaf of rawGraph.def.nodes) {
-    const parts = splitPath(leaf.id);
+    const parts = splitCategory(leaf.category);
     const parentDepth = Math.max(1, parts.length - 1);
     const parent = groupIdForPath(parts, parentDepth);
 
     if (parent && readyParentPrefixes.has(parent)) includedIds.add(leaf.id);
   }
 
+  console.log(`  Found ${includedIds.size} included definitions.`);
   saveIncludedToStorage(includedIds);
 }
 
@@ -382,12 +384,13 @@ function computeLevels(nodes: DefNode[]) {
 // Compute group DAG (prefix -> prefix) from leaf deps and return per-group level.
 function computeGroupLevels(raw: Raw) {
   const groups = new Set<string>(raw.childrenByPrefix.keys());
+  console.log(`Computing group levels for ${groups.size} groups.`);
 
   const depsByGroup = new Map<string, Set<string>>();
   for (const g of groups) depsByGroup.set(g, new Set());
 
-  const groupOfLeafAtDepth = (leafId: string, depth: number) => {
-    const parts = splitPath(leafId);
+  const groupOfLeafAtDepth = (leafCategory: string, depth: number) => {
+    const parts = splitCategory(leafCategory);
     if (parts.length < depth) return null;
     // group prefixes exist only for depths < leaf length
     if (depth > parts.length - 1) return null;
@@ -397,14 +400,19 @@ function computeGroupLevels(raw: Raw) {
   // Group dependency rule: if any leaf within A depends on any leaf within B,
   // then A depends on B (at that same depth), unless it stays within the same group.
   for (const n of raw.def.nodes) {
-    const srcParts = splitPath(n.id);
-    for (const depId of n.deps ?? []) {
-      const depParts = splitPath(depId);
+    const srcParts = splitCategory(n.category);
 
+    for (const depId of n.deps ?? []) {
+      const depCategory = raw.byId.get(depId)?.category;
+
+      if (!depCategory) throw new Error(`Dependency id not found: ${depId}`);
+
+      const depParts = splitCategory(depCategory);
       const maxDepth = Math.min(srcParts.length - 1, depParts.length - 1);
+
       for (let d = 1; d <= maxDepth; d++) {
-        const a = groupOfLeafAtDepth(n.id, d);
-        const b = groupOfLeafAtDepth(depId, d);
+        const a = groupOfLeafAtDepth(n.category, d);
+        const b = groupOfLeafAtDepth(depCategory, d);
         if (!a || !b) continue;
         if (a === b) continue;
         depsByGroup.get(a)?.add(b);
@@ -871,8 +879,8 @@ function hideViewer() {
   updateMarkLearnedButton(undefined);
 }
 
-function splitPath(id: string) {
-  return id.split('/').filter(Boolean);
+function splitCategory(category: string) {
+  return category.split('/').filter(Boolean);
 }
 
 function groupIdForPath(parts: string[], depth: number) {
@@ -880,19 +888,21 @@ function groupIdForPath(parts: string[], depth: number) {
 }
 
 function buildRaw(def: DefGraph): Raw {
+  console.log("Building raw data structure...");
   const byId = new Map(def.nodes.map((n) => [n.id, n] as const));
 
   const fieldsSet = new Set<string>();
   for (const n of def.nodes) {
-    const [field] = splitPath(n.id);
+    const [field] = splitCategory(n.category);
     if (field) fieldsSet.add(field);
   }
   const fields = Array.from(fieldsSet).sort();
+  console.log(`  Found ${fields.length} fields: ${fields.join(', ')}`);
 
   // childrenByPrefix: prefix -> leaf ids directly under that prefix (any depth)
   const childrenByPrefix = new Map<string, string[]>();
   for (const n of def.nodes) {
-    const parts = splitPath(n.id);
+    const parts = splitCategory(n.category);
     for (let d = 1; d <= parts.length - 1; d++) {
       const prefix = groupIdForPath(parts, d);
       const arr = childrenByPrefix.get(prefix) ?? [];
@@ -972,7 +982,7 @@ function buildCategoryTree(raw: Raw, rendered: DefGraph) {
 
   // Insert leaves into a folder-like tree based on id path parts.
   for (const leaf of raw.def.nodes) {
-    const parts = splitPath(leaf.id);
+    const parts = splitCategory(leaf.category);
     let cur = root;
     for (let i = 0; i < parts.length - 1; i++) {
       const prefix = parts.slice(0, i + 1).join('/');
@@ -1268,7 +1278,7 @@ function rerender(keepTransform: boolean) {
   rawPromise
     .then((r) => {
       raw = r;
-
+      console.log(`Rendering graph with ${r.def.nodes.length} definitions...`);
       // On reload, if there is no manual selection stored, derive initial selection from "ready".
       // If there IS a stored selection, keep it (manual overrides).
       if (loadIncludedFromStorage() === null) {
@@ -1486,6 +1496,7 @@ overviewBtn?.addEventListener('click', () => {
 // Reset progress button
 const resetBtn = (document.getElementById('resetProgress') ?? document.getElementById('reset')) as HTMLButtonElement | null;
 resetBtn?.addEventListener('click', () => {
+  console.log("Resetting progress...");
   clearLearnedProgress();
   saveLearnedToStorage();
   hideViewer();

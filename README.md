@@ -3,7 +3,7 @@
 ## Install dev dependencies
 
 ```
-uv sync --index https://pypi.org/simple/ --extra dev
+uv sync --index https://pypi.org/simple --extra dev
 ```
 
 ## Run tests

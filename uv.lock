@@ -25,11 +25,11 @@ wheels = [
 
 [[package]]
 name = "definit"
-version = "0.4.1"
+version = "0.5.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/3f/c6/e18b2aa1b5697fa4b90ddbf3017cce2aff3a8a595986416d0c2754454360/definit-0.4.1.tar.gz", hash = "sha256:be0d844df48c5bcaf9e0b413135078ad5f2f973251a7b93ba2d524f09602376d", size = 10941, upload-time = "2025-12-28T14:16:51.111Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/ac/fc4b7246ec80a77a9120a5e72308f113a265cbdf7b7caaf389472c81dd2b/definit-0.5.0.tar.gz", hash = "sha256:54af59edc8e8850f7b206c9611f8f8ccdb90b8c871a74c7c83687a1df42352e6", size = 11540, upload-time = "2026-01-18T12:04:45.529Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ee/cd/a29353da9137e259ca2cf006c677689d49eabeee3fdf41e087bb16d9a217/definit-0.4.1-py3-none-any.whl", hash = "sha256:b66538f767740cd11b796753ee8d5aa57bfa6d9e0b244a4e9d33fce224c2ec4f", size = 8829, upload-time = "2025-12-28T14:16:49.671Z" },
+    { url = "https://files.pythonhosted.org/packages/12/d4/fea5234bbf2f2a027a2d7f3aca15326eff399fbfd75571c852e9dabecdc0/definit-0.5.0-py3-none-any.whl", hash = "sha256:fa1b507b0d5d59a778e0896f10bf90438842a784dfbcf3657a4eee61c1b0e567", size = 9260, upload-time = "2026-01-18T12:04:44.272Z" },
 ]
 
 [[package]]
@@ -49,7 +49,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "definit", specifier = "==0.4.1" },
+    { name = "definit", specifier = "==0.5.0" },
     { name = "import-linter", marker = "extra == 'dev'", specifier = ">=2.9" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "ruff", marker = "extra == 'dev'" },
