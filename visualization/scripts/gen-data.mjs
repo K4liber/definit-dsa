@@ -27,11 +27,11 @@ async function parseIndex(md) {
     const title = m[1];
     const category = m[2].replace(/\.md$/i, '');
 
-    // For now, use category as the stable, human-readable unique id.
-    // Example: "computer_science/fundamental/bit"
-    // In the future, it could probably just a <field>/<definition_name>
-    // Example: "computer_science/bit"
-    const id = category;
+    // Field is the first path segment
+    const field = category.split('/')[0];
+
+    // ID has a <field>/<normalized_title> form
+    const id = `${field}/${normalizeId(title)}`;
 
     const contentFilePath = path.resolve(defsRoot, `${category}.md`);
     const content = await readIfExists(contentFilePath);
