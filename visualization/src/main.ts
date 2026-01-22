@@ -1289,12 +1289,20 @@ function rerender(keepTransform: boolean) {
       // Keep ring highlight consistent with selection after redraw.
       applyRingHighlight();
 
-      // If nothing is selected, focus + underline the highest active ring.
-      // Do it in the next frame so layout+DOM are settled (same timing as button behavior).
+      // Auto-select a "next ready" definition on initial load if nothing is selected.
+      // (Also shows the definition content immediately.)
       if (!state.selectedLeaf) {
-        requestAnimationFrame(() => {
-          focusHighestActiveRing();
-        });
+        // Ensure panel is expanded so content is visible immediately.
+        if (bottomPanelEl && !bottomPanelEl.classList.contains('expanded')) {
+          setPanelCollapsed(false);
+        }
+        const selected = selectNextReadyDefinition(r, rendered);
+        if (!selected) {
+          // Fallback: keep old behavior if there's nothing ready.
+          requestAnimationFrame(() => {
+            focusHighestActiveRing();
+          });
+        }
       }
 
       // Keep viewer updated if we have a selected leaf.
@@ -1470,7 +1478,14 @@ progressBtn?.addEventListener('click', () => {
 
   rerender(true);
   requestAnimationFrame(() => {
-    focusHighestActiveRing();
+    if (raw && lastRendered) {
+      // In Current Progress, immediately jump to the next definition to learn.
+      // (this also opens the definition viewer)
+      const selected = selectNextReadyDefinition(raw, lastRendered);
+      if (!selected) focusHighestActiveRing();
+    } else {
+      focusHighestActiveRing();
+    }
   });
 });
 
@@ -1491,3 +1506,36 @@ resetBtn?.addEventListener('click', () => {
   hideViewer();
   rerender(true);
 });
+
+function selectNextReadyDefinition(rawGraph: Raw, rendered: DefGraph) {
+  // compute or refresh levels on rendered graph so sorting is correct
+  computeLevels(rendered.nodes);
+
+  const ready = rendered.nodes.filter((n) => learnStateForNode(n) === 'ready');
+  if (!ready.length) return false;
+
+  // Precompute once to avoid recompute per compare
+  const { levelByGroup } = computeGroupLevels(rawGraph);
+  const parentGroupLevel = (id: string) => {
+    const parts = splitPath(id);
+    const parentDepth = Math.max(1, parts.length - 1);
+    const parent = groupIdForPath(parts, parentDepth);
+    return parent ? (levelByGroup.get(parent) ?? 0) : 0;
+  };
+
+  ready.sort((a, b) => {
+    const la = a.level ?? 0;
+    const lb = b.level ?? 0;
+    if (la !== lb) return la - lb;
+
+    const ga = parentGroupLevel(a.id);
+    const gb = parentGroupLevel(b.id);
+    if (ga !== gb) return ga - gb;
+
+    return a.id.localeCompare(b.id);
+  });
+
+  setBottomTab('definition');
+  selectLeafById(ready[0].id);
+  return true;
+}
