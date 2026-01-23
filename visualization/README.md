@@ -74,6 +74,11 @@ The generator tries to reduce false positives by:
 - Nodes are rendered in concentric rings/levels.
 - Learning state is persisted in the browser (via `localStorage`).
 
+**Current progress** behavior:
+
+- Recomputes the suggested visibility selection from the current learning progress (same as a fresh load with no stored selection).
+- Then **automatically selects the next ready-to-learn definition** and opens it in the **Definition** tab.
+
 ### Search
 
 Use the “Search node by id/title…” input to highlight matching nodes.
@@ -87,9 +92,19 @@ Use the “Search node by id/title…” input to highlight matching nodes.
 - **Left click** selects a node and focuses/centers the view on its ring/level.
 - Selecting a node loads its markdown and shows it in the bottom panel **Definition** tab.
 
+Selection can be triggered either manually (clicking in the graph / Categories) or automatically (startup / Current progress). In all cases it behaves the same: the graph is focused on the selected node’s ring and the definition content is shown.
+
 ### Initial view / starting focus
 
-On startup (and after resetting progress), the app focuses the view on the highest ring/level that contains at least one node that is **ready-to-learn** or **already-learned**.
+On startup (and when entering **Current progress**), if there is no already-selected definition, the app will pick the **next ready-to-learn** definition and select it immediately.
+
+The “next” definition is chosen from all definitions in the rendered graph that are **ready-to-learn**, sorted by:
+
+1. **Definition level** (`L#`)
+2. **Parent category level** (topological level of the definition’s immediate parent folder)
+3. Stable tie-breaker (definition id)
+
+If **no** definitions are ready-to-learn, the app falls back to focusing the highest ring/level that contains at least one node that is **ready-to-learn** or **already-learned**.
 
 ## Learning states
 
