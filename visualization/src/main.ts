@@ -125,6 +125,105 @@ function saveIncludedToStorage(set: Set<string>) {
   }
 }
 
+function loadLearnedFromStorage() {
+  try {
+    const raw = localStorage.getItem(LEARNED_STORAGE_KEY);
+    if (!raw) return new Set<string>();
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return new Set<string>();
+    return new Set<string>(arr.filter((x) => typeof x === 'string'));
+  } catch {
+    return new Set<string>();
+  }
+}
+
+function saveLearnedToStorage() {
+  try {
+    localStorage.setItem(LEARNED_STORAGE_KEY, JSON.stringify(Array.from(learned)));
+  } catch {
+    // ignore
+  }
+}
+
+function clearLearnedProgress() {
+  learned.clear();
+  try {
+    localStorage.removeItem(LEARNED_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+const learned = loadLearnedFromStorage();
+
+const INFO_TEXT =
+  'Welcome to the "Data Structures and Algorithms" course!\n\n' +
+  'This is a great starting point if you are preparing for coding interviews. The tool helps you learn or review key definitions related to data structures and algorithms.\n\n' +
+  'The definitions are based on Cracking the Coding Interview by Gayle Laakmann McDowell. A total of 275 terms from mathematics and computer science are organized topologically to create a smooth and logical learning experience.\n\n' +
+  'Give it a try, take it easy, and have fun! Feedback is always appreciated. Feel free to contact me at janbielecki94@gmail.com.';
+
+function hasAnyLearned() {
+  return learned.size > 0;
+}
+
+function updateResetProgressButton() {
+  const btn = (document.getElementById('resetProgress') ?? document.getElementById('reset')) as HTMLButtonElement | null;
+  if (!btn) return;
+  btn.disabled = !hasAnyLearned();
+  btn.title = btn.disabled ? 'Nothing to reset yet' : 'Reset progress';
+}
+
+function bindInfoPopup() {
+  const overlay = document.getElementById('infoOverlay') as HTMLDivElement | null;
+  const fab = document.getElementById('infoFab') as HTMLButtonElement | null;
+  const closeBtn = document.getElementById('infoClose') as HTMLButtonElement | null;
+  const body = document.getElementById('infoBody') as HTMLDivElement | null;
+
+  if (!overlay || !fab || !closeBtn || !body) return;
+
+  body.textContent = INFO_TEXT;
+
+  const open = () => {
+    overlay.classList.add('open');
+  };
+
+  const close = () => {
+    overlay.classList.remove('open');
+  };
+
+  fab.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    open();
+  };
+
+  closeBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    close();
+  };
+
+  // Click outside modal closes it
+  overlay.addEventListener('click', (ev) => {
+    if (ev.target === overlay) close();
+  });
+
+  // ESC closes it
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+
+  // Auto-show on initial load if nothing learned yet.
+  // If user has not learned anything yet, we always show this on page load.
+  if (!hasAnyLearned()) {
+    setTimeout(() => open(), 60);
+  }
+
+}
+
+bindInfoPopup();
+updateResetProgressButton();
+
 // Manual selection is persisted, but can be overwritten by a recompute.
 let includedIds: Set<string> | null = loadIncludedFromStorage();
 
@@ -197,37 +296,6 @@ function setIncludedMany(ids: string[], include: boolean) {
 
   saveIncludedToStorage(includedIds);
 }
-
-function loadLearnedFromStorage() {
-  try {
-    const raw = localStorage.getItem(LEARNED_STORAGE_KEY);
-    if (!raw) return new Set<string>();
-    const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) return new Set<string>();
-    return new Set<string>(arr.filter((x) => typeof x === 'string'));
-  } catch {
-    return new Set<string>();
-  }
-}
-
-function saveLearnedToStorage() {
-  try {
-    localStorage.setItem(LEARNED_STORAGE_KEY, JSON.stringify(Array.from(learned)));
-  } catch {
-    // ignore
-  }
-}
-
-function clearLearnedProgress() {
-  learned.clear();
-  try {
-    localStorage.removeItem(LEARNED_STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-}
-
-const learned = loadLearnedFromStorage();
 
 function learnStateForNode(n: DefNode): LearnState {
   // Base state from learning/progression only..
@@ -703,6 +771,7 @@ function updateMarkLearnedButton(node?: DefNode) {
 
     learned.add(node.id);
     saveLearnedToStorage();
+    updateResetProgressButton();
 
     // After learning, recompute the suggested visibility set (may unlock/shift readiness).
     if (raw) recomputeIncludedSetFromReady(raw);
@@ -873,8 +942,8 @@ function hideViewer() {
   // Keep the viewer panel visible, but show a placeholder.
   viewerEl.style.display = '';
   viewerTitleEl.textContent = 'Content';
-  viewerPathEl.textContent = '';
   viewerPathEl.style.display = 'none';
+  viewerPathEl.textContent = '';
   viewerBodyEl.innerHTML = '<p style="margin:0; color:#a9b4c0;">Select a definition to show the content.</p>';
   updateMarkLearnedButton(undefined);
 }
@@ -1475,7 +1544,7 @@ const progressBtn = (document.getElementById('progress')) as
   | HTMLButtonElement
   | null;
 progressBtn?.addEventListener('click', () => {
-  // Clear selection + viewer to behave like entering Current Progress mode.
+  // Clear selection + viewer to behave like entering Focus mode.
   state.selectedLeaf = undefined;
   selectedNodeId = null;
   hideViewer();
@@ -1489,7 +1558,7 @@ progressBtn?.addEventListener('click', () => {
   rerender(true);
   requestAnimationFrame(() => {
     if (raw && lastRendered) {
-      // In Current Progress, immediately jump to the next definition to learn.
+      // In Focus, immediately jump to the next definition to learn.
       // (this also opens the definition viewer)
       const selected = selectNextReadyDefinition(raw, lastRendered);
       if (!selected) focusHighestActiveRing();
@@ -1511,11 +1580,67 @@ overviewBtn?.addEventListener('click', () => {
 // Reset progress button
 const resetBtn = (document.getElementById('resetProgress') ?? document.getElementById('reset')) as HTMLButtonElement | null;
 resetBtn?.addEventListener('click', () => {
-  console.log("Resetting progress...");
-  clearLearnedProgress();
-  saveLearnedToStorage();
-  hideViewer();
-  rerender(true);
+  // If there's nothing to reset, do nothing (button should be disabled anyway).
+  if (!hasAnyLearned()) {
+    updateResetProgressButton();
+    return;
+  }
+
+  const overlay = document.getElementById('resetConfirmOverlay') as HTMLDivElement | null;
+  const closeBtn = document.getElementById('resetConfirmClose') as HTMLButtonElement | null;
+  const cancelBtn = document.getElementById('resetConfirmCancel') as HTMLButtonElement | null;
+  const okBtn = document.getElementById('resetConfirmOk') as HTMLButtonElement | null;
+
+  if (!overlay || !closeBtn || !cancelBtn || !okBtn) {
+    console.error('Missing reset confirmation elements');
+    return;
+  }
+
+  const open = () => overlay.classList.add('open');
+  const close = () => overlay.classList.remove('open');
+
+  // Avoid stacking handlers if user clicks multiple times.
+  closeBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    close();
+  };
+
+  cancelBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    close();
+  };
+
+  okBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    close();
+
+    console.log('Resetting progress...');
+    clearLearnedProgress();
+    saveLearnedToStorage();
+    hideViewer();
+
+    updateResetProgressButton();
+    rerender(true);
+  };
+
+  // Click outside modal closes it
+  overlay.onclick = (ev) => {
+    if (ev.target === overlay) close();
+  };
+
+  // ESC closes it (only while open)
+  const onKeyDown = (ev: KeyboardEvent) => {
+    if (ev.key !== 'Escape') return;
+    if (!overlay.classList.contains('open')) return;
+    close();
+  };
+  window.addEventListener('keydown', onKeyDown, { passive: true });
+
+  open();
 });
 
 function selectNextReadyDefinition(rawGraph: Raw, rendered: DefGraph) {
