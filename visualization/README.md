@@ -74,7 +74,7 @@ The generator tries to reduce false positives by:
 - Nodes are rendered in concentric rings/levels.
 - Learning state is persisted in the browser (via `localStorage`).
 
-**Current progress** behavior:
+**Focus** behavior:
 
 - Recomputes the suggested visibility selection from the current learning progress (same as a fresh load with no stored selection).
 - Then **automatically selects the next ready-to-learn definition** and opens it in the **Definition** tab.
@@ -92,11 +92,11 @@ Use the “Search node by id/title…” input to highlight matching nodes.
 - **Left click** selects a node and focuses/centers the view on its ring/level.
 - Selecting a node loads its markdown and shows it in the bottom panel **Definition** tab.
 
-Selection can be triggered either manually (clicking in the graph / Categories) or automatically (startup / Current progress). In all cases it behaves the same: the graph is focused on the selected node’s ring and the definition content is shown.
+Selection can be triggered either manually (clicking in the graph / Categories) or automatically (startup / Focus). In all cases it behaves the same: the graph is focused on the selected node’s ring and the definition content is shown.
 
 ### Initial view / starting focus
 
-On startup (and when entering **Current progress**), if there is no already-selected definition, the app will pick the **next ready-to-learn** definition and select it immediately.
+On startup (and when entering **Focus**), if there is no already-selected definition, the app will pick the **next ready-to-learn** definition and select it immediately.
 
 The “next” definition is chosen from all definitions in the rendered graph that are **ready-to-learn**, sorted by:
 
@@ -165,7 +165,7 @@ The visualization UI is designed to work well on both desktop and mobile.
 
 The UI is split into three vertical regions:
 
-- **Top menu**: primary view controls (Current progress / Full graph / Reset progress)
+- **Top menu**: primary view controls (Focus / Overview / Reset progress)
 - **Main panel**
   - **Graph canvas** (SVG visualization)
   - **Bottom panel** (details)
@@ -227,6 +227,6 @@ The checkbox selection is persisted, but there are moments where the app recompu
 
 - **On page load**: if there is **no stored selection**, the app derives the selection from the current **ready-to-learn** nodes.
 - **After “Mark as learned”**: the app recomputes and **overwrites** the stored selection so the visible graph follows the newly-unlocked readiness.
-- **On “Current progress”**: the app recomputes and **overwrites** the stored selection the same way (equivalent to a fresh load with no stored selection).
+- **On “Focus”**: the app recomputes and **overwrites** the stored selection the same way (equivalent to a fresh load with no stored selection).
 
 The auto-selection targets the *specific immediate parent categories* of ready definitions (it does **not** bubble readiness to ancestor prefixes/fields).

@@ -1558,7 +1558,7 @@ const progressBtn = (document.getElementById('progress')) as
   | HTMLButtonElement
   | null;
 progressBtn?.addEventListener('click', () => {
-  // Clear selection + viewer to behave like entering Current Progress mode.
+  // Clear selection + viewer to behave like entering Focus mode.
   state.selectedLeaf = undefined;
   selectedNodeId = null;
   hideViewer();
@@ -1572,7 +1572,7 @@ progressBtn?.addEventListener('click', () => {
   rerender(true);
   requestAnimationFrame(() => {
     if (raw && lastRendered) {
-      // In Current Progress, immediately jump to the next definition to learn.
+      // In Focus, immediately jump to the next definition to learn.
       // (this also opens the definition viewer)
       const selected = selectNextReadyDefinition(raw, lastRendered);
       if (!selected) focusHighestActiveRing();

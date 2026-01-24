@@ -476,8 +476,12 @@
       backdrop-filter: blur(6px);
     }
 
-    .infoFab:hover {
-      background: rgba(22, 32, 64, 0.95);
+    /* Push the info button into the corner on small screens */
+    @media (max-width: 640px) {
+      .infoFab {
+        top: 5px;
+        right: 5px;
+      }
     }
 
     .infoOverlay {
@@ -562,8 +566,8 @@
       </div>
 
       <div class="topMenu">
-        <button id="progress" class="btn">Current progress</button>
-        <button id="overview" class="btn">Full graph</button>
+        <button id="progress" class="btn">Focus</button>
+        <button id="overview" class="btn">Overview</button>
         <button id="resetProgress" class="btn">Reset progress</button>
       </div>
 
