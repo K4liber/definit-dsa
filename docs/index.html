@@ -456,13 +456,111 @@
     .dagStats div:nth-child(odd) {
       color: #a9b4c0;
     }
+
+    .infoFab {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(36, 49, 79, 0.95);
+      background: rgba(18, 26, 47, 0.9);
+      color: #e6edf3;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      user-select: none;
+      z-index: 30;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(6px);
+    }
+
+    .infoFab:hover {
+      background: rgba(22, 32, 64, 0.95);
+    }
+
+    .infoOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.62);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+      z-index: 50;
+    }
+
+    .infoOverlay.open {
+      display: flex;
+    }
+
+    .infoModal {
+      width: min(720px, 100%);
+      max-height: min(72vh, 640px);
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(31, 42, 68, 0.95);
+      background: rgba(11, 15, 25, 0.96);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.55);
+      padding: 16px 16px 14px 16px;
+    }
+
+    .infoHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .infoHeader h2 {
+      font-size: 14px;
+      margin: 0;
+      color: #e6edf3;
+    }
+
+    .infoClose {
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid #24314f;
+      background: #121a2f;
+      color: #e6edf3;
+      cursor: pointer;
+    }
+
+    .infoClose:hover {
+      background: #162040;
+    }
+
+    .infoBody {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #e6edf3;
+      white-space: pre-wrap;
+    }
+
   </style>
-  <script type="module" crossorigin src="./assets/index-B9_qxXNo.js"></script>
+  <script type="module" crossorigin src="./assets/index-DhEXTtIY.js"></script>
 </head>
 
 <body>
   <div id="app">
     <div class="viewport">
+      <button id="infoFab" class="infoFab" type="button" aria-label="Show info" title="Info">i</button>
+
+      <div id="infoOverlay" class="infoOverlay" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+        <div class="infoModal">
+          <div class="infoHeader">
+            <h2 id="infoTitle">Info</h2>
+            <button id="infoClose" class="infoClose" type="button" aria-label="Close info">Close</button>
+          </div>
+          <div id="infoBody" class="infoBody"></div>
+        </div>
+      </div>
+
       <div class="topMenu">
         <button id="progress" class="btn">Current progress</button>
         <button id="overview" class="btn">Full graph</button>

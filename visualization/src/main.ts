@@ -125,6 +125,120 @@ function saveIncludedToStorage(set: Set<string>) {
   }
 }
 
+function loadLearnedFromStorage() {
+  try {
+    const raw = localStorage.getItem(LEARNED_STORAGE_KEY);
+    if (!raw) return new Set<string>();
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return new Set<string>();
+    return new Set<string>(arr.filter((x) => typeof x === 'string'));
+  } catch {
+    return new Set<string>();
+  }
+}
+
+function saveLearnedToStorage() {
+  try {
+    localStorage.setItem(LEARNED_STORAGE_KEY, JSON.stringify(Array.from(learned)));
+  } catch {
+    // ignore
+  }
+}
+
+function clearLearnedProgress() {
+  learned.clear();
+  try {
+    localStorage.removeItem(LEARNED_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+const learned = loadLearnedFromStorage();
+
+const INFO_DISMISSED_KEY = 'definit-db.ui.infoDismissed';
+const INFO_TEXT =
+  'Welcome to the "Data Structures and Algorithms" course!\n\n' +
+  'This is a great starting point if you are preparing for coding interviews. The tool helps you learn or review key definitions related to data structures and algorithms.\n\n' +
+  'The definitions are based on Cracking the Coding Interview by Gayle Laakmann McDowell. A total of 275 terms from mathematics and computer science are organized topologically to create a smooth and logical learning experience.\n\n' +
+  'Give it a try, take it easy, and have fun! Feedback is always appreciated. Feel free to contact me at janbielecki94@gmail.com.';
+
+function readInfoDismissed() {
+  try {
+    return localStorage.getItem(INFO_DISMISSED_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function writeInfoDismissed(v: boolean) {
+  try {
+    localStorage.setItem(INFO_DISMISSED_KEY, v ? '1' : '0');
+  } catch {
+    console.warn("Failed to write info dismissed state to storage.");
+  }
+}
+
+function hasAnyLearned() {
+  return learned.size > 0;
+}
+
+let resetInfoDismissalIfNoProgress: (() => void) | null = null;
+
+function bindInfoPopup() {
+  const overlay = document.getElementById('infoOverlay') as HTMLDivElement | null;
+  const fab = document.getElementById('infoFab') as HTMLButtonElement | null;
+  const closeBtn = document.getElementById('infoClose') as HTMLButtonElement | null;
+  const body = document.getElementById('infoBody') as HTMLDivElement | null;
+
+  if (!overlay || !fab || !closeBtn || !body) return;
+
+  body.textContent = INFO_TEXT;
+
+  const open = () => {
+    overlay.classList.add('open');
+  };
+
+  const close = () => {
+    overlay.classList.remove('open');
+    writeInfoDismissed(true);
+  };
+
+  fab.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    open();
+  };
+
+  closeBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    close();
+  };
+
+  // Click outside modal closes it
+  overlay.addEventListener('click', (ev) => {
+    if (ev.target === overlay) close();
+  });
+
+  // ESC closes it
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+
+  // Auto-show on initial load if nothing learned yet.
+  if (!hasAnyLearned() && !readInfoDismissed()) {
+    setTimeout(() => open(), 60);
+  }
+
+  // Used by Reset Progress to make it show again after refresh.
+  resetInfoDismissalIfNoProgress = () => {
+    if (!hasAnyLearned()) writeInfoDismissed(false);
+  };
+}
+
+bindInfoPopup();
+
 // Manual selection is persisted, but can be overwritten by a recompute.
 let includedIds: Set<string> | null = loadIncludedFromStorage();
 
@@ -197,37 +311,6 @@ function setIncludedMany(ids: string[], include: boolean) {
 
   saveIncludedToStorage(includedIds);
 }
-
-function loadLearnedFromStorage() {
-  try {
-    const raw = localStorage.getItem(LEARNED_STORAGE_KEY);
-    if (!raw) return new Set<string>();
-    const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) return new Set<string>();
-    return new Set<string>(arr.filter((x) => typeof x === 'string'));
-  } catch {
-    return new Set<string>();
-  }
-}
-
-function saveLearnedToStorage() {
-  try {
-    localStorage.setItem(LEARNED_STORAGE_KEY, JSON.stringify(Array.from(learned)));
-  } catch {
-    // ignore
-  }
-}
-
-function clearLearnedProgress() {
-  learned.clear();
-  try {
-    localStorage.removeItem(LEARNED_STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-}
-
-const learned = loadLearnedFromStorage();
 
 function learnStateForNode(n: DefNode): LearnState {
   // Base state from learning/progression only..
@@ -1515,6 +1598,10 @@ resetBtn?.addEventListener('click', () => {
   clearLearnedProgress();
   saveLearnedToStorage();
   hideViewer();
+
+  // When progress is reset to zero, show the welcome modal again on next page load.
+  resetInfoDismissalIfNoProgress?.();
+
   rerender(true);
 });
 
