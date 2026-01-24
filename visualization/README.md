@@ -177,7 +177,7 @@ The UI is split into three vertical regions:
 
 - **Definition** tab: selected definition content + “Mark as learned” action
 - **Categories** tab: folder-like tree with visibility (include/exclude) checkboxes
-- **Graph** tab: statistics of the currently rendered graph
+- **Progress** tab: overall learning progress (definitions learned, edges unlocked, and levels completed)
 
 ### Persistence
 
@@ -190,7 +190,7 @@ The UI persists state in `localStorage`:
 
 ## Categories tab
 
-Between the **Definition** tab and the **Graph** tab there is a **Categories** tab.
+Between the **Definition** tab and the **Progress** tab there is a **Categories** tab.
 
 It is an Explorer-like tree:
 
