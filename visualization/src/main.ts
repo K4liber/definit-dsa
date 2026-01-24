@@ -33,15 +33,52 @@ function normalizeId(s: string) {
 }
 
 function setStats(graph: DefGraph) {
-  const maxLevel = Math.max(0, ...graph.nodes.map((n) => n.level ?? 0));
+  // NOTE: kept for backward-compat with older HTML, but now renders Progress content.
+  const totalDefs = raw?.def.nodes.length ?? graph.nodes.length;
+  const learnedDefs = learned.size;
 
-  const statsEl = document.getElementById('stats')!;
+  // Edges unlocked:
+  // - numerator: number of edges in the FULL graph where the prerequisite (target) is learned
+  // - denominator: number of edges in the FULL graph
+  const allEdges = raw ? raw.def.edges : graph.edges;
+  const totalEdges = allEdges.length;
+  const unlockedEdges = allEdges.reduce((acc, e) => acc + (learned.has(e.target) ? 1 : 0), 0);
+
+  // Levels completed:
+  // A level is "completed" when ALL definitions at that level are learned.
+  // Total levels is based on the FULL raw graph.
+  const allNodes = raw ? raw.def.nodes : graph.nodes;
+  const maxTotalLevel = Math.max(0, ...allNodes.map((n) => n.level ?? 0));
+
+  const totalCountByLevel = new Map<number, number>();
+  const learnedCountByLevel = new Map<number, number>();
+
+  for (const n of allNodes) {
+    const lvl = n.level ?? 0;
+    totalCountByLevel.set(lvl, (totalCountByLevel.get(lvl) ?? 0) + 1);
+    if (learned.has(n.id)) {
+      learnedCountByLevel.set(lvl, (learnedCountByLevel.get(lvl) ?? 0) + 1);
+    }
+  }
+
+  let completedLevels = 0;
+  for (let lvl = 0; lvl <= maxTotalLevel; lvl++) {
+    const total = totalCountByLevel.get(lvl) ?? 0;
+    if (!total) continue;
+    const got = learnedCountByLevel.get(lvl) ?? 0;
+    if (got === total) completedLevels++;
+  }
+
+  const statsEl = document.getElementById('stats');
+  if (!statsEl) return;
+
   statsEl.innerHTML = '';
   const kv: Array<[string, string]> = [
-    ['Nodes', String(graph.nodes.length)],
-    ['Edges', String(graph.edges.length)],
-    ['Levels', String(maxLevel + 1)],
+    ['Definitions learned', `${learnedDefs} out of ${totalDefs}`],
+    ['Edges unlocked', `${unlockedEdges} out of ${totalEdges}`],
+    ['Levels completed', `${completedLevels} out of ${maxTotalLevel + 1}`],
   ];
+
   for (const [k, v] of kv) {
     const dk = document.createElement('div');
     dk.textContent = k;
@@ -779,6 +816,11 @@ function updateMarkLearnedButton(node?: DefNode) {
     // Re-render to update node+edge styles and any newly-ready nodes.
     rerender(true);
 
+    // Update progress tab content if open.
+    if (lastRendered && document.getElementById('tabProgress')?.classList.contains('active')) {
+      setStats(lastRendered);
+    }
+
     // Behave like clicking "Definitions": clear selection/viewer and refocus to highest active ring
     // so newly-unlocked nodes are brought into view.
     state.selectedLeaf = undefined;
@@ -1492,31 +1534,36 @@ if (bottomPanelEl && togglePanelBtn) {
 // Bottom panel tabs
 const tabDefinitionBtn = document.getElementById('tabDefinition') as HTMLButtonElement | null;
 const tabCategoriesBtn = document.getElementById('tabCategories') as HTMLButtonElement | null;
-const tabGraphBtn = document.getElementById('tabGraph') as HTMLButtonElement | null;
+const tabProgressBtn = document.getElementById('tabProgress') as HTMLButtonElement | null;
 const tabPageDefinition = document.getElementById('tabPageDefinition') as HTMLDivElement | null;
 const tabPageCategories = document.getElementById('tabPageCategories') as HTMLDivElement | null;
-const tabPageGraph = document.getElementById('tabPageGraph') as HTMLDivElement | null;
+const tabPageProgress = document.getElementById('tabPageProgress') as HTMLDivElement | null;
 
 function setBottomTab(tab: BottomTab) {
   const isDef = tab === 'definition';
   const isCat = tab === 'categories';
-  const isGraph = tab === 'graph';
+  const isProg = tab === 'progress';
 
   tabDefinitionBtn?.classList.toggle('active', isDef);
   tabCategoriesBtn?.classList.toggle('active', isCat);
-  tabGraphBtn?.classList.toggle('active', isGraph);
+  tabProgressBtn?.classList.toggle('active', isProg);
 
   tabDefinitionBtn?.setAttribute('aria-selected', String(isDef));
   tabCategoriesBtn?.setAttribute('aria-selected', String(isCat));
-  tabGraphBtn?.setAttribute('aria-selected', String(isGraph));
+  tabProgressBtn?.setAttribute('aria-selected', String(isProg));
 
   tabPageDefinition?.classList.toggle('active', isDef);
   tabPageCategories?.classList.toggle('active', isCat);
-  tabPageGraph?.classList.toggle('active', isGraph);
+  tabPageProgress?.classList.toggle('active', isProg);
 
   // Refresh categories content when tab is opened.
   if (isCat && raw && lastRendered) {
     renderCategoriesTree(raw, lastRendered);
+  }
+
+  // Refresh progress content when tab is opened.
+  if (isProg && lastRendered) {
+    setStats(lastRendered);
   }
 }
 
@@ -1531,9 +1578,9 @@ tabCategoriesBtn?.addEventListener('click', (ev) => {
   // Keep the graph as-is; this is only a panel tab.
 });
 
-tabGraphBtn?.addEventListener('click', (ev) => {
+tabProgressBtn?.addEventListener('click', (ev) => {
   ev.preventDefault();
-  setBottomTab('graph');
+  setBottomTab('progress');
 });
 
 // Default tab
