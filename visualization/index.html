@@ -546,6 +546,81 @@
       white-space: pre-wrap;
     }
 
+    .dangerOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.70);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+      z-index: 60;
+    }
+
+    .dangerOverlay.open {
+      display: flex;
+    }
+
+    .dangerModal {
+      width: min(560px, 100%);
+      max-height: min(70vh, 560px);
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(185, 28, 28, 0.65);
+      background: rgba(11, 15, 25, 0.98);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.62);
+      padding: 16px;
+    }
+
+    .dangerHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .dangerHeader h2 {
+      font-size: 14px;
+      margin: 0;
+      color: #fecaca;
+      /* red-200 */
+      letter-spacing: 0.2px;
+    }
+
+    .dangerBody {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #e6edf3;
+      white-space: pre-wrap;
+    }
+
+    .dangerActions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 14px;
+    }
+
+    .btnDanger {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(220, 38, 38, 0.95);
+      background: rgba(185, 28, 28, 0.92);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btnDanger:hover {
+      background: rgba(220, 38, 38, 0.95);
+    }
+
+    .btnDanger:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
   </style>
 </head>
 
@@ -561,6 +636,24 @@
             <button id="infoClose" class="infoClose" type="button" aria-label="Close info">Close</button>
           </div>
           <div id="infoBody" class="infoBody"></div>
+        </div>
+      </div>
+
+      <div id="resetConfirmOverlay" class="dangerOverlay" role="dialog" aria-modal="true" aria-labelledby="resetConfirmTitle" aria-describedby="resetConfirmBody">
+        <div class="dangerModal">
+          <div class="dangerHeader">
+            <h2 id="resetConfirmTitle">Reset progress?</h2>
+            <button id="resetConfirmClose" class="infoClose" type="button" aria-label="Close reset confirmation">Close</button>
+          </div>
+          <div id="resetConfirmBody" class="dangerBody">
+            This will remove all “learned” markers and return every definition to the initial state.
+
+            This action cannot be undone.
+          </div>
+          <div class="dangerActions">
+            <button id="resetConfirmCancel" class="btn" type="button">Cancel</button>
+            <button id="resetConfirmOk" class="btnDanger" type="button">Reset</button>
+          </div>
         </div>
       </div>
 
