@@ -17,9 +17,8 @@
     // other
     "editor.formatOnSave": true,
     "workbench.colorCustomizations": {
-        "activityBar.background": "#391E60",
-        "titleBar.activeBackground": "#502A86",
-        "titleBar.activeForeground": "#FBF9FD"
+        "statusBar.noFolderBackground": "#391E60",
+        "statusBar.noFolderForeground": "#FBF9FD"
     },
     "python.analysis.extraPaths": [
         "./src"

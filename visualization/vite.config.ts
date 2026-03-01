@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import fs from 'node:fs/promises';
@@ -17,6 +18,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    react(),
     {
       name: 'serve-definitions-md',
       configureServer(server) {
