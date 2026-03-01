@@ -1,13 +1,6 @@
 # DefinIT - Data Structures and Algorithms — Visualization
 
-This folder contains a small TypeScript + Vite + D3 app that visualizes the definitions database as a **directed acyclic graph (DAG)** arranged in **concentric circles** (radial levels).
-
-- **Level 0 (inner ring)**: definitions with **no dependencies**
-- **Level N**: definitions that depend (directly or indirectly) on lower levels
-
-The graph data is generated from the following markdown files:
-- `src/definit_db/data_md/index.md` (list of all definitions)
-- `src/definit_db/data_md/definitions/**.md` (definition content, used to extract dependencies)
+Visualization of the Data Structures and Algorithms definitions.
 
 ## Prerequisites
 
@@ -67,105 +60,34 @@ The generator tries to reduce false positives by:
 - Ignoring self-dependencies
 - Only keeping dependencies that exist in `index.md`
 
-## Interactive behavior
 
-### Progress + learning
+## Features & Test Scenarios
 
-- Nodes are rendered in concentric rings/levels.
-- Learning state is persisted in the browser (via `localStorage`).
+### # **Data Generation from Markdown**
 
-**Focus** behavior:
+**Importance**: Critical
 
-- Recomputes the suggested visibility selection from the current learning progress (same as a fresh load with no stored selection).
-- Then **automatically selects the next ready-to-learn definition** and opens it in the **Definition** tab.
+**Test Scenario**
 
-### Search
+Run `npm run gen:data` and verify `public/defs.json` is created correctly. Verify the file contains all definitions from markdown source files.
 
-Use the “Search node by id/title…” input to highlight matching nodes.
+### # **Cycle Detection in Generator**
 
-- Matching is performed against the node `id` (which equals the definition `category`) and title.
-- Matches are indicated by a red outline around the node.
+**Importance**: Critical
 
-### Selection + focus + viewer
+**Test Scenario**
 
-- **Hover** highlights the hovered node’s ring/level.
-- **Left click** selects a node and focuses/centers the view on its ring/level.
-- Selecting a node loads its markdown and shows it in the bottom panel **Definition** tab.
+Run `npm run gen:data` with valid dependencies and verify successful generation. Introduce a cycle in test data and verify the generator fails with a cycle detection error message.
 
-Selection can be triggered either manually (clicking in the graph / Categories) or automatically (startup / Focus). In all cases it behaves the same: the graph is focused on the selected node’s ring and the definition content is shown.
+### # **Layout overview**
 
-### Initial view / starting focus
+**Importance**: Critical
 
-On startup (and when entering **Focus**), if there is no already-selected definition, the app will pick the **next ready-to-learn** definition and select it immediately.
-
-The “next” definition is chosen from all definitions in the rendered graph that are **ready-to-learn**, sorted by:
-
-1. **Definition level** (`L#`)
-2. **Parent category level** (topological level of the definition’s immediate parent folder)
-3. Stable tie-breaker (definition id)
-
-If **no** definitions are ready-to-learn, the app falls back to focusing the highest ring/level that contains at least one node that is **ready-to-learn** or **already-learned**.
-
-## Learning states
-
-### Node states and colors
-
-Definition nodes (leaves) are colored by learning/progress state:
-
-- **Off**: *barely visible* gray (high transparency)
-- **Visible**: gray
-- **Ready-to-learn**: yellow
-- **Already-learned**: green
-
-### State rules
-
-- A node is **already-learned** once you explicitly mark it as learned.
-- A node is **ready-to-learn** when **all of its dependencies are already-learned** (nodes with no dependencies are ready).
-- A node is **visible** when it is **not learned**, **not ready**, and has **at least one incoming “on” edge**.
-- Otherwise the node is **off**.
-
-Learned state is persisted in the browser (via `localStorage`).
-
-### Off node label fading
-
-For nodes in the **off** state, the **label text is also faded** (lower opacity), so the background graph is present but unobtrusive.
-
-### Mark as learned
-
-When a definition is open, you will see a **“Mark as learned”** button.
-
-- It is enabled only when the current node is **ready-to-learn**.
-- Clicking it marks that node as **already-learned** and updates the graph.
-
-### Reset progress
-
-**Reset progress** clears the learned set from memory and browser storage, re-renders the graph, and re-applies the initial focus behavior.
-
-## Edges
-
-### Direction / meaning
-
-Each edge is `source -> target`, meaning:
-
-- **source depends on target**
-- `target` is a prerequisite for `source`
-
-### Styling
-
-- Edges are rendered as **curved paths** (they arc inward toward the center).
-- Edges are styled based on the **prerequisite node** (`target`) state:
-  - **On edge**: prerequisite is **learned** (more visible)
-  - **Off edge**: prerequisite is **not learned** (still visible but subtler, typically dashed)
-
-## UI description
-
-The visualization UI is designed to work well on both desktop and mobile.
-
-### Layout overview
+**Test Scenario**
 
 The UI is split into three vertical regions:
 
-- **Top menu**: primary view controls (Focus / Overview / Reset progress)
+- **Top menu**: primary view controls (Focus / Overview / Reset progress) and the info button
 - **Main panel**
   - **Graph canvas** (SVG visualization)
   - **Bottom panel** (details)
@@ -173,38 +95,93 @@ The UI is split into three vertical regions:
     - Collapsed: graph uses full height
 - **Bottom controls**: panel toggle (▲/▼) and the Search input
 
-### Bottom panel contents (tabs)
+### # **Bottom panel contents (tabs)**
 
-- **Definition** tab: selected definition content + “Mark as learned” action
+**Importance**: Critical
+
+**Test Scenario**
+
+- **Definition** tab: 
+1) selected definition content
+2) “Mark as learned” action
+3) Clickable dependencies in the content.
 - **Categories** tab: folder-like tree with visibility (include/exclude) checkboxes
-- **Progress** tab: overall learning progress (definitions learned, edges unlocked, and levels completed)
+- **Progress** tab: overall learning progress:
+1) definitions learned
+2) edges unlocked
+3) levels completed
 
-### Persistence
+### # **Categories tab details**
 
-The UI persists state in `localStorage`:
+**Importance**: Critical
 
-- Bottom panel collapsed/expanded state
-- Learned definitions
-- Categories expand/collapse state
-- Categories/definitions visibility (include) selection
-
-## Categories tab
-
-Between the **Definition** tab and the **Progress** tab there is a **Categories** tab.
+**Test Scenario**
 
 It is an Explorer-like tree:
 
-- Category folders are derived from definition ids (split by `/`).
+- Category folders are derived from definition ids (split by `/`). The category level is displayed.
 - Folders can be expanded/collapsed (including top-level “fields”).
 - Leaf rows list definitions and show:
-  - a state dot color (ready/learned/visible/off)
+  - a state dot color
   - the definition level (`L#`).
 - Definitions inside a category are sorted by:
-  1) state: **ready** (yellow), **learned** (green), **visible**, **off**
+  1) state
   2) level
   3) title
 
-### Visibility (include/exclude) checkboxes
+### # **Graph canvas display**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that the graph renders all definitions from `defs.json` without cycles. Ensure dependencies are correctly represented as directed edges where source depends on target.
+
+### # **Graph canvas radial levels**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that definitions are arranged in concentric rings by level. Level 0 should contain only definitions with no dependencies. Each subsequent level should contain definitions whose all dependencies exist in lower levels.
+
+### # **Mark Definition as Learned**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Open a definition with all dependencies learned, verify "Mark as learned" button is enabled. Click it, confirm the node becomes green, and the graph is updated. Try to mark a definition without all dependencies learned and verify the button is disabled.
+
+### # **Learning State Persistence (localStorage)**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Mark nodes as learned, reload the page, and verify that the learned states are restored from browser storage. Clear localStorage and verify the app resets to initial state.
+
+### # **Dependency-Based Learning Readiness**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that a node is marked as "ready-to-learn" (yellow) only when all of its dependencies are marked as learned. Mark a dependency as learned and verify dependent nodes transition to ready state.
+
+### # **Tree Explorer on categories tab**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Expand and collapse category folders in the Categories tab. Verify that leaf definitions display state dots (ready/learned/visible/off) and levels. Confirm definitions are sorted by state first, then level, then title.
+
+### # **Checkboxes behaviour on categories tab**
+
+**Importance**: Critical
+
+**Test scenarios**
 
 Each folder and each definition has a checkbox:
 
@@ -214,19 +191,95 @@ Each folder and each definition has a checkbox:
 - Learning state rules **do not change** with visibility:
   - A definition is **ready** when **all of its dependencies are learned**, even if some dependencies are currently hidden by checkboxes.
 
-### Category ordering and levels
+### # **Search & Node Highlighting**
 
-Categories are treated as a DAG and are **topologically sorted** (by computed group level).
+**Importance**: High
 
-- Each folder row shows a computed folder level (`L#`).
-- The visualization assumes categories are acyclic (if a dependency implies `A -> B` at some category depth, then the reverse is not expected).
+**Test Scenario**
 
-### Default selection behavior (auto-selection)
+Use the search input to query by node ID and title. Verify that matching nodes are highlighted with a red outline. Test partial matches and verify search works for both category IDs and titles.
 
-The checkbox selection is persisted, but there are moments where the app recomputes a “suggested” selection from the current learning progress:
+### # **Node Click - Focus & Center View**
 
-- **On page load**: if there is **no stored selection**, the app derives the selection from the current **ready-to-learn** nodes.
-- **After “Mark as learned”**: the app recomputes and **overwrites** the stored selection so the visible graph follows the newly-unlocked readiness.
-- **On “Focus”**: the app recomputes and **overwrites** the stored selection the same way (equivalent to a fresh load with no stored selection).
+**Importance**: High
 
-The auto-selection targets the *specific immediate parent categories* of ready definitions (it does **not** bubble readiness to ancestor prefixes/fields).
+**Test Scenario**
+
+Click on a definition node and verify the view centers/focuses on that node's ring/level. Verify that clicking different nodes updates the viewport accordingly.
+
+### # **Node Hover - Level Ring Highlight**
+
+**Importance**: High
+
+**Test Scenario**
+
+Hover over a node and verify that its entire ring/level is highlighted. Move to another node and verify the highlight updates.
+
+### # **Learning State Rules**
+
+**Importance**: High
+
+**Test Scenario**
+
+- A node is **already-learned** once you explicitly mark it as learned.
+- A node is **ready-to-learn** when **all of its dependencies are already-learned** (nodes with no dependencies are ready).
+- A node is **visible** when it is **not learned**, **not ready**, and has **at least one incoming “on” edge**.
+- Otherwise the node is **off**.
+
+Verify that node colors reflect states correctly: **Off** (faded gray), **Visible** (gray), **Ready-to-learn** (yellow), **Already-learned** (green). Transition nodes between states and verify colors update.
+
+### # **Initial View Focus on Next Ready-to-Learn Node**
+
+**Importance**: High
+
+**Test Scenario**
+
+On app startup, verify the view automatically focuses on the next ready-to-learn definition if it exists.
+
+### # **Category Topological Sorting**
+
+**Importance**: High
+
+**Test Scenario**
+
+Verify that category folders are displayed in topologically sorted order by their computed level. Confirm folder levels are correctly computed and displayed.
+
+### # **Bottom Panel Collapse/Expand Toggle**
+
+**Importance**: High
+
+**Test Scenario**
+
+Click the panel toggle (▲/▼) to expand/collapse the bottom panel. Verify the collapsed state saves to localStorage. Reload the page and confirm the state persists.
+
+### # **Edge Styling Based on Prerequisite State**
+
+**Importance**: Medium
+
+**Test Scenario**
+
+Verify that edges connecting to learned prerequisites are rendered as **on edges** (more visible). Edges to unlearned prerequisites are **off edges** (dashed or subtler).
+
+### # **Curved Edge Paths (Arc Toward Center)**
+
+**Importance**: Medium
+
+**Test Scenario**
+
+Verify that all edges are rendered as curved paths that arc inward toward the center rather than straight lines. Check visual rendering for aesthetic quality.
+
+### # **Responsive UI Design (Desktop & Mobile)**
+
+**Importance**: Medium
+
+**Test Scenario**
+
+Resize the browser window to simulate mobile view. Verify the UI remains usable on small screens. Test that all controls are accessible and the graph is still navigable.
+
+### # **Category Expand/Collapse Persistence**
+
+**Importance**: Low
+
+**Test Scenario**
+
+Expand and collapse category folders, reload the page, and verify the expand/collapse state is restored from localStorage.
