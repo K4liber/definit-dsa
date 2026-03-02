@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const defsRoot = path.resolve(__dirname, '../src/definit_db/data_md/definitions');
 
 export default defineConfig({
-  base: '/definit-db/',
+  base: '/definit-dsa/',
   server: {
     port: 5173,
     fs: {
