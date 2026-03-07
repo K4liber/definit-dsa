@@ -153,6 +153,8 @@ Verify that definitions are arranged in concentric rings by level. Level 0 shoul
 
 Open a definition with all dependencies learned, verify "Mark as learned" button is enabled. Click it, confirm the node becomes green, and the graph is updated. Try to mark a definition without all dependencies learned and verify the button is disabled.
 
+After definition has been marked, we should switch to the next ready-to-learn definition if it exists
+
 ### # **Learning State Persistence (localStorage)**
 
 **Importance**: Critical
@@ -177,7 +179,7 @@ Verify that a node is marked as "ready-to-learn" (yellow) only when all of its d
 
 Expand and collapse category folders in the Categories tab. Verify that leaf definitions display state dots (ready/learned/visible/off) and levels. Confirm definitions are sorted by state first, then level, then title.
 
-### # **Checkboxes behaviour on categories tab**
+### # **Checkboxes behavior on categories tab**
 
 **Importance**: Critical
 
