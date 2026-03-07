@@ -54,22 +54,21 @@ const App = () => {
   );
 
   const handleFocus = useCallback(() => {
+    // Focus should not change bottom panel visibility or tabs.
+    // It only advances selection to the next ready-to-learn node (if any).
     state.focusMode();
+
     requestAnimationFrame(() => {
-      // After focus mode rerender, select next ready
       setTimeout(() => {
-        const nextId = state.getNextReadyId();
+        const nextId = state.selectedLeafId;
         if (nextId) {
-          state.selectLeaf(nextId);
-          requestAnimationFrame(() => {
-            graphRef.current?.focusRingOfNode(nextId);
-          });
+          graphRef.current?.focusRingOfNode(nextId);
         } else {
           graphRef.current?.focusHighestActiveRing();
         }
       }, 50);
     });
-  }, [state.focusMode, state.getNextReadyId, state.selectLeaf]);
+  }, [state.focusMode, state.selectedLeafId]);
 
   const handleOverview = useCallback(() => {
     if (!state.rendered) return;
@@ -105,6 +104,28 @@ const App = () => {
       });
     }
   }, [state.rendered, state.selectedLeafId]);
+
+  const handleBottomMenuTabClick = useCallback(
+    (tab: import('./types').BottomTab) => {
+      const isSameTab = state.activeTab === tab;
+
+      if (state.panelCollapsed) {
+        state.setPanelCollapsed(false);
+        state.setActiveTab(tab);
+        return;
+      }
+
+      // Panel is expanded
+      if (isSameTab) {
+        // Turn all tabs off and collapse
+        state.setActiveTab(null);
+        state.setPanelCollapsed(true);
+      } else {
+        state.setActiveTab(tab);
+      }
+    },
+    [state.activeTab, state.panelCollapsed, state.setActiveTab, state.setPanelCollapsed],
+  );
 
   return (
     <div id="app">
@@ -146,8 +167,8 @@ const App = () => {
 
           <BottomPanel
             expanded={!state.panelCollapsed}
-            activeTab={state.activeTab}
-            onTabChange={state.setActiveTab}
+            activeTab={state.activeTab ?? 'definition'}
+            onTabChange={state.setActiveTab as any}
             selectedNode={state.selectedNode}
             renderedNodes={state.rendered?.nodes ?? []}
             learned={state.learned}
@@ -159,14 +180,29 @@ const App = () => {
             onSelectLeaf={handleCategorySelect}
             onSetIncluded={state.setIncluded}
             onSetIncludedMany={state.setIncludedMany}
+            searchQuery={state.searchQuery}
+            searchSelectedId={state.searchSelectedId}
+            searchMatches={state.searchMatches}
+            onSearchChange={state.setSearchQuery}
+            onSelectMatch={(id) => {
+              state.setSearchSelectedId(id);
+              if (id) state.selectLeaf(id);
+            }}
+            showNotReady={state.showNotReady}
+            showPreReady={state.showPreReady}
+            showReady={state.showReady}
+            showLearned={state.showLearned}
+            onSetShowNotReady={state.setShowNotReady}
+            onSetShowPreReady={state.setShowPreReady}
+            onSetShowReady={state.setShowReady}
+            onSetShowLearned={state.setShowLearned}
           />
         </div>
 
         <BottomMenu
           panelCollapsed={state.panelCollapsed}
-          searchQuery={state.searchQuery}
-          onTogglePanel={() => state.setPanelCollapsed(!state.panelCollapsed)}
-          onSearchChange={state.setSearchQuery}
+          activeTab={state.activeTab}
+          onTabClick={handleBottomMenuTabClick}
         />
       </div>
     </div>

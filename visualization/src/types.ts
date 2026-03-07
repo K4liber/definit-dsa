@@ -55,4 +55,4 @@ export type TreeNode = {
   groupLevel?: number;
 };
 
-export type BottomTab = 'definition' | 'categories' | 'progress';
+export type BottomTab = 'definition' | 'filters' | 'progress' | null;

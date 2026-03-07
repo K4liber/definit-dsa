@@ -1,12 +1,13 @@
 import { useReducer, useCallback, useEffect, useMemo, useRef } from 'react';
-import type { DefGraph, DefNode, Raw } from '../types';
+import type { DefGraph, DefNode, Raw, LearnState } from '../types';
 import type { BottomTab } from '../types';
 import {
   buildRaw,
   renderGraph,
   recomputeIncludedSetFromReady,
   selectNextReady,
-  computeLevels,
+  normalizeId,
+  prerequisiteClosure,
 } from '../lib/graph';
 import {
   loadLearnedFromStorage,
@@ -31,6 +32,13 @@ type State = {
   panelCollapsed: boolean;
   activeTab: BottomTab;
   searchQuery: string;
+  /** Selected node from search dropdown; when set, graph is filtered to prerequisites+dependents of this node. */
+  searchSelectedId: string | null;
+  // State filters (positive)
+  showNotReady: boolean;
+  showPreReady: boolean;
+  showReady: boolean;
+  showLearned: boolean;
   infoOpen: boolean;
   resetConfirmOpen: boolean;
 };
@@ -44,6 +52,12 @@ function initialState(): State {
     panelCollapsed: loadPanelCollapsed(),
     activeTab: 'definition',
     searchQuery: '',
+    searchSelectedId: null,
+    // defaults (keep previous behavior: only ready/learned/pre-ready visible; not-ready hidden)
+    showNotReady: false,
+    showPreReady: true,
+    showReady: true,
+    showLearned: true,
     infoOpen: false,
     resetConfirmOpen: false,
   };
@@ -67,9 +81,14 @@ const enum A {
   SET_PANEL_COLLAPSED = 'SET_PANEL_COLLAPSED',
   SET_ACTIVE_TAB = 'SET_ACTIVE_TAB',
   SET_SEARCH_QUERY = 'SET_SEARCH_QUERY',
+  SET_SEARCH_SELECTED = 'SET_SEARCH_SELECTED',
   SET_INFO_OPEN = 'SET_INFO_OPEN',
   SET_RESET_CONFIRM_OPEN = 'SET_RESET_CONFIRM_OPEN',
   FOCUS_MODE = 'FOCUS_MODE',
+  SET_SHOW_NOT_READY = 'SET_SHOW_NOT_READY',
+  SET_SHOW_PRE_READY = 'SET_SHOW_PRE_READY',
+  SET_SHOW_READY = 'SET_SHOW_READY',
+  SET_SHOW_LEARNED = 'SET_SHOW_LEARNED',
 }
 
 /* ------------------------------------------------------------------ */
@@ -90,9 +109,14 @@ type Action =
   | { type: A.SET_PANEL_COLLAPSED; collapsed: boolean }
   | { type: A.SET_ACTIVE_TAB; tab: BottomTab }
   | { type: A.SET_SEARCH_QUERY; query: string }
+  | { type: A.SET_SEARCH_SELECTED; id: string | null }
   | { type: A.SET_INFO_OPEN; open: boolean }
   | { type: A.SET_RESET_CONFIRM_OPEN; open: boolean }
-  | { type: A.FOCUS_MODE; includedIds: Set<string> | null };
+  | { type: A.FOCUS_MODE; selectedLeafId: string | null }
+  | { type: A.SET_SHOW_NOT_READY; value: boolean }
+  | { type: A.SET_SHOW_PRE_READY; value: boolean }
+  | { type: A.SET_SHOW_READY; value: boolean }
+  | { type: A.SET_SHOW_LEARNED; value: boolean };
 
 /* ------------------------------------------------------------------ */
 /*  Reducer                                                            */
@@ -187,7 +211,15 @@ function reducer(state: State, action: Action): State {
       return { ...state, activeTab: action.tab };
 
     case A.SET_SEARCH_QUERY:
-      return { ...state, searchQuery: action.query };
+      // Typing clears selection; selection is only set via the dropdown.
+      return { ...state, searchQuery: action.query, searchSelectedId: null };
+
+    case A.SET_SEARCH_SELECTED:
+      return {
+        ...state,
+        searchSelectedId: action.id,
+        searchQuery: action.id ?? '',
+      };
 
     case A.SET_INFO_OPEN:
       return { ...state, infoOpen: action.open };
@@ -196,16 +228,23 @@ function reducer(state: State, action: Action): State {
       return { ...state, resetConfirmOpen: action.open };
 
     case A.FOCUS_MODE:
-      if (action.includedIds) {
-        saveIncludedToStorage(action.includedIds);
-      } else {
-        clearIncludedFromStorage();
-      }
       return {
         ...state,
-        selectedLeafId: null,
-        includedIds: action.includedIds,
+        selectedLeafId: action.selectedLeafId,
+        // Do not change activeTab / panelCollapsed; focus must not affect panel visibility
       };
+
+    case A.SET_SHOW_NOT_READY:
+      return { ...state, showNotReady: action.value };
+
+    case A.SET_SHOW_PRE_READY:
+      return { ...state, showPreReady: action.value };
+
+    case A.SET_SHOW_READY:
+      return { ...state, showReady: action.value };
+
+    case A.SET_SHOW_LEARNED:
+      return { ...state, showLearned: action.value };
 
     default:
       return state;
@@ -226,6 +265,12 @@ export type AppState = {
   panelCollapsed: boolean;
   activeTab: BottomTab;
   searchQuery: string;
+  searchSelectedId: string | null;
+  searchMatches: DefNode[];
+  showNotReady: boolean;
+  showPreReady: boolean;
+  showReady: boolean;
+  showLearned: boolean;
   infoOpen: boolean;
   resetConfirmOpen: boolean;
 };
@@ -240,11 +285,16 @@ export type AppActions = {
   setPanelCollapsed: (collapsed: boolean) => void;
   setActiveTab: (tab: BottomTab) => void;
   setSearchQuery: (q: string) => void;
+  setSearchSelectedId: (id: string | null) => void;
   setInfoOpen: (open: boolean) => void;
   setResetConfirmOpen: (open: boolean) => void;
   focusMode: () => void;
   overviewMode: () => void;
   getNextReadyId: () => string | null;
+  setShowNotReady: (v: boolean) => void;
+  setShowPreReady: (v: boolean) => void;
+  setShowReady: (v: boolean) => void;
+  setShowLearned: (v: boolean) => void;
 };
 
 /* ------------------------------------------------------------------ */
@@ -260,17 +310,90 @@ export function useAppState(): AppState & AppActions {
       .then((r) => r.json())
       .then((def: DefGraph) => {
         const raw = buildRaw(def);
-        computeLevels(raw.def.nodes);
         dispatch({ type: A.DATA_LOADED, raw });
       })
       .catch(console.error);
   }, []);
 
-  // ── Derive rendered graph (pure computation, no side-effects) ────
-  const rendered = useMemo<DefGraph | null>(() => {
+  // ── Derive search matches for dropdown ───────────────────────────
+  const searchMatches = useMemo<DefNode[]>(() => {
+    if (!state.raw) return [];
+    const q = normalizeId(state.searchQuery);
+    if (!q) return [];
+
+    const matches = state.raw.def.nodes.filter((n) => {
+      const id = normalizeId(n.id);
+      const title = normalizeId(n.title ?? '');
+      return id.includes(q) || title.includes(q);
+    });
+
+    matches.sort((a, b) => a.id.localeCompare(b.id));
+    return matches.slice(0, 80);
+  }, [state.raw, state.searchQuery]);
+
+  // ── Derive filtered graph for selection ───────────────────────────
+  const filteredGraphForSelection = useMemo<DefGraph | null>(() => {
     if (!state.raw) return null;
-    return renderGraph(state.raw, state.includedIds);
-  }, [state.raw, state.includedIds, state.learned]);
+
+    // Base included set from category filter
+    let included: Set<string>;
+    if (state.includedIds) included = new Set(state.includedIds);
+    else included = new Set(state.raw.def.nodes.map((n) => n.id));
+
+    // Search selection filter overrides category filter (study subtree)
+    if (state.searchSelectedId) {
+      included = prerequisiteClosure(state.raw, state.searchSelectedId);
+    }
+
+    // Apply state filters
+    const preGraph = renderGraph(state.raw, included);
+
+    const preReadySet = new Set<string>();
+    const byId = new Map(preGraph.nodes.map((n) => [n.id, n] as const));
+    for (const e of preGraph.edges) {
+      const prereq = byId.get(e.target);
+      if (!prereq) continue;
+      if (!state.learned.has(prereq.id)) continue;
+      const dep = byId.get(e.source);
+      if (!dep) continue;
+      const deps = dep.deps ?? [];
+      const isReady = deps.every((d) => state.learned.has(d));
+      if (!state.learned.has(dep.id) && !isReady) preReadySet.add(dep.id);
+    }
+
+    const stateOf = (n: DefNode): LearnState => {
+      if (state.learned.has(n.id)) return 'learned';
+      const deps = n.deps ?? [];
+      if (deps.every((d) => state.learned.has(d))) return 'ready';
+      return preReadySet.has(n.id) ? 'visible' : 'off';
+    };
+
+    const keep = new Set<string>();
+    for (const n of preGraph.nodes) {
+      const st = stateOf(n);
+      if (st === 'learned' && state.showLearned) keep.add(n.id);
+      else if (st === 'ready' && state.showReady) keep.add(n.id);
+      else if (st === 'visible' && state.showPreReady) keep.add(n.id);
+      else if (st === 'off' && state.showNotReady) keep.add(n.id);
+    }
+
+    // Ensure searched node stays visible if present
+    if (state.searchSelectedId) keep.add(state.searchSelectedId);
+
+    return renderGraph(state.raw, keep);
+  }, [
+    state.raw,
+    state.includedIds,
+    state.searchSelectedId,
+    state.learned,
+    state.showNotReady,
+    state.showPreReady,
+    state.showReady,
+    state.showLearned,
+  ]);
+
+  // Use the filtered graph as the rendered graph
+  const rendered = filteredGraphForSelection;
 
   // ── Derive selected node ─────────────────────────────────────────
   const selectedNode = useMemo<DefNode | null>(() => {
@@ -284,17 +407,20 @@ export function useAppState(): AppState & AppActions {
     if (!state.raw || !rendered || initDone.current) return;
     initDone.current = true;
 
-    // Bootstrap included set if nothing was stored
+    // Bootstrap included set if nothing was stored.
+    // NOTE: This is an optional "focus" filter. If the user is actively filtering
+    // via Search selection, we must NOT apply the focus bootstrap; otherwise we
+    // may hide prerequisites and collapse levels (e.g. level 0 on deep nodes).
     let includedIds: Set<string> | null = null;
-    if (state.includedIds === null) {
+    const shouldBootstrapFocusIncluded = state.includedIds === null && !state.searchSelectedId;
+    if (shouldBootstrapFocusIncluded) {
       includedIds = recomputeIncludedSetFromReady(state.raw, state.learned);
     }
 
-    // Determine first definition to show
-    const graphForSelection = includedIds
-      ? renderGraph(state.raw, includedIds)
-      : rendered;
-    const nextId = selectNextReady(state.raw, graphForSelection, state.learned);
+    // Determine first definition to show.
+    // IMPORTANT: use the same currently-filtered graph that the UI renders,
+    // so computed levels / ready set are consistent.
+    const nextId = selectNextReady(state.raw, rendered, state.learned);
 
     dispatch({
       type: A.INIT_COMPLETE,
@@ -302,9 +428,9 @@ export function useAppState(): AppState & AppActions {
       includedIds,
       showInfo: state.learned.size === 0,
     });
-  }, [state.raw, rendered, state.includedIds, state.learned]);
+  }, [state.raw, rendered, state.includedIds, state.learned, state.searchSelectedId]);
 
-  // ── Auto-select next ready after marking learned ─────────────────
+  // ── Auto-select next ready after marking learned ─────────────────────
   const pendingMarkId = useRef<string | null>(null);
   useEffect(() => {
     if (!pendingMarkId.current || !state.raw || !rendered) return;
@@ -313,15 +439,10 @@ export function useAppState(): AppState & AppActions {
     if (!state.learned.has(pendingMarkId.current)) return;
     pendingMarkId.current = null;
 
-    // Recompute included set for the new learned state
-    const newIncluded = recomputeIncludedSetFromReady(state.raw, state.learned);
-    dispatch({ type: A.RECOMPUTE_INCLUDED, includedIds: newIncluded });
+    // Do NOT recompute included set here; includedIds are a user filter.
 
-    // Select next ready (use fresh graph with new included set)
-    const graphForSelection = newIncluded
-      ? renderGraph(state.raw, newIncluded)
-      : rendered;
-    const nextId = selectNextReady(state.raw, graphForSelection, state.learned);
+    // Select next ready within the CURRENTLY FILTERED graph
+    const nextId = selectNextReady(state.raw, rendered, state.learned);
     dispatch({ type: A.AUTO_SELECT_NEXT, selectedLeafId: nextId });
   }, [state.raw, rendered, state.learned]);
 
@@ -364,6 +485,10 @@ export function useAppState(): AppState & AppActions {
     dispatch({ type: A.SET_SEARCH_QUERY, query });
   }, []);
 
+  const setSearchSelectedId = useCallback((id: string | null) => {
+    dispatch({ type: A.SET_SEARCH_SELECTED, id });
+  }, []);
+
   const setInfoOpen = useCallback((open: boolean) => {
     dispatch({ type: A.SET_INFO_OPEN, open });
   }, []);
@@ -373,10 +498,13 @@ export function useAppState(): AppState & AppActions {
   }, []);
 
   const focusMode = useCallback(() => {
-    if (!state.raw) return;
-    const newIncluded = recomputeIncludedSetFromReady(state.raw, state.learned);
-    dispatch({ type: A.FOCUS_MODE, includedIds: newIncluded });
-  }, [state.raw, state.learned]);
+    if (!state.raw || !rendered) return;
+
+    // Jump to next ready-to-learn node within the CURRENTLY FILTERED graph
+    const nextId = selectNextReady(state.raw, rendered, state.learned);
+    if (!nextId) return;
+    dispatch({ type: A.FOCUS_MODE, selectedLeafId: nextId });
+  }, [state.raw, rendered, state.learned]);
 
   const overviewMode = useCallback(() => {
     // GraphCanvas handles zoom; no state change needed
@@ -386,6 +514,22 @@ export function useAppState(): AppState & AppActions {
     if (!state.raw || !rendered) return null;
     return selectNextReady(state.raw, rendered, state.learned);
   }, [state.raw, rendered, state.learned]);
+
+  const setShowNotReady = useCallback((v: boolean) => {
+    dispatch({ type: A.SET_SHOW_NOT_READY, value: v });
+  }, []);
+
+  const setShowPreReady = useCallback((v: boolean) => {
+    dispatch({ type: A.SET_SHOW_PRE_READY, value: v });
+  }, []);
+
+  const setShowReady = useCallback((v: boolean) => {
+    dispatch({ type: A.SET_SHOW_READY, value: v });
+  }, []);
+
+  const setShowLearned = useCallback((v: boolean) => {
+    dispatch({ type: A.SET_SHOW_LEARNED, value: v });
+  }, []);
 
   return {
     raw: state.raw,
@@ -397,6 +541,12 @@ export function useAppState(): AppState & AppActions {
     panelCollapsed: state.panelCollapsed,
     activeTab: state.activeTab,
     searchQuery: state.searchQuery,
+    searchSelectedId: state.searchSelectedId,
+    searchMatches,
+    showNotReady: state.showNotReady,
+    showPreReady: state.showPreReady,
+    showReady: state.showReady,
+    showLearned: state.showLearned,
     infoOpen: state.infoOpen,
     resetConfirmOpen: state.resetConfirmOpen,
     markLearned,
@@ -408,6 +558,11 @@ export function useAppState(): AppState & AppActions {
     setPanelCollapsed,
     setActiveTab,
     setSearchQuery,
+    setSearchSelectedId,
+    setShowNotReady,
+    setShowPreReady,
+    setShowReady,
+    setShowLearned,
     setInfoOpen,
     setResetConfirmOpen,
     focusMode,

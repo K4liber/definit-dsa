@@ -319,14 +319,7 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
         .text((d: DefNode) => d.title)
         .attr('fill', '#e6edf3')
         .attr('opacity', (d: DefNode) => (stateFor(d) === 'off' ? 0.22 : 1));
-
-      // Search highlighting
-      const q = normalizeId(searchQuery);
-      nodeSel
-        .selectAll<SVGCircleElement, DefNode>('circle.node-circle')
-        .attr('stroke', (d) => (q && normalizeId(d.id).includes(q) ? '#ef4444' : 'none'))
-        .attr('stroke-width', (d) => (q && normalizeId(d.id).includes(q) ? 2.5 : 1));
-    }, [graph, learned, searchQuery, selectedNodeId, onNodeClick, W, H, applyRingHighlight]);
+    }, [graph, learned, selectedNodeId, onNodeClick, W, H, applyRingHighlight]);
 
     return (
       <div className="canvasArea">

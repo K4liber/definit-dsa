@@ -193,13 +193,15 @@ Each folder and each definition has a checkbox:
 - Learning state rules **do not change** with visibility:
   - A definition is **ready** when **all of its dependencies are learned**, even if some dependencies are currently hidden by checkboxes.
 
-### # **Search & Node Highlighting**
+### # **Search**
 
 **Importance**: High
 
 **Test Scenario**
 
-Use the search input to query by node ID and title. Verify that matching nodes are highlighted with a red outline. Test partial matches and verify search works for both category IDs and titles.
+Use the search input to query by node ID and title. After putting a character in a search input we should see a checkable list of all definitions that match with the current content of the input. User should be able to click on an element in the list and in such a case this is our new content of the input. User can only select a single element so the input can hold only one node (or zero) at any time. 
+
+After a definition is selected, we should filter all definitions (from raw graph) and only select those who are either the selected node or any descendant. Finally, the user should only see a graph for a selected definition with all descendants that are needed to be learned before the selected definition can be learned.
 
 ### # **Node Click - Focus & Center View**
 
@@ -285,3 +287,8 @@ Resize the browser window to simulate mobile view. Verify the UI remains usable 
 **Test Scenario**
 
 Expand and collapse category folders, reload the page, and verify the expand/collapse state is restored from localStorage.
+
+
+Bugs:
+
+- in k_ary_tree defintion we dont have a clickable dependency to n-ary-tree

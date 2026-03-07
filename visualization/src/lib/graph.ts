@@ -490,20 +490,24 @@ export function computeStats(
   rendered: DefGraph,
   learned: Set<string>,
 ): { totalDefs: number; learnedDefs: number; totalEdges: number; unlockedEdges: number; totalLevels: number; completedLevels: number } {
-  const totalDefs = raw.def.nodes.length;
-  const learnedDefs = learned.size;
+  // Filtered stats: only count what is in `rendered` (i.e. what passes current filters)
+  const renderedIds = new Set(rendered.nodes.map((n) => n.id));
 
-  const allEdges = raw.def.edges;
-  const totalEdges = allEdges.length;
-  const unlockedEdges = allEdges.reduce((acc, e) => acc + (learned.has(e.target) ? 1 : 0), 0);
+  const totalDefs = rendered.nodes.length;
+  const learnedDefs = rendered.nodes.reduce((acc, n) => acc + (learned.has(n.id) ? 1 : 0), 0);
 
-  const allNodes = raw.def.nodes;
-  const maxTotalLevel = Math.max(0, ...allNodes.map((n) => n.level ?? 0));
+  const totalEdges = rendered.edges.length;
+  const unlockedEdges = rendered.edges.reduce(
+    (acc, e) => acc + (learned.has(e.target) ? 1 : 0),
+    0,
+  );
+
+  const maxTotalLevel = Math.max(0, ...rendered.nodes.map((n) => n.level ?? 0));
 
   const totalCountByLevel = new Map<number, number>();
   const learnedCountByLevel = new Map<number, number>();
 
-  for (const n of allNodes) {
+  for (const n of rendered.nodes) {
     const lvl = n.level ?? 0;
     totalCountByLevel.set(lvl, (totalCountByLevel.get(lvl) ?? 0) + 1);
     if (learned.has(n.id)) {
@@ -612,4 +616,62 @@ export function renderMdToHtml(
     .filter(Boolean);
 
   return paragraphs.map((p) => `<p>${p}</p>`).join('');
+}
+
+/* ------------------------------------------------------------------ */
+/*  Search filtering helpers                                           */
+/* ------------------------------------------------------------------ */
+
+type WalkDir = 'deps' | 'dependents';
+
+function walkGraph(raw: Raw, startId: string, dir: WalkDir): Set<string> {
+  const out = new Set<string>();
+  const stack: string[] = [startId];
+
+  // Build adjacency
+  const nextById = new Map<string, string[]>();
+  for (const n of raw.def.nodes) nextById.set(n.id, []);
+
+  if (dir === 'deps') {
+    for (const n of raw.def.nodes) {
+      nextById.set(n.id, (n.deps ?? []).filter((d) => raw.byId.has(d)));
+    }
+  } else {
+    // dependents: dep -> list of nodes that depend on dep
+    for (const n of raw.def.nodes) {
+      for (const dep of n.deps ?? []) {
+        if (!raw.byId.has(dep)) continue;
+        const arr = nextById.get(dep) ?? [];
+        arr.push(n.id);
+        nextById.set(dep, arr);
+      }
+    }
+  }
+
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (out.has(id)) continue;
+    if (!raw.byId.has(id)) continue;
+    out.add(id);
+    for (const nxt of nextById.get(id) ?? []) stack.push(nxt);
+  }
+
+  return out;
+}
+
+/** All prerequisites needed before `id` can be learned (including `id` itself). */
+export function prerequisiteClosure(raw: Raw, id: string): Set<string> {
+  return walkGraph(raw, id, 'deps');
+}
+
+/** All definitions that (transitively) depend on `id` (including `id` itself). */
+export function dependentClosure(raw: Raw, id: string): Set<string> {
+  return walkGraph(raw, id, 'dependents');
+}
+
+/** Intersection helper that handles nulls. */
+export function intersectSets(a: Set<string>, b: Set<string>): Set<string> {
+  const out = new Set<string>();
+  for (const x of a) if (b.has(x)) out.add(x);
+  return out;
 }
