@@ -5,8 +5,8 @@ export const PANEL_COLLAPSED_KEY = 'definit-db.ui.bottomPanelCollapsed';
 export const CATEGORIES_OPEN_KEY = 'definit-db.ui.categories.openPrefixes';
 
 // Learning-state colors
-export const COLOR_OFF = 'rgba(148, 163, 184, 0.18)';
-export const COLOR_VISIBLE = 'rgba(148, 163, 184, 0.8)';
+export const COLOR_NOT_READY = 'rgba(148, 163, 184, 0.18)';
+export const COLOR_PRE_READY = 'rgba(148, 163, 184, 0.8)';
 export const COLOR_READY = '#fbbf24';
 export const COLOR_LEARNED = '#22c55e';
 

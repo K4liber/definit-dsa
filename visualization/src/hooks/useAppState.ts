@@ -21,29 +21,32 @@ import {
 } from '../lib/storage';
 
 /* ------------------------------------------------------------------ */
-/*  State shape                                                        */
+/*  Reducer state shape                                               */
 /* ------------------------------------------------------------------ */
 
-type State = {
+type ReducerState = {
+  // Graph data
   raw: Raw | null;
   learned: Set<string>;
   includedIds: Set<string> | null;
   selectedLeafId: string | null;
+  // Bottom panel state
   panelCollapsed: boolean;
   activeTab: BottomTab;
+  // Search / selected definition filter
   searchQuery: string;
-  /** Selected node from search dropdown; when set, graph is filtered to prerequisites+dependents of this node. */
   searchSelectedId: string | null;
   // State filters (positive)
   showNotReady: boolean;
   showPreReady: boolean;
   showReady: boolean;
   showLearned: boolean;
+  // Modal states
   infoOpen: boolean;
   resetConfirmOpen: boolean;
 };
 
-function initialState(): State {
+function initialReducerState(): ReducerState {
   return {
     raw: null,
     learned: loadLearnedFromStorage(),
@@ -53,7 +56,6 @@ function initialState(): State {
     activeTab: 'definition',
     searchQuery: '',
     searchSelectedId: null,
-    // defaults (keep previous behavior: only ready/learned/pre-ready visible; not-ready hidden)
     showNotReady: false,
     showPreReady: true,
     showReady: true,
@@ -122,7 +124,7 @@ type Action =
 /*  Reducer                                                            */
 /* ------------------------------------------------------------------ */
 
-function reducer(state: State, action: Action): State {
+function reducer(state: ReducerState, action: Action): ReducerState {
   switch (action.type) {
     case A.DATA_LOADED:
       return { ...state, raw: action.raw };
@@ -298,11 +300,11 @@ export type AppActions = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Hook                                                               */
+/*  Hook                                                              */
 /* ------------------------------------------------------------------ */
 
 export function useAppState(): AppState & AppActions {
-  const [state, dispatch] = useReducer(reducer, undefined, initialState);
+  const [state, dispatch] = useReducer(reducer, undefined, initialReducerState);
 
   // ── Fetch data on mount ──────────────────────────────────────────
   useEffect(() => {
@@ -365,7 +367,7 @@ export function useAppState(): AppState & AppActions {
       if (state.learned.has(n.id)) return 'learned';
       const deps = n.deps ?? [];
       if (deps.every((d) => state.learned.has(d))) return 'ready';
-      return preReadySet.has(n.id) ? 'visible' : 'off';
+      return preReadySet.has(n.id) ? 'pre-ready' : 'not-ready';
     };
 
     const keep = new Set<string>();
@@ -373,8 +375,8 @@ export function useAppState(): AppState & AppActions {
       const st = stateOf(n);
       if (st === 'learned' && state.showLearned) keep.add(n.id);
       else if (st === 'ready' && state.showReady) keep.add(n.id);
-      else if (st === 'visible' && state.showPreReady) keep.add(n.id);
-      else if (st === 'off' && state.showNotReady) keep.add(n.id);
+      else if (st === 'pre-ready' && state.showPreReady) keep.add(n.id);
+      else if (st === 'not-ready' && state.showNotReady) keep.add(n.id);
     }
 
     // Ensure searched node stays visible if present

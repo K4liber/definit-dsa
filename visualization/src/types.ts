@@ -30,7 +30,7 @@ export type DefGraph = {
 
 export type Pos = { x: number; y: number };
 
-export type LearnState = 'off' | 'visible' | 'ready' | 'learned';
+export type LearnState = 'not-ready' | 'pre-ready' | 'ready' | 'learned';
 
 export type Raw = {
   def: DefGraph;

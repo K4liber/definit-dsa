@@ -6,7 +6,6 @@ import ProgressTab from './ProgressTab';
 type Props = {
   expanded: boolean;
   activeTab: BottomTab;
-  onTabChange: (tab: BottomTab) => void;
   // Definition tab
   selectedNode: DefNode | null;
   renderedNodes: DefNode[];
@@ -38,7 +37,6 @@ type Props = {
 const BottomPanel: React.FC<Props> = ({
   expanded,
   activeTab,
-  onTabChange,
   selectedNode,
   renderedNodes,
   learned,
@@ -110,7 +108,7 @@ const BottomPanel: React.FC<Props> = ({
 
         <div className={`tabPage ${activeTab === 'progress' ? 'active' : ''}`} role="tabpanel">
           {activeTab === 'progress' && raw && rendered ? (
-            <ProgressTab raw={raw} rendered={rendered} learned={learned} />
+            <ProgressTab rendered={rendered} learned={learned} />
           ) : null}
         </div>
       </div>

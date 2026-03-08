@@ -55,7 +55,7 @@ const FiltersTab: React.FC<Props> = ({
   onSetShowReady,
   onSetShowLearned,
 }) => {
-  // --- Category tree state (ported from CategoriesTab) ---
+  // --- Category tree state ---
   const [openPrefixes, setOpenPrefixes] = useState<Set<string>>(() => loadOpenPrefixes());
 
   const isOpen = useCallback(
@@ -102,16 +102,16 @@ const FiltersTab: React.FC<Props> = ({
   const stateForCat = useCallback(
     (leaf: DefNode): LearnState => {
       const base = learnStateForNode(leaf, learned);
-      return base === 'off' && visibleNodeIds.has(leaf.id) ? 'visible' : base;
+      return base === 'not-ready' && visibleNodeIds.has(leaf.id) ? 'pre-ready' : base;
     },
     [learned, visibleNodeIds],
   );
 
-  const renderNode = useCallback(
+  const renderTreeNode = useCallback(
     (node: TreeNode): React.ReactNode => {
       if (node.id === '') {
         // Root – render children only
-        return node.children.map((c) => renderNode(c));
+        return node.children.map((c) => renderTreeNode(c));
       }
 
       const open = node.kind === 'group' ? isOpen(node.id) : true;
@@ -150,7 +150,7 @@ const FiltersTab: React.FC<Props> = ({
                 <span>L{node.groupLevel ?? 0}</span>
               </span>
             </div>
-            {open && node.children.map((c) => renderNode(c))}
+            {open && node.children.map((c) => renderTreeNode(c))}
           </div>
         );
       }
@@ -292,7 +292,7 @@ const FiltersTab: React.FC<Props> = ({
 
         <div>
           <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Category include/exclude</h4>
-          <div className="categoriesTree">{renderNode(root)}</div>
+          <div className="categoriesTree">{renderTreeNode(root)}</div>
         </div>
       </div>
     </div>

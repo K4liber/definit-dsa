@@ -11,7 +11,6 @@ const App = () => {
   const state = useAppState();
   const graphRef = useRef<GraphCanvasHandle>(null);
 
-  // After learning, switch to the next ready-to-learn definition if one exists
   const handleMarkLearned = useCallback(
     (id: string) => {
       state.markLearned(id);
@@ -54,8 +53,6 @@ const App = () => {
   );
 
   const handleFocus = useCallback(() => {
-    // Focus should not change bottom panel visibility or tabs.
-    // It only advances selection to the next ready-to-learn node (if any).
     state.focusMode();
 
     requestAnimationFrame(() => {
@@ -81,7 +78,6 @@ const App = () => {
     state.setResetConfirmOpen(true);
   }, [state.learned.size, state.setResetConfirmOpen]);
 
-  // Focus on selected node when it changes
   useEffect(() => {
     if (state.selectedLeafId) {
       requestAnimationFrame(() => {
@@ -160,7 +156,6 @@ const App = () => {
             ref={graphRef}
             graph={state.rendered}
             learned={state.learned}
-            searchQuery={state.searchQuery}
             selectedNodeId={state.selectedLeafId}
             onNodeClick={handleNodeClick}
           />
@@ -168,7 +163,6 @@ const App = () => {
           <BottomPanel
             expanded={!state.panelCollapsed}
             activeTab={state.activeTab ?? 'definition'}
-            onTabChange={state.setActiveTab as any}
             selectedNode={state.selectedNode}
             renderedNodes={state.rendered?.nodes ?? []}
             learned={state.learned}

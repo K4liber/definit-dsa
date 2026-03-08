@@ -7,7 +7,6 @@ import {
   learnStateForNode,
   colorForLearnState,
   computeVisibleSet,
-  normalizeId,
   type RadialLayout,
 } from '../lib/graph';
 
@@ -20,13 +19,12 @@ export type GraphCanvasHandle = {
 type Props = {
   graph: DefGraph | null;
   learned: Set<string>;
-  searchQuery: string;
   selectedNodeId: string | null;
   onNodeClick: (id: string) => void;
 };
 
 const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
-  ({ graph, learned, searchQuery, selectedNodeId, onNodeClick }, ref) => {
+  ({ graph, learned, selectedNodeId, onNodeClick }, ref) => {
     const svgRef = useRef<SVGSVGElement>(null);
     const gRootRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
     const gRingsRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
@@ -214,27 +212,27 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
         .attr('d', edgePath)
         .classed('link-on', (d) => {
           const prereq = byId.get(d.target);
-          const s = prereq ? learnStateForNode(prereq, learned) : 'off';
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
           return s === 'learned';
         })
         .classed('link-off', (d) => {
           const prereq = byId.get(d.target);
-          const s = prereq ? learnStateForNode(prereq, learned) : 'off';
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
           return s !== 'learned';
         })
         .attr('stroke', (d) => {
           const prereq = byId.get(d.target);
-          const s = prereq ? learnStateForNode(prereq, learned) : 'off';
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
           return s === 'learned' ? 'rgba(226, 232, 240, 0.85)' : 'rgba(148, 163, 184, 0.16)';
         })
         .attr('stroke-width', (d) => {
           const prereq = byId.get(d.target);
-          const s = prereq ? learnStateForNode(prereq, learned) : 'off';
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
           return s === 'learned' ? 2.2 : 1.0;
         })
         .attr('stroke-dasharray', (d) => {
           const prereq = byId.get(d.target);
-          const s = prereq ? learnStateForNode(prereq, learned) : 'off';
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
           return s === 'learned' ? null : '3 5';
         })
         .attr('opacity', 1);
@@ -242,13 +240,13 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
       // Nodes
       const fillFor = (d: DefNode) => {
         const base = learnStateForNode(d, learned);
-        const s: LearnState = base === 'off' && visibleNodeIds.has(d.id) ? 'visible' : base;
+        const s: LearnState = base === 'not-ready' && visibleNodeIds.has(d.id) ? 'pre-ready' : base;
         return colorForLearnState(s);
       };
 
       const stateFor = (d: DefNode): LearnState => {
         const base = learnStateForNode(d, learned);
-        return base === 'off' && visibleNodeIds.has(d.id) ? 'visible' : base;
+        return base === 'not-ready' && visibleNodeIds.has(d.id) ? 'pre-ready' : base;
       };
 
       const nodeSel = gNodes
@@ -318,7 +316,7 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
         .select('text')
         .text((d: DefNode) => d.title)
         .attr('fill', '#e6edf3')
-        .attr('opacity', (d: DefNode) => (stateFor(d) === 'off' ? 0.22 : 1));
+        .attr('opacity', (d: DefNode) => (stateFor(d) === 'not-ready' ? 0.22 : 1));
     }, [graph, learned, selectedNodeId, onNodeClick, W, H, applyRingHighlight]);
 
     return (

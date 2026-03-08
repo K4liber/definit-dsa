@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import type { DefGraph, DefNode, LearnState, Pos, Raw, TreeNode } from '../types';
-import { COLOR_OFF, COLOR_VISIBLE, COLOR_READY, COLOR_LEARNED } from './constants';
+import { COLOR_NOT_READY, COLOR_PRE_READY, COLOR_READY, COLOR_LEARNED } from './constants';
 
 /* ------------------------------------------------------------------ */
 /*  Utility helpers                                                    */
@@ -43,20 +43,20 @@ export function learnStateForNode(n: DefNode, learned: Set<string>): LearnState 
   if (learned.has(n.id)) return 'learned';
   const deps = n.deps ?? [];
   if (deps.every((d) => learned.has(d))) return 'ready';
-  return 'off';
+  return 'not-ready';
 }
 
 export function colorForLearnState(s: LearnState): string {
   if (s === 'learned') return COLOR_LEARNED;
   if (s === 'ready') return COLOR_READY;
-  if (s === 'visible') return COLOR_VISIBLE;
-  return COLOR_OFF;
+  if (s === 'pre-ready') return COLOR_PRE_READY;
+  return COLOR_NOT_READY;
 }
 
 export function learnStateRank(s: LearnState): number {
   if (s === 'ready') return 0;
   if (s === 'learned') return 1;
-  if (s === 'visible') return 2;
+  if (s === 'pre-ready') return 2;
   return 3;
 }
 
@@ -75,18 +75,18 @@ export function computeVisibleSet(graph: DefGraph, learned: Set<string>): Set<st
 
     const dep = byId.get(e.source);
     if (!dep) continue;
-    if (learnStateForNode(dep, learned) === 'off') visible.add(dep.id);
+    if (learnStateForNode(dep, learned) === 'not-ready') visible.add(dep.id);
   }
   return visible;
 }
 
 export function effectiveState(n: DefNode, learned: Set<string>, visibleSet: Set<string>): LearnState {
   const base = learnStateForNode(n, learned);
-  return base === 'off' && visibleSet.has(n.id) ? 'visible' : base;
+  return base === 'not-ready' && visibleSet.has(n.id) ? 'pre-ready' : base;
 }
 
 /* ------------------------------------------------------------------ */
-/*  Level computation                                                  */
+/*  Level computation                                                 */
 /* ------------------------------------------------------------------ */
 
 export function computeLevels(nodes: DefNode[]): void {
@@ -210,7 +210,7 @@ export function buildRaw(def: DefGraph): Raw {
 }
 
 /* ------------------------------------------------------------------ */
-/*  renderGraph – project the full graph with visibility filtering      */
+/*  renderGraph – project the full graph with visibility filtering    */
 /* ------------------------------------------------------------------ */
 
 export function renderGraph(raw: Raw, includedIds: Set<string> | null): DefGraph {
@@ -241,7 +241,7 @@ export function renderGraph(raw: Raw, includedIds: Set<string> | null): DefGraph
 }
 
 /* ------------------------------------------------------------------ */
-/*  Recompute included set from ready nodes                            */
+/*  Recompute included set from ready nodes                           */
 /* ------------------------------------------------------------------ */
 
 export function recomputeIncludedSetFromReady(
@@ -277,7 +277,7 @@ export function recomputeIncludedSetFromReady(
 }
 
 /* ------------------------------------------------------------------ */
-/*  Select next ready definition                                       */
+/*  Select next ready definition                                      */
 /* ------------------------------------------------------------------ */
 
 export function selectNextReady(
@@ -311,7 +311,7 @@ export function selectNextReady(
 }
 
 /* ------------------------------------------------------------------ */
-/*  Build Category Tree                                                */
+/*  Build Category Tree                                               */
 /* ------------------------------------------------------------------ */
 
 export function buildCategoryTree(
@@ -359,7 +359,7 @@ export function buildCategoryTree(
 
   const stateForCat = (leaf: DefNode): LearnState => {
     const base = learnStateForNode(leaf, learned);
-    return base === 'off' && visibleNodeIds.has(leaf.id) ? 'visible' : base;
+    return base === 'not-ready' && visibleNodeIds.has(leaf.id) ? 'pre-ready' : base;
   };
 
   const sortChildren = (n: TreeNode) => {
@@ -486,21 +486,21 @@ export function radialLayout(graph: DefGraph, width: number, height: number): Ra
 /* ------------------------------------------------------------------ */
 
 export function computeStats(
-  raw: Raw,
   rendered: DefGraph,
   learned: Set<string>,
-): { totalDefs: number; learnedDefs: number; totalEdges: number; unlockedEdges: number; totalLevels: number; completedLevels: number } {
-  // Filtered stats: only count what is in `rendered` (i.e. what passes current filters)
-  const renderedIds = new Set(rendered.nodes.map((n) => n.id));
-
+): {
+  totalDefs: number;
+  learnedDefs: number;
+  totalEdges: number;
+  unlockedEdges: number;
+  totalLevels: number;
+  completedLevels: number;
+} {
   const totalDefs = rendered.nodes.length;
   const learnedDefs = rendered.nodes.reduce((acc, n) => acc + (learned.has(n.id) ? 1 : 0), 0);
 
   const totalEdges = rendered.edges.length;
-  const unlockedEdges = rendered.edges.reduce(
-    (acc, e) => acc + (learned.has(e.target) ? 1 : 0),
-    0,
-  );
+  const unlockedEdges = rendered.edges.reduce((acc, e) => acc + (learned.has(e.target) ? 1 : 0), 0);
 
   const maxTotalLevel = Math.max(0, ...rendered.nodes.map((n) => n.level ?? 0));
 
@@ -620,11 +620,9 @@ export function renderMdToHtml(
 
 /* ------------------------------------------------------------------ */
 /*  Search filtering helpers                                           */
-/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */;
 
-type WalkDir = 'deps' | 'dependents';
-
-function walkGraph(raw: Raw, startId: string, dir: WalkDir): Set<string> {
+function walkGraph(raw: Raw, startId: string): Set<string> {
   const out = new Set<string>();
   const stack: string[] = [startId];
 
@@ -632,20 +630,8 @@ function walkGraph(raw: Raw, startId: string, dir: WalkDir): Set<string> {
   const nextById = new Map<string, string[]>();
   for (const n of raw.def.nodes) nextById.set(n.id, []);
 
-  if (dir === 'deps') {
-    for (const n of raw.def.nodes) {
-      nextById.set(n.id, (n.deps ?? []).filter((d) => raw.byId.has(d)));
-    }
-  } else {
-    // dependents: dep -> list of nodes that depend on dep
-    for (const n of raw.def.nodes) {
-      for (const dep of n.deps ?? []) {
-        if (!raw.byId.has(dep)) continue;
-        const arr = nextById.get(dep) ?? [];
-        arr.push(n.id);
-        nextById.set(dep, arr);
-      }
-    }
+  for (const n of raw.def.nodes) {
+    nextById.set(n.id, (n.deps ?? []).filter((d) => raw.byId.has(d)));
   }
 
   while (stack.length) {
@@ -661,12 +647,7 @@ function walkGraph(raw: Raw, startId: string, dir: WalkDir): Set<string> {
 
 /** All prerequisites needed before `id` can be learned (including `id` itself). */
 export function prerequisiteClosure(raw: Raw, id: string): Set<string> {
-  return walkGraph(raw, id, 'deps');
-}
-
-/** All definitions that (transitively) depend on `id` (including `id` itself). */
-export function dependentClosure(raw: Raw, id: string): Set<string> {
-  return walkGraph(raw, id, 'dependents');
+  return walkGraph(raw, id);
 }
 
 /** Intersection helper that handles nulls. */
