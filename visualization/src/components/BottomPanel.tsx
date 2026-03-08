@@ -1,31 +1,42 @@
 import type { BottomTab, Raw, DefGraph, DefNode } from '../types';
 import DefinitionTab from './DefinitionTab';
-import CategoriesTab from './CategoriesTab';
+import FiltersTab from './FiltersTab';
 import ProgressTab from './ProgressTab';
 
 type Props = {
   expanded: boolean;
   activeTab: BottomTab;
-  onTabChange: (tab: BottomTab) => void;
   // Definition tab
   selectedNode: DefNode | null;
   renderedNodes: DefNode[];
   learned: Set<string>;
   onMarkLearned: (id: string) => void;
   onDepClick: (id: string) => void;
-  // Categories tab
+  // Filters tab
   raw: Raw | null;
   rendered: DefGraph | null;
   includedIds: Set<string> | null;
   onSelectLeaf: (id: string) => void;
   onSetIncluded: (id: string, include: boolean) => void;
   onSetIncludedMany: (ids: string[], include: boolean) => void;
+  searchQuery: string;
+  searchSelectedId: string | null;
+  searchMatches: Array<{ id: string; title: string }>;
+  onSearchChange: (q: string) => void;
+  onSelectMatch: (id: string | null) => void;
+  showNotReady: boolean;
+  showPreReady: boolean;
+  showReady: boolean;
+  showLearned: boolean;
+  onSetShowNotReady: (v: boolean) => void;
+  onSetShowPreReady: (v: boolean) => void;
+  onSetShowReady: (v: boolean) => void;
+  onSetShowLearned: (v: boolean) => void;
 };
 
 const BottomPanel: React.FC<Props> = ({
   expanded,
   activeTab,
-  onTabChange,
   selectedNode,
   renderedNodes,
   learned,
@@ -37,74 +48,68 @@ const BottomPanel: React.FC<Props> = ({
   onSelectLeaf,
   onSetIncluded,
   onSetIncludedMany,
+  searchQuery,
+  searchSelectedId,
+  searchMatches,
+  onSearchChange,
+  onSelectMatch,
+  showNotReady,
+  showPreReady,
+  showReady,
+  showLearned,
+  onSetShowNotReady,
+  onSetShowPreReady,
+  onSetShowReady,
+  onSetShowLearned,
 }) => {
   return (
     <div className={`bottomPanel ${expanded ? 'expanded' : ''}`}>
       <div className="bottomPanelContent">
-        <div className="bottomPanelMenu" role="tablist" aria-label="Bottom panel tabs">
-          <button
-            className={`tabBtn ${activeTab === 'definition' ? 'active' : ''}`}
-            role="tab"
-            aria-selected={activeTab === 'definition'}
-            onClick={() => onTabChange('definition')}
-          >
-            Definition
-          </button>
-          <button
-            className={`tabBtn ${activeTab === 'categories' ? 'active' : ''}`}
-            role="tab"
-            aria-selected={activeTab === 'categories'}
-            onClick={() => onTabChange('categories')}
-          >
-            Categories
-          </button>
-          <button
-            className={`tabBtn ${activeTab === 'progress' ? 'active' : ''}`}
-            role="tab"
-            aria-selected={activeTab === 'progress'}
-            onClick={() => onTabChange('progress')}
-          >
-            Progress
-          </button>
+        {/* Removed internal tab button row; tab switching is handled by BottomMenu */}
+
+        <div className={`tabPage ${activeTab === 'definition' ? 'active' : ''}`} role="tabpanel">
+          {activeTab === 'definition' ? (
+            <DefinitionTab
+              node={selectedNode}
+              renderedNodes={renderedNodes}
+              learned={learned}
+              onMarkLearned={onMarkLearned}
+              onDepClick={onDepClick}
+            />
+          ) : null}
         </div>
 
-        <div
-          className={`tabPage ${activeTab === 'definition' ? 'active' : ''}`}
-          role="tabpanel"
-        >
-          <DefinitionTab
-            node={selectedNode}
-            renderedNodes={renderedNodes}
-            learned={learned}
-            onMarkLearned={onMarkLearned}
-            onDepClick={onDepClick}
-          />
-        </div>
-
-        <div
-          className={`tabPage ${activeTab === 'categories' ? 'active' : ''}`}
-          role="tabpanel"
-        >
-          {raw && rendered && (
-            <CategoriesTab
+        <div className={`tabPage ${activeTab === 'filters' ? 'active' : ''}`} role="tabpanel">
+          {activeTab === 'filters' && raw && rendered ? (
+            <FiltersTab
               raw={raw}
-              rendered={rendered}
+              renderedForTree={rendered}
               learned={learned}
               includedIds={includedIds}
               onSelectLeaf={onSelectLeaf}
               onSetIncluded={onSetIncluded}
               onSetIncludedMany={onSetIncludedMany}
+              searchQuery={searchQuery}
+              searchSelectedId={searchSelectedId}
+              matches={searchMatches}
+              onSearchChange={onSearchChange}
+              onSelectMatch={onSelectMatch}
+              showNotReady={showNotReady}
+              showPreReady={showPreReady}
+              showReady={showReady}
+              showLearned={showLearned}
+              onSetShowNotReady={onSetShowNotReady}
+              onSetShowPreReady={onSetShowPreReady}
+              onSetShowReady={onSetShowReady}
+              onSetShowLearned={onSetShowLearned}
             />
-          )}
+          ) : null}
         </div>
 
-        <div
-          className={`tabPage ${activeTab === 'progress' ? 'active' : ''}`}
-          role="tabpanel"
-        >
-          {raw && rendered && (
-            <ProgressTab raw={raw} rendered={rendered} learned={learned} />
-          )}
+        <div className={`tabPage ${activeTab === 'progress' ? 'active' : ''}`} role="tabpanel">
+          {activeTab === 'progress' && raw && rendered ? (
+            <ProgressTab rendered={rendered} learned={learned} />
+          ) : null}
         </div>
       </div>
     </div>
