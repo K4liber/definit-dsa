@@ -63,7 +63,7 @@ The generator tries to reduce false positives by:
 
 ## Features & Test Scenarios
 
-### # **Data Generation from Markdown**
+### #1 **Data Generation from Markdown**
 
 **Importance**: Critical
 
@@ -71,7 +71,7 @@ The generator tries to reduce false positives by:
 
 Run `npm run gen:data` and verify `public/defs.json` is created correctly. Verify the file contains all definitions from markdown source files.
 
-### # **Cycle Detection in Generator**
+### #2 **Cycle Detection in Generator**
 
 **Importance**: Critical
 
@@ -79,7 +79,7 @@ Run `npm run gen:data` and verify `public/defs.json` is created correctly. Verif
 
 Run `npm run gen:data` with valid dependencies and verify successful generation. Introduce a cycle in test data and verify the generator fails with a cycle detection error message.
 
-### # **Layout overview**
+### #3 **Layout overview**
 
 **Importance**: Critical
 
@@ -88,14 +88,20 @@ Run `npm run gen:data` with valid dependencies and verify successful generation.
 The UI is split into three vertical regions:
 
 - **Top menu**: primary view controls (Focus / Overview / Reset progress) and the info button
-- **Main panel**
-  - **Graph canvas** (SVG visualization)
-  - **Bottom panel** (details)
-    - Expanded: graph and bottom panel share height (50/50 split)
-    - Collapsed: graph uses full height
-- **Bottom controls**: panel toggle (▲/▼) and the Search input
+- **Graph canvas** (SVG visualization)
+- **Bottom panel**
+  - Expanded: graph and bottom panel share height (50/50 split)
+  - Collapsed: graph uses full height and only the tab names are visible
 
-### # **Bottom panel contents (tabs)**
+### #4 **Bottom Panel Collapse/Expand Toggle**
+
+**Importance**: High
+
+**Test Scenario**
+
+Click on any tab name to expand the bottom panel. Click again on the same tab to collapse it. Verify that the collapsed state is saved to localStorage and persists after page reload.
+
+### #5 **Bottom panel contents (tabs)**
 
 **Importance**: Critical
 
@@ -105,13 +111,16 @@ The UI is split into three vertical regions:
 1) selected definition content
 2) “Mark as learned” action
 3) Clickable dependencies in the content.
-- **Categories** tab: folder-like tree with visibility (include/exclude) checkboxes
-- **Progress** tab: overall learning progress:
+- **Filters** tab: 
+1) Definition descendants filter: render a selected definition with all of its descendants that are needed to be learned before the selected definition can be learned.
+2) Categories filter: folder-like tree with visibility (include/exclude) checkboxes
+3) Node state filters (checkboxes)
+- **Progress** tab: learning progress on the currently rendered graph:
 1) definitions learned
 2) edges unlocked
 3) levels completed
 
-### # **Categories tab details**
+### #6 **Categories filters**
 
 **Importance**: Critical
 
@@ -129,63 +138,15 @@ It is an Explorer-like tree:
   2) level
   3) title
 
-### # **Graph canvas display**
+Verify that category folders are displayed in topologically sorted order by their computed level. Confirm folder levels are correctly computed and displayed.
 
-**Importance**: Critical
-
-**Test Scenario**
-
-Verify that the graph renders all definitions from `defs.json` without cycles. Ensure dependencies are correctly represented as directed edges where source depends on target.
-
-### # **Graph canvas radial levels**
-
-**Importance**: Critical
-
-**Test Scenario**
-
-Verify that definitions are arranged in concentric rings by level. Level 0 should contain only definitions with no dependencies. Each subsequent level should contain definitions whose all dependencies exist in lower levels.
-
-### # **Mark Definition as Learned**
-
-**Importance**: Critical
-
-**Test Scenario**
-
-Open a definition with all dependencies learned, verify "Mark as learned" button is enabled. Click it, confirm the node becomes green, and the graph is updated. Try to mark a definition without all dependencies learned and verify the button is disabled.
-
-After definition has been marked, we should switch to the next ready-to-learn definition if it exists
-
-### # **Learning State Persistence (localStorage)**
-
-**Importance**: Critical
-
-**Test Scenario**
-
-Mark nodes as learned, reload the page, and verify that the learned states are restored from browser storage. Clear localStorage and verify the app resets to initial state.
-
-### # **Dependency-Based Learning Readiness**
-
-**Importance**: Critical
-
-**Test Scenario**
-
-Verify that a node is marked as "ready-to-learn" (yellow) only when all of its dependencies are marked as learned. Mark a dependency as learned and verify dependent nodes transition to ready state.
-
-### # **Tree Explorer on categories tab**
-
-**Importance**: Critical
-
-**Test Scenario**
-
-Expand and collapse category folders in the Categories tab. Verify that leaf definitions display state dots (ready/learned/visible/off) and levels. Confirm definitions are sorted by state first, then level, then title.
-
-### # **Checkboxes behavior on categories tab**
+### #7 **Checkboxes behavior on categories filter**
 
 **Importance**: Critical
 
 **Test scenarios**
 
-Each folder and each definition has a checkbox:
+Each folder (or category) and each definition has a checkbox:
 
 - **Checked = included** in the rendered graph.
 - Unchecking a **folder** includes/excludes *all definitions under that category*.
@@ -193,7 +154,9 @@ Each folder and each definition has a checkbox:
 - Learning state rules **do not change** with visibility:
   - A definition is **ready** when **all of its dependencies are learned**, even if some dependencies are currently hidden by checkboxes.
 
-### # **Search**
+Expand and collapse category folders, reload the page, and verify the expand/collapse state is restored from localStorage.
+
+### #8 **Search filter**
 
 **Importance**: High
 
@@ -203,23 +166,7 @@ Use the search input to query by node ID and title. After putting a character in
 
 After a definition is selected, we should filter all definitions (from raw graph) and only select those who are either the selected node or any descendant. Finally, the user should only see a graph for a selected definition with all descendants that are needed to be learned before the selected definition can be learned.
 
-### # **Node Click - Focus & Center View**
-
-**Importance**: High
-
-**Test Scenario**
-
-Click on a definition node and verify the view centers/focuses on that node's ring/level. Verify that clicking different nodes updates the viewport accordingly.
-
-### # **Node Hover - Level Ring Highlight**
-
-**Importance**: High
-
-**Test Scenario**
-
-Hover over a node and verify that its entire ring/level is highlighted. Move to another node and verify the highlight updates.
-
-### # **Learning State Rules**
+### #9 **Learning State Rules**
 
 **Importance**: High
 
@@ -227,36 +174,94 @@ Hover over a node and verify that its entire ring/level is highlighted. Move to 
 
 - A node is **already-learned** once you explicitly mark it as learned.
 - A node is **ready-to-learn** when **all of its dependencies are already-learned** (nodes with no dependencies are ready).
-- A node is **visible** when it is **not learned**, **not ready**, and has **at least one incoming “on” edge**.
-- Otherwise the node is **off**.
+- A node is **pre-ready-to-learn** when it is **not learned**, **not ready**, and has **at least one incoming “on” edge**.
+- Otherwise the node is **not-ready-to-learn**.
 
-Verify that node colors reflect states correctly: **Off** (faded gray), **Visible** (gray), **Ready-to-learn** (yellow), **Already-learned** (green). Transition nodes between states and verify colors update.
+Verify that node colors reflect states correctly: **Not-ready-to-learn** (faded gray), **Pre-ready-to-learn** (gray), **Ready-to-learn** (yellow), **Already-learned** (green). Transition nodes between states and verify colors update.
 
-### # **Initial View Focus on Next Ready-to-Learn Node**
-
-**Importance**: High
-
-**Test Scenario**
-
-On app startup, verify the view automatically focuses on the next ready-to-learn definition if it exists.
-
-### # **Category Topological Sorting**
+### #10 **Node state filters**
 
 **Importance**: High
 
 **Test Scenario**
 
-Verify that category folders are displayed in topologically sorted order by their computed level. Confirm folder levels are correctly computed and displayed.
+There are 4 states for definitions:
+- **Not-ready-to-learn**: filtered on default.
+- **Pre-ready-to-learn**: shown on default.
+- **Ready-to-learn**: shown on default.
+- **Already-learned**: shown on default.
 
-### # **Bottom Panel Collapse/Expand Toggle**
+Check if state filters (checkboxes) correctly include/exclude nodes of each state from the rendered graph. Verify that filtering by state updates the graph and levels accordingly.
+
+### #11 **Graph canvas display**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that the graph renders all definitions from `defs.json`. Ensure dependencies are correctly represented as directed edges where source depends on target.
+
+### #12 **Graph canvas radial levels**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that definitions are arranged in concentric rings by level. Level 0 should contain only definitions with no dependencies. Each subsequent level should contain definitions whose all dependencies exist in lower levels.
+
+### #13 **Dependency-Based Learning Readiness**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Verify that a node is marked as "ready-to-learn" (yellow) only when all of its dependencies are marked as learned.
+
+### #14 **Mark Definition as Learned**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Open a Definition tab for a "ready-to-learn" definition, verify "Mark as learned" button is enabled. Click it, confirm the node becomes green, and progress inside "Progress" tab is updated. Confirm that the other definition states are updated accordingly.
+
+Try to mark a definition without all dependencies learned and verify the button is disabled.
+
+After definition has been marked, we should experience a switch to the next ready-to-learn definition if it exists
+
+### #15 **Learning State Persistence (localStorage)**
+
+**Importance**: Critical
+
+**Test Scenario**
+
+Mark nodes as learned, reload the page, and verify that the learned states are restored from browser storage. Clear localStorage and verify the app resets to initial state.
+
+### #16 **Node Click - Focus & Center View**
 
 **Importance**: High
 
 **Test Scenario**
 
-Click the panel toggle (▲/▼) to expand/collapse the bottom panel. Verify the collapsed state saves to localStorage. Reload the page and confirm the state persists.
+Click on a definition node and verify the view centers/focuses on that node's ring/level. Verify that clicking different nodes updates the viewport accordingly.
 
-### # **Edge Styling Based on Prerequisite State**
+### #17 **Node Hover - Level Ring Highlight**
+
+**Importance**: High
+
+**Test Scenario**
+
+Hover over a node and verify that its entire ring/level is highlighted. Move to another node and verify the highlight updates.
+
+### #18 **Initial View Focus on Next Ready-to-Learn Node**
+
+**Importance**: High
+
+**Test Scenario**
+
+On app startup, verify the view automatically focuses on the next ready-to-learn definition if it exists. Also the "Definition" tab for that definition should be open.
+
+### #19 **Edge Styling Based on Prerequisite State**
 
 **Importance**: Medium
 
@@ -264,7 +269,7 @@ Click the panel toggle (▲/▼) to expand/collapse the bottom panel. Verify the
 
 Verify that edges connecting to learned prerequisites are rendered as **on edges** (more visible). Edges to unlearned prerequisites are **off edges** (dashed or subtler).
 
-### # **Curved Edge Paths (Arc Toward Center)**
+### #20 **Curved Edge Paths (Arc Toward Center)**
 
 **Importance**: Medium
 
@@ -272,7 +277,7 @@ Verify that edges connecting to learned prerequisites are rendered as **on edges
 
 Verify that all edges are rendered as curved paths that arc inward toward the center rather than straight lines. Check visual rendering for aesthetic quality.
 
-### # **Responsive UI Design (Desktop & Mobile)**
+### #21 **Responsive UI Design (Desktop & Mobile)**
 
 **Importance**: Medium
 
@@ -280,15 +285,14 @@ Verify that all edges are rendered as curved paths that arc inward toward the ce
 
 Resize the browser window to simulate mobile view. Verify the UI remains usable on small screens. Test that all controls are accessible and the graph is still navigable.
 
-### # **Category Expand/Collapse Persistence**
+Try the app on a mobile device to verify the responsiveness and the user experience.
 
-**Importance**: Low
+## Bugs & Test Scenarios
+
+### #1 **Not all dependencies are clickable**
+
+**Importance**: High
 
 **Test Scenario**
 
-Expand and collapse category folders, reload the page, and verify the expand/collapse state is restored from localStorage.
-
-
-Bugs:
-
-- in k_ary_tree defintion we dont have a clickable dependency to n-ary-tree
+In k_ary_tree definition we do not have a clickable dependency to n-ary-tree definition.
