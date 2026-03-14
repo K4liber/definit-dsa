@@ -209,6 +209,13 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
         );
 
       linkSel
+        .attr('data-source-id', (d) => d.source)
+        .attr('data-target-id', (d) => d.target)
+        .attr('data-prereq-learned', (d) => {
+          const prereq = byId.get(d.target);
+          const s = prereq ? learnStateForNode(prereq, learned) : 'not-ready';
+          return s === 'learned' ? 'true' : 'false';
+        })
         .attr('d', edgePath)
         .classed('link-on', (d) => {
           const prereq = byId.get(d.target);
@@ -262,6 +269,9 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
         });
 
       nodeSel
+        .attr('data-node-id', (d) => d.id)
+        .attr('data-level', (d) => String(d.level ?? 0))
+        .attr('data-state', (d) => stateFor(d))
         .select('title')
         .text((d: DefNode) => `${d.title} (level: ${d.level ?? 0})\n${d.category}`);
 
@@ -320,9 +330,16 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
     }, [graph, learned, selectedNodeId, onNodeClick, W, H, applyRingHighlight]);
 
     return (
-      <div className="canvasArea">
+      <div className="canvasArea" data-testid="graph-canvas-area">
         <div className="canvasWrap">
-          <svg ref={svgRef} />
+          <svg
+            ref={svgRef}
+            aria-label="Definitions graph"
+            data-testid="graph-canvas"
+            data-rendered-node-count={String(graph?.nodes.length ?? 0)}
+            data-rendered-edge-count={String(graph?.edges.length ?? 0)}
+            data-selected-node-id={selectedNodeId ?? ''}
+          />
         </div>
       </div>
     );

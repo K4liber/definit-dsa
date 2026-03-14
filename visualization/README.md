@@ -45,6 +45,102 @@ Open the URL printed by Vite (typically `http://localhost:5173`).
 - `npm run build`
 - `npm run preview`
 
+## Automated Testing Strategy
+
+For this React app, the most useful automation split is:
+
+- **Vitest + Testing Library** for app-level integration tests that exercise React state, localStorage persistence, filtering logic, and tab behavior in `jsdom`.
+- **Playwright E2E** for true browser workflows: tab toggling, search/filtering, persistence, learning progress, and startup behavior.
+- **Unit/integration tests** for pure logic in `src/lib/graph.ts`, `src/lib/storage.ts`, and the data generator script.
+- **Manual or visual-review checks** for scenarios that are mostly about aesthetics, motion, or subjective usability.
+
+The current repo now includes both:
+
+- runnable **Vitest integration tests** for a few core scenarios
+- optional **Playwright** scaffolding for browser-level E2E coverage
+
+### Test groups
+
+The scripts are grouped into three levels:
+
+- **Unit tests**: verify isolated logic with small scope and minimal setup. In this repo that means pure helpers such as graph logic, storage helpers, and generator utilities.
+- **Integration tests**: render React components or the whole app in `jsdom` and verify user-visible workflows across multiple parts working together.
+- **E2E tests**: run the app in a real browser and verify behavior end to end, including browser-specific behavior that `jsdom` does not reproduce.
+
+Current commands:
+
+- `npm test`: run unit and integration tests together
+- `npm run test:unit`: run only unit tests
+- `npm run test:integration`: run only integration tests
+- `npm run test:e2e`: run browser end-to-end tests
+
+At the moment, the repo contains real integration coverage and Playwright E2E scaffolding. Unit-test scripts are in place so pure-logic coverage can be added without changing the command structure again.
+
+### Playwright setup
+
+From `visualization/`:
+
+1. Install dependencies:
+  - `npm install`
+2. Run the automated scenarios:
+  - `npm run test:e2e`
+
+The Playwright config starts the Vite dev server automatically and, on Windows, uses the locally installed Microsoft Edge browser so no extra browser download is required.
+
+If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check and enable Playwright on a machine where browser automation is allowed.
+
+### Vitest integration setup
+
+From `visualization/`:
+
+1. Install dependencies:
+  - `npm install`
+2. Run the integration scenarios:
+  - `npm run test:integration`
+
+### Scenarios implemented now
+
+- Initial layout and startup selection behavior
+- Bottom panel collapse/expand persistence via `localStorage`
+- Search-driven definition filtering
+- Mark-as-learned persistence and progress updates
+
+### Are all scenarios automatically testable?
+
+No.
+
+These scenarios are good candidates for full automation:
+
+- `#1` Data generation from markdown
+- `#2` Cycle detection in generator
+- `#3` Layout overview
+- `#4` Bottom panel collapse/expand toggle
+- `#5` Bottom panel contents
+- `#6` Categories filters
+- `#7` Category checkbox behavior
+- `#8` Search filter
+- `#9` Learning state rules
+- `#10` Node state filters
+- `#11` Graph canvas display
+- `#12` Graph canvas radial levels
+- `#13` Dependency-based learning readiness
+- `#14` Mark definition as learned
+- `#15` Learning state persistence
+- `#18` Initial view focus on next ready-to-learn node
+
+These are only **partially** automatable without adding more explicit semantic hooks to the SVG or without relying on brittle visual snapshots:
+
+- `#16` Node click focus and center view
+- `#17` Node hover level-ring highlight
+- `#19` Edge styling based on prerequisite state
+
+These should keep at least some manual coverage because the acceptance criteria are visual or subjective:
+
+- `#20` Curved edge paths and aesthetic quality
+- `#21` Responsive usability on real mobile devices
+
+The bug scenario under **Bugs & Test Scenarios** now has regression coverage in the unit test suite.
+
 
 ## Troubleshooting
 
@@ -71,6 +167,10 @@ The generator tries to reduce false positives by:
 
 Run `npm run gen:data` and verify `public/defs.json` is created correctly. Verify the file contains all definitions from markdown source files.
 
+**Automation**
+
+Automated test: [tests/unit/gen-data.test.ts](tests/unit/gen-data.test.ts) (`generates defs.json from markdown input`).
+
 ### #2 **Cycle Detection in Generator**
 
 **Importance**: Critical
@@ -78,6 +178,10 @@ Run `npm run gen:data` and verify `public/defs.json` is created correctly. Verif
 **Test Scenario**
 
 Run `npm run gen:data` with valid dependencies and verify successful generation. Introduce a cycle in test data and verify the generator fails with a cycle detection error message.
+
+**Automation**
+
+Automated test: [tests/unit/gen-data.test.ts](tests/unit/gen-data.test.ts) (`throws on cyclic dependencies in generated data`).
 
 ### #3 **Layout overview**
 
@@ -93,6 +197,10 @@ The UI is split into three vertical regions:
   - Expanded: graph and bottom panel share height (50/50 split)
   - Collapsed: graph uses full height and only the tab names are visible
 
+**Automation**
+
+Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`shows the main layout and auto-selects an initial ready definition`).
+
 ### #4 **Bottom Panel Collapse/Expand Toggle**
 
 **Importance**: High
@@ -101,24 +209,33 @@ The UI is split into three vertical regions:
 
 Click on any tab name to expand the bottom panel. Click again on the same tab to collapse it. Verify that the collapsed state is saved to localStorage and persists after page reload.
 
+**Automation**
+
+Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`persists bottom panel collapse state across remounts`) and [tests/unit/storage.test.ts](tests/unit/storage.test.ts) (`persists panel collapsed state as a boolean flag`).
+
 ### #5 **Bottom panel contents (tabs)**
 
 **Importance**: Critical
 
 **Test Scenario**
 
-- **Definition** tab: 
-1) selected definition content
-2) “Mark as learned” action
-3) Clickable dependencies in the content.
-- **Filters** tab: 
-1) Definition descendants filter: render a selected definition with all of its descendants that are needed to be learned before the selected definition can be learned.
-2) Categories filter: folder-like tree with visibility (include/exclude) checkboxes
-3) Node state filters (checkboxes)
-- **Progress** tab: learning progress on the currently rendered graph:
-1) definitions learned
-2) edges unlocked
-3) levels completed
+- **Scenario A: Definition tab shows selected definition content**
+- **Scenario B: Definition tab supports “Mark as learned” for valid definitions**
+- **Scenario C: Definition tab dependency links are clickable**
+- **Scenario D: Filters tab search narrows the graph to the selected definition study path**
+- **Scenario E: Filters tab category include/exclude checkboxes affect the rendered graph**
+- **Scenario F: Filters tab node state checkboxes affect the rendered graph**
+- **Scenario G: Progress tab updates definitions learned / edges unlocked / levels completed**
+
+**Automation**
+
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`shows the main layout and auto-selects an initial ready definition`).
+- Scenario B: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`).
+- Scenario C: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`allows clicking dependency links inside a definition to navigate to that dependency`) and [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`renders dependency links as clickable spans in definition HTML`).
+- Scenario D: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`filters the graph to the selected definition prerequisites from search`).
+- Scenario E: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`supports including and excluding definitions via category checkboxes`).
+- Scenario F: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`updates rendered graph when node state filters change`).
+- Scenario G: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`) and [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`computes progress stats for learned definitions, unlocked edges, and completed levels`).
 
 ### #6 **Categories filters**
 
@@ -140,21 +257,29 @@ It is an Explorer-like tree:
 
 Verify that category folders are displayed in topologically sorted order by their computed level. Confirm folder levels are correctly computed and displayed.
 
+**Automation**
+
+Automated tests: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`computes group levels from cross-group dependencies`, `sorts category groups by computed group level and leaves by state, level, and title`).
+
 ### #7 **Checkboxes behavior on categories filter**
 
 **Importance**: Critical
 
 **Test scenarios**
 
-Each folder (or category) and each definition has a checkbox:
+- **Scenario A: Unchecking a definition includes/excludes it from the rendered graph**
+- **Scenario B: Unchecking a folder includes/excludes all definitions under that category**
+- **Scenario C: Levels are recomputed on the rendered graph after checkbox filtering**
+- **Scenario D: Learning state rules do not change when hidden prerequisites are filtered out**
+- **Scenario E: Category expand/collapse state is restored from localStorage after reload**
 
-- **Checked = included** in the rendered graph.
-- Unchecking a **folder** includes/excludes *all definitions under that category*.
-- When the graph is filtered by checkboxes, **levels are recomputed** on the *rendered* graph.
-- Learning state rules **do not change** with visibility:
-  - A definition is **ready** when **all of its dependencies are learned**, even if some dependencies are currently hidden by checkboxes.
+**Automation**
 
-Expand and collapse category folders, reload the page, and verify the expand/collapse state is restored from localStorage.
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`supports including and excluding definitions via category checkboxes`).
+- Scenario B: Manual test.
+- Scenario C: Automated test: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`recomputes levels on the rendered graph after filtering hidden prerequisites`).
+- Scenario D: Automated test: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`marks partially unlocked nodes as pre-ready through the visible set`).
+- Scenario E: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`restores category expand-collapse state from localStorage`) and [tests/unit/storage.test.ts](tests/unit/storage.test.ts) (`round-trips open category prefixes`).
 
 ### #8 **Search filter**
 
@@ -166,18 +291,27 @@ Use the search input to query by node ID and title. After putting a character in
 
 After a definition is selected, we should filter all definitions (from raw graph) and only select those who are either the selected node or any descendant. Finally, the user should only see a graph for a selected definition with all descendants that are needed to be learned before the selected definition can be learned.
 
+**Automation**
+
+Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`filters the graph to the selected definition prerequisites from search`).
+
 ### #9 **Learning State Rules**
 
 **Importance**: High
 
 **Test Scenario**
 
-- A node is **already-learned** once you explicitly mark it as learned.
-- A node is **ready-to-learn** when **all of its dependencies are already-learned** (nodes with no dependencies are ready).
-- A node is **pre-ready-to-learn** when it is **not learned**, **not ready**, and has **at least one incoming “on” edge**.
-- Otherwise the node is **not-ready-to-learn**.
+- **Scenario A: A node becomes already-learned after explicit marking**
+- **Scenario B: A node is ready-to-learn only when all dependencies are learned**
+- **Scenario C: A node becomes pre-ready-to-learn when it is partially unlocked by learned prerequisites**
+- **Scenario D: Node colors reflect the four learning states correctly**
 
-Verify that node colors reflect states correctly: **Not-ready-to-learn** (faded gray), **Pre-ready-to-learn** (gray), **Ready-to-learn** (yellow), **Already-learned** (green). Transition nodes between states and verify colors update.
+**Automation**
+
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`).
+- Scenario B: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`disables learning for a not-ready definition selected from search`) and [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`selects the next ready definition using rendered levels and stable ordering`).
+- Scenario C: Automated test: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`marks partially unlocked nodes as pre-ready through the visible set`).
+- Scenario D: Manual test.
 
 ### #10 **Node state filters**
 
@@ -185,13 +319,13 @@ Verify that node colors reflect states correctly: **Not-ready-to-learn** (faded 
 
 **Test Scenario**
 
-There are 4 states for definitions:
-- **Not-ready-to-learn**: filtered on default.
-- **Pre-ready-to-learn**: shown on default.
-- **Ready-to-learn**: shown on default.
-- **Already-learned**: shown on default.
+- **Scenario A: State filter checkboxes include/exclude matching nodes from the rendered graph**
+- **Scenario B: Filtering by state recomputes rendered graph levels**
 
-Check if state filters (checkboxes) correctly include/exclude nodes of each state from the rendered graph. Verify that filtering by state updates the graph and levels accordingly.
+**Automation**
+
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`updates rendered graph when node state filters change`).
+- Scenario B: Automated test: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`recomputes levels on the rendered graph after filtering hidden prerequisites`).
 
 ### #11 **Graph canvas display**
 
@@ -201,13 +335,23 @@ Check if state filters (checkboxes) correctly include/exclude nodes of each stat
 
 Verify that the graph renders all definitions from `defs.json`. Ensure dependencies are correctly represented as directed edges where source depends on target.
 
+**Automation**
+
+Manual test.
+
 ### #12 **Graph canvas radial levels**
 
 **Importance**: Critical
 
 **Test Scenario**
 
-Verify that definitions are arranged in concentric rings by level. Level 0 should contain only definitions with no dependencies. Each subsequent level should contain definitions whose all dependencies exist in lower levels.
+- **Scenario A: Computed levels follow dependency ordering**
+- **Scenario B: Nodes are arranged into concentric visual rings by level in the SVG canvas**
+
+**Automation**
+
+- Scenario A: Automated test: [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`recomputes levels on the rendered graph after filtering hidden prerequisites`).
+- Scenario B: Manual test.
 
 ### #13 **Dependency-Based Learning Readiness**
 
@@ -215,7 +359,13 @@ Verify that definitions are arranged in concentric rings by level. Level 0 shoul
 
 **Test Scenario**
 
-Verify that a node is marked as "ready-to-learn" (yellow) only when all of its dependencies are marked as learned.
+- **Scenario A: A definition with unmet prerequisites is not learnable**
+- **Scenario B: A definition becomes learnable only after its prerequisites are learned**
+
+**Automation**
+
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`disables learning for a not-ready definition selected from search`).
+- Scenario B: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`) and [tests/unit/graph.test.ts](tests/unit/graph.test.ts) (`selects the next ready definition using rendered levels and stable ordering`).
 
 ### #14 **Mark Definition as Learned**
 
@@ -223,11 +373,17 @@ Verify that a node is marked as "ready-to-learn" (yellow) only when all of its d
 
 **Test Scenario**
 
-Open a Definition tab for a "ready-to-learn" definition, verify "Mark as learned" button is enabled. Click it, confirm the node becomes green, and progress inside "Progress" tab is updated. Confirm that the other definition states are updated accordingly.
+- **Scenario A: A ready-to-learn definition has an enabled "Mark as learned" button**
+- **Scenario B: Marking a definition updates progress and selects the next ready definition when available**
+- **Scenario C: A not-ready definition has a disabled "Mark as learned" button**
+- **Scenario D: The learned node color updates to the learned color**
 
-Try to mark a definition without all dependencies learned and verify the button is disabled.
+**Automation**
 
-After definition has been marked, we should experience a switch to the next ready-to-learn definition if it exists
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`shows the main layout and auto-selects an initial ready definition`).
+- Scenario B: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`).
+- Scenario C: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`disables learning for a not-ready definition selected from search`).
+- Scenario D: Manual test.
 
 ### #15 **Learning State Persistence (localStorage)**
 
@@ -235,7 +391,13 @@ After definition has been marked, we should experience a switch to the next read
 
 **Test Scenario**
 
-Mark nodes as learned, reload the page, and verify that the learned states are restored from browser storage. Clear localStorage and verify the app resets to initial state.
+- **Scenario A: Learned nodes are restored after reload from browser storage**
+- **Scenario B: Resetting progress clears learned state**
+
+**Automation**
+
+- Scenario A: Automated tests: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`marks a definition as learned and restores progress from localStorage`) and [tests/unit/storage.test.ts](tests/unit/storage.test.ts) (`round-trips learned ids through localStorage`).
+- Scenario B: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`resets learned progress after confirmation`).
 
 ### #16 **Node Click - Focus & Center View**
 
@@ -245,6 +407,10 @@ Mark nodes as learned, reload the page, and verify that the learned states are r
 
 Click on a definition node and verify the view centers/focuses on that node's ring/level. Verify that clicking different nodes updates the viewport accordingly.
 
+**Automation**
+
+Manual test.
+
 ### #17 **Node Hover - Level Ring Highlight**
 
 **Importance**: High
@@ -253,13 +419,23 @@ Click on a definition node and verify the view centers/focuses on that node's ri
 
 Hover over a node and verify that its entire ring/level is highlighted. Move to another node and verify the highlight updates.
 
+**Automation**
+
+Manual test.
+
 ### #18 **Initial View Focus on Next Ready-to-Learn Node**
 
 **Importance**: High
 
 **Test Scenario**
 
-On app startup, verify the view automatically focuses on the next ready-to-learn definition if it exists. Also the "Definition" tab for that definition should be open.
+- **Scenario A: On startup, the next ready-to-learn definition is selected and its Definition tab is open**
+- **Scenario B: On startup, the graph viewport focuses that node/ring visually**
+
+**Automation**
+
+- Scenario A: Automated test: [tests/integration/app.test.tsx](tests/integration/app.test.tsx) (`shows the main layout and auto-selects an initial ready definition`).
+- Scenario B: Manual test.
 
 ### #19 **Edge Styling Based on Prerequisite State**
 
@@ -269,6 +445,10 @@ On app startup, verify the view automatically focuses on the next ready-to-learn
 
 Verify that edges connecting to learned prerequisites are rendered as **on edges** (more visible). Edges to unlearned prerequisites are **off edges** (dashed or subtler).
 
+**Automation**
+
+Manual test.
+
 ### #20 **Curved Edge Paths (Arc Toward Center)**
 
 **Importance**: Medium
@@ -276,6 +456,10 @@ Verify that edges connecting to learned prerequisites are rendered as **on edges
 **Test Scenario**
 
 Verify that all edges are rendered as curved paths that arc inward toward the center rather than straight lines. Check visual rendering for aesthetic quality.
+
+**Automation**
+
+Manual test.
 
 ### #21 **Responsive UI Design (Desktop & Mobile)**
 
@@ -287,12 +471,10 @@ Resize the browser window to simulate mobile view. Verify the UI remains usable 
 
 Try the app on a mobile device to verify the responsiveness and the user experience.
 
+**Automation**
+
+Manual test.
+
 ## Bugs & Test Scenarios
 
-### #1 **Not all dependencies are clickable**
-
-**Importance**: High
-
-**Test Scenario**
-
-In k_ary_tree definition we do not have a clickable dependency to n-ary-tree definition.
+all clear now :)

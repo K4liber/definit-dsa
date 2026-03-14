@@ -581,9 +581,25 @@ export function renderMdToHtml(
   const clean = normalizeMdForViewer(md);
   const byId = new Map(renderedNodes.map((n) => [n.id, n] as const));
   const depMap = new Map<string, { id: string; title: string }>();
+  const normalizedDeps = new Map<string, string[]>();
+
+  const addNormalizedCandidate = (key: string, id: string) => {
+    const arr = normalizedDeps.get(key) ?? [];
+    if (!arr.includes(id)) arr.push(id);
+    normalizedDeps.set(key, arr);
+  };
+
   for (const id of deps) {
-    const t = byId.get(id)?.title ?? id.split('/').at(-1) ?? id;
+    const node = byId.get(id);
+    const t = node?.title ?? id.split('/').at(-1) ?? id;
     depMap.set(id, { id, title: t });
+
+    const field = id.split('/')[0];
+    const idSuffix = id.split('/').at(-1);
+    if (field && idSuffix) addNormalizedCandidate(`${field}/${normalizeId(idSuffix)}`, id);
+
+    const categorySuffix = node?.category.split('/').at(-1);
+    if (field && categorySuffix) addNormalizedCandidate(`${field}/${normalizeId(categorySuffix)}`, id);
   }
 
   const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
@@ -594,6 +610,14 @@ export function renderMdToHtml(
 
     let depId: string | undefined;
     if (depMap.has(href)) depId = href;
+
+    if (!depId) {
+      const normalizedHref = href.includes('/')
+        ? `${href.split('/')[0]}/${normalizeId(href.split('/').at(-1) ?? '')}`
+        : normalizeId(href);
+      const normalizedMatches = normalizedDeps.get(normalizedHref) ?? [];
+      if (normalizedMatches.length === 1) depId = normalizedMatches[0];
+    }
 
     if (!depId && href.includes('/')) {
       const suffix = '/' + href.split('/').filter(Boolean).pop();

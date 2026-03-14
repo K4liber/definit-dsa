@@ -63,7 +63,12 @@ const BottomPanel: React.FC<Props> = ({
   onSetShowLearned,
 }) => {
   return (
-    <div className={`bottomPanel ${expanded ? 'expanded' : ''}`}>
+    <div
+      className={`bottomPanel ${expanded ? 'expanded' : ''}`}
+      data-testid="bottom-panel"
+      data-expanded={expanded ? 'true' : 'false'}
+      data-active-tab={activeTab}
+    >
       <div className="bottomPanelContent">
         {/* Removed internal tab button row; tab switching is handled by BottomMenu */}
 
