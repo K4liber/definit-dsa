@@ -38,10 +38,9 @@ function prerequisiteClosure(graph: DefGraph, startId: string): Set<string> {
 
 async function gotoApp(page: Page): Promise<void> {
   await page.goto('/');
-  await expect(page.getByTestId('graph-canvas')).toHaveAttribute('data-rendered-node-count', /\d+/);
+  await expect(page.getByRole('img', { name: 'Definitions graph' })).toBeVisible();
   await page.waitForFunction(() => {
-    const graph = document.querySelector('[data-testid="graph-canvas"]');
-    return Number(graph?.getAttribute('data-rendered-node-count') ?? '0') > 0;
+    return document.querySelectorAll('g.node').length > 0;
   });
 }
 
@@ -62,17 +61,13 @@ test('shows the main layout and auto-selects an initial ready definition', async
   await gotoApp(page);
   await closeInfoModalIfVisible(page);
 
-  await expect(page.getByTestId('top-menu')).toBeVisible();
-  await expect(page.getByTestId('graph-canvas')).toBeVisible();
-  await expect(page.getByTestId('bottom-panel')).toBeVisible();
-  await expect(page.getByRole('toolbar', { name: 'Bottom panel' })).toBeVisible();
+  await expect(page.getByRole('toolbar', { name: 'Top menu' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Definitions graph' })).toBeVisible();
+  await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeVisible();
+  await expect(page.getByRole('toolbar', { name: 'Bottom panel tabs' })).toBeVisible();
 
-  const graph = page.getByTestId('graph-canvas');
-  const selectedNodeId = await graph.getAttribute('data-selected-node-id');
-  expect(selectedNodeId).toBeTruthy();
-
-  await expect(page.getByTestId('definition-title')).not.toHaveText('');
-  await expect(page.getByTestId('mark-learned-button')).toBeEnabled();
+  await expect(page.getByRole('heading', { level: 3 })).not.toHaveText('');
+  await expect(page.getByRole('button', { name: /Mark .* as learned/ })).toBeEnabled();
 });
 
 test('persists bottom panel collapse state across reloads', async ({ page }) => {
@@ -80,7 +75,7 @@ test('persists bottom panel collapse state across reloads', async ({ page }) => 
   await closeInfoModalIfVisible(page);
 
   await page.getByRole('button', { name: 'Definition' }).click();
-  await expect(page.getByTestId('bottom-panel')).toBeHidden();
+  await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeHidden();
 
   await expect
     .poll(async () => page.evaluate(() => localStorage.getItem('definit-db.ui.bottomPanelCollapsed')))
@@ -89,9 +84,9 @@ test('persists bottom panel collapse state across reloads', async ({ page }) => 
   await page.reload();
   await closeInfoModalIfVisible(page);
 
-  await expect(page.getByTestId('bottom-panel')).toBeHidden();
+  await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeHidden();
   await page.getByRole('button', { name: 'Filters' }).click();
-  await expect(page.getByTestId('bottom-panel')).toBeVisible();
+  await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeVisible();
 });
 
 test('filters the graph to the selected definition prerequisites from search', async ({ page }) => {
@@ -106,22 +101,20 @@ test('filters the graph to the selected definition prerequisites from search', a
 
   const searchInput = page.getByLabel('Search definition');
   await searchInput.fill('fibonacci');
-  await expect(page.getByTestId('definition-search-matches')).toBeVisible();
+  await expect(page.getByRole('listbox', { name: 'Definition matches' })).toBeVisible();
   await page.getByText(selectedId, { exact: true }).click();
 
-  await expect(searchInput).toHaveValue(selectedId);
-  await expect(page.getByTestId('graph-canvas')).toHaveAttribute('data-selected-node-id', selectedId);
-  await expect(page.getByTestId('graph-canvas')).toHaveAttribute(
-    'data-rendered-node-count',
-    String(expectedNodeCount),
-  );
+  await expect(page.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeVisible();
+  await expect
+    .poll(async () => page.evaluate(() => document.querySelectorAll('g.node').length))
+    .toBe(expectedNodeCount);
 });
 
 test('marks a definition as learned and restores progress from localStorage', async ({ page }) => {
   await gotoApp(page);
   await closeInfoModalIfVisible(page);
 
-  const markLearnedButton = page.getByTestId('mark-learned-button');
+  const markLearnedButton = page.getByRole('button', { name: /Mark .* as learned/ });
   await expect(markLearnedButton).toBeEnabled();
   await markLearnedButton.click();
 

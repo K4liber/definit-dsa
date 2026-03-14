@@ -9,7 +9,7 @@ type Props = {
 
 const TopMenu: React.FC<Props> = ({ hasLearned, onFocus, onOverview, onResetProgress }) => {
   return (
-    <div className="topMenu" data-testid="top-menu">
+    <div className="topMenu" role="toolbar" aria-label="Top menu">
       <button className="btn" onClick={onFocus}>
         Focus
       </button>

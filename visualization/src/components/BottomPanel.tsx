@@ -65,9 +65,9 @@ const BottomPanel: React.FC<Props> = ({
   return (
     <div
       className={`bottomPanel ${expanded ? 'expanded' : ''}`}
-      data-testid="bottom-panel"
-      data-expanded={expanded ? 'true' : 'false'}
-      data-active-tab={activeTab}
+      role="region"
+      aria-label="Bottom panel"
+      aria-hidden={expanded ? 'false' : 'true'}
     >
       <div className="bottomPanelContent">
         {/* Removed internal tab button row; tab switching is handled by BottomMenu */}

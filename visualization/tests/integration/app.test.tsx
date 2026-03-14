@@ -32,13 +32,16 @@ vi.mock('../../src/components/GraphCanvas', () => {
 
     return (
       <div
-        data-testid="graph-canvas"
-        data-rendered-node-count={String(props.graph?.nodes.length ?? 0)}
-        data-rendered-edge-count={String(props.graph?.edges.length ?? 0)}
-        data-selected-node-id={props.selectedNodeId ?? ''}
+        role="img"
+        aria-label="Definitions graph"
       >
         {props.graph?.nodes.map((node) => (
-          <button key={node.id} type="button" onClick={() => props.onNodeClick(node.id)}>
+          <button
+            key={node.id}
+            type="button"
+            aria-pressed={props.selectedNodeId === node.id}
+            onClick={() => props.onNodeClick(node.id)}
+          >
             {node.title}
           </button>
         ))}
@@ -76,8 +79,7 @@ function prerequisiteClosure(graph: DefGraph, startId: string): Set<string> {
 async function renderApp() {
   const user = userEvent.setup();
   render(<App />);
-  await screen.findByTestId('graph-canvas');
-  await screen.findByTestId('definition-title');
+  await screen.findByRole('img', { name: 'Definitions graph' });
   await closeInfoModal(user);
 
   return { user };
@@ -94,16 +96,34 @@ async function closeInfoModal(user: ReturnType<typeof userEvent.setup>) {
 }
 
 function graphCount(): number {
-  return Number(screen.getByTestId('graph-canvas').getAttribute('data-rendered-node-count') ?? '0');
+  return within(screen.getByRole('img', { name: 'Definitions graph' })).getAllByRole('button').length;
+}
+
+function getSelectedGraphNodeButton(): HTMLButtonElement | null {
+  const graph = screen.getByRole('img', { name: 'Definitions graph' });
+  return (
+    within(graph)
+      .queryAllByRole('button')
+      .find((button): button is HTMLButtonElement => button instanceof HTMLButtonElement && button.getAttribute('aria-pressed') === 'true') ?? null
+  );
+}
+
+function getBottomPanel(): HTMLElement {
+  const panel = screen
+    .getAllByRole('region', { hidden: true })
+    .find((region) => region.getAttribute('aria-label') === 'Bottom panel');
+
+  if (!panel) throw new Error('Bottom panel not found');
+  return panel;
 }
 
 async function openFilters(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole('button', { name: 'Filters' }));
-  return screen.getByTestId('categories-tree');
+  return screen.getByRole('region', { name: 'Category include/exclude' });
 }
 
 function getTreeRowCheckboxByText(text: string): HTMLInputElement {
-  const tree = screen.getByTestId('categories-tree');
+  const tree = screen.getByRole('region', { name: 'Category include/exclude' });
   const label = within(tree).getByText(text);
   const row = label.closest('.treeRow');
   if (!row) throw new Error(`Tree row not found for ${text}`);
@@ -116,27 +136,27 @@ describe('App integration scenarios', () => {
   it('shows the main layout and auto-selects an initial ready definition', async () => {
     await renderApp();
 
-    expect(screen.getByTestId('top-menu')).toBeInTheDocument();
-    expect(screen.getByTestId('bottom-panel')).toHaveAttribute('data-expanded', 'true');
-    expect(screen.getByTestId('graph-canvas')).toBeInTheDocument();
+    expect(screen.getByRole('toolbar', { name: 'Top menu' })).toBeInTheDocument();
+    expect(getBottomPanel()).toBeVisible();
+    expect(screen.getByRole('img', { name: 'Definitions graph' })).toBeInTheDocument();
 
-    expect(screen.getByTestId('definition-title')).not.toHaveTextContent(/^\s*$/);
-    expect(screen.getByTestId('mark-learned-button')).toBeEnabled();
+    expect(screen.getByRole('heading', { level: 3 })).not.toHaveTextContent(/^\s*$/);
+    expect(screen.getByRole('button', { name: /Mark .* as learned/ })).toBeEnabled();
 
-    expect(screen.getByTestId('graph-canvas').getAttribute('data-selected-node-id')).toBeTruthy();
+    expect(getSelectedGraphNodeButton()).toBeTruthy();
   });
 
   it('persists bottom panel collapse state across remounts', async () => {
     const firstRender = await renderApp();
     await firstRender.user.click(screen.getByRole('button', { name: 'Definition' }));
 
-    expect(screen.getByTestId('bottom-panel')).toHaveAttribute('data-expanded', 'false');
+    expect(getBottomPanel()).toHaveAttribute('aria-hidden', 'true');
     expect(localStorage.getItem('definit-db.ui.bottomPanelCollapsed')).toBe('1');
 
     cleanup();
     await renderApp();
 
-    expect(screen.getByTestId('bottom-panel')).toHaveAttribute('data-expanded', 'false');
+    expect(getBottomPanel()).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('filters the graph to the selected definition prerequisites from search', async () => {
@@ -151,27 +171,24 @@ describe('App integration scenarios', () => {
     await user.clear(searchInput);
     await user.type(searchInput, 'fibonacci');
 
-    const matches = await screen.findByTestId('definition-search-matches');
+    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
     await user.click(within(matches).getByText(selectedId, { exact: true }));
 
     await waitFor(() => {
-      expect(screen.getByTestId('graph-canvas')).toHaveAttribute('data-selected-node-id', selectedId);
-      expect(screen.getByTestId('definition-title')).toHaveTextContent('fibonacci');
-      expect(screen.getByTestId('graph-canvas')).toHaveAttribute(
-        'data-rendered-node-count',
-        String(expectedNodeCount),
-      );
+      expect(screen.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeInTheDocument();
+      expect(graphCount()).toBe(expectedNodeCount);
+      expect(getSelectedGraphNodeButton()).toHaveTextContent('fibonacci');
     });
   });
 
   it('marks a definition as learned and restores progress from localStorage', async () => {
     const { user } = await renderApp();
-    const selectedBefore = screen.getByTestId('graph-canvas').getAttribute('data-selected-node-id');
+    const selectedBefore = getSelectedGraphNodeButton()?.textContent;
 
-    await user.click(screen.getByTestId('mark-learned-button'));
+    await user.click(screen.getByRole('button', { name: /Mark .* as learned/ }));
 
     await waitFor(() => {
-      expect(screen.getByTestId('graph-canvas').getAttribute('data-selected-node-id')).not.toBe(selectedBefore);
+      expect(getSelectedGraphNodeButton()?.textContent).not.toBe(selectedBefore);
     });
 
     await user.click(screen.getByRole('button', { name: 'Progress' }));
@@ -198,14 +215,14 @@ describe('App integration scenarios', () => {
     await user.click(screen.getByLabelText('Show not-ready nodes'));
     const searchInput = screen.getByLabelText('Search definition');
     await user.type(searchInput, 'fibonacci');
-    const matches = await screen.findByTestId('definition-search-matches');
+    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
     await user.click(within(matches).getByText('mathematics/fibonacci', { exact: true }));
 
-    await user.click(within(screen.getByTestId('definition-body')).getByText('sequence'));
+    await user.click(within(screen.getByRole('region', { name: 'Definition content' })).getByText('sequence'));
 
     await waitFor(() => {
-      expect(screen.getByTestId('definition-title')).toHaveTextContent('sequence');
-      expect(screen.getByTestId('graph-canvas')).toHaveAttribute('data-selected-node-id', 'mathematics/sequence');
+      expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
+      expect(getSelectedGraphNodeButton()).toHaveTextContent('sequence');
     });
   });
 
@@ -272,18 +289,18 @@ describe('App integration scenarios', () => {
     await user.click(screen.getByLabelText('Show not-ready nodes'));
     const searchInput = screen.getByLabelText('Search definition');
     await user.type(searchInput, 'fibonacci');
-    const matches = await screen.findByTestId('definition-search-matches');
+    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
     await user.click(within(matches).getByText('mathematics/fibonacci', { exact: true }));
 
     await waitFor(() => {
-      expect(screen.getByTestId('mark-learned-button')).toBeDisabled();
+      expect(screen.getByRole('button', { name: /Mark .* as learned/ })).toBeDisabled();
     });
   });
 
   it('resets learned progress after confirmation', async () => {
     const { user } = await renderApp();
 
-    await user.click(screen.getByTestId('mark-learned-button'));
+    await user.click(screen.getByRole('button', { name: /Mark .* as learned/ }));
     await waitFor(() => {
       expect(JSON.parse(localStorage.getItem('definit-db.learned') ?? '[]')).toHaveLength(1);
     });
