@@ -45,102 +45,12 @@ Open the URL printed by Vite (typically `http://localhost:5173`).
 - `npm run build`
 - `npm run preview`
 
-## Automated Testing Strategy
-
-For this React app, the most useful automation split is:
-
-- **Vitest + Testing Library** for app-level integration tests that exercise React state, localStorage persistence, filtering logic, and tab behavior in `jsdom`.
-- **Playwright E2E** for true browser workflows: tab toggling, search/filtering, persistence, learning progress, and startup behavior.
-- **Unit/integration tests** for pure logic in `src/lib/graph.ts`, `src/lib/storage.ts`, and the data generator script.
-- **Manual or visual-review checks** for scenarios that are mostly about aesthetics, motion, or subjective usability.
-
-The current repo now includes both:
-
-- runnable **Vitest integration tests** for a few core scenarios
-- optional **Playwright** scaffolding for browser-level E2E coverage
-
-### Test groups
-
-The scripts are grouped into three levels:
+## Test groups
 
 - **Unit tests**: verify isolated logic with small scope and minimal setup. In this repo that means pure helpers such as graph logic, storage helpers, and generator utilities.
 - **Integration tests**: render React components or the whole app in `jsdom` and verify user-visible workflows across multiple parts working together.
 - **E2E tests**: run the app in a real browser and verify behavior end to end, including browser-specific behavior that `jsdom` does not reproduce.
-
-Current commands:
-
-- `npm test`: run unit and integration tests together
-- `npm run test:unit`: run only unit tests
-- `npm run test:integration`: run only integration tests
-- `npm run test:e2e`: run browser end-to-end tests
-
-At the moment, the repo contains real integration coverage and Playwright E2E scaffolding. Unit-test scripts are in place so pure-logic coverage can be added without changing the command structure again.
-
-### Playwright setup
-
-From `visualization/`:
-
-1. Install dependencies:
-  - `npm install`
-2. Run the automated scenarios:
-  - `npm run test:e2e`
-
-The Playwright config starts the Vite dev server automatically and, on Windows, uses the locally installed Microsoft Edge browser so no extra browser download is required.
-
-If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check and enable Playwright on a machine where browser automation is allowed.
-
-### Vitest integration setup
-
-From `visualization/`:
-
-1. Install dependencies:
-  - `npm install`
-2. Run the integration scenarios:
-  - `npm run test:integration`
-
-### Scenarios implemented now
-
-- Initial layout and startup selection behavior
-- Bottom panel collapse/expand persistence via `localStorage`
-- Search-driven definition filtering
-- Mark-as-learned persistence and progress updates
-
-### Are all scenarios automatically testable?
-
-No.
-
-These scenarios are good candidates for full automation:
-
-- `#1` Data generation from markdown
-- `#2` Cycle detection in generator
-- `#3` Layout overview
-- `#4` Bottom panel collapse/expand toggle
-- `#5` Bottom panel contents
-- `#6` Categories filters
-- `#7` Category checkbox behavior
-- `#8` Search filter
-- `#9` Learning state rules
-- `#10` Node state filters
-- `#11` Graph canvas display
-- `#12` Graph canvas radial levels
-- `#13` Dependency-based learning readiness
-- `#14` Mark definition as learned
-- `#15` Learning state persistence
-- `#18` Initial view focus on next ready-to-learn node
-
-These are only **partially** automatable without adding more explicit semantic hooks to the SVG or without relying on brittle visual snapshots:
-
-- `#16` Node click focus and center view
-- `#17` Node hover level-ring highlight
-- `#19` Edge styling based on prerequisite state
-
-These should keep at least some manual coverage because the acceptance criteria are visual or subjective:
-
-- `#20` Curved edge paths and aesthetic quality
-- `#21` Responsive usability on real mobile devices
-
-The bug scenario under **Bugs & Test Scenarios** now has regression coverage in the unit test suite.
-
+- **Manual or visual-review checks** for scenarios that are mostly about aesthetics, motion, or subjective usability.
 
 ## Troubleshooting
 
@@ -156,6 +66,11 @@ The generator tries to reduce false positives by:
 - Ignoring self-dependencies
 - Only keeping dependencies that exist in `index.md`
 
+### Playwright troubleshooting
+
+The Playwright config starts the Vite dev server automatically and, on Windows, uses the locally installed Microsoft Edge browser so no extra browser download is required.
+
+If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check and enable Playwright on a machine where browser automation is allowed.
 
 ## Features & Test Scenarios
 
@@ -477,4 +392,4 @@ Manual test.
 
 ## Bugs & Test Scenarios
 
-all clear now :)
+No bugs, for now :)
