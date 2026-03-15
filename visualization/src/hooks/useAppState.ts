@@ -136,7 +136,7 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         includedIds: action.includedIds ?? state.includedIds,
         infoOpen: action.showInfo || state.infoOpen,
         activeTab: action.selectedLeafId ? 'definition' : state.activeTab,
-        panelCollapsed: action.selectedLeafId ? false : state.panelCollapsed,
+        panelCollapsed: state.panelCollapsed,
       };
 
     case A.MARK_LEARNED: {

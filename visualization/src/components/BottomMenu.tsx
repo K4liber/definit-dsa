@@ -23,7 +23,7 @@ const BottomMenu: React.FC<Props> = ({ panelCollapsed, activeTab, onTabClick }) 
   };
 
   return (
-    <div className="bottomMenu" role="toolbar" aria-label="Bottom panel">
+    <div className="bottomMenu" role="toolbar" aria-label="Bottom panel tabs">
       {mkBtn('definition', 'Definition')}
       {mkBtn('filters', 'Filters')}
       {mkBtn('progress', 'Progress')}
