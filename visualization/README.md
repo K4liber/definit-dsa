@@ -53,8 +53,13 @@ Directory `visualization\tests` contains tests of various types.
 
 - **Unit**: verify isolated logic with small scope and minimal setup. In this repo that means pure helpers such as graph logic, storage helpers, and generator utilities.
 - **Integration**: render React components or the whole app in `jsdom` and verify user-visible workflows across multiple parts working together.
-- **E2E**: run the app in a real browser and verify behavior end to end, including browser-specific behavior that `jsdom` does not reproduce.
+- **E2E**: run the app in a real browser and verify behavior end to end, including browser-specific behavior that `jsdom` does not reproduce. These tests are currently disabled in CI and need to be fixed before they are re-enabled.
 - **Manual**: for scenarios that are mostly about aesthetics, motion, or subjective usability.
+
+### Current CI status
+
+- Unit and integration tests are enabled in CI.
+- E2E tests are currently disabled in CI because the Playwright suite needs to be fixed before it can be relied on.
 
 ## Troubleshooting
 
@@ -74,7 +79,7 @@ The generator tries to reduce false positives by:
 
 The Playwright config starts the Vite dev server automatically and, on Windows, uses the locally installed Microsoft Edge browser so no extra browser download is required.
 
-If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check and enable Playwright on a machine where browser automation is allowed.
+If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check. The Playwright E2E suite is currently disabled in CI until it is fixed.
 
 ## Bugs to be solved
 
