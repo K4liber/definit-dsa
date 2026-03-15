@@ -1,40 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
-type DefNode = {
-  id: string;
-  title: string;
-  deps: string[];
-};
-
-type DefGraph = {
-  nodes: DefNode[];
-};
+import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
+import type { DefGraph } from '../../src/types';
 
 const defsPath = fileURLToPath(new URL('../../public/defs.json', import.meta.url));
 const defs = JSON.parse(readFileSync(defsPath, 'utf8')) as DefGraph;
-
-function prerequisiteClosure(graph: DefGraph, startId: string): Set<string> {
-  const byId = new Map(graph.nodes.map((node) => [node.id, node] as const));
-  const visited = new Set<string>();
-  const stack = [startId];
-
-  while (stack.length > 0) {
-    const currentId = stack.pop()!;
-    if (visited.has(currentId)) continue;
-
-    const current = byId.get(currentId);
-    if (!current) continue;
-
-    visited.add(currentId);
-    for (const depId of current.deps ?? []) {
-      stack.push(depId);
-    }
-  }
-
-  return visited;
-}
 
 async function gotoApp(page: Page): Promise<void> {
   await page.goto('/');
@@ -91,7 +62,7 @@ test('persists bottom panel collapse state across reloads', async ({ page }) => 
 
 test('filters the graph to the selected definition prerequisites from search', async ({ page }) => {
   const selectedId = 'mathematics/fibonacci';
-  const expectedNodeCount = prerequisiteClosure(defs, selectedId).size;
+  const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
 
   await gotoApp(page);
   await closeInfoModalIfVisible(page);

@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { generateData } from '../../scripts/gen-data.mjs';
+import type { DefGraph } from '../../src/types';
 
 const tempDirs: string[] = [];
 
@@ -44,7 +45,7 @@ describe('gen-data script', () => {
     );
 
     const { graph } = await generateData({ indexPath, defsRoot, outPath });
-    const saved = JSON.parse(await readFile(outPath, 'utf8')) as typeof graph;
+    const saved = JSON.parse(await readFile(outPath, 'utf8')) as DefGraph;
 
     expect(graph.nodes).toHaveLength(2);
     expect(saved.nodes.map((node) => node.id)).toEqual(['mathematics/object', 'mathematics/set']);

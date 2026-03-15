@@ -3,17 +3,8 @@ import { cleanup, render, screen, waitFor, within } from '@testing-library/react
 import userEvent from '@testing-library/user-event';
 import defs from '../../public/defs.json';
 import App from '../../src/App';
-import { vi } from 'vitest';
-
-type DefNode = {
-  id: string;
-  title: string;
-  deps: string[];
-};
-
-type DefGraph = {
-  nodes: DefNode[];
-};
+import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
+import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('../../src/components/GraphCanvas', () => {
   const MockGraphCanvas = forwardRef(function MockGraphCanvas(
@@ -54,27 +45,6 @@ vi.mock('../../src/components/GraphCanvas', () => {
     default: MockGraphCanvas,
   };
 });
-
-function prerequisiteClosure(graph: DefGraph, startId: string): Set<string> {
-  const byId = new Map(graph.nodes.map((node) => [node.id, node] as const));
-  const visited = new Set<string>();
-  const stack = [startId];
-
-  while (stack.length > 0) {
-    const currentId = stack.pop()!;
-    if (visited.has(currentId)) continue;
-
-    const current = byId.get(currentId);
-    if (!current) continue;
-
-    visited.add(currentId);
-    for (const depId of current.deps ?? []) {
-      stack.push(depId);
-    }
-  }
-
-  return visited;
-}
 
 async function renderApp() {
   const user = userEvent.setup();
@@ -161,7 +131,7 @@ describe('App integration scenarios', () => {
 
   it('filters the graph to the selected definition prerequisites from search', async () => {
     const selectedId = 'mathematics/fibonacci';
-    const expectedNodeCount = prerequisiteClosure(defs as DefGraph, selectedId).size;
+    const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
     const { user } = await renderApp();
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));

@@ -41,6 +41,7 @@ describe('storage helpers', () => {
     localStorage.setItem(VISIBILITY_STORAGE_KEY, '"nope"');
     expect(loadIncludedFromStorage()).toBeNull();
 
+    saveIncludedToStorage(new Set(['x', 'y']));
     clearIncludedFromStorage();
     expect(loadIncludedFromStorage()).toBeNull();
   });
