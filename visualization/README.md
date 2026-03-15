@@ -56,10 +56,9 @@ Directory `visualization\tests` contains tests of various types.
 - **E2E**: run the app in a real browser and verify behavior end to end, including browser-specific behavior that `jsdom` does not reproduce. These tests are currently disabled in CI and need to be fixed before they are re-enabled.
 - **Manual**: for scenarios that are mostly about aesthetics, motion, or subjective usability.
 
-### Current CI status
+### Debug e2e test
 
-- Unit and integration tests are enabled in CI.
-- E2E tests are currently disabled in CI because the Playwright suite needs to be fixed before it can be relied on.
+`npx playwright test --grep "persists bottom panel" --debug`
 
 ## Troubleshooting
 

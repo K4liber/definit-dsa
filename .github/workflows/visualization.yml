@@ -36,9 +36,6 @@ jobs:
 
   e2e:
     name: Visualization E2E
-    # Disabled for now because the Playwright E2E suite needs to be fixed
-    # before it can be relied on in CI.
-    if: false
     runs-on: ubuntu-latest
     needs: test-and-build
     defaults:
@@ -59,11 +56,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
 
       - name: Install Playwright system dependencies
         run: npx playwright install-deps
+
+      - name: Install playwright
+        run: npx playwright install
 
       - name: Run Playwright tests
         run: npm run test:e2e

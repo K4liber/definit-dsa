@@ -22,14 +22,9 @@ async function closeInfoModalIfVisible(page: Page): Promise<void> {
   }
 }
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    localStorage.clear();
-  });
-});
-
 test('shows the main layout and auto-selects an initial ready definition', async ({ page }) => {
   await gotoApp(page);
+  await page.evaluate(() => localStorage.clear()); // initial clear
   await closeInfoModalIfVisible(page);
 
   await expect(page.getByRole('toolbar', { name: 'Top menu' })).toBeVisible();
@@ -44,17 +39,14 @@ test('shows the main layout and auto-selects an initial ready definition', async
 test('persists bottom panel collapse state across reloads', async ({ page }) => {
   await gotoApp(page);
   await closeInfoModalIfVisible(page);
-
+  // we need to have at least one definition learned to not automatically collapse the panel
+  await page.getByRole('button', { name: /Mark .* as learned/ }).click();
+  // now we can hide the bottom panel by reselecting the open tab
   await page.getByRole('button', { name: 'Definition' }).click();
   await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeHidden();
-
-  await expect
-    .poll(async () => page.evaluate(() => localStorage.getItem('definit-db.ui.bottomPanelCollapsed')))
-    .toBe('1');
-
+  // and reload the page
   await page.reload();
-  await closeInfoModalIfVisible(page);
-
+  // bottom panel should be hidden
   await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeHidden();
   await page.getByRole('button', { name: 'Filters' }).click();
   await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeVisible();
@@ -65,6 +57,7 @@ test('filters the graph to the selected definition prerequisites from search', a
   const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
 
   await gotoApp(page);
+  await page.evaluate(() => localStorage.clear()); // initial clear
   await closeInfoModalIfVisible(page);
 
   await page.getByRole('button', { name: 'Filters' }).click();
@@ -83,13 +76,14 @@ test('filters the graph to the selected definition prerequisites from search', a
 
 test('marks a definition as learned and restores progress from localStorage', async ({ page }) => {
   await gotoApp(page);
+  await page.evaluate(() => localStorage.clear()); // initial clear
   await closeInfoModalIfVisible(page);
 
   const markLearnedButton = page.getByRole('button', { name: /Mark .* as learned/ });
   await expect(markLearnedButton).toBeEnabled();
   await markLearnedButton.click();
 
-  await page.getByRole('button', { name: 'Progress' }).click();
+  await page.getByRole('button', { name: 'Progress', exact: true }).click();
   await expect(page.getByText(/Definitions learned/i)).toBeVisible();
   await expect(page.getByText(/^1 out of \d+$/)).toBeVisible();
 
@@ -98,6 +92,6 @@ test('marks a definition as learned and restores progress from localStorage', as
     .toBe(1);
 
   await page.reload();
-  await page.getByRole('button', { name: 'Progress' }).click();
+  await page.getByRole('button', { name: 'Progress', exact: true }).click();
   await expect(page.getByText(/^1 out of \d+$/)).toBeVisible();
 });
