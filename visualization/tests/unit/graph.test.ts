@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import defs from '../../public/defs.json';
+import defs from '../../../docs/defs.json';
 import type { DefGraph } from '../../src/types';
 import {
   buildCategoryTree,

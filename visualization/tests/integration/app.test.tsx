@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle } from 'react';
 import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import defs from '../../public/defs.json';
+import defs from '../../../docs/defs.json';
 import App from '../../src/App';
 import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
 import { describe, expect, it, vi } from 'vitest';

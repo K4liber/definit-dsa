@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest';
 
-import defs from '../public/defs.json';
+import defs from '../../docs/defs.json';
 
 import { vi } from 'vitest';
 

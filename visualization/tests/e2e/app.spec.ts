@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
 import type { DefGraph } from '../../src/types';
 
-const defsPath = fileURLToPath(new URL('../../public/defs.json', import.meta.url));
+const defsPath = fileURLToPath(new URL('../../../docs/defs.json', import.meta.url));
 const defs = JSON.parse(readFileSync(defsPath, 'utf8')) as DefGraph;
 
 async function gotoApp(page: Page): Promise<void> {
