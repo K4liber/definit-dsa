@@ -56,9 +56,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate defs.json
-        run: npm run gen:data
-
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
