@@ -1,4 +1,5 @@
 import { useReducer, useCallback, useEffect, useMemo, useRef } from 'react';
+import defs from '../../../docs/defs.json';
 import type { DefGraph, DefNode, Raw, LearnState } from '../types';
 import type { BottomTab } from '../types';
 import {
@@ -136,7 +137,7 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         includedIds: action.includedIds ?? state.includedIds,
         infoOpen: action.showInfo || state.infoOpen,
         activeTab: action.selectedLeafId ? 'definition' : state.activeTab,
-        panelCollapsed: action.selectedLeafId ? false : state.panelCollapsed,
+        panelCollapsed: state.panelCollapsed,
       };
 
     case A.MARK_LEARNED: {
@@ -306,15 +307,10 @@ export type AppActions = {
 export function useAppState(): AppState & AppActions {
   const [state, dispatch] = useReducer(reducer, undefined, initialReducerState);
 
-  // ── Fetch data on mount ──────────────────────────────────────────
+  // ── Load bundled data on mount ───────────────────────────────────
   useEffect(() => {
-    fetch('./defs.json')
-      .then((r) => r.json())
-      .then((def: DefGraph) => {
-        const raw = buildRaw(def);
-        dispatch({ type: A.DATA_LOADED, raw });
-      })
-      .catch(console.error);
+    const raw = buildRaw(defs as DefGraph);
+    dispatch({ type: A.DATA_LOADED, raw });
   }, []);
 
   // ── Derive search matches for dropdown ───────────────────────────

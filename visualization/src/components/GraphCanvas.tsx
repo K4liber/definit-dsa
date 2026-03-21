@@ -322,7 +322,11 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
     return (
       <div className="canvasArea">
         <div className="canvasWrap">
-          <svg ref={svgRef} />
+          <svg
+            ref={svgRef}
+            role="img"
+            aria-label="Definitions graph"
+          />
         </div>
       </div>
     );

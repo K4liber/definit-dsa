@@ -63,7 +63,12 @@ const BottomPanel: React.FC<Props> = ({
   onSetShowLearned,
 }) => {
   return (
-    <div className={`bottomPanel ${expanded ? 'expanded' : ''}`}>
+    <div
+      className={`bottomPanel ${expanded ? 'expanded' : ''}`}
+      role="region"
+      aria-label="Bottom panel"
+      aria-hidden={expanded ? 'false' : 'true'}
+    >
       <div className="bottomPanelContent">
         {/* Removed internal tab button row; tab switching is handled by BottomMenu */}
 

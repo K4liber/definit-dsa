@@ -216,6 +216,7 @@ const FiltersTab: React.FC<Props> = ({
           <div className="searchBox" role="combobox" aria-expanded={matches.length > 0}>
             <input
               type="text"
+              aria-label="Search definition"
               placeholder="Search node by id/title..."
               value={searchQuery}
               onChange={(e) => {
@@ -228,7 +229,7 @@ const FiltersTab: React.FC<Props> = ({
             />
 
             {searchOpen && matches.length > 0 && (
-              <div className="searchMatches" role="listbox">
+              <div className="searchMatches" role="listbox" aria-label="Definition matches">
                 {matches.map((m) => {
                   const checked = m.id === searchSelectedId;
                   return (
@@ -292,7 +293,7 @@ const FiltersTab: React.FC<Props> = ({
 
         <div>
           <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Category include/exclude</h4>
-          <div className="categoriesTree">{renderTreeNode(root)}</div>
+          <div className="categoriesTree" role="region" aria-label="Category include/exclude">{renderTreeNode(root)}</div>
         </div>
       </div>
     </div>

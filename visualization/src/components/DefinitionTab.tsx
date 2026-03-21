@@ -29,12 +29,12 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
 
   if (!node) {
     return (
-      <div className="panelSection viewer">
-        <h3>Content</h3>
-        <div className="viewerBody">
+      <section className="panelSection viewer" aria-labelledby="definition-title">
+        <h3 id="definition-title">Content</h3>
+        <div className="viewerBody" role="region" aria-label="Definition content">
           <p style={{ margin: 0, color: '#a9b4c0' }}>Select a definition to show the content.</p>
         </div>
-      </div>
+      </section>
     );
   }
 
@@ -44,8 +44,8 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
   const html = renderMdToHtml(node.content || '(no content)', node.deps ?? [], renderedNodes);
 
   return (
-    <div className="panelSection viewer">
-      <h3>{node.title}</h3>
+    <section className="panelSection viewer" aria-labelledby="definition-title">
+      <h3 id="definition-title">{node.title}</h3>
       <div
         className="path"
         style={{ display: 'block' }}
@@ -55,12 +55,15 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
       <div
         ref={bodyRef}
         className="viewerBody"
+        role="region"
+        aria-label="Definition content"
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <div className="viewerActions">
         {!isLearned && (
           <button
             className="btn"
+            aria-label={`Mark ${node.title} as learned`}
             disabled={!isReady}
             onClick={() => onMarkLearned(node.id)}
           >
@@ -68,7 +71,7 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
           </button>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

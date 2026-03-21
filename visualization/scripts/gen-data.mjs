@@ -8,7 +8,7 @@ const indexPath = path.resolve(repoRoot, '../src/definit_db/data_md/index.md');
 const defsRoot = path.resolve(repoRoot, '../src/definit_db/data_md/definitions');
 const outPath = path.resolve(repoRoot, './public/defs.json');
 
-function normalizeId(s) {
+export function normalizeId(s) {
   return s
     .trim()
     .toLowerCase()
@@ -16,7 +16,7 @@ function normalizeId(s) {
     .replace(/[^a-z0-9_\-]/g, '');
 }
 
-async function parseIndex(md) {
+export async function parseIndex(md, defsRootPath = defsRoot) {
   // lines like: - [object](mathematics/fundamental/object)
   const items = [];
   const re = /^-\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
@@ -33,7 +33,7 @@ async function parseIndex(md) {
     // ID has a <field>/<normalized_title> form
     const id = `${field}/${normalizeId(title)}`;
 
-    const contentFilePath = path.resolve(defsRoot, `${category}.md`);
+    const contentFilePath = path.resolve(defsRootPath, `${category}.md`);
     const content = await readIfExists(contentFilePath);
 
     if (!content) {
@@ -46,7 +46,7 @@ async function parseIndex(md) {
   return items;
 }
 
-async function readIfExists(p) {
+export async function readIfExists(p) {
   try {
     return await fs.readFile(p, 'utf8');
   } catch {
@@ -54,7 +54,7 @@ async function readIfExists(p) {
   }
 }
 
-function normalizeHrefToIndexRelPath(href, idByCategory) {
+export function normalizeHrefToIndexRelPath(href, idByCategory) {
   const clean = String(href ?? '').trim();
   if (!clean) return null;
   if (clean.startsWith('#')) return null;
@@ -92,7 +92,7 @@ function normalizeHrefToIndexRelPath(href, idByCategory) {
   return null; // ambiguous or not found
 }
 
-function extractDeps(md, ctx, idByCategory, stats) {
+export function extractDeps(md, ctx, idByCategory, stats) {
   // Heuristic: dependencies are written inside definitions content.
   // Pattern: [label](some/path) - we take label as a candidate dependency id
   //
@@ -141,7 +141,7 @@ function extractDeps(md, ctx, idByCategory, stats) {
   return [...deps].filter(Boolean);
 }
 
-function computeLevels(nodes) {
+export function computeLevels(nodes) {
   // Kept for cycle detection + dep filtering; UI computes levels dynamically.
   const byId = new Map(nodes.map((n) => [n.id, n]));
 
@@ -206,9 +206,13 @@ function computeLevels(nodes) {
   for (const n of nodes) dfs(n.id);
 }
 
-async function main() {
-  const indexMd = await fs.readFile(indexPath, 'utf8');
-  const items = await parseIndex(indexMd);
+export async function generateData({
+  indexPath: customIndexPath = indexPath,
+  defsRoot: customDefsRoot = defsRoot,
+  outPath: customOutPath = outPath,
+} = {}) {
+  const indexMd = await fs.readFile(customIndexPath, 'utf8');
+  const items = await parseIndex(indexMd, customDefsRoot);
 
   const nodes = [];
   const stats = { unresolvedHref: 0 };
@@ -230,14 +234,27 @@ async function main() {
   }
 
   const graph = { nodes, edges };
-  await fs.mkdir(path.dirname(outPath), { recursive: true });
-  await fs.writeFile(outPath, JSON.stringify(graph, null, 2), 'utf8');
-  console.log(
-    `Wrote ${outPath} (nodes=${nodes.length}, edges=${edges.length}, unresolvedHref=${stats.unresolvedHref})`
-  );
+  await fs.mkdir(path.dirname(customOutPath), { recursive: true });
+  await fs.writeFile(customOutPath, JSON.stringify(graph, null, 2), 'utf8');
+
+  return {
+    graph,
+    stats,
+    outPath: customOutPath,
+  };
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isMain) {
+  generateData()
+    .then(({ graph, stats, outPath: writtenOutPath }) => {
+      console.log(
+        `Wrote ${writtenOutPath} (nodes=${graph.nodes.length}, edges=${graph.edges.length}, unresolvedHref=${stats.unresolvedHref})`
+      );
+    })
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    });
+}
