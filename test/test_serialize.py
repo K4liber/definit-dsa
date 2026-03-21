@@ -2,9 +2,10 @@ from pathlib import Path
 
 import pytest
 from definit.db.md import DatabaseMd
+from definit.definition.definition import Definition
 
 from definit_db.data.field import FieldName
-from definit_db.serialize import _FIELDS
+from definit_db.serialize import _FIELDS  # type: ignore
 from definit_db.serialize import serialize
 from definit_db.serialize import verify_definitions_package
 
@@ -12,10 +13,36 @@ from definit_db.serialize import verify_definitions_package
 def test_generate_and_load() -> None:
     # Given, When
     db_path = serialize()
-    db = DatabaseMd(data_md_path=db_path, load_cache=True)
-    index = db.get_index()
-    # Then
+    db_md = DatabaseMd(data_md_path=db_path, load_cache=True)
+    index = db_md.get_index()
+    dag = db_md.get_dag(definition_keys=index)
+    definition_levels = dag.get_definition_levels()
+
+    level_to_definitions: dict[int, list[Definition]] = {}
+
+    for definition, level in definition_levels:
+        level_to_definitions.setdefault(level, []).append(definition)
+
+    level_to_number_of_definitions = {level: len(definitions) for level, definitions in level_to_definitions.items()}
+    expected_level_to_number_of_definitions = {
+        0: 6,
+        1: 12,
+        2: 35,
+        3: 33,
+        4: 28,
+        5: 32,
+        6: 42,
+        7: 39,
+        8: 16,
+        9: 11,
+        10: 4,
+        11: 2,
+        12: 6,
+        13: 7,
+        14: 2,
+    }
     assert len(index) == 275
+    assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
 
 @pytest.mark.parametrize("field", _FIELDS)

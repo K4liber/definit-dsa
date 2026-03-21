@@ -11,6 +11,12 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src",
+        },
+        {
+            "name": "Debug Unit Test",
+            "type": "debugpy",
+            "request": "attach",
+            "justMyCode": false,
         }
     ]
 }
