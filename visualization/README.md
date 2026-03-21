@@ -74,12 +74,6 @@ The generator tries to reduce false positives by:
 - Ignoring self-dependencies
 - Only keeping dependencies that exist in `index.md`
 
-### Playwright troubleshooting
-
-The Playwright config starts the Vite dev server automatically and, on Windows, uses the locally installed Microsoft Edge browser so no extra browser download is required.
-
-If your machine blocks browser automation by policy or certificate interception, use the Vitest integration tests as the default automated check. The Playwright E2E suite is currently disabled in CI until it is fixed.
-
 ## Bugs to be solved
 
 No bugs, for now :)
