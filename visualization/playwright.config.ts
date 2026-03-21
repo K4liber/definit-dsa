@@ -23,11 +23,11 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chrome',
+      name: isCI ? 'chromium' : 'chrome',
       use: {
         ...devices['Desktop Chrome'],
         browserName: 'chromium',
-        channel: 'chrome',
+        ...(isCI ? {} : { channel: 'chrome' }),
       },
     },
   ],
