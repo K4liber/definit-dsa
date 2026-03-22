@@ -3,6 +3,11 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.cwd": "${workspaceFolder}",
+    // python analysis
+    "python.analysis.extraPaths": [
+        "./src",
+        "../definit/src"
+    ],
     // python general
     "[python]": {
         "editor.codeActionsOnSave": {
@@ -16,11 +21,4 @@
     },
     // other
     "editor.formatOnSave": true,
-    "workbench.colorCustomizations": {
-        "statusBar.noFolderBackground": "#0F3046",
-        "statusBar.noFolderForeground": "#F6FAFD"
-    },
-    "python.analysis.extraPaths": [
-        "./src"
-    ],
 }

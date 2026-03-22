@@ -8,9 +8,6 @@ wheels/
 # Virtual environments
 .venv
 
-# IDE
-.vscode
-
 # Other
 .pypirc
 prompts-local.md

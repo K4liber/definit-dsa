@@ -59,10 +59,8 @@ def serialize() -> Path:
 
     for field in _FIELDS:
         field_index = get_field_index(field=field)
-        for definition in field_index:
-            if not isinstance(definition, Definition):
-                continue
 
+        for definition in field_index:
             # Extract sub_categories from module path
             sub_categories = tuple(
                 definition.__module__.removeprefix("src.")
