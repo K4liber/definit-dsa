@@ -5,7 +5,7 @@ description = "DefinIT database"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "definit==0.6.0", # for local dev use: "definit @ file:///home/.../definit"
+    "definit==0.6.0",
 ]
 
 [project.optional-dependencies]

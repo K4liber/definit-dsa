@@ -1,0 +1,2 @@
+# run 'uv pip install -r requirements-local.txt' to let debugger in definit package
+-e ../definit
