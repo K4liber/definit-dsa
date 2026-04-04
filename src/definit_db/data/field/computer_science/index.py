@@ -1,6 +1,10 @@
 from definit.definition.definition import Definition
 
 from definit_db.data.field.computer_science.definitions.algorithms.bit.bit_manipulation import BIT_MANIPULATION
+from definit_db.data.field.computer_science.definitions.algorithms.boyer_moore_majority_vote import (
+    BOYER_MOORE_MAJORITY_VOTE,
+)
+from definit_db.data.field.computer_science.definitions.algorithms.in_place_algorithm import IN_PLACE_ALGORITHM
 from definit_db.data.field.computer_science.definitions.algorithms.problems.graph_labeling.graph_coloring import (
     GRAPH_COLORING,
 )
@@ -209,6 +213,8 @@ field_index: list[Definition] = [
     ROLLING_HASH,
     RABIN_KARP_ALGORITHM,
     BIT_MANIPULATION,
+    BOYER_MOORE_MAJORITY_VOTE,
+    IN_PLACE_ALGORITHM,
     FLOAT,
     DOUBLE,
     AUXILIARY_SPACE,

@@ -113,6 +113,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
+from definit_db.data.field.mathematics.definitions.fundamental.majority_element import MAJORITY_ELEMENT
 from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
 from definit_db.data.field.mathematics.definitions.fundamental.median import MEDIAN
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
@@ -388,4 +389,5 @@ field_index: list[Definition] = [
     PARTITIONING,
     MEDIAN,
     HISTOGRAM,
+    MAJORITY_ELEMENT,
 ]
