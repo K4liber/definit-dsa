@@ -14,4 +14,4 @@ When creating a new definition, you should follow these steps:
 9. Run all tests inside `test` directory to ensure that the new definition does not break any existing functionality and that it works as expected. This is an important step to maintain the integrity of the codebase and to catch any potential issues early on.
 
 Please now create a new definition following the above steps.
-The new definition is "Boyer–Moore majority vote algorithm".
+The new definition is "random".
