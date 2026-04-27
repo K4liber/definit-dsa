@@ -8,3 +8,8 @@
 - subarray
 - random/randomness
 - Sliding Window Technique
+- index
+- transposing (matrix)
+- hash set
+- infinity
+- isomorphic (string)
