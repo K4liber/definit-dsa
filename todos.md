@@ -13,3 +13,12 @@
 - hash set
 - infinity
 - isomorphic (string)
+- bijection
+- anagram
+- hashmap (what to do with something named twice with different names?)
+- interval
+- merge
+- unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
+- simplified canonical path
+- Reverse Polish notation (does it belong here?)
+- Floyd's Tortoise and Hare algorithm
