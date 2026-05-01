@@ -43,6 +43,16 @@ def test_generate_and_load() -> None:
     }
     assert len(index) == 278
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
+    # Plot a histogram of the number of definitions per level
+    # TODO(K4liber): it should not be here -> move it to a separate script?
+    import matplotlib.pyplot as plt
+
+    plt.bar(level_to_number_of_definitions.keys(), level_to_number_of_definitions.values())
+    plt.xlabel("Level")
+    plt.ylabel("Number of Definitions")
+    plt.title("Number of Definitions per Level")
+    plt.show()
+    plt.savefig("number_of_definitions_per_level.png")
 
 
 @pytest.mark.parametrize("field", _FIELDS)
