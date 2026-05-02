@@ -22,3 +22,5 @@
 - simplified canonical path
 - Reverse Polish notation (does it belong here?)
 - Floyd's Tortoise and Hare algorithm
+- in-place
+- Head-insertion (or pre-pending)
