@@ -25,3 +25,4 @@ This approach goes deep into the graph structure before exploring other paths.
 
 
 DEPTH_FIRST_SEARCH = _DepthFirstSearch(DefinitionKey(name="depth-first search", field=FieldName.MATHEMATICS))
+# TODO(K4liber): it does not have to recursively visit neighbors, it can be implemented iteratively with a stack.

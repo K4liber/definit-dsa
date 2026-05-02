@@ -24,3 +24,5 @@
 - Floyd's Tortoise and Hare algorithm
 - in-place
 - Head-insertion (or pre-pending)
+- partition
+- LRU cache
