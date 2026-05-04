@@ -26,3 +26,5 @@
 - Head-insertion (or pre-pending)
 - partition
 - LRU cache
+- symmetry
+- preorder/inorder/postorder traversal
