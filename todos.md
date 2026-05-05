@@ -28,3 +28,4 @@
 - LRU cache
 - symmetry
 - preorder/inorder/postorder traversal
+- lowest common ancestor
