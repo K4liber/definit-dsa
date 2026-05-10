@@ -30,3 +30,5 @@
 - preorder/inorder/postorder traversal
 - lowest common ancestor
 - grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+- deep copy
+- Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
