@@ -34,3 +34,5 @@
 - Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - bidirectional BFS
 - trie
+- Backtracking
+- bitmask
