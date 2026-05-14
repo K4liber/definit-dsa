@@ -36,3 +36,5 @@
 - trie
 - Backtracking
 - bitmask
+- height-balanced binary search tree
+- quadtree
