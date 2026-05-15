@@ -38,3 +38,6 @@
 - bitmask
 - height-balanced binary search tree
 - quadtree
+- Kadane's algorithm
+- peak
+- median
