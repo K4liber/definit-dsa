@@ -41,3 +41,6 @@
 - Kadane's algorithm
 - peak
 - median
+- Hamming weight
+- commutative operation
+- XOR swap algorithm
