@@ -44,3 +44,5 @@
 - Hamming weight
 - commutative operation
 - XOR swap algorithm
+- Patience sorting
+- bisect
