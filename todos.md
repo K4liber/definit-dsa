@@ -3,8 +3,8 @@
 ## List of definitions to be added:
 
 - [x] Two Pointers Technique
-- [ ] palindrome
-- [ ] subsequence
+- [x] palindrome
+- [x] subsequence
 - [ ] subarray
 - [ ] random/randomness
 - [ ] Sliding Window Technique
