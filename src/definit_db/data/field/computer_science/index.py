@@ -5,6 +5,9 @@ from definit_db.data.field.computer_science.definitions.algorithms.boyer_moore_m
     BOYER_MOORE_MAJORITY_VOTE,
 )
 from definit_db.data.field.computer_science.definitions.algorithms.in_place_algorithm import IN_PLACE_ALGORITHM
+from definit_db.data.field.computer_science.definitions.algorithms.two_pointers_technique import (
+    TWO_POINTERS_TECHNIQUE,
+)
 from definit_db.data.field.computer_science.definitions.algorithms.problems.graph_labeling.graph_coloring import (
     GRAPH_COLORING,
 )
@@ -215,6 +218,7 @@ field_index: list[Definition] = [
     BIT_MANIPULATION,
     BOYER_MOORE_MAJORITY_VOTE,
     IN_PLACE_ALGORITHM,
+    TWO_POINTERS_TECHNIQUE,
     FLOAT,
     DOUBLE,
     AUXILIARY_SPACE,
