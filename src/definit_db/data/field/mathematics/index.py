@@ -126,6 +126,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.numeral_system im
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
+from definit_db.data.field.mathematics.definitions.fundamental.palindrome import PALINDROME
 from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
@@ -390,4 +391,5 @@ field_index: list[Definition] = [
     MEDIAN,
     HISTOGRAM,
     MAJORITY_ELEMENT,
+    PALINDROME,
 ]
