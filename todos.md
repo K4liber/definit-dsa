@@ -46,3 +46,6 @@
 - XOR swap algorithm
 - Patience sorting
 - bisect
+- Levenshtein distance
+- 1D DP
+- Multidimensional DP
