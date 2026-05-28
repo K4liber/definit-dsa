@@ -137,6 +137,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.probability impor
 from definit_db.data.field.mathematics.definitions.fundamental.product import PRODUCT
 from definit_db.data.field.mathematics.definitions.fundamental.pure_function import PURE_FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
+from definit_db.data.field.mathematics.definitions.fundamental.randomness import RANDOMNESS
 from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.fundamental.reordering import REORDERING
@@ -334,6 +335,7 @@ field_index: list[Definition] = [
     SELECTION_SORT,
     PROBABILITY,
     DISTRIBUTION,
+    RANDOMNESS,
     UNIFORM_DISTRIBUTION,
     MERGE,
     MERGE_SORT,

@@ -5,8 +5,8 @@
 - [x] Two Pointers Technique
 - [x] palindrome
 - [x] subsequence
-- [ ] subarray
-- [ ] random/randomness
+- [x] subarray
+- [x] random/randomness
 - [ ] Sliding Window Technique
 - [ ] index
 - [ ] transposing (matrix)
