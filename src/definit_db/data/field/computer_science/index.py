@@ -46,6 +46,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.linked_list import LINKED_LIST
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.list import LIST
+from definit_db.data.field.computer_science.definitions.data_structure.collection.list.subarray import SUBARRAY
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.ascii import ASCII
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.character_encoding import (
     CHARACTER_ENCODING,
@@ -190,6 +191,7 @@ field_index: list[Definition] = [
     BAG,
     SET,
     ARRAY,
+    SUBARRAY,
     LINKED_LIST,
     CIRCULAR_LINKED_LIST,
     LIST,
