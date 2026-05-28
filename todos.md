@@ -8,8 +8,8 @@
 - [x] subarray
 - [x] random/randomness
 - [x] Sliding Window Technique
-- [ ] index
-- [ ] transposing (matrix)
+- [x] index
+- [x] transposing (matrix)
 - [ ] hash set
 - [ ] infinity
 - [ ] isomorphic (string)

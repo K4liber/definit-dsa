@@ -145,6 +145,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
+from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
 from definit_db.data.field.mathematics.definitions.fundamental.unary_operation import UNARY_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribution import UNIFORM_DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.union import UNION
@@ -220,6 +221,7 @@ field_index: list[Definition] = [
     FIBONACCI,
     VECTOR,
     MATRIX,
+    TRANSPOSING,
     INSTRUCTION,
     INDEX,
     LOOP,

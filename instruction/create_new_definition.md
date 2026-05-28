@@ -17,4 +17,4 @@ When creating a new definition, you should follow these steps:
 10. Review the create definitions. Check if all references are used and if they make sense.
 
 Please now create a new definition following the above steps.
-The new definition is "Sliding Window Technique".
+The new definition is "transposing (matrix)".
