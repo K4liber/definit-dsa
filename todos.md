@@ -7,7 +7,7 @@
 - [x] subsequence
 - [x] subarray
 - [x] random/randomness
-- [ ] Sliding Window Technique
+- [x] Sliding Window Technique
 - [ ] index
 - [ ] transposing (matrix)
 - [ ] hash set
