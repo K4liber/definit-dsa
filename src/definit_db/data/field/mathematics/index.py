@@ -77,7 +77,6 @@ from definit_db.data.field.mathematics.definitions.algorithm.strategy.half_and_h
 )
 from definit_db.data.field.mathematics.definitions.algorithm.strategy.top_down_approach import TOP_DOWN_APPROACH
 from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior import ASYMPTOTIC_BEHAVIOR
-from definit_db.data.field.mathematics.definitions.analysis.bound import BOUND
 from definit_db.data.field.mathematics.definitions.analysis.upper_bound import UPPER_BOUND
 from definit_db.data.field.mathematics.definitions.computation.deterministic_turing_machine import (
     DETERMINISTIC_TURING_MACHINE,
@@ -91,6 +90,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem imp
 from definit_db.data.field.mathematics.definitions.fundamental.bijection import BIJECTION
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
+from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS

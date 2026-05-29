@@ -7,7 +7,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complex
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.space_complexity import SPACE_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior import ASYMPTOTIC_BEHAVIOR
-from definit_db.data.field.mathematics.definitions.analysis.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 
 

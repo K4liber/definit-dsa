@@ -16,7 +16,6 @@
 - [x] bijection
 - [x] isomorphism
 - [x] anagram
-- [ ] hashmap (what to do with something named twice with different names?)
 - [ ] interval
 - [ ] merge
 - [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
@@ -30,7 +29,6 @@
 - [ ] symmetry
 - [ ] preorder/inorder/postorder traversal
 - [ ] lowest common ancestor
-- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
 - [ ] deep copy
 - [ ] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - [ ] bidirectional BFS
@@ -50,3 +48,6 @@
 - [ ] Levenshtein distance
 - [ ] 1D DP
 - [ ] Multidimensional DP
+
+- [ ] hashmap (what to do with something named twice with different names?)
+- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)

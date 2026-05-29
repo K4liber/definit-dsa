@@ -2,7 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
-from definit_db.data.field.mathematics.definitions.analysis.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 
 
