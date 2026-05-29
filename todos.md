@@ -45,7 +45,7 @@
 - [x] XOR swap algorithm
 - [x] Patience sorting
 - [x] bisect
-- [ ] Levenshtein distance
+- [x] Levenshtein distance
 - [ ] 1D DP
 - [ ] Multidimensional DP
 

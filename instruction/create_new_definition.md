@@ -20,4 +20,4 @@ When creating a new definition, you should follow these steps:
 Please now create new definitions following the above steps.
 
 The new definitions are:
-- "bisect"
+- "Levenshtein distance"

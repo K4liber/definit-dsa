@@ -66,6 +66,9 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.isomorphic_string import (
     ISOMORPHIC_STRING,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.collection.string.levenshtein_distance import (
+    LEVENSHTEIN_DISTANCE,
+)
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.regular_expression import (
     REGULAR_EXPRESSION,
 )
@@ -231,6 +234,7 @@ field_index: list[Definition] = [
     STRING,
     ISOMORPHIC_STRING,
     ANAGRAM,
+    LEVENSHTEIN_DISTANCE,
     STRING_CONCATENATION,
     HEAD_INSERTION,
     SUBSTRING,
