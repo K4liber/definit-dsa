@@ -136,6 +136,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.palindrome import PALINDROME
 from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
+from definit_db.data.field.mathematics.definitions.fundamental.peak import PEAK
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
@@ -425,6 +426,7 @@ field_index: list[Definition] = [
     MUTUAL_EXCLUSIVITY,
     PARTITIONING,
     MEDIAN,
+    PEAK,
     HISTOGRAM,
     MAJORITY_ELEMENT,
     PALINDROME,

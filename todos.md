@@ -38,7 +38,7 @@
 - [x] height-balanced binary search tree
 - [x] quadtree
 - [x] Kadane's algorithm
-- [ ] peak
+- [x] peak
 - [ ] median
 - [ ] Hamming weight
 - [ ] commutative operation
