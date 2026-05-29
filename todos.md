@@ -10,7 +10,7 @@
 - [x] Sliding Window Technique
 - [x] index
 - [x] transposing (matrix)
-- [ ] hash set
+- [x] hash set
 - [ ] infinity
 - [ ] isomorphic (string)
 - [ ] bijection

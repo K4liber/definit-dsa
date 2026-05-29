@@ -36,6 +36,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_table import (
     HASH_TABLE,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_set import HASH_SET
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.priority_queue import (
     PRIORITY_QUEUE,
 )
@@ -191,6 +192,7 @@ field_index: list[Definition] = [
     PRIMITIVE_DATA_TYPE,
     ASSOCIATIVE_ARRAY,
     HASH_TABLE,
+    HASH_SET,
     BAG,
     SET,
     ARRAY,
