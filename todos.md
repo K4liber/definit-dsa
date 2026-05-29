@@ -41,7 +41,7 @@
 - [x] peak
 - [x] median
 - [x] Hamming weight
-- [ ] commutative operation
+- [x] commutative operation
 - [ ] XOR swap algorithm
 - [ ] Patience sorting
 - [ ] bisect

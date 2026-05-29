@@ -97,6 +97,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUN
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
+from definit_db.data.field.mathematics.definitions.fundamental.commutative_operation import COMMUTATIVE_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
@@ -245,6 +246,7 @@ field_index: list[Definition] = [
     LOOP,
     LAST_IN_FIRST_OUT,
     OPERATION,
+    COMMUTATIVE_OPERATION,
     RELATION,
     SET,
     INTERSECTION,
