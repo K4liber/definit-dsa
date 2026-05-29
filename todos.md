@@ -19,7 +19,7 @@
 - [x] interval
 - [x] merge
 - [x] Reverse Polish notation
-- [ ] Floyd's Tortoise and Hare algorithm
+- [x] Floyd's Tortoise and Hare algorithm
 - [ ] in-place
 - [ ] Head-insertion (or pre-pending)
 - [ ] partition
