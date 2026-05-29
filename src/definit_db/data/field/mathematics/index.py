@@ -221,6 +221,7 @@ from definit_db.data.field.mathematics.definitions.tree.n_ary_tree import N_ARY_
 from definit_db.data.field.mathematics.definitions.tree.perfect_binary_tree import PERFECT_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.post_order_traversal import POST_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.pre_order_traversal import PRE_ORDER_TRAVERSAL
+from definit_db.data.field.mathematics.definitions.tree.quadtree import QUADTREE
 from definit_db.data.field.mathematics.definitions.tree.red_black_tree import RED_BLACK_TREE
 from definit_db.data.field.mathematics.definitions.tree.root import ROOT
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
@@ -344,6 +345,7 @@ field_index: list[Definition] = [
     LOWEST_COMMON_ANCESTOR,
     ROOT,
     MINIMUM_SPANNING_TREE,
+    QUADTREE,
     RED_BLACK_TREE,
     SUBTREE,
     TREE,
