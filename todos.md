@@ -34,7 +34,7 @@
 - [x] bidirectional BFS
 - [x] trie
 - [x] Backtracking
-- [ ] bitmask
+- [x] bitmask
 - [ ] height-balanced binary search tree
 - [ ] quadtree
 - [ ] Kadane's algorithm

@@ -92,6 +92,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.auxiliary_sp
 from definit_db.data.field.computer_science.definitions.fundamental.binary_fractions import BINARY_FRACTIONS
 from definit_db.data.field.computer_science.definitions.fundamental.binary_representation import BINARY_REPRESENTATION
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
+from definit_db.data.field.computer_science.definitions.fundamental.bitmask import BITMASK
 from definit_db.data.field.computer_science.definitions.fundamental.bitwise_operation import BITWISE_OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
@@ -157,6 +158,7 @@ field_index: list[Definition] = [
     HEXADECIMAL_CODE,
     BINARY_FRACTIONS,
     BITWISE_OPERATION,
+    BITMASK,
     BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
