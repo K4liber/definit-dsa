@@ -32,8 +32,8 @@
 - [x] deep copy
 - [x] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - [x] bidirectional BFS
-- [ ] trie
-- [ ] Backtracking
+- [x] trie
+- [x] Backtracking
 - [ ] bitmask
 - [ ] height-balanced binary search tree
 - [ ] quadtree
