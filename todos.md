@@ -12,8 +12,9 @@
 - [x] transposing (matrix)
 - [x] hash set
 - [x] infinity
-- [ ] isomorphic (string)
-- [ ] bijection
+- [x] isomorphic (string)
+- [x] bijection
+- [x] isomorphism
 - [ ] anagram
 - [ ] hashmap (what to do with something named twice with different names?)
 - [ ] interval

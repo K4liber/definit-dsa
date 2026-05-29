@@ -88,6 +88,7 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
 from definit_db.data.field.mathematics.definitions.fundamental.and_operator import AND_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem import BAYES_THEOREM
+from definit_db.data.field.mathematics.definitions.fundamental.bijection import BIJECTION
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
@@ -109,6 +110,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.infinity import I
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
+from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
@@ -360,6 +362,8 @@ field_index: list[Definition] = [
     PRODUCT,
     REORDERING,
     UNIQUENESS,
+    BIJECTION,
+    ISOMORPHISM,
     RADIX,
     NUMERAL_SYSTEM,
     RADIX_SORT,

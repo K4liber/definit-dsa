@@ -5,12 +5,6 @@ from definit_db.data.field.computer_science.definitions.algorithms.boyer_moore_m
     BOYER_MOORE_MAJORITY_VOTE,
 )
 from definit_db.data.field.computer_science.definitions.algorithms.in_place_algorithm import IN_PLACE_ALGORITHM
-from definit_db.data.field.computer_science.definitions.algorithms.sliding_window_technique import (
-    SLIDING_WINDOW_TECHNIQUE,
-)
-from definit_db.data.field.computer_science.definitions.algorithms.two_pointers_technique import (
-    TWO_POINTERS_TECHNIQUE,
-)
 from definit_db.data.field.computer_science.definitions.algorithms.problems.graph_labeling.graph_coloring import (
     GRAPH_COLORING,
 )
@@ -25,6 +19,10 @@ from definit_db.data.field.computer_science.definitions.algorithms.problems.hash
 from definit_db.data.field.computer_science.definitions.algorithms.searching.string.rabin_karp_algorithm import (
     RABIN_KARP_ALGORITHM,
 )
+from definit_db.data.field.computer_science.definitions.algorithms.sliding_window_technique import (
+    SLIDING_WINDOW_TECHNIQUE,
+)
+from definit_db.data.field.computer_science.definitions.algorithms.two_pointers_technique import TWO_POINTERS_TECHNIQUE
 from definit_db.data.field.computer_science.definitions.computation.mapreduce import MAPREDUCE
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.associative_array import (
     ASSOCIATIVE_ARRAY,
@@ -33,10 +31,10 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.collection import (
     COLLECTION,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_set import HASH_SET
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_table import (
     HASH_TABLE,
 )
-from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_set import HASH_SET
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.priority_queue import (
     PRIORITY_QUEUE,
 )
@@ -57,6 +55,9 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.extended_ascii import (
     EXTENDED_ASCII,
+)
+from definit_db.data.field.computer_science.definitions.data_structure.collection.string.isomorphic_string import (
+    ISOMORPHIC_STRING,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.regular_expression import (
     REGULAR_EXPRESSION,
@@ -213,6 +214,7 @@ field_index: list[Definition] = [
     UNICODE,
     REGULAR_EXPRESSION,
     STRING,
+    ISOMORPHIC_STRING,
     STRING_CONCATENATION,
     SUBSTRING,
     TRIE,

@@ -29,9 +29,9 @@ def test_generate_and_load() -> None:
         1: 13,
         2: 35,
         3: 34,
-        4: 32,
-        5: 33,
-        6: 42,
+        4: 33,
+        5: 34,
+        6: 43,
         7: 40,
         8: 17,
         9: 14,
@@ -41,12 +41,12 @@ def test_generate_and_load() -> None:
         13: 7,
         14: 2,
     }
-    assert len(index) == 288
+    assert len(index) == 291
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
     # Plot a histogram of the number of definitions per level
     # TODO(K4liber): it should not be here -> move it to a separate script?
     return
-    import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt  # noqa: PLC0415
 
     plt.bar(level_to_number_of_definitions.keys(), level_to_number_of_definitions.values())
     plt.xlabel("Level")
