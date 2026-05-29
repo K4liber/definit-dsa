@@ -69,6 +69,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.sorting.bubble_sort
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.bucket_sort import BUCKET_SORT
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.heap_sort import HEAP_SORT
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.merge_sort import MERGE_SORT
+from definit_db.data.field.mathematics.definitions.algorithm.sorting.patience_sorting import PATIENCE_SORTING
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.quick_sort import QUICK_SORT
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.radix_sort import RADIX_SORT
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.selection_sort import SELECTION_SORT
@@ -392,6 +393,7 @@ field_index: list[Definition] = [
     RADIX_SORT,
     BUBBLE_SORT,
     HEAP_SORT,
+    PATIENCE_SORTING,
     TOPOLOGICAL_SORT,
     BACKTRACKING,
     BINARY_SEARCH,

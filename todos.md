@@ -43,7 +43,7 @@
 - [x] Hamming weight
 - [x] commutative operation
 - [x] XOR swap algorithm
-- [ ] Patience sorting
+- [x] Patience sorting
 - [ ] bisect
 - [ ] Levenshtein distance
 - [ ] 1D DP
