@@ -18,4 +18,4 @@ When creating a new definition, you should follow these steps:
 11. Run ruff check and fix the issues if there are any: `uv run ruff check --fix .`.
 
 Please now create a new definition following the above steps.
-The new definition is "Floyd's Tortoise and Hare algorithm".
+The new definition is "Head-insertion (or pre-pending)".

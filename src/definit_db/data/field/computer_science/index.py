@@ -79,6 +79,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.fundament
 from definit_db.data.field.computer_science.definitions.data_structure.fundamental.primitive_data_type import (
     PRIMITIVE_DATA_TYPE,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.operation.head_insertion import HEAD_INSERTION
 from definit_db.data.field.computer_science.definitions.data_structure.operation.string_concatenation import (
     STRING_CONCATENATION,
 )
@@ -221,6 +222,7 @@ field_index: list[Definition] = [
     ISOMORPHIC_STRING,
     ANAGRAM,
     STRING_CONCATENATION,
+    HEAD_INSERTION,
     SUBSTRING,
     TRIE,
     GRAPH_LABELING,

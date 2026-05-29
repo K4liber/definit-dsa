@@ -1,6 +1,8 @@
 # TODOs
 
-## List of definitions to be added:
+## IN PROGRESS
+
+### 1. Add DSA definitions found during doing LeetCode exercises
 
 - [x] Two Pointers Technique
 - [x] palindrome
@@ -20,8 +22,8 @@
 - [x] merge
 - [x] Reverse Polish notation
 - [x] Floyd's Tortoise and Hare algorithm
-- [ ] in-place
-- [ ] Head-insertion (or pre-pending)
+- [x] in-place
+- [x] Head-insertion (or pre-pending)
 - [ ] partition
 - [ ] LRU cache
 - [ ] symmetry
@@ -47,7 +49,11 @@
 - [ ] 1D DP
 - [ ] Multidimensional DP
 
+## TODO
+
 - [ ] hashmap (what to do with something named twice with different names?)
 - [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
 - [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
 - [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
+
+## DONE
