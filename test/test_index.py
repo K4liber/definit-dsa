@@ -9,7 +9,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.index import get_index
 
 _field_to_index_length = {
-    FieldName.COMPUTER_SCIENCE: 109,
+    FieldName.COMPUTER_SCIENCE: 110,
     FieldName.MATHEMATICS: 203,
 }
 

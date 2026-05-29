@@ -1,6 +1,7 @@
 from definit.definition.definition import Definition
 
 from definit_db.data.field.computer_science.definitions.algorithms.bit.bit_manipulation import BIT_MANIPULATION
+from definit_db.data.field.computer_science.definitions.algorithms.bit.xor_swap_algorithm import XOR_SWAP_ALGORITHM
 from definit_db.data.field.computer_science.definitions.algorithms.boyer_moore_majority_vote import (
     BOYER_MOORE_MAJORITY_VOTE,
 )
@@ -241,6 +242,7 @@ field_index: list[Definition] = [
     ROLLING_HASH,
     RABIN_KARP_ALGORITHM,
     BIT_MANIPULATION,
+    XOR_SWAP_ALGORITHM,
     BOYER_MOORE_MAJORITY_VOTE,
     FLOYDS_TORTOISE_AND_HARE_ALGORITHM,
     IN_PLACE_ALGORITHM,

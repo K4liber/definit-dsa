@@ -42,7 +42,7 @@
 - [x] median
 - [x] Hamming weight
 - [x] commutative operation
-- [ ] XOR swap algorithm
+- [x] XOR swap algorithm
 - [ ] Patience sorting
 - [ ] bisect
 - [ ] Levenshtein distance
