@@ -8,6 +8,7 @@ from definit_db.data.field.computer_science.definitions.algorithms.floyds_tortoi
     FLOYDS_TORTOISE_AND_HARE_ALGORITHM,
 )
 from definit_db.data.field.computer_science.definitions.algorithms.in_place_algorithm import IN_PLACE_ALGORITHM
+from definit_db.data.field.computer_science.definitions.algorithms.kadanes_algorithm import KADANES_ALGORITHM
 from definit_db.data.field.computer_science.definitions.algorithms.problems.graph_labeling.graph_coloring import (
     GRAPH_COLORING,
 )
@@ -241,6 +242,7 @@ field_index: list[Definition] = [
     BOYER_MOORE_MAJORITY_VOTE,
     FLOYDS_TORTOISE_AND_HARE_ALGORITHM,
     IN_PLACE_ALGORITHM,
+    KADANES_ALGORITHM,
     TWO_POINTERS_TECHNIQUE,
     SLIDING_WINDOW_TECHNIQUE,
     FLOAT,

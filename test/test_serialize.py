@@ -35,13 +35,13 @@ def test_generate_and_load() -> None:
         7: 42,
         8: 19,
         9: 17,
-        10: 7,
+        10: 8,
         11: 3,
         12: 6,
         13: 8,
         14: 2,
     }
-    assert len(index) == 308
+    assert len(index) == 309
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
     # Plot a histogram of the number of definitions per level
     # TODO(K4liber): it should not be here -> move it to a separate script?

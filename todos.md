@@ -37,7 +37,7 @@
 - [x] bitmask
 - [x] height-balanced binary search tree
 - [x] quadtree
-- [ ] Kadane's algorithm
+- [x] Kadane's algorithm
 - [ ] peak
 - [ ] median
 - [ ] Hamming weight
