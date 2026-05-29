@@ -30,7 +30,7 @@
 - [x] preorder/inorder/postorder traversal
 - [x] lowest common ancestor
 - [x] deep copy
-- [ ] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
+- [x] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - [ ] bidirectional BFS
 - [ ] trie
 - [ ] Backtracking

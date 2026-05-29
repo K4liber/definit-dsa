@@ -58,6 +58,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.graph.dijkstras_alg
 from definit_db.data.field.mathematics.definitions.algorithm.graph.floyd_warshall_algorithm import (
     FLOYD_WARSHALL_ALGORITHM,
 )
+from definit_db.data.field.mathematics.definitions.algorithm.graph.kahns_algorithm import KAHNS_ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.searching.bidirectional_search import BIDIRECTIONAL_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.binary_search import BINARY_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.breadth_first_search import BREADTH_FIRST_SEARCH
@@ -170,6 +171,7 @@ from definit_db.data.field.mathematics.definitions.graph.directed_graph import D
 from definit_db.data.field.mathematics.definitions.graph.edge import EDGE
 from definit_db.data.field.mathematics.definitions.graph.graph import GRAPH
 from definit_db.data.field.mathematics.definitions.graph.graph_distance import GRAPH_DISTANCE
+from definit_db.data.field.mathematics.definitions.graph.in_degree import IN_DEGREE
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.graph.path import PATH
 from definit_db.data.field.mathematics.definitions.graph.subgraph import SUBGRAPH
@@ -296,6 +298,7 @@ field_index: list[Definition] = [
     BELLMAN_FORD_ALGORITHM,
     FLOYD_WARSHALL_ALGORITHM,
     CYCLE_DETECTION,
+    KAHNS_ALGORITHM,
     GRAPH,
     NODE,
     EDGE,
@@ -307,6 +310,7 @@ field_index: list[Definition] = [
     DIRECTED_ACYCLIC_GRAPH,
     DIRECTED_GRAPH,
     GRAPH_DISTANCE,
+    IN_DEGREE,
     PATH,
     SUBGRAPH,
     CONNECTED_GRAPH,
