@@ -35,7 +35,7 @@
 - [x] trie
 - [x] Backtracking
 - [x] bitmask
-- [ ] height-balanced binary search tree
+- [x] height-balanced binary search tree
 - [ ] quadtree
 - [ ] Kadane's algorithm
 - [ ] peak

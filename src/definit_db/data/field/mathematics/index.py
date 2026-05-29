@@ -206,6 +206,9 @@ from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal im
 from definit_db.data.field.mathematics.definitions.tree.complete_binary_tree import COMPLETE_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.full_binary_tree import FULL_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.heap_tree import HEAP_TREE
+from definit_db.data.field.mathematics.definitions.tree.height_balanced_binary_search_tree import (
+    HEIGHT_BALANCED_BINARY_SEARCH_TREE,
+)
 from definit_db.data.field.mathematics.definitions.tree.in_order_traversal import IN_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.interval_tree import INTERVAL_TREE
 from definit_db.data.field.mathematics.definitions.tree.k_ary_tree import K_ARY_TREE
@@ -326,6 +329,7 @@ field_index: list[Definition] = [
     BINARY_SEARCH_TREE,
     BINARY_TREE,
     BINARY_TREE_TRAVERSAL,
+    HEIGHT_BALANCED_BINARY_SEARCH_TREE,
     IN_ORDER_TRAVERSAL,
     PRE_ORDER_TRAVERSAL,
     POST_ORDER_TRAVERSAL,
