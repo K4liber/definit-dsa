@@ -29,7 +29,7 @@
 - [x] symmetry
 - [x] preorder/inorder/postorder traversal
 - [x] lowest common ancestor
-- [ ] deep copy
+- [x] deep copy
 - [ ] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - [ ] bidirectional BFS
 - [ ] trie

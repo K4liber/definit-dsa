@@ -108,6 +108,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
+from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
@@ -191,6 +192,7 @@ field_index: list[Definition] = [
     MEMORY_MANAGEMENT,
     VARIABLE,
     TWOS_COMPLEMENT,
+    DEEP_COPY,
     ABSTRACT_DATA_TYPE,
     BIT_FIELD,
     COLLECTION,
