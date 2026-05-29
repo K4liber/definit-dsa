@@ -27,8 +27,8 @@
 - [x] partition
 - [x] LRU cache
 - [x] symmetry
-- [ ] preorder/inorder/postorder traversal
-- [ ] lowest common ancestor
+- [x] preorder/inorder/postorder traversal
+- [x] lowest common ancestor
 - [ ] deep copy
 - [ ] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
 - [ ] bidirectional BFS

@@ -17,5 +17,7 @@ When creating a new definition, you should follow these steps:
 10. Review the create definitions. Check if all references are used and if they make sense.
 11. Run ruff check and fix the issues if there are any: `uv run ruff check --fix .`.
 
-Please now create a new definition following the above steps.
-The new definition is "symmetry".
+Please now create new definitions following the above steps.
+
+The new definitions are:
+- "lowest common ancestor"

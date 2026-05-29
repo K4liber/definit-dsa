@@ -191,6 +191,7 @@ from definit_db.data.field.mathematics.definitions.problem.recursion import RECU
 from definit_db.data.field.mathematics.definitions.problem.reduction import REDUCTION
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.subproblem import SUBPROBLEM
+from definit_db.data.field.mathematics.definitions.tree.ancestor import ANCESTOR
 from definit_db.data.field.mathematics.definitions.tree.avl_tree import AVL_TREE
 from definit_db.data.field.mathematics.definitions.tree.b_tree import B_TREE
 from definit_db.data.field.mathematics.definitions.tree.balanced_binary_tree import BALANCED_BINARY_TREE
@@ -205,6 +206,7 @@ from definit_db.data.field.mathematics.definitions.tree.in_order_traversal impor
 from definit_db.data.field.mathematics.definitions.tree.interval_tree import INTERVAL_TREE
 from definit_db.data.field.mathematics.definitions.tree.k_ary_tree import K_ARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
+from definit_db.data.field.mathematics.definitions.tree.lowest_common_ancestor import LOWEST_COMMON_ANCESTOR
 from definit_db.data.field.mathematics.definitions.tree.max_heap import MAX_HEAP
 from definit_db.data.field.mathematics.definitions.tree.min_heap import MIN_HEAP
 from definit_db.data.field.mathematics.definitions.tree.minimum_spanning_tree import MINIMUM_SPANNING_TREE
@@ -309,6 +311,7 @@ field_index: list[Definition] = [
     SUBGRAPH,
     CONNECTED_GRAPH,
     WEIGHTED_GRAPH,
+    ANCESTOR,
     AVL_TREE,
     B_TREE,
     BALANCED_BINARY_TREE,
@@ -328,6 +331,7 @@ field_index: list[Definition] = [
     K_ARY_TREE,
     N_ARY_TREE,
     LEAF,
+    LOWEST_COMMON_ANCESTOR,
     ROOT,
     MINIMUM_SPANNING_TREE,
     RED_BLACK_TREE,
