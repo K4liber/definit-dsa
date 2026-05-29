@@ -24,8 +24,8 @@
 - [x] Floyd's Tortoise and Hare algorithm
 - [x] in-place
 - [x] Head-insertion (or pre-pending)
-- [ ] partition
-- [ ] LRU cache
+- [x] partition
+- [x] LRU cache
 - [ ] symmetry
 - [ ] preorder/inorder/postorder traversal
 - [ ] lowest common ancestor

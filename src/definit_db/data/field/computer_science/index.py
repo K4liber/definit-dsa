@@ -27,6 +27,7 @@ from definit_db.data.field.computer_science.definitions.algorithms.sliding_windo
 )
 from definit_db.data.field.computer_science.definitions.algorithms.two_pointers_technique import TWO_POINTERS_TECHNIQUE
 from definit_db.data.field.computer_science.definitions.computation.mapreduce import MAPREDUCE
+from definit_db.data.field.computer_science.definitions.data_structure.collection.cache.lru_cache import LRU_CACHE
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.associative_array import (
     ASSOCIATIVE_ARRAY,
 )
@@ -199,6 +200,7 @@ field_index: list[Definition] = [
     ASSOCIATIVE_ARRAY,
     HASH_TABLE,
     HASH_SET,
+    LRU_CACHE,
     BAG,
     SET,
     ARRAY,
