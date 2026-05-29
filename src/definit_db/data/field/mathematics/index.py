@@ -59,6 +59,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.graph.floyd_warshal
     FLOYD_WARSHALL_ALGORITHM,
 )
 from definit_db.data.field.mathematics.definitions.algorithm.graph.kahns_algorithm import KAHNS_ALGORITHM
+from definit_db.data.field.mathematics.definitions.algorithm.searching.bidirectional_bfs import BIDIRECTIONAL_BFS
 from definit_db.data.field.mathematics.definitions.algorithm.searching.bidirectional_search import BIDIRECTIONAL_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.binary_search import BINARY_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.breadth_first_search import BREADTH_FIRST_SEARCH
@@ -383,6 +384,7 @@ field_index: list[Definition] = [
     HEAP_SORT,
     TOPOLOGICAL_SORT,
     BINARY_SEARCH,
+    BIDIRECTIONAL_BFS,
     BIDIRECTIONAL_SEARCH,
     BREADTH_FIRST_SEARCH,
     DEPTH_FIRST_SEARCH,

@@ -31,7 +31,7 @@
 - [x] lowest common ancestor
 - [x] deep copy
 - [x] Kahn's Algorithm (https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/)
-- [ ] bidirectional BFS
+- [x] bidirectional BFS
 - [ ] trie
 - [ ] Backtracking
 - [ ] bitmask
