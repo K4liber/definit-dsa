@@ -110,9 +110,9 @@ from definit_db.data.field.mathematics.definitions.fundamental.infinity import I
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
-from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
+from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR

@@ -15,7 +15,7 @@
 - [x] isomorphic (string)
 - [x] bijection
 - [x] isomorphism
-- [ ] anagram
+- [x] anagram
 - [ ] hashmap (what to do with something named twice with different names?)
 - [ ] interval
 - [ ] merge

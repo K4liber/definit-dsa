@@ -15,6 +15,7 @@ When creating a new definition, you should follow these steps:
 8. Add the new definition to the field index (for example `src\definit_db\data\field\computer_science\__init__.py` in case of a computer science definition) if it belongs to a specific field. This will help to keep track of all definitions in that field and make it easier to find them later.
 9. Run all tests inside `test` directory to ensure that the new definition does not break any existing functionality and that it works as expected. This is an important step to maintain the integrity of the codebase and to catch any potential issues early on.
 10. Review the create definitions. Check if all references are used and if they make sense.
+11. Run ruff check and fix the issues if there are any: `uv run ruff check --fix .`.
 
 Please now create a new definition following the above steps.
-The new definition is "isomorphic (string)".
+The new definition is "anagram".
