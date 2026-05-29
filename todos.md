@@ -11,7 +11,7 @@
 - [x] index
 - [x] transposing (matrix)
 - [x] hash set
-- [ ] infinity
+- [x] infinity
 - [ ] isomorphic (string)
 - [ ] bijection
 - [ ] anagram

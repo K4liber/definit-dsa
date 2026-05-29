@@ -90,6 +90,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.and_operator impo
 from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem import BAYES_THEOREM
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
+from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
@@ -104,6 +105,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.hash_function imp
 from definit_db.data.field.mathematics.definitions.fundamental.histogram import HISTOGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.independence import INDEPENDENCE
 from definit_db.data.field.mathematics.definitions.fundamental.index import INDEX
+from definit_db.data.field.mathematics.definitions.fundamental.infinity import INFINITY
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
@@ -232,6 +234,7 @@ field_index: list[Definition] = [
     INTERSECTION,
     UNION,
     FINITE_SET,
+    COLLECTION,
     FUNCTION,
     HASH_FUNCTION,
     PURE_FUNCTION,
@@ -343,6 +346,7 @@ field_index: list[Definition] = [
     MERGE_SORT,
     BUCKET_SORT,
     NUMBER,
+    INFINITY,
     SQUARE_ROOT,
     PERFECT_SQUARE,
     INTEGER,
