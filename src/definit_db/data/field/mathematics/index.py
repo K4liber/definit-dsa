@@ -150,6 +150,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
+from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
 from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
 from definit_db.data.field.mathematics.definitions.fundamental.unary_operation import UNARY_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribution import UNIFORM_DISTRIBUTION
@@ -410,4 +411,5 @@ field_index: list[Definition] = [
     MAJORITY_ELEMENT,
     PALINDROME,
     SUBSEQUENCE,
+    SYMMETRY,
 ]

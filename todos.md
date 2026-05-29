@@ -26,7 +26,7 @@
 - [x] Head-insertion (or pre-pending)
 - [x] partition
 - [x] LRU cache
-- [ ] symmetry
+- [x] symmetry
 - [ ] preorder/inorder/postorder traversal
 - [ ] lowest common ancestor
 - [ ] deep copy
