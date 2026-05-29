@@ -44,7 +44,7 @@
 - [x] commutative operation
 - [x] XOR swap algorithm
 - [x] Patience sorting
-- [ ] bisect
+- [x] bisect
 - [ ] Levenshtein distance
 - [ ] 1D DP
 - [ ] Multidimensional DP

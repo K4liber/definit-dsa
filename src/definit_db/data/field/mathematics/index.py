@@ -63,6 +63,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.searching.backtrack
 from definit_db.data.field.mathematics.definitions.algorithm.searching.bidirectional_bfs import BIDIRECTIONAL_BFS
 from definit_db.data.field.mathematics.definitions.algorithm.searching.bidirectional_search import BIDIRECTIONAL_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.binary_search import BINARY_SEARCH
+from definit_db.data.field.mathematics.definitions.algorithm.searching.bisect import BISECT
 from definit_db.data.field.mathematics.definitions.algorithm.searching.breadth_first_search import BREADTH_FIRST_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.searching.depth_first_search import DEPTH_FIRST_SEARCH
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.bubble_sort import BUBBLE_SORT
@@ -397,6 +398,7 @@ field_index: list[Definition] = [
     TOPOLOGICAL_SORT,
     BACKTRACKING,
     BINARY_SEARCH,
+    BISECT,
     BIDIRECTIONAL_BFS,
     BIDIRECTIONAL_SEARCH,
     BREADTH_FIRST_SEARCH,
