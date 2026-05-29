@@ -1,4 +1,4 @@
-# TODOS
+# TODOs
 
 ## List of definitions to be added:
 
@@ -17,10 +17,8 @@
 - [x] isomorphism
 - [x] anagram
 - [x] interval
-- [ ] merge
-- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
-- [ ] simplified canonical path
-- [ ] Reverse Polish notation (does it belong here?)
+- [x] merge
+- [x] Reverse Polish notation
 - [ ] Floyd's Tortoise and Hare algorithm
 - [ ] in-place
 - [ ] Head-insertion (or pre-pending)
@@ -51,3 +49,5 @@
 
 - [ ] hashmap (what to do with something named twice with different names?)
 - [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
+- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)

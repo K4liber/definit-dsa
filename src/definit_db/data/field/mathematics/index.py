@@ -174,6 +174,7 @@ from definit_db.data.field.mathematics.definitions.graph.path import PATH
 from definit_db.data.field.mathematics.definitions.graph.subgraph import SUBGRAPH
 from definit_db.data.field.mathematics.definitions.graph.weighted_graph import WEIGHTED_GRAPH
 from definit_db.data.field.mathematics.definitions.notations.label import LABEL
+from definit_db.data.field.mathematics.definitions.notations.reverse_polish_notation import REVERSE_POLISH_NOTATION
 from definit_db.data.field.mathematics.definitions.problem.base_case import BASE_CASE
 from definit_db.data.field.mathematics.definitions.problem.complement_problem import COMPLEMENT_PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
@@ -244,6 +245,7 @@ field_index: list[Definition] = [
     POLYNOMIAL,
     MULTISET,
     LABEL,
+    REVERSE_POLISH_NOTATION,
     ASYMPTOTIC_BEHAVIOR,
     BOUND,
     UPPER_BOUND,
