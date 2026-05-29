@@ -16,7 +16,7 @@
 - [x] bijection
 - [x] isomorphism
 - [x] anagram
-- [ ] interval
+- [x] interval
 - [ ] merge
 - [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
 - [ ] simplified canonical path

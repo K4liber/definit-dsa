@@ -112,6 +112,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
+from definit_db.data.field.mathematics.definitions.fundamental.interval import INTERVAL
 from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
@@ -387,6 +388,7 @@ field_index: list[Definition] = [
     EXPECTED_CASE,
     EXPECTED_VALUE,
     PERMUTATION,
+    INTERVAL,
     LOGICAL_OPERATOR,
     NOT_OPERATOR,
     OR_OPERATOR,
