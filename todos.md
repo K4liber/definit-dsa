@@ -39,8 +39,8 @@
 - [x] quadtree
 - [x] Kadane's algorithm
 - [x] peak
-- [ ] median
-- [ ] Hamming weight
+- [x] median
+- [x] Hamming weight
 - [ ] commutative operation
 - [ ] XOR swap algorithm
 - [ ] Patience sorting

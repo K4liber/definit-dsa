@@ -114,6 +114,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.deep_copy im
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
+from definit_db.data.field.computer_science.definitions.fundamental.hamming_weight import HAMMING_WEIGHT
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
@@ -160,6 +161,7 @@ field_index: list[Definition] = [
     BINARY_FRACTIONS,
     BITWISE_OPERATION,
     BITMASK,
+    HAMMING_WEIGHT,
     BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
