@@ -2,6 +2,20 @@
 
 ## IN PROGRESS
 
+## TODO
+
+### 2. What to do with something named twice with different names?
+
+- [ ] hashmap (what to do with something named twice with different names?)
+- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+
+### 3. New definitions
+
+- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
+- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
+
+## DONE
+
 ### 1. Add DSA definitions found during doing LeetCode exercises
 
 - [x] Two Pointers Technique
@@ -46,14 +60,5 @@
 - [x] Patience sorting
 - [x] bisect
 - [x] Levenshtein distance
-- [ ] 1D DP
-- [ ] Multidimensional DP
-
-## TODO
-
-- [ ] hashmap (what to do with something named twice with different names?)
-- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
-- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
-- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
-
-## DONE
+- [x] 1D DP
+- [x] Multidimensional DP

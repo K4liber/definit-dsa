@@ -28,11 +28,17 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.mathema
     MATHEMATICAL_PROGRAMMING,
 )
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.memoization import MEMOIZATION
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.multidimensional_dynamic_programming import (
+    MULTIDIMENSIONAL_DYNAMIC_PROGRAMMING,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.np_class import NP_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.np_complete_class import NP_COMPLETE_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.np_hard_class import NP_HARD_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.objective_function import OBJECTIVE_FUNCTION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.off_by_one import OFF_BY_ONE
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.one_dimensional_dynamic_programming import (
+    ONE_DIMENSIONAL_DYNAMIC_PROGRAMMING,
+)
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.p_class import P_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.precomputation import PRECOMPUTATION
@@ -296,6 +302,8 @@ field_index: list[Definition] = [
     BRUTE_FORCE,
     BUD,
     DYNAMIC_PROGRAMMING,
+    ONE_DIMENSIONAL_DYNAMIC_PROGRAMMING,
+    MULTIDIMENSIONAL_DYNAMIC_PROGRAMMING,
     MEMOIZATION,
     PRECOMPUTATION,
     CO_NP_CLASS,
