@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle } from 'react';
-import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import defs from '../../../docs/defs.json';
 import App from '../../src/App';
@@ -87,9 +87,23 @@ function getBottomPanel(): HTMLElement {
   return panel;
 }
 
-async function openFilters(user: ReturnType<typeof userEvent.setup>) {
-  await user.click(screen.getByRole('button', { name: 'Filters' }));
+function openFilters() {
+  fireEvent.click(screen.getByRole('button', { name: 'Filters' }));
   return screen.getByRole('region', { name: 'Category include/exclude' });
+}
+
+async function searchAndSelectDefinition(query: string, id: string) {
+  const searchInput = screen.getByLabelText('Search definition');
+  fireEvent.change(searchInput, { target: { value: query } });
+
+  const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
+  const matchText = within(matches).getByText(id, { exact: true });
+  const matchLabel = matchText.closest('label');
+  if (!matchLabel) throw new Error(`Search match label not found for ${id}`);
+
+  const checkbox = matchLabel.querySelector('input[type="checkbox"]');
+  if (!(checkbox instanceof HTMLInputElement)) throw new Error(`Search match checkbox not found for ${id}`);
+  fireEvent.click(checkbox);
 }
 
 function getTreeRowCheckboxByText(text: string): HTMLInputElement {
@@ -132,17 +146,11 @@ describe('App integration scenarios', () => {
   it('filters the graph to the selected definition prerequisites from search', async () => {
     const selectedId = 'mathematics/fibonacci';
     const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
-    const { user } = await renderApp();
+    await renderApp();
 
-    await user.click(screen.getByRole('button', { name: 'Filters' }));
-    await user.click(screen.getByLabelText('Show not-ready nodes'));
-
-    const searchInput = screen.getByLabelText('Search definition');
-    await user.clear(searchInput);
-    await user.type(searchInput, 'fibonacci');
-
-    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
-    await user.click(within(matches).getByText(selectedId, { exact: true }));
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
+    await searchAndSelectDefinition('fibonacci', selectedId);
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeInTheDocument();
@@ -179,16 +187,13 @@ describe('App integration scenarios', () => {
   });
 
   it('allows clicking dependency links inside a definition to navigate to that dependency', async () => {
-    const { user } = await renderApp();
+    await renderApp();
 
-    await openFilters(user);
-    await user.click(screen.getByLabelText('Show not-ready nodes'));
-    const searchInput = screen.getByLabelText('Search definition');
-    await user.type(searchInput, 'fibonacci');
-    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
-    await user.click(within(matches).getByText('mathematics/fibonacci', { exact: true }));
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
+    await searchAndSelectDefinition('fibonacci', 'mathematics/fibonacci');
 
-    await user.click(within(screen.getByRole('region', { name: 'Definition content' })).getByText('sequence'));
+    fireEvent.click(within(screen.getByRole('region', { name: 'Definition content' })).getByText('sequence'));
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
@@ -197,18 +202,18 @@ describe('App integration scenarios', () => {
   });
 
   it('updates rendered graph when node state filters change', async () => {
-    const { user } = await renderApp();
+    await renderApp();
     const initialCount = graphCount();
 
-    await openFilters(user);
-    await user.click(screen.getByLabelText('Show not-ready nodes'));
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
 
     await waitFor(() => {
       expect(graphCount()).toBeGreaterThan(initialCount);
     });
 
     const afterNotReady = graphCount();
-    await user.click(screen.getByLabelText('Show ready-to-learn nodes'));
+    fireEvent.click(screen.getByLabelText('Show ready-to-learn nodes'));
 
     await waitFor(() => {
       expect(graphCount()).toBeLessThan(afterNotReady);
@@ -219,7 +224,7 @@ describe('App integration scenarios', () => {
     const { user } = await renderApp();
     const initialCount = graphCount();
 
-    await openFilters(user);
+    openFilters();
     await user.click(getTreeRowCheckboxByText('criterion'));
 
     await waitFor(() => {
@@ -236,7 +241,7 @@ describe('App integration scenarios', () => {
   it('restores category expand-collapse state from localStorage', async () => {
     const { user } = await renderApp();
 
-    const tree = await openFilters(user);
+    const tree = openFilters();
     expect(within(tree).getByText('criterion')).toBeInTheDocument();
 
     await user.click(within(tree).getByText('mathematics'));
@@ -246,21 +251,18 @@ describe('App integration scenarios', () => {
     });
 
     cleanup();
-    const second = await renderApp();
-    const secondTree = await openFilters(second.user);
+    await renderApp();
+    const secondTree = openFilters();
 
     expect(within(secondTree).queryByText('criterion')).not.toBeInTheDocument();
   });
 
   it('disables learning for a not-ready definition selected from search', async () => {
-    const { user } = await renderApp();
+    await renderApp();
 
-    await openFilters(user);
-    await user.click(screen.getByLabelText('Show not-ready nodes'));
-    const searchInput = screen.getByLabelText('Search definition');
-    await user.type(searchInput, 'fibonacci');
-    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
-    await user.click(within(matches).getByText('mathematics/fibonacci', { exact: true }));
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
+    await searchAndSelectDefinition('fibonacci', 'mathematics/fibonacci');
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Mark .* as learned/ })).toBeDisabled();
