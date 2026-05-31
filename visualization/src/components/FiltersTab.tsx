@@ -21,6 +21,8 @@ type Props = {
   matches: Match[];
   onSearchChange: (q: string) => void;
   onSelectMatch: (id: string | null) => void;
+  includeDescendants: boolean;
+  onSetIncludeDescendants: (v: boolean) => void;
 
   // Node state filters
   showNotReady: boolean;
@@ -46,6 +48,8 @@ const FiltersTab: React.FC<Props> = ({
   matches,
   onSearchChange,
   onSelectMatch,
+  includeDescendants,
+  onSetIncludeDescendants,
   showNotReady,
   showPreReady,
   showReady,
@@ -252,6 +256,14 @@ const FiltersTab: React.FC<Props> = ({
               </div>
             )}
           </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
+            <input
+              type="checkbox"
+              checked={includeDescendants}
+              onChange={(e) => onSetIncludeDescendants(e.target.checked)}
+            />
+            Include all descendants
+          </label>
         </div>
 
         <div>

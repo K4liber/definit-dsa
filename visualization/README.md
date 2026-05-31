@@ -45,6 +45,41 @@ Open the URL printed by Vite (typically `http://localhost:5173`).
 - `npm run build`
 - `npm run preview`
 
+The build reads the graph data from `../docs/defs.json` (imported in
+`src/hooks/useAppState.ts`) and outputs the production bundle to
+`visualization/dist`.
+
+## Update GitHub Pages (`docs/`)
+
+GitHub Pages serves the repo-root `docs/` folder. To publish a new build:
+
+1. (Only if the definition data changed) regenerate the graph data and refresh
+   `docs/defs.json` so the build picks it up:
+   - `npm run gen:data`
+   - copy `visualization/public/defs.json` to `../docs/defs.json`
+
+2. Build the app (outputs to `visualization/dist`):
+   - `npm run build`
+
+3. Replace the contents of `docs/` with the new build, keeping `docs/defs.json`:
+   - delete `docs/assets` (removes the previous hashed bundles)
+   - copy `dist/index.html` to `docs/index.html`
+   - copy `dist/assets` to `docs/assets`
+
+   PowerShell, from the repo root:
+
+   ```powershell
+   $dist = 'visualization\dist'
+   $docs = 'docs'
+   Remove-Item -Recurse -Force "$docs\assets"
+   Copy-Item "$dist\index.html" "$docs\index.html" -Force
+   Copy-Item -Recurse "$dist\assets" "$docs\assets" -Force
+   ```
+
+4. Confirm `docs/index.html` references the new hashed bundle under
+   `/definit-dsa/assets/`, then commit and push `docs/`. GitHub Pages will pick
+   up the change automatically.
+
 ## Tests
 
 Directory `visualization\tests` contains tests of various types.

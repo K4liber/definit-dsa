@@ -1,6 +1,8 @@
 ## General Definition Guidelines
 
-Inside file `src\definit_db\data_md\index.md` all currently created definitions can be found.
+<index_md_file_path> = `src\definit_db\data_md\index.md`
+
+Inside file <index_md_file_path> all currently created definitions can be found.
 
 Inside directory `src\definit_db\data` we place all definitions in the form of python modules. Each module should be named after the definition it contains, and the definition itself should be a class with the same name as the module. Each module should contain only one definition. Each module is placed in a subdirectory named after the category of the definition. For example, if we have a definition of a "User", it should be placed in a module named `user.py` inside a subdirectory named `entities`. The class inside `user.py` should be named `User`. This structure helps to keep the definitions organized and easy to find.
 
@@ -14,4 +16,4 @@ Inside directory `src\definit_db\data` we place all definitions in the form of p
 
 ## Instruction execution
 
-Please now review all definitions than can be found in the index following the above steps. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
+Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `information`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
