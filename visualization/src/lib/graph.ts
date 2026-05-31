@@ -631,7 +631,7 @@ export function renderMdToHtml(
     if (!depId) return escapeHtml(label || href);
 
     const dep = depMap.get(depId)!;
-    return `<span class="dep" data-dep="${escapeHtml(dep.id)}">${escapeHtml(dep.title)}</span>`;
+    return `<span class="dep" data-dep="${escapeHtml(dep.id)}">${escapeHtml(label || dep.title)}</span>`;
   });
 
   const paragraphs = replaced

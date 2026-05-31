@@ -13,6 +13,7 @@ dev = [
     "pytest",
     "import-linter>=2.9",
     "ruff",
+    "matplotlib"
 ]
 
 [tool.setuptools]

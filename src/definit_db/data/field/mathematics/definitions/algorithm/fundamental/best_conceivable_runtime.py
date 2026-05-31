@@ -4,7 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
-from definit_db.data.field.mathematics.definitions.analysis.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM

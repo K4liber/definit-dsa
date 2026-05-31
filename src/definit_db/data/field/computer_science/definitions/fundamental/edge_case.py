@@ -4,7 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.test_case import TEST_CASE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
-from definit_db.data.field.mathematics.definitions.analysis.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.problem.criterion import CRITERION
 

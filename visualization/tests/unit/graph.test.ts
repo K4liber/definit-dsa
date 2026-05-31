@@ -243,7 +243,7 @@ describe('graph helpers', () => {
 
     const html = renderMdToHtml(kAryTree!.content, kAryTree!.deps, renderedNodes);
 
-    expect(html).toContain('data-dep="mathematics/n-ary_tree"');
+    expect(html).toContain('data-dep="mathematics/n_ary_tree"');
     expect(html).toContain('>n-ary tree<');
     expect(html).toContain('data-dep="mathematics/node"');
   });

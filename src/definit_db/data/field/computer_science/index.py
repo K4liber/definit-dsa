@@ -1,6 +1,15 @@
 from definit.definition.definition import Definition
 
 from definit_db.data.field.computer_science.definitions.algorithms.bit.bit_manipulation import BIT_MANIPULATION
+from definit_db.data.field.computer_science.definitions.algorithms.bit.xor_swap_algorithm import XOR_SWAP_ALGORITHM
+from definit_db.data.field.computer_science.definitions.algorithms.boyer_moore_majority_vote import (
+    BOYER_MOORE_MAJORITY_VOTE,
+)
+from definit_db.data.field.computer_science.definitions.algorithms.floyds_tortoise_and_hare_algorithm import (
+    FLOYDS_TORTOISE_AND_HARE_ALGORITHM,
+)
+from definit_db.data.field.computer_science.definitions.algorithms.in_place_algorithm import IN_PLACE_ALGORITHM
+from definit_db.data.field.computer_science.definitions.algorithms.kadanes_algorithm import KADANES_ALGORITHM
 from definit_db.data.field.computer_science.definitions.algorithms.problems.graph_labeling.graph_coloring import (
     GRAPH_COLORING,
 )
@@ -15,7 +24,12 @@ from definit_db.data.field.computer_science.definitions.algorithms.problems.hash
 from definit_db.data.field.computer_science.definitions.algorithms.searching.string.rabin_karp_algorithm import (
     RABIN_KARP_ALGORITHM,
 )
+from definit_db.data.field.computer_science.definitions.algorithms.sliding_window_technique import (
+    SLIDING_WINDOW_TECHNIQUE,
+)
+from definit_db.data.field.computer_science.definitions.algorithms.two_pointers_technique import TWO_POINTERS_TECHNIQUE
 from definit_db.data.field.computer_science.definitions.computation.mapreduce import MAPREDUCE
+from definit_db.data.field.computer_science.definitions.data_structure.collection.cache.lru_cache import LRU_CACHE
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.associative_array import (
     ASSOCIATIVE_ARRAY,
 )
@@ -23,6 +37,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.collection import (
     COLLECTION,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_set import HASH_SET
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.hash_table import (
     HASH_TABLE,
 )
@@ -39,12 +54,20 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.linked_list import LINKED_LIST
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.list import LIST
+from definit_db.data.field.computer_science.definitions.data_structure.collection.list.subarray import SUBARRAY
+from definit_db.data.field.computer_science.definitions.data_structure.collection.string.anagram import ANAGRAM
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.ascii import ASCII
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.character_encoding import (
     CHARACTER_ENCODING,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.extended_ascii import (
     EXTENDED_ASCII,
+)
+from definit_db.data.field.computer_science.definitions.data_structure.collection.string.isomorphic_string import (
+    ISOMORPHIC_STRING,
+)
+from definit_db.data.field.computer_science.definitions.data_structure.collection.string.levenshtein_distance import (
+    LEVENSHTEIN_DISTANCE,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.regular_expression import (
     REGULAR_EXPRESSION,
@@ -62,6 +85,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.fundament
 from definit_db.data.field.computer_science.definitions.data_structure.fundamental.primitive_data_type import (
     PRIMITIVE_DATA_TYPE,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.operation.head_insertion import HEAD_INSERTION
 from definit_db.data.field.computer_science.definitions.data_structure.operation.string_concatenation import (
     STRING_CONCATENATION,
 )
@@ -73,6 +97,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.auxiliary_sp
 from definit_db.data.field.computer_science.definitions.fundamental.binary_fractions import BINARY_FRACTIONS
 from definit_db.data.field.computer_science.definitions.fundamental.binary_representation import BINARY_REPRESENTATION
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
+from definit_db.data.field.computer_science.definitions.fundamental.bitmask import BITMASK
 from definit_db.data.field.computer_science.definitions.fundamental.bitwise_operation import BITWISE_OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
@@ -89,9 +114,11 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
+from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
+from definit_db.data.field.computer_science.definitions.fundamental.hamming_weight import HAMMING_WEIGHT
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
@@ -137,6 +164,8 @@ field_index: list[Definition] = [
     HEXADECIMAL_CODE,
     BINARY_FRACTIONS,
     BITWISE_OPERATION,
+    BITMASK,
+    HAMMING_WEIGHT,
     BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
@@ -172,6 +201,7 @@ field_index: list[Definition] = [
     MEMORY_MANAGEMENT,
     VARIABLE,
     TWOS_COMPLEMENT,
+    DEEP_COPY,
     ABSTRACT_DATA_TYPE,
     BIT_FIELD,
     COLLECTION,
@@ -180,9 +210,12 @@ field_index: list[Definition] = [
     PRIMITIVE_DATA_TYPE,
     ASSOCIATIVE_ARRAY,
     HASH_TABLE,
+    HASH_SET,
+    LRU_CACHE,
     BAG,
     SET,
     ARRAY,
+    SUBARRAY,
     LINKED_LIST,
     CIRCULAR_LINKED_LIST,
     LIST,
@@ -199,7 +232,11 @@ field_index: list[Definition] = [
     UNICODE,
     REGULAR_EXPRESSION,
     STRING,
+    ISOMORPHIC_STRING,
+    ANAGRAM,
+    LEVENSHTEIN_DISTANCE,
     STRING_CONCATENATION,
+    HEAD_INSERTION,
     SUBSTRING,
     TRIE,
     GRAPH_LABELING,
@@ -209,6 +246,13 @@ field_index: list[Definition] = [
     ROLLING_HASH,
     RABIN_KARP_ALGORITHM,
     BIT_MANIPULATION,
+    XOR_SWAP_ALGORITHM,
+    BOYER_MOORE_MAJORITY_VOTE,
+    FLOYDS_TORTOISE_AND_HARE_ALGORITHM,
+    IN_PLACE_ALGORITHM,
+    KADANES_ALGORITHM,
+    TWO_POINTERS_TECHNIQUE,
+    SLIDING_WINDOW_TECHNIQUE,
     FLOAT,
     DOUBLE,
     AUXILIARY_SPACE,

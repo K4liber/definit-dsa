@@ -13,5 +13,5 @@ export const COLOR_LEARNED = '#22c55e';
 export const INFO_TEXT =
   'Welcome to the "Data Structures and Algorithms" course!\n\n' +
   'This is a great starting point if you are preparing for coding interviews. The tool helps you learn or review key definitions related to data structures and algorithms.\n\n' +
-  'The definitions are based on Cracking the Coding Interview by Gayle Laakmann McDowell. A total of 275 terms from mathematics and computer science are organized topologically to create a smooth and logical learning experience.\n\n' +
+  'The definitions are based on Cracking the Coding Interview by Gayle Laakmann McDowell. More than 300 terms from mathematics and computer science are organized topologically to create a smooth and logical learning experience.\n\n' +
   'Give it a try, take it easy, and have fun! Feedback is always appreciated. Feel free to contact me at janbielecki94@gmail.com.';
