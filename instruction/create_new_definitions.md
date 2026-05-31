@@ -1,8 +1,10 @@
+## General Definition Guidelines
+
 Inside file `src\definit_db\data_md\index.md` all currently created definitions can be found.
 
 Inside directory `src\definit_db\data` we place all definitions in the form of python modules. Each module should be named after the definition it contains, and the definition itself should be a class with the same name as the module. Each module should contain only one definition. Each module is placed in a subdirectory named after the category of the definition. For example, if we have a definition of a "User", it should be placed in a module named `user.py` inside a subdirectory named `entities`. The class inside `user.py` should be named `User`. This structure helps to keep the definitions organized and easy to find.
 
-When creating a new definition, you should follow these steps:
+## Create a new definition steps
 
 0. Check if a new definition does not exist already. All the existing definitions can be found here: `src\definit_db\data_md\index.md`.
 1. Determine the category of the definition (e.g., mathematics\foundamental, computer_science\algorithms\searching, etc.).
@@ -16,6 +18,8 @@ When creating a new definition, you should follow these steps:
 9. Run all tests inside `test` directory to ensure that the new definition does not break any existing functionality and that it works as expected. This is an important step to maintain the integrity of the codebase and to catch any potential issues early on.
 10. Review the create definitions. Check if all references are used and if they make sense.
 11. Run ruff check and fix the issues if there are any: `uv run ruff check --fix .`.
+
+## Instruction execution
 
 Please now create new definitions following the above steps.
 

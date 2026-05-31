@@ -7,8 +7,12 @@ from definit_db.data.field import FieldName
 class _Object(Definition):
     def _get_content(self) -> str:
         return """
-An object is an abstract concept arising in mathematics. 
-Typically, a mathematical object can be a value that can be assigned to a symbol.
+An object is any entity that can be considered, named, or manipulated within a mathematical context.
+"""
+
+    def _get_example(self) -> str:
+        return """
+"3" can be named, compared, and used in a statement. We can call it an object.
 """
 
 
