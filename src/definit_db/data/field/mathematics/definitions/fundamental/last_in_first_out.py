@@ -11,9 +11,13 @@ class _LastInFirstOut(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an ordering principle where the most recently added element in a {SEQUENCE.key.get_reference()} 
-is the first one to be removed. In this scheme, the last element that enters is the first one to exit, 
-similar to a stack of plates where you can only access the top plate.
+{self.key.get_reference()} is an ordering principle for a {SEQUENCE.key.get_reference()} where the most 
+recently added element is the first one to be removed.
+
+---
+
+A stack of plates follows last in first out: you add and remove plates only from the top, so the plate
+added most recently is the first one taken off.
 """
 
 

@@ -16,4 +16,4 @@ Inside directory `src\definit_db\data` we place all definitions in the form of p
 
 ## Instruction execution
 
-Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `information`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
+Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `set`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.

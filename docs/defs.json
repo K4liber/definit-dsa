@@ -22,7 +22,7 @@
       "id": "mathematics/boolean_expression",
       "title": "boolean_expression",
       "category": "mathematics/fundamental/boolean_expression",
-      "content": "# boolean expression\r\n\r\n\r\nA [boolean expression](mathematics/boolean_expression) is an expression that evaluates to either true or false.\r\n\r\n",
+      "content": "# boolean expression\r\n\r\n\r\nA [boolean expression](mathematics/boolean_expression) is an expression that evaluates to either true or false.\r\n\r\n---\r\n\r\nThe expression 3 < 5 is a boolean expression, because it evaluates to true.\r\n\r\n",
       "deps": [],
       "level": 0
     },
@@ -30,7 +30,7 @@
       "id": "mathematics/sequence",
       "title": "sequence",
       "category": "mathematics/fundamental/sequence",
-      "content": "# sequence\r\n\r\n\r\nA collection of [objects](mathematics/object) in which repetitions are allowed and order \r\nmatters.\r\n\r\n",
+      "content": "# sequence\r\n\r\n\r\nA collection of [objects](mathematics/object) in which repetitions are allowed and order \r\nmatters.\r\n\r\n---\r\n\r\nThe sequence (3, 3, 5) lists three [objects](mathematics/object) where order matters,\r\nso it is different from the sequence (5, 3, 3).\r\n\r\n",
       "deps": [
         "mathematics/object"
       ],
@@ -40,7 +40,7 @@
       "id": "mathematics/finite_sequence",
       "title": "finite_sequence",
       "category": "mathematics/fundamental/finite_sequence",
-      "content": "# finite_sequence\r\n\r\n\r\nA [sequence](mathematics/sequence) that has a finite number of \r\n[objects](mathematics/object). Informally, a finite sequence is a sequence which one could in \r\nprinciple count and finish counting. For example, (2,4,6,8,10) is a finite sequence with five elements.\r\n\r\n",
+      "content": "# finite_sequence\r\n\r\n\r\nA [sequence](mathematics/sequence) that has a finite number of \r\n[objects](mathematics/object). Informally, a finite sequence is a sequence which one could in \r\nprinciple count and finish counting.\r\n\r\n---\r\n\r\n(2, 4, 6, 8, 10) is a finite sequence with five elements.\r\n\r\n",
       "deps": [
         "mathematics/sequence",
         "mathematics/object"
@@ -51,17 +51,17 @@
       "id": "mathematics/instruction",
       "title": "instruction",
       "category": "mathematics/fundamental/instruction",
-      "content": "# instruction\r\n\r\n\r\nA detailed [information](mathematics/information) about how something should be done or operated.\r\n\r\n",
+      "content": "# instruction\r\n\r\n\r\nA piece of [information](mathematics/information) that describes how something should be done\r\nor operated.\r\n\r\n---\r\n\r\n\"Turn the key to the right\" is an instruction: a piece of\r\n[information](mathematics/information) that tells someone how to open a lock.\r\n\r\n",
       "deps": [
         "mathematics/information"
       ],
       "level": 2
     },
     {
-      "id": "mathematics/loop",
-      "title": "loop",
-      "category": "mathematics/fundamental/loop",
-      "content": "# loop\r\n\r\n\r\n[loop](mathematics/loop) is a control structure that repeats a [sequence](mathematics/sequence) of \r\n[instructions](mathematics/instruction) multiple times until a specified condition is met or for a \r\npredetermined number of iterations. Loops enable efficient execution of repetitive tasks and are fundamental to \r\niterating over data structures.\r\n\r\n",
+      "id": "mathematics/iteration",
+      "title": "iteration",
+      "category": "mathematics/fundamental/iteration",
+      "content": "# iteration\r\n\r\n\r\nA single execution of a [sequence](mathematics/sequence) of \r\n[instructions](mathematics/instruction), performed once each time a repetitive process repeats.\r\n\r\n---\r\n\r\nCounting from 1 to 3 takes three iterations: one\r\n[instruction](mathematics/instruction) carried out for each number.\r\n\r\n",
       "deps": [
         "mathematics/sequence",
         "mathematics/instruction"
@@ -69,10 +69,34 @@
       "level": 3
     },
     {
+      "id": "mathematics/control_structure",
+      "title": "control_structure",
+      "category": "mathematics/fundamental/control_structure",
+      "content": "# control structure\r\n\r\n\r\nA construct that determines the order in which a [sequence](mathematics/sequence) of \r\n[instructions](mathematics/instruction) is executed, rather than running them once from start to finish.\r\n\r\n---\r\n\r\nA rule that says \"repeat the next [instruction](mathematics/instruction) while the door is open\"\r\nis a control structure: it decides when and how often the instruction runs.\r\n\r\n",
+      "deps": [
+        "mathematics/sequence",
+        "mathematics/instruction"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/loop",
+      "title": "loop",
+      "category": "mathematics/fundamental/loop",
+      "content": "# loop\r\n\r\n\r\n[loop](mathematics/loop) is a [control_structure](mathematics/control_structure) that repeats a [sequence](mathematics/sequence) of \r\n[instructions](mathematics/instruction) until a specified condition is met or for a predetermined \r\nnumber of [iterations](mathematics/iteration).\r\n\r\n---\r\n\r\nA loop that repeats the [instruction](mathematics/instruction) \"add 1 to the total\" five times\r\nchanges the total from 0 to 5.\r\n\r\n",
+      "deps": [
+        "mathematics/control_structure",
+        "mathematics/sequence",
+        "mathematics/instruction",
+        "mathematics/iteration"
+      ],
+      "level": 4
+    },
+    {
       "id": "mathematics/last_in_first_out",
       "title": "last_in_first_out",
       "category": "mathematics/fundamental/last_in_first_out",
-      "content": "# last in first out\r\n\r\n\r\n[last_in_first_out](mathematics/last_in_first_out) is an ordering principle where the most recently added element in a [sequence](mathematics/sequence) \r\nis the first one to be removed. In this scheme, the last element that enters is the first one to exit, \r\nsimilar to a stack of plates where you can only access the top plate.\r\n\r\n",
+      "content": "# last in first out\r\n\r\n\r\n[last_in_first_out](mathematics/last_in_first_out) is an ordering principle for a [sequence](mathematics/sequence) where the most \r\nrecently added element is the first one to be removed.\r\n\r\n---\r\n\r\nA stack of plates follows last in first out: you add and remove plates only from the top, so the plate\r\nadded most recently is the first one taken off.\r\n\r\n",
       "deps": [
         "mathematics/sequence"
       ],
@@ -82,21 +106,33 @@
       "id": "mathematics/operation",
       "title": "operation",
       "category": "mathematics/fundamental/operation",
-      "content": "# operation\r\n\r\n\r\nA mathematical action performed on one or more [objects](mathematics/object) to produce a result.\r\n\r\n",
+      "content": "# operation\r\n\r\n\r\nA mathematical action performed on one or more [objects](mathematics/object) to produce a result.\r\n\r\n---\r\n\r\nAddition is an operation: applied to the [objects](mathematics/object) 2 and 3, it produces\r\nthe result 5.\r\n\r\n",
       "deps": [
         "mathematics/object"
       ],
       "level": 1
     },
     {
-      "id": "mathematics/commutative_operation",
-      "title": "commutative_operation",
-      "category": "mathematics/fundamental/commutative_operation",
-      "content": "# commutative operation\r\n\r\n\r\nA commutative operation is an [operation](mathematics/operation) whose result does not depend on \r\nthe order of its inputs. For two inputs a and b, the operation gives the same result when applied as a * b or b * a.\r\n\r\n",
+      "id": "mathematics/operand",
+      "title": "operand",
+      "category": "mathematics/fundamental/operand",
+      "content": "# operand\r\n\r\n\r\nAn [object](mathematics/object) that an [operation](mathematics/operation) is applied to.\r\n\r\n---\r\n\r\nIn the expression 2 + 3, the [objects](mathematics/object) 2 and 3 are the operands of the\r\naddition.\r\n\r\n",
       "deps": [
+        "mathematics/object",
         "mathematics/operation"
       ],
       "level": 2
+    },
+    {
+      "id": "mathematics/commutative_operation",
+      "title": "commutative_operation",
+      "category": "mathematics/fundamental/commutative_operation",
+      "content": "# commutative operation\r\n\r\n\r\n[commutative_operation](mathematics/commutative_operation) is an [operation](mathematics/operation) whose result does not \r\ndepend on the order of its [operands](mathematics/operand).\r\n\r\n---\r\n\r\nAddition is commutative: 2 + 3 and 3 + 2 both give the same result, 5.\r\n\r\n",
+      "deps": [
+        "mathematics/operation",
+        "mathematics/operand"
+      ],
+      "level": 3
     },
     {
       "id": "mathematics/set",
@@ -2125,7 +2161,7 @@
         "mathematics/loop",
         "mathematics/index"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/best_case",
@@ -3869,12 +3905,36 @@
       "target": "mathematics/information"
     },
     {
+      "source": "mathematics/iteration",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/iteration",
+      "target": "mathematics/instruction"
+    },
+    {
+      "source": "mathematics/control_structure",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/control_structure",
+      "target": "mathematics/instruction"
+    },
+    {
+      "source": "mathematics/loop",
+      "target": "mathematics/control_structure"
+    },
+    {
       "source": "mathematics/loop",
       "target": "mathematics/sequence"
     },
     {
       "source": "mathematics/loop",
       "target": "mathematics/instruction"
+    },
+    {
+      "source": "mathematics/loop",
+      "target": "mathematics/iteration"
     },
     {
       "source": "mathematics/last_in_first_out",
@@ -3885,8 +3945,20 @@
       "target": "mathematics/object"
     },
     {
+      "source": "mathematics/operand",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/operand",
+      "target": "mathematics/operation"
+    },
+    {
       "source": "mathematics/commutative_operation",
       "target": "mathematics/operation"
+    },
+    {
+      "source": "mathematics/commutative_operation",
+      "target": "mathematics/operand"
     },
     {
       "source": "mathematics/set",

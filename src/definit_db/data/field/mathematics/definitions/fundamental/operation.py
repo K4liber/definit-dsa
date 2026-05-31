@@ -9,6 +9,11 @@ class _Operation(Definition):
     def _get_content(self) -> str:
         return f"""
 A mathematical action performed on one or more {OBJECT.key.get_reference(phrase="objects")} to produce a result.
+
+---
+
+Addition is an operation: applied to the {OBJECT.key.get_reference(phrase="objects")} 2 and 3, it produces
+the result 5.
 """
 
 
