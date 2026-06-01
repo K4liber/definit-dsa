@@ -8,7 +8,13 @@ from definit_db.data.field.mathematics.definitions.fundamental.information impor
 class _Instruction(Definition):
     def _get_content(self) -> str:
         return f"""
-A detailed {INFORMATION.key.get_reference(phrase="information")} about how something should be done or operated.
+A piece of {INFORMATION.key.get_reference(phrase="information")} that describes how something should be done
+or operated.
+
+---
+
+"Turn the key to the right" is an instruction: a piece of
+{INFORMATION.key.get_reference(phrase="information")} that tells someone how to open a lock.
 """
 
 

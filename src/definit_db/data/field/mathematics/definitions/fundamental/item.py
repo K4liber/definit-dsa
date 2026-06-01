@@ -11,6 +11,11 @@ class _Item(Definition):
         return f"""
 An {self.key.get_reference()} is a single {OBJECT.key.get_reference("object")} considered as an element of a
 {SET.key.get_reference("set")}.
+
+---
+
+In the set (1, 2, 3), the number "2" is an {self.key.get_reference()}, 
+it is a single {OBJECT.key.get_reference("object")} that belongs to the {SET.key.get_reference("set")}.
 """
 
 

@@ -107,6 +107,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.combination impor
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
 from definit_db.data.field.mathematics.definitions.fundamental.commutative_operation import COMMUTATIVE_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
+from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
@@ -127,6 +128,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.intersection impo
 from definit_db.data.field.mathematics.definitions.fundamental.interval import INTERVAL
 from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
+from definit_db.data.field.mathematics.definitions.fundamental.iteration import ITERATION
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
@@ -141,6 +143,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.not_operator impo
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.numeral_system import NUMERAL_SYSTEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.operand import OPERAND
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.palindrome import PALINDROME
@@ -250,10 +253,13 @@ field_index: list[Definition] = [
     MATRIX,
     TRANSPOSING,
     INSTRUCTION,
+    ITERATION,
+    CONTROL_STRUCTURE,
     INDEX,
     LOOP,
     LAST_IN_FIRST_OUT,
     OPERATION,
+    OPERAND,
     COMMUTATIVE_OPERATION,
     RELATION,
     SET,

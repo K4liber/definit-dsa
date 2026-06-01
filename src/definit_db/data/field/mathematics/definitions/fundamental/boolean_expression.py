@@ -8,6 +8,10 @@ class _BooleanExpression(Definition):
     def _get_content(self) -> str:
         return f"""
 A {self.key.get_reference(phrase="boolean expression")} is an expression that evaluates to either true or false.
+
+---
+
+The expression 3 < 5 is a boolean expression, because it evaluates to true.
 """
 
 

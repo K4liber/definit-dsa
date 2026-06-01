@@ -3,24 +3,24 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 
 
-class _Sequence(Definition):
+class _Operand(Definition):
     def _get_content(self) -> str:
         return f"""
-A collection of {OBJECT.key.get_reference(phrase="objects")} in which repetitions are allowed and order 
-matters.
+An {OBJECT.key.get_reference()} that an {OPERATION.key.get_reference()} is applied to.
 
 ---
 
-The sequence (3, 3, 5) lists three {OBJECT.key.get_reference(phrase="objects")} where order matters,
-so it is different from the sequence (5, 3, 3).
+In the expression 2 + 3, the {OBJECT.key.get_reference(phrase="objects")} 2 and 3 are the operands of the
+addition.
 """
 
 
-SEQUENCE = _Sequence(
+OPERAND = _Operand(
     key=DefinitionKey(
-        name="sequence",
+        name="operand",
         field=FieldName.MATHEMATICS,
     )
 )

@@ -10,6 +10,11 @@ class _Relation(Definition):
         return f"""
 A relation (also called relationship) describes a connection or association between elements of a 
 {SET.key.get_reference(phrase="set(s)")}.
+
+---
+
+"is less than" is a relation on the {SET.key.get_reference(phrase="set")} (1, 2, 3).
+It connects 1 to 2, 1 to 3, and 2 to 3.
 """
 
 
