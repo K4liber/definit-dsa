@@ -12,12 +12,20 @@ class _NondeterministicTuringMachine(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TURING_MACHINE.key.get_reference("Turing machine")} where each 
-{INSTRUCTION.key.get_reference()} can have multiple possible next states and actions. Given the current 
-state and the symbol being read, the machine can "choose" among several possible transitions, effectively 
-exploring multiple computational paths simultaneously. This is a theoretical model that allows the machine 
-to make the "right" choice at each step, making it more powerful than its deterministic counterpart for 
-analyzing computational complexity.
+A {self.key.get_reference()} is a {TURING_MACHINE.key.get_reference("Turing machine")} where each
+{INSTRUCTION.key.get_reference()} can have multiple possible next states and actions. Given the current
+state and the symbol being read, the machine can "choose" among several possible transitions, effectively
+exploring multiple computational paths simultaneously and accepting if any path leads to acceptance.
+It recognizes exactly the same languages as a deterministic Turing machine, but this branching can reach an
+accepting path in far fewer steps, which makes it a convenient model for reasoning about how hard a problem is
+to solve.
+
+---
+
+A {TURING_MACHINE.key.get_reference("Turing machine")} that, upon reading "0", may either write "1" and move
+right or instead halt — two different transitions allowed for the same (state, symbol) pair — is
+nondeterministic. Conceptually it follows both {INSTRUCTION.key.get_reference("instructions")} at once and
+accepts the input if any of the explored paths accepts.
 """
 
 

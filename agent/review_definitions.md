@@ -1,6 +1,10 @@
+# Review definition agent
+
 ## General Definition Guidelines
 
-<index_md_file_path> = `src\definit_db\data_md\index.md`
+<data_md_file_path> = `src\definit_db\data_md`
+<index_md_file_path> = <data_md_file_path>\index.md`
+<index_review_md_file_path> = <data_md_file_path>\index_review.md`
 
 Inside file <index_md_file_path> all currently created definitions can be found.
 
@@ -14,6 +18,20 @@ Inside directory `src\definit_db\data` we place all definitions in the form of p
 4. Please add missing references to other definitions if there are any. If you find any reference that does not exist yet, please create it first before adding it as a reference to the definition.
 5. Make sure that each definition reference is a lower-level definition. For example, if a definition A references another definition B, then B should not reference A or any other definition that references A. This will help to avoid circular dependencies and make the definitions easier to understand. You need to understand the hierarchy of definitions and make sure that each definition only references definitions that are lower in the hierarchy. This will help to create a clear and organized structure for the definitions and make it easier for users to understand how the definitions relate to each other.
 
+## Tracking review progress
+
+A definition is considered reviewed when its content contains an example, which is marked by a standalone `---` separator (see step 3). We use this convention to track which definitions still need a review.
+
+The file <index_review_md_file_path> lists every definition with a checkbox in front of its name: `[x]` when the definition already has an example (reviewed) and `[ ]` when it does not (still to review). It preserves the same order as <index_md_file_path>.
+
+After adding any new definition (or to refresh the review status), regenerate both the markdown database and this review index by running:
+
+```
+uv run python scripts/generate_index_review.py
+```
+
+This script (`scripts\generate_index_review.py`) first regenerates the markdown database and then rebuilds `index_review.md` based on the `---` example convention.
+
 ## Instruction execution
 
-Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `deterministic_turing_machine`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
+Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `node`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
