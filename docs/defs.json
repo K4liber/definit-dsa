@@ -138,7 +138,7 @@
       "id": "mathematics/set",
       "title": "set",
       "category": "mathematics/fundamental/set",
-      "content": "# set\r\n\r\n\r\nSet is a group of different things. These things are called elements or members of the set and are typically \r\nmathematical [objects](mathematics/object) of any kind.\r\n\r\n",
+      "content": "# set\r\n\r\n\r\nSet is an unordered group of different things. These things are called elements or members of the set and are typically \r\nmathematical [objects](mathematics/object) of any kind.\r\n\r\n---\r\n\r\n(1, 2, 3) is a set containing three [objects](mathematics/object).\r\nThe order does not matter — (3, 1, 2) is the same set.\r\nHowever, (1, 1, 2, 3) is not valid because \"1\" appears twice; sets only contain different things.\r\n\r\n",
       "deps": [
         "mathematics/object"
       ],
@@ -148,7 +148,7 @@
       "id": "mathematics/item",
       "title": "item",
       "category": "mathematics/fundamental/item",
-      "content": "# item\r\n\r\n\r\nAn [item](mathematics/item) is a single [object](mathematics/object) considered as an element of a\r\n[set](mathematics/set).\r\n\r\n",
+      "content": "# item\r\n\r\n\r\nAn [item](mathematics/item) is a single [object](mathematics/object) considered as an element of a\r\n[set](mathematics/set).\r\n\r\n---\r\n\r\nIn the set (1, 2, 3), the number \"2\" is an [item](mathematics/item), \r\nit is a single [object](mathematics/object) that belongs to the [set](mathematics/set).\r\n\r\n",
       "deps": [
         "mathematics/object",
         "mathematics/set"
@@ -159,7 +159,7 @@
       "id": "mathematics/relation",
       "title": "relation",
       "category": "mathematics/fundamental/relation",
-      "content": "# relation\r\n\r\n\r\nA relation (also called relationship) describes a connection or association between elements of a \r\n[set(s)](mathematics/set).\r\n\r\n",
+      "content": "# relation\r\n\r\n\r\nA relation (also called relationship) describes a connection or association between elements of a \r\n[set(s)](mathematics/set).\r\n\r\n---\r\n\r\n\"is less than\" is a relation on the [set](mathematics/set) (1, 2, 3).\r\nIt connects 1 to 2, 1 to 3, and 2 to 3.\r\n\r\n",
       "deps": [
         "mathematics/set"
       ],
@@ -169,37 +169,40 @@
       "id": "mathematics/intersection",
       "title": "intersection",
       "category": "mathematics/fundamental/intersection",
-      "content": "# intersection\r\n\r\n\r\nThe [intersection](mathematics/intersection) of two [sets](mathematics/set) A and B is the set of elements that are in\r\nboth A and B.\r\n\r\n",
+      "content": "# intersection\r\n\r\n\r\nThe [intersection](mathematics/intersection) of two [sets](mathematics/set) A and B is the set of\r\n[elements](mathematics/item) that are in both A and B.\r\n\r\n---\r\n\r\nA = (1, 2, 3) and B = (2, 3, 4).\r\nThe [intersection](mathematics/intersection) of A and B is the [set](mathematics/set) (2, 3),\r\nbecause 2 and 3 are the only [elements](mathematics/item) that appear in both sets.\r\n\r\n",
       "deps": [
-        "mathematics/set"
+        "mathematics/set",
+        "mathematics/item"
       ],
-      "level": 2
+      "level": 3
     },
     {
       "id": "mathematics/union",
       "title": "union",
       "category": "mathematics/fundamental/union",
-      "content": "# union\r\n\r\n\r\nThe [union](mathematics/union) of two [sets](mathematics/set) A and B is the set of elements that are in\r\nA or in B (or in both).\r\n\r\n",
+      "content": "# union\r\n\r\n\r\nThe [union](mathematics/union) of two [sets](mathematics/set) A and B is the set of\r\n[elements](mathematics/item) that are in A or in B (or in both).\r\n\r\n---\r\n\r\nA = (1, 2, 3) and B = (2, 3, 4).\r\nThe [union](mathematics/union) of A and B is the [set](mathematics/set) (1, 2, 3, 4),\r\nbecause it gathers every [element](mathematics/item) that appears in either set, without repetition.\r\n\r\n",
       "deps": [
-        "mathematics/set"
+        "mathematics/set",
+        "mathematics/item"
       ],
-      "level": 2
+      "level": 3
     },
     {
       "id": "mathematics/finite_set",
       "title": "finite_set",
       "category": "mathematics/fundamental/finite_set",
-      "content": "# finite_set\r\n\r\n\r\nFinite set is a [set](mathematics/set) that has a finite number of elements. \r\nInformally, a finite set is a set which one could in principle count and finish counting. \r\nFor example, {2,4,6,8,10}  is a finite set with five elements.\r\n\r\n",
+      "content": "# finite_set\r\n\r\n\r\nFinite set is a [set](mathematics/set) that has a finite number of\r\n[elements](mathematics/item).\r\nInformally, a finite set is a set which one could in principle count and finish counting.\r\n\r\n---\r\n\r\n(2, 4, 6, 8, 10) is a finite set with five [elements](mathematics/item).\r\nCounting them ends after the last [element](mathematics/item), so the set is finite.\r\n\r\n",
       "deps": [
-        "mathematics/set"
+        "mathematics/set",
+        "mathematics/item"
       ],
-      "level": 2
+      "level": 3
     },
     {
       "id": "mathematics/collection",
       "title": "collection",
       "category": "mathematics/fundamental/collection",
-      "content": "# collection\r\n\r\n\r\nA collection is a group of [objects](mathematics/object) considered together.\r\n\r\n",
+      "content": "# collection\r\n\r\n\r\nA collection is a group of [objects](mathematics/object) considered together.\r\n\r\n---\r\n\r\nThe books placed on a single shelf form a collection of [objects](mathematics/object)\r\nconsidered together. Adding a new book or removing one changes the collection.\r\n\r\n",
       "deps": [
         "mathematics/object"
       ],
@@ -209,18 +212,20 @@
       "id": "mathematics/function",
       "title": "function",
       "category": "mathematics/fundamental/function",
-      "content": "# function\r\n\r\n\r\nFunction it is a kind of [relation](mathematics/relation) which from a set X to a set Y \r\nassigns to each element (or [object](mathematics/object)) of X exactly one element of Y.\r\n\r\n",
+      "content": "# function\r\n\r\n\r\nA function is a kind of [relation](mathematics/relation) from a\r\n[set](mathematics/set) X to a [set](mathematics/set) Y that assigns to each\r\n[element](mathematics/item) (or [object](mathematics/object)) of X exactly one\r\n[element](mathematics/item) of Y.\r\n\r\n---\r\n\r\nTake X = (1, 2, 3), Y = (2, 3, 4) and the rule f(x) = x + 1.\r\nThis is a function because each [element](mathematics/item) of X is assigned exactly one\r\n[element](mathematics/item) of Y: 1 maps to 2, 2 maps to 3, and 3 maps to 4.\r\n\r\n",
       "deps": [
         "mathematics/relation",
+        "mathematics/set",
+        "mathematics/item",
         "mathematics/object"
       ],
       "level": 3
     },
     {
-      "id": "mathematics/hash_function",
-      "title": "hash_function",
-      "category": "mathematics/fundamental/hash_function",
-      "content": "# hash_function\r\n\r\n\r\nA function that for an input [object](mathematics/object) assigns a fixed-size text. \r\nThe text is typically a 'digest' that is unique to each unique input.\r\n\r\n",
+      "id": "mathematics/hash",
+      "title": "hash",
+      "category": "mathematics/fundamental/hash",
+      "content": "# hash\r\n\r\n\r\nA hash (also called a 'digest') is a fixed-size value used as a compact representation of an\r\n[object](mathematics/object) of arbitrary size.\r\n\r\n---\r\n\r\nThe short code \"a1b2c3\" could serve as a hash of a long document: it is a small, fixed-size value standing in\r\nfor a much larger [object](mathematics/object).\r\nBecause the hash is much smaller than the document, two different documents may share the same hash.\r\n\r\n",
       "deps": [
         "mathematics/object"
       ],
@@ -1527,6 +1532,19 @@
       "level": 3
     },
     {
+      "id": "mathematics/hash_function",
+      "title": "hash_function",
+      "category": "mathematics/fundamental/hash_function",
+      "content": "# hash_function\r\n\r\n\r\nA [function](mathematics/function) that maps an input [object](mathematics/object)\r\nof arbitrary size to a [hash](mathematics/hash) (or 'digest') of fixed size.\r\nA good hash function makes it unlikely that two different inputs produce the same digest, but such collisions\r\nare still possible.\r\n\r\n---\r\n\r\nA [function](mathematics/function) that returns the remainder of an\r\n[integer](mathematics/integer) divided by 10 is a simple hash function: it maps any\r\n[integer](mathematics/integer) to a fixed-size digest between 0 and 9.\r\nFor instance, 27 maps to 7 and 42 maps to 2. Because only ten digests exist, different inputs such as 7 and 17\r\nmap to the same digest.\r\n\r\n",
+      "deps": [
+        "mathematics/function",
+        "mathematics/object",
+        "mathematics/hash",
+        "mathematics/integer"
+      ],
+      "level": 4
+    },
+    {
       "id": "mathematics/polynomial",
       "title": "polynomial",
       "category": "mathematics/fundamental/polynomial",
@@ -2385,7 +2403,7 @@
         "mathematics/union",
         "mathematics/intersection"
       ],
-      "level": 3
+      "level": 4
     },
     {
       "id": "mathematics/conditional_probability",
@@ -2428,7 +2446,7 @@
         "mathematics/set",
         "mathematics/intersection"
       ],
-      "level": 3
+      "level": 4
     },
     {
       "id": "mathematics/partitioning",
@@ -2440,7 +2458,7 @@
         "mathematics/union",
         "mathematics/intersection"
       ],
-      "level": 3
+      "level": 4
     },
     {
       "id": "mathematics/quadtree",
@@ -3604,7 +3622,7 @@
         "mathematics/hash_function",
         "mathematics/sequence"
       ],
-      "level": 2
+      "level": 5
     },
     {
       "id": "computer_science/rabin_karp_algorithm",
@@ -3786,7 +3804,7 @@
         "mathematics/label",
         "mathematics/algorithm"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "computer_science/lopsided",
@@ -3981,12 +3999,24 @@
       "target": "mathematics/set"
     },
     {
+      "source": "mathematics/intersection",
+      "target": "mathematics/item"
+    },
+    {
       "source": "mathematics/union",
       "target": "mathematics/set"
     },
     {
+      "source": "mathematics/union",
+      "target": "mathematics/item"
+    },
+    {
       "source": "mathematics/finite_set",
       "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/finite_set",
+      "target": "mathematics/item"
     },
     {
       "source": "mathematics/collection",
@@ -3998,10 +4028,18 @@
     },
     {
       "source": "mathematics/function",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/function",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/function",
       "target": "mathematics/object"
     },
     {
-      "source": "mathematics/hash_function",
+      "source": "mathematics/hash",
       "target": "mathematics/object"
     },
     {
@@ -5323,6 +5361,22 @@
     {
       "source": "mathematics/index",
       "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/hash"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/integer"
     },
     {
       "source": "mathematics/polynomial",

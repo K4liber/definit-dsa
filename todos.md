@@ -2,12 +2,16 @@
 
 ## IN PROGRESS
 
-## TODO
-
 ### 4. Review all definitions
 
 - [ ] Create a `review_definition.md` instruction file for how to review a definition
 - [ ] Check if they are accurate, complete and have all possible references to other definitions
+
+## TODO
+
+### 5. Rethink the category concept
+
+Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
 
 ### 2. What to do with something named twice with different names?
 

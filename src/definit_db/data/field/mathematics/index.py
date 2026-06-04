@@ -115,6 +115,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import 
 from definit_db.data.field.mathematics.definitions.fundamental.finite_sequence import FINITE_SEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.finite_set import FINITE_SET
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
+from definit_db.data.field.mathematics.definitions.fundamental.hash import HASH
 from definit_db.data.field.mathematics.definitions.fundamental.hash_function import HASH_FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.histogram import HISTOGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.independence import INDEPENDENCE
@@ -268,6 +269,7 @@ field_index: list[Definition] = [
     FINITE_SET,
     COLLECTION,
     FUNCTION,
+    HASH,
     HASH_FUNCTION,
     PURE_FUNCTION,
     POLYNOMIAL,
