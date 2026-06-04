@@ -26,22 +26,22 @@ def test_generate_and_load() -> None:
     level_to_number_of_definitions = {level: len(definitions) for level, definitions in level_to_definitions.items()}
     expected_level_to_number_of_definitions = {
         0: 5,
-        1: 12,
-        2: 26,
-        3: 35,
-        4: 42,
-        5: 38,
-        6: 30,
+        1: 11,
+        2: 25,
+        3: 36,
+        4: 40,
+        5: 39,
+        6: 31,
         7: 50,
         8: 29,
-        9: 21,
-        10: 11,
+        9: 22,
+        10: 12,
         11: 7,
         12: 6,
         13: 8,
         14: 2,
     }
-    assert len(index) == 322
+    assert len(index) == 323
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
 
