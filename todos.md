@@ -4,7 +4,7 @@
 
 ### 4. Review all definitions
 
-- [ ] Create a `review_definition.md` instruction file for how to review a definition
+- [x] Create a `review_definition.md` instruction file for how to review a definition
 - [ ] Check if they are accurate, complete and have all possible references to other definitions
 
 ## TODO
