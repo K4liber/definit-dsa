@@ -27,21 +27,20 @@ def test_generate_and_load() -> None:
     expected_level_to_number_of_definitions = {
         0: 3,
         1: 10,
-        2: 25,
+        2: 24,
         3: 37,
         4: 39,
         5: 40,
         6: 30,
         7: 46,
         8: 35,
-        9: 22,
+        9: 23,
         10: 13,
-        11: 7,
-        12: 6,
-        13: 8,
-        14: 2,
+        11: 10,
+        12: 10,
+        13: 2,
     }
-    assert len(index) == 323
+    assert len(index) == 322
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
 
