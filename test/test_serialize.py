@@ -34,13 +34,15 @@ def test_generate_and_load() -> None:
         6: 30,
         7: 46,
         8: 35,
-        9: 23,
-        10: 13,
-        11: 10,
-        12: 10,
-        13: 2,
+        9: 22,
+        10: 12,
+        11: 9,
+        12: 3,
+        13: 7,
+        14: 2,
+        15: 4,
     }
-    assert len(index) == 322
+    assert len(index) == 323
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
 

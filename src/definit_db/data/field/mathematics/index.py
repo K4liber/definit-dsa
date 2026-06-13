@@ -219,6 +219,7 @@ from definit_db.data.field.mathematics.definitions.tree.binary_search_tree impor
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal import BINARY_TREE_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.complete_binary_tree import COMPLETE_BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.descendant import DESCENDANT
 from definit_db.data.field.mathematics.definitions.tree.full_binary_tree import FULL_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.heap_tree import HEAP_TREE
 from definit_db.data.field.mathematics.definitions.tree.height_balanced_binary_search_tree import (
@@ -344,6 +345,7 @@ field_index: list[Definition] = [
     CONNECTED_GRAPH,
     WEIGHTED_GRAPH,
     ANCESTOR,
+    DESCENDANT,
     AVL_TREE,
     B_TREE,
     BALANCED_BINARY_TREE,

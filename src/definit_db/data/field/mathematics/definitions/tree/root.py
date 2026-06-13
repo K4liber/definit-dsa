@@ -11,6 +11,11 @@ class _Root(Definition):
         return f"""
 The {self.key.get_reference()} of a {TREE.key.get_reference("tree")} is the unique 
 {NODE.key.get_reference("node")} with no parent.
+
+---
+
+In a {TREE.key.get_reference("tree")} where {NODE.key.get_reference("node")} "A" is the parent of "B" 
+and "C", and "B" is the parent of "D", only "A" has no parent. "A" is therefore the root of the tree.
 """
 
 

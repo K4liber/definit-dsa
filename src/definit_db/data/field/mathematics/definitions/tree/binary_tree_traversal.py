@@ -11,6 +11,12 @@ class _BinaryTreeTraversal(Definition):
         return f"""
 A {self.key.get_reference()} is a procedure for visiting each {NODE.key.get_reference("node")} in a
 {BINARY_TREE.key.get_reference("binary tree")} in a specified order.
+
+---
+
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has 
+children "B" and "C". A binary tree traversal that visits a node before its children would report the 
+{NODE.key.get_reference("nodes")} in the order "A", "B", "C", touching each node exactly once.
 """
 
 

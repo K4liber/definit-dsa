@@ -17,6 +17,13 @@ and all {LEAF.key.get_reference("leaf")} nodes are at the same depth.
 
 Equivalently, a perfect binary tree is {FULL_BINARY_TREE.key.get_reference("full")} 
 and all leaves are at the same depth.
+
+---
+
+Take {NODE.key.get_reference("node")} "A" with children "B" and "C", where "B" has children "D" and "E" 
+and "C" has children "F" and "G". Every internal node has exactly two children, and the 
+{LEAF.key.get_reference("leaves")} "D", "E", "F", "G" all sit at the same depth, so this 
+{FULL_BINARY_TREE.key.get_reference("full")} binary tree is also perfect.
 """
 
 
