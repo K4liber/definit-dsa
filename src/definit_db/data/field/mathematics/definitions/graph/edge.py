@@ -11,6 +11,12 @@ class _Edge(Definition):
         return f"""
 An edge is a directed or undirected connection between two {NODE.key.get_reference(phrase="nodes")}. 
 It defines a {RELATION.key.get_reference(phrase="relationship")} or link between them.
+
+---
+
+Suppose two cities "A" and "B" are each a {NODE.key.get_reference(phrase="node")}. A road that runs 
+directly between them is an edge: it links the two {NODE.key.get_reference(phrase="nodes")} and expresses 
+the {RELATION.key.get_reference(phrase="relationship")} "is connected by road to".
 """
 
 

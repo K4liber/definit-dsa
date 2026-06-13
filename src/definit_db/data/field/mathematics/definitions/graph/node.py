@@ -13,7 +13,8 @@ or position in a structure. It does not imply any connections or context on its 
 
 ---
 
-Your home location can be a node in a structure of your neighborhood.
+Consider three cities labeled "A", "B", and "C". Each city is an {OBJECT.key.get_reference(phrase="object")} 
+that we place in a structure as a node.
 """
 
 

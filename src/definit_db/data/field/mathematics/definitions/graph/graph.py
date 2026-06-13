@@ -12,8 +12,14 @@ class _Graph(Definition):
         return f"""
 Graphs are used to model pairwise {RELATION.key.get_reference(phrase="relations")} between objects. 
 A graph is made up of {NODE.key.get_reference(phrase="nodes")} and {EDGE.key.get_reference(phrase="edges")}. 
-Graphs can be directed or undirected, weighted or unweighted, and can represent various types of 
-relationships in different fields.
+Graphs can represent various types of relationships in different fields.
+
+---
+
+Consider three cities "A", "B", and "C", each a {NODE.key.get_reference(phrase="node")}. The roads 
+"A-B" and "B-C" are {EDGE.key.get_reference(phrase="edges")}. Together these nodes and edges form a 
+graph that captures the {RELATION.key.get_reference(phrase="relation")} "is connected by road to" 
+across all three cities.
 """
 
 

@@ -14,6 +14,12 @@ A directed graph is a {GRAPH.key.get_reference(phrase="graph")} in which the
 {EDGE.key.get_reference(phrase="edges")} have a direction. Each edge connects an ordered pair of 
 {NODE.key.get_reference(phrase="nodes")}, meaning that the connection goes from one node to another in a 
 specific direction.
+
+---
+
+Picture cities "A" and "B" as {NODE.key.get_reference(phrase="nodes")} joined by a one-way street. 
+The {EDGE.key.get_reference(phrase="edge")} "A→B" lets you travel from "A" to "B" but not back. 
+A {GRAPH.key.get_reference(phrase="graph")} built from such one-way connections is a directed graph.
 """
 
 

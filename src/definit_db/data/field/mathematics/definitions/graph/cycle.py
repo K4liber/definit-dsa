@@ -12,6 +12,12 @@ class _Cycle(Definition):
         return f"""
 A cycle in a {GRAPH.key.get_reference(phrase="graph")} is a non-empty {PATH.key.get_reference(phrase="path")} 
 in which only the first and last {NODE.key.get_reference(phrase="nodes")} are equal.
+
+---
+
+In a {GRAPH.key.get_reference(phrase="graph")} of cities "A", "B", and "C" connected as A-B, B-C, and C-A, 
+the {PATH.key.get_reference(phrase="path")} A-B-C-A starts and ends at the same 
+{NODE.key.get_reference(phrase="node")} "A" while visiting the others once. That closed walk is a cycle.
 """
 
 
