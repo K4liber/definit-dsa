@@ -10,7 +10,13 @@ class _NAryTree(Definition):
     def _get_content(self) -> str:
         return f"""
 An {self.key.get_reference()} is a {TREE.key.get_reference("tree")} in which each 
-{NODE.key.get_reference("node")} can have an arbitrary number of children.
+{NODE.key.get_reference("node")} has no more than n children.
+
+---
+
+Fix n = 3 and build a {TREE.key.get_reference("tree")} where no {NODE.key.get_reference("node")} 
+may have more than three children: "A" has children "B", "C", "D", and "B" has a single child "E". 
+Every node stays within the limit of three children, so this is an n-ary tree with n = 3.
 """
 
 

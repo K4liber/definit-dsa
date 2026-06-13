@@ -226,7 +226,6 @@ from definit_db.data.field.mathematics.definitions.tree.height_balanced_binary_s
 )
 from definit_db.data.field.mathematics.definitions.tree.in_order_traversal import IN_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.interval_tree import INTERVAL_TREE
-from definit_db.data.field.mathematics.definitions.tree.k_ary_tree import K_ARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
 from definit_db.data.field.mathematics.definitions.tree.lowest_common_ancestor import LOWEST_COMMON_ANCESTOR
 from definit_db.data.field.mathematics.definitions.tree.max_heap import MAX_HEAP
@@ -362,7 +361,6 @@ field_index: list[Definition] = [
     MIN_HEAP,
     MAX_HEAP,
     INTERVAL_TREE,
-    K_ARY_TREE,
     N_ARY_TREE,
     LEAF,
     LOWEST_COMMON_ANCESTOR,

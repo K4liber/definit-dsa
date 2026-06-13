@@ -12,6 +12,13 @@ class _Subgraph(Definition):
         return f"""
 A {self.key.get_reference()} is a {GRAPH.key.get_reference()} formed from a subset of the 
 {NODE.key.get_reference("nodes")} and {EDGE.key.get_reference("edges")} of another graph.
+
+---
+
+Start with a {GRAPH.key.get_reference()} of cities "A", "B", "C", and "D" with the 
+{EDGE.key.get_reference("edges")} "A-B", "B-C", and "C-D". Keeping only the 
+{NODE.key.get_reference("nodes")} "A", "B", "C" together with the edges "A-B" and "B-C" gives a subgraph 
+of the original graph.
 """
 
 
