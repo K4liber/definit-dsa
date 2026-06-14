@@ -11,6 +11,12 @@ class _Vector(Definition):
         return f"""
 A {self.key.get_reference()} is an ordered {SEQUENCE.key.get_reference("sequence")} of
 {NUMBER.key.get_reference("numbers")}, often used to represent a point or a direction in space.
+
+---
+
+The {SEQUENCE.key.get_reference("sequence")} ("2", "3") is a vector of two {NUMBER.key.get_reference("numbers")}: 
+it can represent the point two units along one axis and three units along another, or the direction pointing that 
+way from the origin.
 """
 
 

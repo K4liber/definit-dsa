@@ -14,6 +14,13 @@ A {self.key.get_reference()} is a {BINARY_HEAP.key.get_reference("binary heap")}
 {NODE.key.get_reference("node")} is greater than or equal to the keys of its children.
 
 Equivalently, the maximum element is stored at the {ROOT.key.get_reference("root")}.
+
+---
+
+Arrange values in a {BINARY_HEAP.key.get_reference("binary heap")}: the {ROOT.key.get_reference("root")} "9" has 
+children "7" and "6", and "7" has children "3" and "5". Every parent's key is greater than or equal to its 
+children's ("9" ≥ "7" and "6"; "7" ≥ "3" and "5"), so the largest element "9" sits at the root and can be read in 
+a single step.
 """
 
 

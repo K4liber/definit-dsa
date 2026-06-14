@@ -1,6 +1,6 @@
 """Generate ``index_review.md`` from the markdown database.
 
-TODO(K4liber): remove the script after review is done
+TODO(K4liber): after the review, change the script to a test that checks if every definition has an example.
 
 For every definition listed in ``data_md/index.md`` this script writes a
 matching line in ``data_md/index_review.md`` with a checkbox in front of the

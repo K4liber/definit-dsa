@@ -8,7 +8,11 @@ from definit_db.data.field.mathematics.definitions.fundamental.object import OBJ
 class _Number(Definition):
     def _get_content(self) -> str:
         return f"""
-A number is a mathematical {OBJECT.key.get_reference()} used to count, measure, and label.
+A number is a mathematical {OBJECT.key.get_reference()} used to count or measure.
+
+---
+
+The {OBJECT.key.get_reference()} "3" is a number: it can, for example, count three apples.
 """
 
 

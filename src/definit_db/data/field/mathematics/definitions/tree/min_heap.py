@@ -14,6 +14,13 @@ A {self.key.get_reference()} is a {BINARY_HEAP.key.get_reference("binary heap")}
 {NODE.key.get_reference("node")} is less than or equal to the keys of its children.
 
 Equivalently, the minimum element is stored at the {ROOT.key.get_reference("root")}.
+
+---
+
+Arrange values in a {BINARY_HEAP.key.get_reference("binary heap")}: the {ROOT.key.get_reference("root")} "1" has 
+children "3" and "2", and "3" has children "5" and "4". Every parent's key is less than or equal to its children's 
+("1" ≤ "3" and "2"; "3" ≤ "5" and "4"), so the smallest element "1" sits at the root and can be read in a single 
+step.
 """
 
 

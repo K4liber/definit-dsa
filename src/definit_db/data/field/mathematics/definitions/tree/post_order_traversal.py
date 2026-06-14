@@ -14,6 +14,13 @@ class _PostOrderTraversal(Definition):
 A {self.key.get_reference()} is a {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
 {BINARY_TREE.key.get_reference("binary tree")} where, for each {NODE.key.get_reference("node")}, the left
 {SUBTREE.key.get_reference("subtree")} is visited first, then the right subtree, and then the node itself.
+
+---
+
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left child 
+"B" and right child "C". A post-order traversal visits the left {SUBTREE.key.get_reference("subtree")} first ("B"), 
+then the right subtree ("C"), and finally the node itself ("A"), reporting the 
+{NODE.key.get_reference("nodes")} in the order "B", "C", "A".
 """
 
 

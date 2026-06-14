@@ -13,6 +13,12 @@ A {self.key.get_reference()} is a rectangular arrangement of {NUMBER.key.get_ref
 in rows and columns.
 
 A matrix can be viewed as a collection of {VECTOR.key.get_reference("vectors")} (rows or columns).
+
+---
+
+The arrangement with first row ("1", "2") and second row ("3", "4") is a matrix of four 
+{NUMBER.key.get_reference("numbers")} laid out in two rows and two columns. Its rows can be read as the 
+{VECTOR.key.get_reference("vectors")} ("1", "2") and ("3", "4").
 """
 
 
