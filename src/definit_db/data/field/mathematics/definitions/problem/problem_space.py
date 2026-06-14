@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
@@ -16,9 +17,14 @@ class _ProblemSpace(Definition):
         return f"""
 {self.key.get_reference()} is the {SET.key.get_reference()} of all possible candidates for 
 {SOLUTION.key.get_reference("solutions")} to a {PROBLEM.key.get_reference()}. It represents the entire 
-domain that must be searched through to find a valid or {OPTIMAL_SOLUTION.key.get_reference("optimal solution")}. 
-The size of the problem space directly impacts computational efficiency, as larger problem spaces typically require 
-more computational resources to explore.
+domain that must be searched through to find a valid or {OPTIMAL_SOLUTION.key.get_reference("optimal solution")}.
+
+---
+
+For the {PROBLEM.key.get_reference()} "choose an even {NUMBER.key.get_reference("number")} from "2", "4", "5", and 
+"7"", the problem space is the {SET.key.get_reference()} containing "2", "4", "5", and "7" — every candidate that 
+must be examined. Inspecting each one shows that "2" and "4" are the valid 
+{SOLUTION.key.get_reference("solutions")}.
 """
 
 

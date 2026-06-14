@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.subproblem import SUBPROBLEM
 
@@ -12,6 +13,13 @@ class _OverlappingSubProblems(Definition):
 A {PROBLEM.key.get_reference()} is said to have overlapping 
 {SUBPROBLEM.key.get_reference(phrase="subproblems")} if the problem can be broken down into smaller, 
 simpler subproblems that are reused several times.
+
+---
+
+In a sequence of {NUMBER.key.get_reference(phrase="numbers")} where each equals the sum of the previous two — 
+"1", "1", "2", "3", "5" — finding the value at position "5" requires the 
+{SUBPROBLEM.key.get_reference(phrase="subproblem")} of finding the value at position "3", and this same subproblem 
+must also be solved while finding the value at position "4".
 """
 
 

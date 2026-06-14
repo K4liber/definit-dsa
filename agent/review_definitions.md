@@ -34,4 +34,4 @@ This script (`scripts\generate_index_review.py`) first regenerates the markdown 
 
 ## Instruction execution
 
-Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `solution`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
+Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition `adjacency_matrix`. After each definition review, please stop and wait for [HUMAN] feedback on your remarks.
