@@ -16,6 +16,12 @@ An {self.key.get_reference()} is a way of representing a {GRAPH.key.get_referenc
 
 If the rows and columns correspond to the {NODE.key.get_reference(phrase="nodes")} of the graph, then the 
 entry in row i, column j indicates whether there is an {EDGE.key.get_reference(phrase="edge")} from node i to node j.
+
+---
+
+Consider three {NODE.key.get_reference(phrase="nodes")} labeled 1, 2, and 3. If there is an 
+{EDGE.key.get_reference(phrase="edge")} between node 1 and node 2, and between node 2 and node 3, the adjacency 
+{MATRIX.key.get_reference(phrase="matrix")} would contain a 1 at positions (1,2) and (2,3), and 0 everywhere else.
 """
 
 
