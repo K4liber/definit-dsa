@@ -12,6 +12,11 @@ class _BaseCase(Definition):
         return f"""
 The simplest instance of the {PROBLEM.key.get_reference()}, which can be 
 {SOLUTION.key.get_reference("solved")} directly without further {REDUCTION.key.get_reference()}.
+
+---
+
+In the {PROBLEM.key.get_reference()} of finding the oldest person among a group of people, the base case is
+a reduction to comparing the ages of two people.
 """
 
 

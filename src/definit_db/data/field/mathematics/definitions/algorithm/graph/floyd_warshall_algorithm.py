@@ -25,8 +25,9 @@ The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} that finds 
 by iteratively considering each node as an intermediate node and updating the 
 {GRAPH_DISTANCE.key.get_reference("distances")} between all pairs of nodes if a shorter path through 
 the intermediate node is found. It can handle negative {EDGE.key.get_reference("edge")} weights but 
-cannot handle negative-weight {CYCLE.key.get_reference("cycles")}. The algorithm has a {TIME_COMPLEXITY.key.get_reference("time complexity")} 
-of O(V³) where V is the number of nodes, making it efficient for dense graphs or when all-pairs shortest paths are needed.
+cannot handle negative-weight {CYCLE.key.get_reference("cycles")}. The algorithm has a 
+{TIME_COMPLEXITY.key.get_reference("time complexity")} of O(V³) where V is the number of nodes, 
+making it efficient for dense graphs or when all-pairs shortest paths are needed.
 
 ---
 
