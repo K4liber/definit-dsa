@@ -14,6 +14,21 @@ A distribution describes how values (or outcomes) are spread over a domain. Typi
 {SET.key.get_reference("set")} or values to their frequencies or 
 {PROBABILITY.key.get_reference(phrase="probabilities")}, describing how likely or how common different 
 {OBJECT.key.get_reference(phrase="objects")} are.
+
+---
+
+A six-sided die has the following distribution over its outcomes:
+
+Outcome:     1     2     3     4     5     6
+Probability: 1/6   1/6   1/6   1/6   1/6   1/6
+
+Each outcome is equally likely. A loaded die might have a different distribution:
+
+Outcome:     1     2     3     4     5     6
+Probability: 0.1   0.1   0.1   0.1   0.1   0.5
+
+Here the value 6 is five times more likely than any other outcome. Both are valid distributions
+because all probabilities are in [0, 1] and sum to 1.
 """
 
 

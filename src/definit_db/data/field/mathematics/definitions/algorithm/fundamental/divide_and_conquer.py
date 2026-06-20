@@ -19,6 +19,30 @@ A type of {ALGORITHM.key.get_reference()} that solves a {PROBLEM.key.get_referen
 {SOLUTION.key.get_reference("solutions")} to form a solution to the original problem. Divide and conquer 
 algorithms often lead to efficient and elegant solutions. They may or may not always produce the 
 {OPTIMAL_SOLUTION.key.get_reference("optimal solution")}.
+
+---
+
+Sorting the array [5, 2, 8, 1] by recursively splitting it in half, sorting each half independently,
+and merging the sorted halves back together:
+
+Divide:
+  [5, 2, 8, 1]
+  ├── [5, 2]
+  │   ├── [5]   ← base case, a single element is already sorted
+  │   └── [2]   ← base case
+  └── [8, 1]
+      ├── [8]   ← base case
+      └── [1]   ← base case
+
+Conquer (merge sorted halves bottom-up):
+  [5] + [2]  → [2, 5]
+  [8] + [1]  → [1, 8]
+
+Combine:
+  [2, 5] + [1, 8] → [1, 2, 5, 8]
+
+Each subproblem ([5,2] and [8,1]) is solved entirely independently before the results are
+combined — this independence is the hallmark of divide and conquer.
 """
 
 
