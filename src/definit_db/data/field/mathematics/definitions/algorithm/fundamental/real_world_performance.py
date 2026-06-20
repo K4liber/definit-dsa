@@ -9,6 +9,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_co
 from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior import ASYMPTOTIC_BEHAVIOR
 from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
+from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 
 
 class _RealWorldPerformance(Definition):
@@ -25,6 +26,24 @@ and {SPACE_COMPLEXITY.key.get_reference("space complexity")} provide
 how an algorithm scales, real-world performance considers the actual runtime behavior with typical 
 {INPUT_DATA.key.get_reference("input data")} and implementation-specific factors. An algorithm with better 
 theoretical complexity may perform worse in practice, and vice versa.
+
+---
+
+Consider two algorithms solving the same {PROBLEM.key.get_reference()}:
+
+  Algorithm A: 100·n   operations  — O(n),  but a large constant factor of 100
+  Algorithm B:    n²   operations  — O(n²), constant factor of 1
+
+Theoretical {COMPLEXITY.key.get_reference()} says A is asymptotically better. Yet for small
+{INPUT_DATA.key.get_reference("inputs")} A is actually slower:
+
+  n =  5:  A = 500 ops,   B =    25 ops  → B wins
+  n = 50:  A = 5 000 ops, B = 2 500 ops  → B wins
+  n = 100: A = 10 000 ops, B = 10 000 ops → tie
+  n = 200: A = 20 000 ops, B = 40 000 ops → A wins
+
+For real-world workloads where n is usually small, the {ALGORITHM.key.get_reference()} with the
+worse theoretical {COMPLEXITY.key.get_reference()} can be the better practical choice.
 """
 
 

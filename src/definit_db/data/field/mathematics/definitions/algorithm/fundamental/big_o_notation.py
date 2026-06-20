@@ -17,6 +17,20 @@ A mathematical notation used to describe the {ASYMPTOTIC_BEHAVIOR.key.get_refere
 {TIME_COMPLEXITY.key.get_reference()} or {SPACE_COMPLEXITY.key.get_reference()} as the input size grows. 
 Big O notation characterizes the worst-case growth rate, allowing comparison of algorithm efficiency 
 independent of implementation details.
+
+---
+
+Example Big O classes:
+
+  O(1)      — constant:    accessing an element by index in an array
+  O(n)      — linear:      scanning every element once (e.g. linear search)
+
+Big O drops constant factors and lower-order terms. An algorithm that performs 3n + 7 operations
+is O(n), not O(3n + 7), because for large n the leading term dominates:
+
+  n = 1 000 000:  3n + 7 = 3 000 007  ≈  3n
+
+The notation captures growth rate, not exact operation count.
 """
 
 

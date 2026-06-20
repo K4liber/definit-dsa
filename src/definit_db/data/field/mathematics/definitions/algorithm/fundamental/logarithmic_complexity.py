@@ -24,6 +24,25 @@ logarithmically with the size of the {INPUT_DATA.key.get_reference("input")}. Ex
 factor (typically by half). This is highly efficient and commonly seen in algorithms that repeatedly divide the problem 
 space. Logarithmic complexity is significantly faster than linear complexity, especially for large inputs, as doubling 
 the {INPUT_DATA.key.get_reference("input")} size only adds one additional {OPERATION.key.get_reference()}.
+
+---
+
+Starting with a {PROBLEM_SPACE.key.get_reference()} of n = 1,024 and halving it at each {OPERATION.key.get_reference()}:
+
+  Step  0: 1 024 elements
+  Step  1:   512 elements  (÷ 2)
+  Step  2:   256 elements  (÷ 2)
+  Step  3:   128 elements  (÷ 2)
+  Step  4:    64 elements  (÷ 2)
+  Step  5:    32 elements  (÷ 2)
+  Step  6:    16 elements  (÷ 2)
+  Step  7:     8 elements  (÷ 2)
+  Step  8:     4 elements  (÷ 2)
+  Step  9:     2 elements  (÷ 2)
+  Step 10:     1 element   → done
+
+10 = log₂(1 024) {OPERATION.key.get_reference("operations")} to reduce the entire {PROBLEM_SPACE.key.get_reference()}.
+Doubling the {INPUT_DATA.key.get_reference("input")} to n = 2 048 adds just one more step (log₂(2 048) = 11).
 """
 
 

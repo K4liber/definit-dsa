@@ -19,6 +19,11 @@ Infinity is a mathematical concept representing something without an end or limi
 {NUMBER.key.get_reference(phrase="number")} in the usual real-number system; instead, it is used to describe 
 objects that grow without bound or a {COLLECTION.key.get_reference(phrase="collection")} or 
 {SET.key.get_reference(phrase="set")} that is not {FINITE_SET.key.get_reference(phrase="finite")}.
+
+---
+
+The set of natural numbers {{0, 1, 2, 3, ...}} is infinite — for any number n you name, n+1 is
+also in the set, so the set has no largest element and no finite bound.
 """
 
 

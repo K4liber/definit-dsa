@@ -17,6 +17,28 @@ another {ALGORITHM.key.get_reference()}), and then concatenates the sorted bucke
 {SEQUENCE.key.get_reference("sequence")}. Bucket sort can be very efficient when input is uniformly distributed; 
 in some cases it can achieve linear time and approach the {OPTIMAL_SOLUTION.key.get_reference("optimal solution")} 
 for specific distributions.
+
+---
+
+Sort [0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12] using 4 equal-width buckets over [0, 1):
+
+Distribute into buckets:
+  Bucket 0 [0.00, 0.25): 0.17, 0.21, 0.12
+  Bucket 1 [0.25, 0.50): 0.39, 0.26
+  Bucket 2 [0.50, 0.75): 0.72
+  Bucket 3 [0.75, 1.00): 0.78, 0.94
+
+Sort each bucket individually:
+  Bucket 0: [0.12, 0.17, 0.21]
+  Bucket 1: [0.26, 0.39]
+  Bucket 2: [0.72]
+  Bucket 3: [0.78, 0.94]
+
+Concatenate:
+  [0.12, 0.17, 0.21, 0.26, 0.39, 0.72, 0.78, 0.94]
+
+Because the values are spread roughly uniformly across buckets, each bucket contains only a few
+elements, making the individual sorts cheap.
 """
 
 
