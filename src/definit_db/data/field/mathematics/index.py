@@ -204,12 +204,14 @@ from definit_db.data.field.mathematics.definitions.problem.mathematical_inductio
 from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.optimal_substructure import OPTIMAL_SUBSTRUCTURE
 from definit_db.data.field.mathematics.definitions.problem.overlapping_subproblems import OVERLAPPING_SUBPROBLEMS
+from definit_db.data.field.mathematics.definitions.problem.polynomial_reduction import POLYNOMIAL_REDUCTION
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.problem_space import PROBLEM_SPACE
 from definit_db.data.field.mathematics.definitions.problem.recursion import RECURSION
 from definit_db.data.field.mathematics.definitions.problem.reduction import REDUCTION
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.subproblem import SUBPROBLEM
+from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUBSET_SUM
 from definit_db.data.field.mathematics.definitions.tree.ancestor import ANCESTOR
 from definit_db.data.field.mathematics.definitions.tree.avl_tree import AVL_TREE
 from definit_db.data.field.mathematics.definitions.tree.b_tree import B_TREE
@@ -375,6 +377,8 @@ field_index: list[Definition] = [
     UNBALANCED_BINARY_TREE,
     HEAP_TREE,
     REDUCTION,
+    POLYNOMIAL_REDUCTION,
+    SUBSET_SUM,
     BASE_CASE,
     MATHEMATICAL_INDUCTION,
     RECURSION,

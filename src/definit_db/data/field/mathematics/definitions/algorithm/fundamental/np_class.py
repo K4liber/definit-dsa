@@ -16,6 +16,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
+from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUBSET_SUM
 
 
 class _NPClass(Definition):
@@ -32,6 +33,20 @@ Equivalently, a problem is in NP if, given a proposed {SOLUTION.key.get_referenc
 {DETERMINISTIC_TURING_MACHINE.key.get_reference("deterministic Turing machine")} that can verify the 
 solution's correctness in time {BIG_O_NOTATION.key.get_reference("O(n^k)")} for some constant k, where 
 n is the size of the {INPUT_DATA.key.get_reference()}. NP stands for "Nondeterministic Polynomial time."
+
+---
+
+{SUBSET_SUM.key.get_reference()}: given a set of integers and a target T, does any subset sum to T?
+
+  Input: {{3, 1, 4, 1, 5}},  T = 9
+
+Finding a {SOLUTION.key.get_reference()} may require checking exponentially many subsets.
+But verifying a proposed {SOLUTION.key.get_reference()} is easy — given the certificate {{4, 5}}:
+
+  4 + 5 = 9  ✓  (checked in O(n) {TIME_COMPLEXITY.key.get_reference("time")})
+
+Because {SOLUTION.key.get_reference("solutions")} can be verified in {POLYNOMIAL.key.get_reference("polynomial")} time,
+subset-sum is in {self.key.get_reference()}.
 """
 
 

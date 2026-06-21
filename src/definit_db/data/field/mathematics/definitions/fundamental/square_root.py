@@ -10,6 +10,12 @@ class _SquareRoot(Definition):
         return f"""
 The {self.key.get_reference()} of a non-negative {NUMBER.key.get_reference("number")} x is a non-negative
 number y such that y² = x.
+
+---
+
+√9  = 3  because 3² = 9
+√25 = 5  because 5² = 25
+√2  ≈ 1.414 because 1.414² ≈ 2
 """
 
 

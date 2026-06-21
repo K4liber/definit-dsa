@@ -25,7 +25,7 @@ construction of an {OPTIMAL_SOLUTION.key.get_reference("optimal solution")} by r
 
 To compute the {NUMBER.key.get_reference(phrase="number")} at position "5" in the sequence "1", "1", "2", "3", "5" 
 where each number is the sum of the previous two, dynamic programming stores the 
-{SOLUTION.key.get_reference()} of each {SUBPROBLEM.key.get_reference()} — each earlier position — once and reuses 
+{SOLUTION.key.get_reference()} of each {SUBPROBLEM.key.get_reference()}, each earlier position, once and reuses 
 it, so position "3" is computed a single time instead of repeatedly.
 """
 

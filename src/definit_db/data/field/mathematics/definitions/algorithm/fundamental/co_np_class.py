@@ -16,6 +16,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
 from definit_db.data.field.mathematics.definitions.problem.complement_problem import COMPLEMENT_PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
+from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUBSET_SUM
 
 
 class _CoNPClass(Definition):
@@ -34,6 +35,19 @@ Equivalently, the {COMPLEMENT_PROBLEM.key.get_reference("complement")} of the pr
 {NONDETERMINISTIC_TURING_MACHINE.key.get_reference("nondeterministic Turing machine")} in time 
 {BIG_O_NOTATION.key.get_reference("O(n^k)")} for some constant k, where n is the size of the 
 {INPUT_DATA.key.get_reference()}. Co-NP stands for "Complement of NP."
+
+---
+
+The {COMPLEMENT_PROBLEM.key.get_reference("complement")} of {SUBSET_SUM.key.get_reference()} - 
+"does NO subset of the integers sum to T?" is in {self.key.get_reference()}.
+
+  Input: {{3, 1, 4, 1, 5}},  T = 9
+
+A "no" answer to the complement means a subset DOES exist ({{4, 5}} sums to 9).
+That certificate can be verified quickly by a 
+{DETERMINISTIC_TURING_MACHINE.key.get_reference("deterministic Turing machine")}
+in {POLYNOMIAL.key.get_reference("polynomial")} {TIME_COMPLEXITY.key.get_reference("time")}, 
+satisfying the Co-NP definition.
 """
 
 
