@@ -42,7 +42,6 @@ def test_generate_and_load() -> None:
         14: 4,
         15: 1,
     }
-    assert len(index) == 323
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
 

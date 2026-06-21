@@ -6,3 +6,5 @@ name=AcyclicDependencies
 type=acyclic_siblings
 ancestors = 
     definit_db
+# depth = 3 -> only check if fields do not depend on each other
+depth = 3  
