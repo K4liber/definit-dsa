@@ -10,6 +10,13 @@ class _PrimeNumber(Definition):
         return f"""
 A {self.key.get_reference()} is a positive {INTEGER.key.get_reference("integer")} greater than 1 that has
 exactly two positive divisors: 1 and itself.
+
+---
+
+2, 3, 5, 7, and 11 are prime numbers — each is only divisible by 1 and itself.
+
+4 is not a prime number because it has three divisors: 1, 2, and 4.
+1 is not a prime number because it has only one divisor, not two.
 """
 
 

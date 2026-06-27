@@ -10,6 +10,11 @@ class _Uniqueness(Definition):
         return f"""
 {self.key.get_reference("Uniqueness")} means that there is exactly one
 {OBJECT.key.get_reference("object")} satisfying a given description, within the intended context.
+
+---
+
+The equation x + 5 = 8 has a unique solution: exactly one {OBJECT.key.get_reference("object")} x = 3
+satisfies it. No other value works.
 """
 
 

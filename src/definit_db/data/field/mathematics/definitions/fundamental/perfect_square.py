@@ -13,6 +13,14 @@ A {self.key.get_reference()} is a non-negative {INTEGER.key.get_reference("integ
 some integer n.
 
 Equivalently, x is a perfect square if {SQUARE_ROOT.key.get_reference("the square root")} of x is an integer.
+
+---
+
+9 is a {self.key.get_reference()} because 9 = 3², and {SQUARE_ROOT.key.get_reference("the square root")} of 9
+is 3 — an {INTEGER.key.get_reference("integer")}.
+
+8 is not a {self.key.get_reference()} because {SQUARE_ROOT.key.get_reference("the square root")} of 8 ≈ 2.83,
+which is not an {INTEGER.key.get_reference("integer")}.
 """
 
 

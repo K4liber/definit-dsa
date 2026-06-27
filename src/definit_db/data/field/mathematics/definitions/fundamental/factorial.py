@@ -13,6 +13,12 @@ The {self.key.get_reference()} of a non-negative {INTEGER.key.get_reference("int
 {PRODUCT.key.get_reference("product")} of all positive integers up to n.
 
 By convention, 0! = 1.
+
+---
+
+5! = 5 × 4 × 3 × 2 × 1 = 120
+3! = 3 × 2 × 1 = 6
+0! = 1  (by convention)
 """
 
 

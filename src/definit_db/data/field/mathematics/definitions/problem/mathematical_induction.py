@@ -14,6 +14,17 @@ class _MathematicalInduction(Definition):
 
 It typically consists of proving a {BASE_CASE.key.get_reference("base case")} and then proving that if the 
 statement holds for one value, it also holds for the next.
+
+---
+
+Proving that 1 + 2 + ... + n = n(n+1)/2 for all {NATURAL_NUMBER.key.get_reference("natural numbers")} n:
+
+{BASE_CASE.key.get_reference("Base case")} (n = 1): the sum is 1, and 1(1+1)/2 = 1. ✓
+
+Inductive step: assume the formula holds for some n = k, i.e. 1 + 2 + ... + k = k(k+1)/2.
+Then 1 + 2 + ... + k + (k+1) = k(k+1)/2 + (k+1) = (k+1)(k+2)/2. ✓
+
+Since both steps hold, the formula is true for all natural numbers.
 """
 
 

@@ -10,6 +10,11 @@ class _Reordering(Definition):
         return f"""
 A {self.key.get_reference()} is a change in the order of items in a
 {SEQUENCE.key.get_reference("sequence")}, without changing which items are present.
+
+---
+
+The {SEQUENCE.key.get_reference("sequence")} [1, 2, 3] can be reordered to [3, 1, 2] or [2, 3, 1].
+All three contain the same items — only the arrangement differs.
 """
 
 
