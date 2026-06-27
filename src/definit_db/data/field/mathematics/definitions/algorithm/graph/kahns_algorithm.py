@@ -19,6 +19,19 @@ Kahn's Algorithm is an {ALGORITHM.key.get_reference(phrase="algorithm")} for
 {NODE.key.get_reference(phrase="node")} with {IN_DEGREE.key.get_reference(phrase="in-degree")} zero, appends it 
 to the ordering, and removes its outgoing {EDGE.key.get_reference(phrase="edges")}. If every node is removed, the 
 result is a topological ordering.
+
+---
+
+Given the {DIRECTED_ACYCLIC_GRAPH.key.get_reference(phrase="DAG")} A→B→D, A→C→D:
+
+  {IN_DEGREE.key.get_reference(phrase="In-degrees")}: A=0, B=1, C=1, D=2
+
+  Pick A (in-degree 0) → remove {EDGE.key.get_reference(phrase="edges")} A→B, A→C → in-degrees: B=0, C=0, D=2
+  Pick B (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} B→D       → in-degrees: C=0, D=1
+  Pick C (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} C→D       → in-degrees: D=0
+  Pick D (in-degree 0) → done
+
+  Result: [A, B, C, D]  ✓
 """
 
 

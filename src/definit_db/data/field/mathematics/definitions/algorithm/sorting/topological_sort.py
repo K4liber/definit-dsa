@@ -12,7 +12,17 @@ class _TopologicalSort(Definition):
         return f"""
 Topological Sort is a {SORTING.key.get_reference()} {ALGORITHM.key.get_reference()} applied to a 
 {DIRECTED_ACYCLIC_GRAPH.key.get_reference(phrase="directed acyclic graph")}. It produces a linear ordering 
-of the graph's vertices such that for every directed edge (u, v), u comes before v in the ordering. 
+of the graph's vertices such that for every directed edge (u, v), u comes before v in the ordering.
+
+---
+
+Given the {DIRECTED_ACYCLIC_GRAPH.key.get_reference(phrase="DAG")}:
+
+  A → B → D
+  A → C → D
+
+Valid topological orderings: [A, B, C, D] or [A, C, B, D].
+Both place A first (it has no dependencies) and D last (it depends on B and C).
 """
 
 

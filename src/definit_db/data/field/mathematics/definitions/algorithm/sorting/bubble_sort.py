@@ -14,6 +14,16 @@ Bubble Sort is a {SORTING.key.get_reference()} {ALGORITHM.key.get_reference()} t
 {SEQUENCE.key.get_reference("sequence")}, compares adjacent elements and swaps them if they are in the wrong order. 
 This process is repeated until the entire {SEQUENCE.key.get_reference("sequence")} is sorted. Bubble sort is 
 simple but generally inefficient for large inputs, as it repeatedly passes over the sequence.
+
+---
+
+Sorting [3, 1, 2]:
+
+  Pass 1: compare 3,1 → swap → [1, 3, 2]
+          compare 3,2 → swap → [1, 2, 3]
+  Pass 2: compare 1,2 → ok
+          compare 2,3 → ok  →  [1, 2, 3]  ✓
+          nothing swapped in this pass, so the {SEQUENCE.key.get_reference("sequence")} is sorted.
 """
 
 
