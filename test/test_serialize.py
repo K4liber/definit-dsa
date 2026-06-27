@@ -25,11 +25,11 @@ def test_generate_and_load() -> None:
 
     level_to_number_of_definitions = {level: len(definitions) for level, definitions in level_to_definitions.items()}
     expected_level_to_number_of_definitions = {
-        0: 3,
+        0: 2,
         1: 10,
         2: 24,
         3: 38,
-        4: 39,
+        4: 40,
         5: 40,
         6: 31,
         7: 46,

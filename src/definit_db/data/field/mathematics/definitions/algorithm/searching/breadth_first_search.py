@@ -21,7 +21,20 @@ a {GRAPH.key.get_reference()} structure. It explores all {NODE.key.get_reference
 depth level before moving to nodes at the next depth level. The algorithm starts at a given node and 
 systematically visits all neighboring nodes first, then visits all unvisited neighbors of those neighbors, 
 and so on. This level-by-level exploration ensures that the shortest {PATH.key.get_reference()} 
-(in terms of number of {EDGE.key.get_reference("edges")}) is found first in non-{WEIGHTED_GRAPH.key.get_reference("weighted graphs")}.
+(in terms of number of {EDGE.key.get_reference("edges")}) is found first in 
+non-{WEIGHTED_GRAPH.key.get_reference("weighted graphs")}.
+
+---
+
+{GRAPH.key.get_reference("Graph")} {EDGE.key.get_reference("edges")}: A–B, A–C, B–D, B–E
+
+BFS from {NODE.key.get_reference("node")} A:
+
+  Level 0: [A]
+  Level 1: [B, C]      (neighbors of A)
+  Level 2: [D, E]      (unvisited neighbors of B)
+
+  Visit order: A, B, C, D, E
 """
 
 
