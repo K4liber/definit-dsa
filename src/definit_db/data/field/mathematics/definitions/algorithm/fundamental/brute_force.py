@@ -7,6 +7,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimiz
 from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
+from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUBSET_SUM
 
 
 class _BruteForce(Definition):
@@ -15,7 +16,15 @@ class _BruteForce(Definition):
 A type of {ALGORITHM.key.get_reference()} that solves a {PROBLEM.key.get_reference()} by systematically checking 
 all possible candidates for a {SOLUTION.key.get_reference()} until the correct one is found. Brute force algorithms 
 are straightforward and guarantee finding the {OPTIMAL_SOLUTION.key.get_reference("optimal solution")} if one exists, 
-but they can be computationally expensive for large problem spaces as they do not employ any {OPTIMIZATION.key.get_reference()} techniques.
+but they can be computationally expensive for large problem spaces as they do not employ any 
+{OPTIMIZATION.key.get_reference()} techniques.
+
+---
+
+A {self.key.get_reference("brute-force")} {SOLUTION.key.get_reference()} to the {SUBSET_SUM.key.get_reference()} 
+{PROBLEM.key.get_reference()} enumerates every subset of the input set and checks whether its sum equals the 
+target, examining all candidates without applying any {OPTIMIZATION.key.get_reference()} technique to skip 
+unpromising subsets.
 """
 
 
