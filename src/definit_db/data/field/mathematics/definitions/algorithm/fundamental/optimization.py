@@ -6,6 +6,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorit
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
+from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUBSET_SUM
 
 
 class _Optimization(Definition):
@@ -13,8 +14,15 @@ class _Optimization(Definition):
         return f"""
 The process of improving an {ALGORITHM.key.get_reference()} or {SOLUTION.key.get_reference()} to make it more 
 efficient by reducing resource consumption. {self.key.get_reference()} 
-involves finding the best approach to solve a {PROBLEM.key.get_reference()} within given {CONSTRAINT.key.get_reference("constraints")}, often by 
-minimizing costs or maximizing benefits.
+involves finding the best approach to solve a {PROBLEM.key.get_reference()} within given 
+{CONSTRAINT.key.get_reference("constraints")}, often by minimizing costs or maximizing benefits.
+
+---
+
+A first {SOLUTION.key.get_reference()} to the {SUBSET_SUM.key.get_reference()} {PROBLEM.key.get_reference()} checks 
+every possible subset before answering. {self.key.get_reference("Optimizing")} this solution to stop as soon as a 
+subset satisfying the target-sum {CONSTRAINT.key.get_reference()} is found avoids examining the remaining subsets, 
+reducing the work performed.
 """
 
 

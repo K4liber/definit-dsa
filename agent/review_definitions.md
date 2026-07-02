@@ -24,7 +24,7 @@ A definition is considered reviewed when its content contains an example, which 
 
 The file <index_review_md_file_path> lists every definition with a checkbox in front of its name: `[x]` when the definition already has an example (reviewed) and `[ ]` when it does not (still to review). It preserves the same order as <index_md_file_path>.
 
-After adding any new definition (or to refresh the review status), regenerate both the markdown database and this review index by running:
+After adding any new definition (or to refresh the review status), regenerate the review index by running:
 
 ```
 uv run python scripts/generate_index_review.py
