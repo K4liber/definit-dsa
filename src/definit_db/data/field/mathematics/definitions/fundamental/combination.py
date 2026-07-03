@@ -16,6 +16,13 @@ A {self.key.get_reference()} is a way of selecting {OBJECT.key.get_reference("ob
 
 Combinations are related to {PERMUTATION.key.get_reference("permutations")} and are often computed using
 {FACTORIAL.key.get_reference("factorials")}.
+
+---
+
+Choosing 2 fruits from the {SET.key.get_reference("set")} {{apple, banana, cherry}} gives three 
+{self.key.get_reference("combinations")}: {{apple, banana}}, {{apple, cherry}}, and {{banana, cherry}}. Picking 
+banana then apple is the same {self.key.get_reference("combination")} as picking apple then banana, since order 
+does not matter.
 """
 
 

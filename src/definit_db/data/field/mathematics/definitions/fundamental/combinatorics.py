@@ -15,6 +15,12 @@ class _Combinatorics(Definition):
 {OBJECT.key.get_reference("objects")}. It studies concepts such as 
 {PERMUTATION.key.get_reference("permutations")}, {COMBINATION.key.get_reference("combinations")} and 
 {FACTORIAL.key.get_reference("factorials")}.
+
+---
+
+Counting how many {PERMUTATION.key.get_reference("orderings")} exist for 3 books on a shelf, or how many 
+{COMBINATION.key.get_reference("combinations")} of 2 people can be chosen from a group of 5, are both problems 
+studied in {self.key.get_reference("combinatorics")}.
 """
 
 

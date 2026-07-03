@@ -16,6 +16,12 @@ The {self.key.get_reference()} is the minimum {TIME_COMPLEXITY.key.get_reference
 
 It describes the most favorable inputs or {CRITERION.key.get_reference("conditions")} under which the algorithm
 performs as fast as possible.
+
+---
+
+For an {ALGORITHM.key.get_reference()} that searches a list of "100" {INPUT_DATA.key.get_reference("items")} one 
+by one for a target value, the {self.key.get_reference("best case")} occurs when the target is the first item 
+checked, giving a {TIME_COMPLEXITY.key.get_reference()} of a single comparison regardless of the list's length.
 """
 
 

@@ -17,6 +17,13 @@ class _ObjectiveFunction(Definition):
 to be {OPTIMIZATION.key.get_reference("optimized")} in a {PROBLEM.key.get_reference()}. 
 The objective function is either maximized or minimized to find the best solution, and its value determines 
 the quality of any given solution.
+
+---
+
+For a delivery-route {PROBLEM.key.get_reference()}, the total distance traveled is the 
+{self.key.get_reference("objective function")}: it is a {FUNCTION.key.get_reference()} of the chosen route, and 
+{OPTIMIZATION.key.get_reference("optimizing")} the route means minimizing this function's value to find the 
+shortest route among all valid routes.
 """
 
 

@@ -14,6 +14,12 @@ only when all of its inputs are true.
 
 For two {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expressions")} A and B, A AND B is true exactly when
 both A and B are true.
+
+---
+
+Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expressions")} "it is raining" (true) and "it is windy" 
+(true), {self.key.get_reference("AND")} combines them as "it is raining AND it is windy", which evaluates to true 
+because both expressions are true.
 """
 
 

@@ -14,6 +14,12 @@ if at least one of its inputs is true.
 
 Equivalently, for two {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expressions")} A and B, A OR B is false
 only when both A and B are false.
+
+---
+
+Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expressions")} "it is raining" (true) and "it is windy" 
+(false), {self.key.get_reference("OR")} combines them as "it is raining OR it is windy", which evaluates to true 
+because at least one of the two expressions is true.
 """
 
 

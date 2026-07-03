@@ -16,6 +16,12 @@ class _NotOperator(Definition):
 For a {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expression")} A:
 - NOT A is true when A is false.
 - NOT A is false when A is true.
+
+---
+
+Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expression")} "it is raining" (true), 
+{self.key.get_reference("NOT")} inverts it as "NOT it is raining", which evaluates to false since the original 
+expression was true.
 """
 
 

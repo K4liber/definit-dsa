@@ -21,6 +21,15 @@ class _MathematicalProgramming(Definition):
 {OPTIMIZATION.key.get_reference("optimizing")} an {OBJECTIVE_FUNCTION.key.get_reference()} subject to 
 {CONSTRAINT.key.get_reference("constraints")}. The goal is to maximize or minimize the objective function while 
 ensuring the solution is a {FEASIBLE_SOLUTION.key.get_reference()}.
+
+---
+
+A factory {PROBLEM.key.get_reference()} of maximizing profit from producing two products, subject to a limited 
+number of labor hours and raw materials as {CONSTRAINT.key.get_reference("constraints")}, is a case of 
+{self.key.get_reference("mathematical programming")}: the profit formula is the 
+{OBJECTIVE_FUNCTION.key.get_reference()}, every production plan that respects the labor and material limits is a 
+{FEASIBLE_SOLUTION.key.get_reference()}, and the plan yielding the highest profit among them is the 
+{OPTIMAL_SOLUTION.key.get_reference("optimal solution")}.
 """
 
 
