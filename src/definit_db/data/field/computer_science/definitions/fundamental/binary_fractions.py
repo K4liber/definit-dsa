@@ -17,7 +17,11 @@ class _BinaryFractions(Definition):
 using {BINARY_REPRESENTATION.key.get_reference("binary representation")}. In binary fractions, 
 {BIT.key.get_reference("bits")} to the right of a binary point represent negative powers of 2 
 (1/2, 1/4, 1/8, etc.), similar to how digits after a decimal point in base-10 represent 
-negative powers of 10. For example, the binary fraction 0.101 represents 1/2 + 0/4 + 1/8 = 5/8.
+negative powers of 10.
+
+---
+
+The binary fraction 0.101 represents 1/2 + 0/4 + 1/8 = 5/8.
 """
 
 
