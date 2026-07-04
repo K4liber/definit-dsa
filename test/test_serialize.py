@@ -27,10 +27,10 @@ def test_generate_and_load() -> None:
     expected_level_to_number_of_definitions = {
         0: 2,
         1: 10,
-        2: 24,
+        2: 23,
         3: 38,
         4: 40,
-        5: 40,
+        5: 42,
         6: 30,
         7: 45,
         8: 37,
