@@ -163,13 +163,16 @@ from definit_db.data.field.mathematics.definitions.fundamental.pure_function imp
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
 from definit_db.data.field.mathematics.definitions.fundamental.randomness import RANDOMNESS
 from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.reflection import REFLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.fundamental.reordering import REORDERING
+from definit_db.data.field.mathematics.definitions.fundamental.rotation import ROTATION
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
+from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
 from definit_db.data.field.mathematics.definitions.fundamental.unary_operation import UNARY_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribution import UNIFORM_DISTRIBUTION
@@ -461,5 +464,8 @@ field_index: list[Definition] = [
     MAJORITY_ELEMENT,
     PALINDROME,
     SUBSEQUENCE,
+    TRANSFORMATION,
+    REFLECTION,
+    ROTATION,
     SYMMETRY,
 ]
