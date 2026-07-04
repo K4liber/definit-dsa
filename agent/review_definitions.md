@@ -34,4 +34,4 @@ This script (`scripts\generate_index_review.py`) first regenerates the markdown 
 
 ## Instruction execution
 
-Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition the first one that is not yet reviewed. After each definition review, please stop and wait for [HUMAN] feedback on your remarks. Do not run tests, those will be run by [HUMAN] after your review.
+Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition the first one that is not yet reviewed. After each definition review, please stop and wait for [HUMAN] feedback on your remarks. Do not run tests, those will be run by [HUMAN] after your review. Do not include ASCI visualizations, just describe the structure in plain text.

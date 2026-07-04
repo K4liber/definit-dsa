@@ -13,6 +13,15 @@ class _MutualExclusivity(Definition):
 
 In set terms, two {SET.key.get_reference(phrase="sets")} A and B are mutually exclusive if their
 {INTERSECTION.key.get_reference()} is empty.
+
+---
+
+Rolling a single die, let A be "the roll is 1" and B be "the roll is 2". As {SET.key.get_reference(phrase="sets")},
+A = (1) and B = (2) have an empty {INTERSECTION.key.get_reference()}, so A and B are mutually exclusive — a single
+roll cannot be both 1 and 2 at once.
+
+By contrast, let C be "the roll is even" (2, 4, 6). B and C are not mutually exclusive, since a roll of 2 belongs
+to both.
 """
 
 

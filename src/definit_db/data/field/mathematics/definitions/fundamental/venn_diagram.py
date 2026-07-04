@@ -15,6 +15,13 @@ A {self.key.get_reference(phrase="Venn diagram")} is a diagram that represents o
 
 In particular, it can illustrate set operations such as {UNION.key.get_reference(phrase="union")} and
 {INTERSECTION.key.get_reference(phrase="intersection")}.
+
+---
+
+For {SET.key.get_reference(phrase="sets")} A = (1, 2, 3) and B = (2, 3, 4), a Venn diagram draws A and B as two
+overlapping circles. The overlapping region represents their {INTERSECTION.key.get_reference(phrase="intersection")}
+(2, 3), while the entire area covered by both circles together represents their
+{UNION.key.get_reference(phrase="union")} (1, 2, 3, 4).
 """
 
 

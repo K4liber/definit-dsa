@@ -107,6 +107,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.collection import
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
 from definit_db.data.field.mathematics.definitions.fundamental.commutative_operation import COMMUTATIVE_OPERATION
+from definit_db.data.field.mathematics.definitions.fundamental.composite_number import COMPOSITE_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
@@ -401,6 +402,7 @@ field_index: list[Definition] = [
     INTEGER,
     NATURAL_NUMBER,
     PRIME_NUMBER,
+    COMPOSITE_NUMBER,
     PRIME_FACTORIZATION,
     FACTORIAL,
     COMBINATORICS,

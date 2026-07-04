@@ -13,6 +13,12 @@ class _Interval(Definition):
 An interval is a {SET.key.get_reference(phrase="set")} of {REAL_NUMBER.key.get_reference(phrase="real numbers")} 
 between two endpoints. The endpoints act as {BOUND.key.get_reference(phrase="bounds")}, and each endpoint may be 
 included in or excluded from the interval.
+
+---
+
+The interval [2, 5] is the {SET.key.get_reference(phrase="set")} of 
+{REAL_NUMBER.key.get_reference(phrase="real numbers")} from 2 to 5, including both endpoints.
+The interval (2, 5) is the same {SET.key.get_reference(phrase="set")}, except the endpoints 2 and 5 are excluded.
 """
 
 
