@@ -160,6 +160,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.prime_number impo
 from definit_db.data.field.mathematics.definitions.fundamental.probability import PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.product import PRODUCT
 from definit_db.data.field.mathematics.definitions.fundamental.pure_function import PURE_FUNCTION
+from definit_db.data.field.mathematics.definitions.fundamental.quadrant import QUADRANT
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
 from definit_db.data.field.mathematics.definitions.fundamental.randomness import RANDOMNESS
 from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
@@ -375,6 +376,7 @@ field_index: list[Definition] = [
     ROOT,
     MINIMUM_SPANNING_TREE,
     QUADTREE,
+    QUADRANT,
     RED_BLACK_TREE,
     SUBTREE,
     TREE,

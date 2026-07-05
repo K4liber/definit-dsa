@@ -3,10 +3,11 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.concurrency import CONCURRENCY
-from definit_db.data.field.computer_science.definitions.fundamental.core import CORE
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
+from definit_db.data.field.mathematics.definitions.fundamental.quadrant import QUADRANT
 
 
 class _Parallelism(Definition):
@@ -15,11 +16,20 @@ class _Parallelism(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a form of {CONCURRENCY.key.get_reference()} where multiple {OPERATION.key.get_reference("operations")} 
-or tasks are executed simultaneously at the exact same time, typically by utilizing multiple {PROCESSOR.key.get_reference("processors")} or {CORE.key.get_reference("cores")}. 
-Unlike {CONCURRENCY.key.get_reference()}, which is about managing multiple tasks that may overlap in time, 
+{self.key.get_reference()} is a form of {CONCURRENCY.key.get_reference()} where multiple 
+{OPERATION.key.get_reference("operations")} or tasks are executed simultaneously at the exact same time, typically by 
+utilizing multiple {PROCESSOR.key.get_reference("processors")} or processing units. Unlike 
+{CONCURRENCY.key.get_reference()}, which is about managing multiple tasks that may overlap in time, 
 {self.key.get_reference()} specifically requires the physical simultaneous execution of tasks. This approach enables 
-{PROGRAM.key.get_reference("programs")} to achieve significant performance improvements by dividing work across multiple processing units.
+{PROGRAM.key.get_reference("programs")} to achieve significant performance improvements by dividing work across 
+multiple processing units.
+
+---
+
+Rendering a 4K video frame can be split into four {QUADRANT.key.get_reference(phrase="quadrants")}, each assigned to a 
+separate processor that applies the same stream of {INSTRUCTION.key.get_reference("instructions")} to its quadrant at 
+the exact same instant. All four finish together, so the frame renders roughly four times faster than on a single 
+processor — true parallel execution, not just overlapping progress.
 """
 
 
