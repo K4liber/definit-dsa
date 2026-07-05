@@ -19,6 +19,12 @@ that shifts all {BIT.key.get_reference("bits")} in a
 {BINARY_REPRESENTATION.key.get_reference("binary representation")} to the right by a 
 specified number of positions. Right shift by one position is equivalent to 
 {INTEGER.key.get_reference()} division by 2.
+
+---
+
+Shifting the 8-bit value 11001100 (204) right by two positions yields 00110011 (51), which is exactly 204 // 4.
+The two rightmost bits are discarded; what fills the vacated positions on the left depends on which variant of
+right shift is used.
 """
 
 

@@ -105,6 +105,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.bug import B
 from definit_db.data.field.computer_science.definitions.fundamental.cache import CACHE
 from definit_db.data.field.computer_science.definitions.fundamental.call_stack import CALL_STACK
 from definit_db.data.field.computer_science.definitions.fundamental.clustering import CLUSTERING
+from definit_db.data.field.computer_science.definitions.fundamental.code import CODE
 from definit_db.data.field.computer_science.definitions.fundamental.computer import COMPUTER
 from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.conceptual_test import CONCEPTUAL_TEST
@@ -123,6 +124,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.hardware imp
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
 from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
+from definit_db.data.field.computer_science.definitions.fundamental.if_statement import IF_STATEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
 from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
@@ -138,6 +140,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.pointer impo
 from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.programming_language import PROGRAMMING_LANGUAGE
 from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
@@ -171,6 +174,7 @@ field_index: list[Definition] = [
     ARITHMETIC_RIGHT_SHIFT,
     HARDWARE,
     COMPUTER,
+    CODE,
     COMPUTER_MEMORY,
     POINTER,
     CONCURRENCY,
@@ -178,9 +182,11 @@ field_index: list[Definition] = [
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    PROGRAMMING_LANGUAGE,
     OVER_OPTIMIZATION,
     PSEUDOCODE,
     BRANCH,
+    IF_STATEMENT,
     RANDOM_ACCESS_MEMORY,
     RIGHT_SHIFT,
     REVERSE_ENGINEERING,
