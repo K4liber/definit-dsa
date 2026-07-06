@@ -6,6 +6,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.character_encoding import (
     CHARACTER_ENCODING,
 )
+from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 
 
 class _ExtendedAscii(Definition):
@@ -13,7 +14,7 @@ class _ExtendedAscii(Definition):
         return f"""
 An extension of the {ASCII.key.get_reference(phrase="ASCII")} 
 {CHARACTER_ENCODING.key.get_reference(phrase="character encoding")} standard that uses 8 bits to represent 256 
-characters, including additional symbols and characters from various languages.
+{CHARACTER.key.get_reference(phrase="characters")}, including additional symbols and characters from various languages.
 """
 
 

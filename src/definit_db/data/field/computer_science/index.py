@@ -90,6 +90,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.operation
     STRING_CONCATENATION,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.boolean import BOOLEAN
+from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.integer import INTEGER
 from definit_db.data.field.computer_science.definitions.fundamental.arithmetic_right_shift import ARITHMETIC_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.assertion import ASSERTION
@@ -115,6 +116,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
+from definit_db.data.field.computer_science.definitions.fundamental.deallocation import DEALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
@@ -205,6 +207,7 @@ field_index: list[Definition] = [
     SPECIAL_CASE,
     MEMORY_ALLOCATION,
     MEMORY_MANAGEMENT,
+    DEALLOCATION,
     VARIABLE,
     TWOS_COMPLEMENT,
     DEEP_COPY,
@@ -229,6 +232,7 @@ field_index: list[Definition] = [
     QUEUE,
     STACK,
     BOOLEAN,
+    CHARACTER,
     INTEGER,
     CHARACTER_ENCODING,
     ASCII,

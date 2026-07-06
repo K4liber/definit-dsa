@@ -23,6 +23,12 @@ Instead of filling the leftmost positions with zeros, it replicates the sign bit
 maintaining the correct sign for negative numbers in {TWOS_COMPLEMENT.key.get_reference()} 
 representation. This {OPERATION.key.get_reference()} effectively performs signed integer 
 division by powers of 2.
+
+---
+
+The 8-bit value 10110100 (-76 in two's complement) shifted right by two with arithmetic shift 
+gives 11101101 (-19): two copies of the sign bit (1) enter from the left, preserving the negative sign, and the 
+result is exactly -76 // 4. A logical shift on the same bits would instead produce 00101101 (45), losing the sign.
 """
 
 

@@ -2,10 +2,8 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
-from definit_db.data.field.computer_science.definitions.data_structure.collection.string.character_encoding import (
-    CHARACTER_ENCODING,
-)
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.string import STRING
+from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 
@@ -17,9 +15,9 @@ class _RegularExpression(Definition):
     def _get_content(self) -> str:
         return f"""
 A {self.key.get_reference()} is a {SEQUENCE.key.get_reference()} of 
-{CHARACTER_ENCODING.key.get_reference("characters")} that defines a search pattern for 
+{CHARACTER.key.get_reference(phrase="characters")} that defines a search pattern for 
 {STRING.key.get_reference("strings")}. Regular expressions use special syntax to specify patterns, including 
-literal {CHARACTER_ENCODING.key.get_reference("characters")}, character classes, quantifiers, and anchors. They 
+literal characters, character classes, quantifiers, and anchors. They 
 enable powerful text matching, searching, and manipulation operations, allowing users to find, extract, or replace text 
 that matches specific patterns. For example, the pattern `[0-9]+` matches one or more digits, and `^[a-z]+$` matches 
 {STRING.key.get_reference("strings")} containing only lowercase letters from start to end. Regular expressions 
