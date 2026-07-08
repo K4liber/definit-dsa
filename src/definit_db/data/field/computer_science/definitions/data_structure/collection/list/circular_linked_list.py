@@ -14,6 +14,12 @@ A {self.key.get_reference()} is a {LINKED_LIST.key.get_reference("linked list")}
 {NODE.key.get_reference("node")} points back to the first node.
 
 This forms a {CYCLE.key.get_reference("cycle")} and allows traversal to wrap around indefinitely.
+
+---
+
+For example, three nodes holding 7, 9, and 2 can be linked so that the last node points back to the first: 
+7 → 9 → 2 → (back to 7). Starting at the node holding 7 and following each link visits 7, 9, 2, 7, 9, 2, ... 
+repeating forever instead of reaching an end.
 """
 
 

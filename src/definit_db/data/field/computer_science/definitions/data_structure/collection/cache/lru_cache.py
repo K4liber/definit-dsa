@@ -18,6 +18,12 @@ least recently used entry when it needs space for a new one. A common implementa
 {HASH_TABLE.key.get_reference(phrase="hash table")} for fast lookup with a 
 {LINKED_LIST.key.get_reference(phrase="linked list")} that records entries from most recently used to least 
 recently used. Read and write {OPERATION.key.get_reference(phrase="operations")} update that recency order.
+
+---
+
+For example, an LRU cache with capacity 3 receives the accesses A, B, C, A, D in that order. After A, B, C the cache 
+holds {{A, B, C}} with C most recent. Accessing A again moves it to most recent, giving {{B, C, A}}. Adding D now needs 
+space, so the least recently used entry B is evicted and the cache becomes {{C, A, D}}.
 """
 
 
