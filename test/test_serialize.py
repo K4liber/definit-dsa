@@ -40,10 +40,10 @@ def test_generate_and_load() -> None:
         12: 10,
         13: 17,
         14: 10,
-        15: 12,
-        16: 13,
+        15: 11,
+        16: 11,
         17: 9,
-        18: 3,
+        18: 6,
     }
     assert level_to_number_of_definitions == expected_level_to_number_of_definitions
 
