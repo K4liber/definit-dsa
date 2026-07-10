@@ -27,7 +27,7 @@ def test_generate_and_load() -> None:
     expected_level_to_number_of_definitions = {
         0: 2,
         1: 10,
-        2: 24,
+        2: 25,
         3: 34,
         4: 32,
         5: 42,
