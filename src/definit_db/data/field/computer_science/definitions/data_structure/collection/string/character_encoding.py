@@ -13,6 +13,12 @@ class _CharacterEncoding(Definition):
 A method of representing {CHARACTER.key.get_reference(phrase="characters")} as numerical values, allowing computers to 
 store and manipulate text. Character encoding schemes define the {MAP.key.get_reference(phrase="mapping")} between 
 characters and their corresponding {NUMBER.key.get_reference(phrase="numerical")} values.
+
+---
+
+Under one encoding, the {CHARACTER.key.get_reference(phrase="character")} `A` is assigned the number 65, `B` is 
+assigned 66, and so on. Storing the text `AB` then means storing the two numbers 65 and 66, which can later be mapped 
+back to the original characters.
 """
 
 

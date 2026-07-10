@@ -13,8 +13,12 @@ class _Subarray(Definition):
 A contiguous {SUBSEQUENCE.key.get_reference(phrase="subsequence")} of an 
 {ARRAY.key.get_reference(phrase="array")} A of length n. A subarray is determined by two 
 {INDEX.key.get_reference(phrase="indices")} l and r with 0 <= l <= r < n, and contains exactly the 
-elements A[l], A[l+1], ..., A[r] in their original order. For example, [2, 3, 4] is a subarray of 
-[1, 2, 3, 4, 5], while [1, 3, 5] is not because its elements are not adjacent in the original array.
+elements A[l], A[l+1], ..., A[r] in their original order.
+
+---
+
+For example, [2, 3, 4] is a subarray of [1, 2, 3, 4, 5], while [1, 3, 5] is not because its elements are not 
+adjacent in the original array.
 """
 
 

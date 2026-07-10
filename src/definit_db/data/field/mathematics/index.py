@@ -116,6 +116,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.factorial import 
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
 from definit_db.data.field.mathematics.definitions.fundamental.finite_sequence import FINITE_SEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.finite_set import FINITE_SET
+from definit_db.data.field.mathematics.definitions.fundamental.first_in_first_out import FIRST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.hash import HASH
 from definit_db.data.field.mathematics.definitions.fundamental.hash_function import HASH_FUNCTION
@@ -258,6 +259,7 @@ field_index: list[Definition] = [
     SEQUENCE,
     FINITE_SEQUENCE,
     FIBONACCI,
+    FIRST_IN_FIRST_OUT,
     VECTOR,
     MATRIX,
     TRANSPOSING,
