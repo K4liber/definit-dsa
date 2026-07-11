@@ -18,6 +18,12 @@ class _HeadInsertion(Definition):
 beginning of a {LIST.key.get_reference(phrase="list")}. In a {LINKED_LIST.key.get_reference(phrase="linked list")}, 
 head insertion commonly creates a new {NODE.key.get_reference(phrase="node")}, points it to the previous first node, 
 and updates the head {POINTER.key.get_reference(phrase="pointer")} to the new node.
+
+---
+
+Given a linked list `B -> C` with head pointing to `B`, head insertion of `A` creates a new node `A`, points it to 
+`B`, and moves the head pointer to `A`, yielding `A -> B -> C`. The item is now first, and the rest of the list 
+follows unchanged.
 """
 
 

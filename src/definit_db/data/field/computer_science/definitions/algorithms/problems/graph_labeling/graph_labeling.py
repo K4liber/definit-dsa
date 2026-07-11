@@ -16,6 +16,13 @@ class _GraphLabeling(Definition):
 A {PROBLEM.key.get_reference()} of assigning {LABEL.key.get_reference(phrase="labels")}, traditionally 
 represented by {INTEGER.key.get_reference(phrase="integers")}, to {EDGE.key.get_reference(phrase="edges")} and/or 
 {NODE.key.get_reference(phrase="nodes")} of a {GRAPH.key.get_reference(phrase="graph")}.
+
+---
+
+In a {GRAPH.key.get_reference(phrase="graph")} with three {NODE.key.get_reference(phrase="nodes")} connected in a 
+triangle, one labeling assigns the integer 1 to the first node, 2 to the second, and 3 to the third, while another 
+assigns 0, 0, and 1. Each assignment is a valid labeling; whether it satisfies a given rule depends on the specific 
+problem, such as requiring adjacent nodes to receive different labels.
 """
 
 
