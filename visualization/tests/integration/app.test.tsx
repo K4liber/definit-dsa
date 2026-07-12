@@ -108,7 +108,8 @@ async function searchAndSelectDefinition(query: string, id: string) {
 
 function getTreeRowCheckboxByText(text: string): HTMLInputElement {
   const tree = screen.getByRole('region', { name: 'Category include/exclude' });
-  const label = within(tree).getByText(text);
+  const labels = within(tree).getAllByText(text);
+  const label = labels[0];
   const row = label.closest('.treeRow');
   if (!row) throw new Error(`Tree row not found for ${text}`);
   const checkbox = row.querySelector('input[type="checkbox"]');
@@ -193,7 +194,7 @@ describe('App integration scenarios', () => {
     fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
     await searchAndSelectDefinition('fibonacci', 'mathematics/fibonacci');
 
-    fireEvent.click(within(screen.getByRole('region', { name: 'Definition content' })).getByText('sequence'));
+    fireEvent.click(within(screen.getByRole('region', { name: 'Definition content' })).getAllByText('sequence')[0]);
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
@@ -225,13 +226,15 @@ describe('App integration scenarios', () => {
     const initialCount = graphCount();
 
     openFilters();
-    await user.click(getTreeRowCheckboxByText('criterion'));
+    // 'object' is a root definition (no dependencies), so it is visible by
+    // default and toggling its category removes exactly one node.
+    await user.click(getTreeRowCheckboxByText('object'));
 
     await waitFor(() => {
       expect(graphCount()).toBe(initialCount - 1);
     });
 
-    await user.click(getTreeRowCheckboxByText('criterion'));
+    await user.click(getTreeRowCheckboxByText('object'));
 
     await waitFor(() => {
       expect(graphCount()).toBe(initialCount);
