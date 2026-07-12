@@ -121,6 +121,9 @@ from definit_db.data.field.computer_science.definitions.fundamental.deep_copy im
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
+from definit_db.data.field.computer_science.definitions.fundamental.floating_point_precision import (
+    FLOATING_POINT_PRECISION,
+)
 from definit_db.data.field.computer_science.definitions.fundamental.hamming_weight import HAMMING_WEIGHT
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
@@ -130,6 +133,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.if_statement
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
 from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
+from definit_db.data.field.computer_science.definitions.fundamental.mantissa import MANTISSA
 from definit_db.data.field.computer_science.definitions.fundamental.memory_allocation import MEMORY_ALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.memory_management import MEMORY_MANAGEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.null import NULL
@@ -264,7 +268,9 @@ field_index: list[Definition] = [
     TWO_POINTERS_TECHNIQUE,
     SLIDING_WINDOW_TECHNIQUE,
     FLOAT,
+    FLOATING_POINT_PRECISION,
     DOUBLE,
+    MANTISSA,
     AUXILIARY_SPACE,
     CLUSTERING,
     LOPSIDED,

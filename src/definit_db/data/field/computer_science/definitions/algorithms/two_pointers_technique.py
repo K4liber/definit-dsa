@@ -9,6 +9,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorit
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.big_o_notation import BIG_O_NOTATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.space_complexity import SPACE_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
+from definit_db.data.field.mathematics.definitions.algorithm.sorting.sorting import SORTING
 from definit_db.data.field.mathematics.definitions.fundamental.index import INDEX
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
@@ -30,6 +31,14 @@ requiring nested iteration from a {TIME_COMPLEXITY.key.get_reference(phrase="tim
 {BIG_O_NOTATION.key.get_reference(phrase="O(n^2)")} to {BIG_O_NOTATION.key.get_reference(phrase="O(n)")} 
 while maintaining a {SPACE_COMPLEXITY.key.get_reference(phrase="space complexity")} of 
 {BIG_O_NOTATION.key.get_reference(phrase="O(1)")}.
+
+---
+
+To find two values in a {SORTING.key.get_reference(phrase="sorted")} {ARRAY.key.get_reference(phrase="array")} that
+sum to a target, one pointer starts at the left end and another at the right end. Their values are added together:
+if the sum is too small, the left pointer advances rightward to a larger value; if too large, the right pointer
+moves leftward to a smaller value. On the array [1, 2, 3, 4, 6, 8] searching for a sum of 10, the pointers skip
+past the 1, then settle on 2 and 8, the pair whose sum equals the target.
 """
 
 

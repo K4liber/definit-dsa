@@ -16,15 +16,26 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _BoyerMooreMajorityVote(Definition):
     def _get_content(self) -> str:
         return f"""
-An {ALGORITHM.key.get_reference(phrase="algorithm")} that finds the {MAJORITY_ELEMENT.key.get_reference(phrase="majority element")} 
-in a {SEQUENCE.key.get_reference(phrase="sequence")} using a single pass through the data. It is an 
-{IN_PLACE_ALGORITHM.key.get_reference(phrase="in-place algorithm")} that maintains two 
-{VARIABLE.key.get_reference(phrase="variables")}: a candidate element and a counter. The algorithm 
+An {ALGORITHM.key.get_reference(phrase="algorithm")} that finds the 
+{MAJORITY_ELEMENT.key.get_reference(phrase="majority element")} in a {SEQUENCE.key.get_reference(phrase="sequence")} 
+using a single pass through the data. It is an {IN_PLACE_ALGORITHM.key.get_reference(phrase="in-place algorithm")} 
+that maintains two {VARIABLE.key.get_reference(phrase="variables")}: a candidate element and a counter. The algorithm 
 {LOOP.key.get_reference(phrase="iterates")} through the sequence; when the counter is zero it sets the current 
 element as the candidate, then increments the counter if the current element matches the candidate or decrements it 
 otherwise. It has a {TIME_COMPLEXITY.key.get_reference(phrase="time complexity")} of 
 {BIG_O_NOTATION.key.get_reference(phrase="O(n)")} and a {SPACE_COMPLEXITY.key.get_reference(phrase="space complexity")} 
 of {BIG_O_NOTATION.key.get_reference(phrase="O(1)")}.
+
+---
+
+For the sequence (1, 1, 2, 2, 2), the algorithm starts with candidate unset and counter 0. Reading left to
+right:
+- element 1: candidate = 1, counter = 1
+- element 1: candidate = 1, counter = 2
+- element 2: candidate = 1, counter = 1
+- element 2: candidate = 1, counter = 0
+- element 2: candidate = 2, counter = 1
+With counter above zero the surviving candidate is 2, which is the majority element.
 """
 
 
