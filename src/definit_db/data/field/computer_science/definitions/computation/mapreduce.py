@@ -19,6 +19,14 @@ by splitting work into two phases:
 
 MapReduce enables {PARALLELISM.key.get_reference()} by distributing the map and reduce work across many
 {WORKER.key.get_reference(phrase="workers")}.
+
+---
+
+To count how often each word appears in a large {DATASET.key.get_reference(phrase="dataset")} of documents, the map
+phase turns each word it reads into a (word, 1) pair. The reduce phase then collects all pairs sharing a word and
+adds their counts, producing a single (word, total) result per word. Because each 
+{WORKER.key.get_reference(phrase="worker")} handles a different slice of the documents, the counting is done in 
+{PARALLELISM.key.get_reference(phrase="parallel")} and finishes much faster than reading the documents one by one.
 """
 
 

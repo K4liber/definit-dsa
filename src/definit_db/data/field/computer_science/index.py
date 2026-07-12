@@ -118,8 +118,10 @@ from definit_db.data.field.computer_science.definitions.fundamental.data_type im
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
 from definit_db.data.field.computer_science.definitions.fundamental.deallocation import DEALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
+from definit_db.data.field.computer_science.definitions.fundamental.disk import DISK
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
+from definit_db.data.field.computer_science.definitions.fundamental.file_storage import FILE_STORAGE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
 from definit_db.data.field.computer_science.definitions.fundamental.floating_point_precision import (
     FLOATING_POINT_PRECISION,
@@ -130,6 +132,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.heap_memory 
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
 from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
 from definit_db.data.field.computer_science.definitions.fundamental.if_statement import IF_STATEMENT
+from definit_db.data.field.computer_science.definitions.fundamental.input_output import INPUT_OUTPUT
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
 from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
@@ -182,6 +185,9 @@ field_index: list[Definition] = [
     COMPUTER,
     CODE,
     COMPUTER_MEMORY,
+    DISK,
+    FILE_STORAGE,
+    INPUT_OUTPUT,
     POINTER,
     CONCURRENCY,
     CORE,

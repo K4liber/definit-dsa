@@ -18,6 +18,13 @@ that performs a unit of work as part of a larger computation.
 
 In distributed or {PARALLELISM.key.get_reference(phrase="parallel")} systems, workers execute parts of a
 {PROGRAM.key.get_reference(phrase="program")} (tasks) assigned by a coordinator.
+
+---
+
+When a {PROGRAM.key.get_reference(phrase="program")} must process one thousand images, the work can be split across
+four {THREAD.key.get_reference(phrase="threads")}, each acting as a worker that handles two hundred fifty images.
+The workers run at the same time, so the {PARALLELISM.key.get_reference(phrase="parallelism")} lets the whole batch
+finish roughly four times faster than a single worker would.
 """
 
 
