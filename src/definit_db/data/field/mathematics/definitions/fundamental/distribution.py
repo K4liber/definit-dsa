@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.probability import PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
@@ -10,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _Distribution(Definition):
     def _get_content(self) -> str:
         return f"""
-A distribution describes how values (or outcomes) are spread over a domain. Typically it associates elements of a 
+A distribution describes how values (or outcomes) are spread over a {DOMAIN.key.get_reference(phrase="domain")}. Typically it associates elements of a 
 {SET.key.get_reference("set")} or values to their frequencies or 
 {PROBABILITY.key.get_reference(phrase="probabilities")}, describing how likely or how common different 
 {OBJECT.key.get_reference(phrase="objects")} are.

@@ -4,14 +4,15 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
 
 class _Data(Definition):
     def _get_content(self) -> str:
         return f"""
 A collection of discrete or continuous values that convey {INFORMATION.key.get_reference(phrase="information")}, 
-describing quantities, qualities, facts, or simply sequences of symbols that may be further interpreted 
-formally.
+describing quantities, qualities, facts, or simply {SEQUENCE.key.get_reference(phrase="sequences")} of symbols that may 
+be further interpreted formally.
 
 ---
 

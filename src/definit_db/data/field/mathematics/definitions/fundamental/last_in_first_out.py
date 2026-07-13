@@ -11,8 +11,8 @@ class _LastInFirstOut(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an ordering principle for a {SEQUENCE.key.get_reference()} where the most 
-recently added element is the first one to be removed.
+An ordering principle for a {SEQUENCE.key.get_reference()} where the most recently added element is the first one to 
+be removed.
 
 ---
 

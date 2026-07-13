@@ -9,8 +9,8 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 class _CommutativeOperation(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {OPERATION.key.get_reference(phrase="operation")} whose result does not 
-depend on the order of its {OPERAND.key.get_reference(phrase="operands")}.
+An {OPERATION.key.get_reference(phrase="operation")} whose result does not depend on the order of its 
+{OPERAND.key.get_reference(phrase="operands")}.
 
 ---
 

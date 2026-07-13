@@ -51,7 +51,7 @@
       "id": "mathematics/first_in_first_out",
       "title": "first_in_first_out",
       "category": "mathematics/fundamental/first_in_first_out",
-      "content": "# first in first out\n\n\n[first_in_first_out](mathematics/first_in_first_out) is an ordering principle for a [sequence](mathematics/sequence) where the earliest \nadded element is the first one to be removed.\n\n---\n\nA line of customers waiting at a counter follows first in first out: the person who joined the line earliest is the \nfirst one served.\n\n",
+      "content": "# first in first out\n\n\nAn ordering principle for a [sequence](mathematics/sequence) where the earliest added element is the first one to be \nremoved.\n\n---\n\nA line of customers waiting at a counter follows first in first out: the person who joined the line earliest is the \nfirst one served.\n\n",
       "deps": [
         "mathematics/sequence"
       ],
@@ -106,7 +106,7 @@
       "id": "mathematics/last_in_first_out",
       "title": "last_in_first_out",
       "category": "mathematics/fundamental/last_in_first_out",
-      "content": "# last in first out\n\n\n[last_in_first_out](mathematics/last_in_first_out) is an ordering principle for a [sequence](mathematics/sequence) where the most \nrecently added element is the first one to be removed.\n\n---\n\nA stack of plates follows last in first out: you add and remove plates only from the top, so the plate\nadded most recently is the first one taken off.\n\n",
+      "content": "# last in first out\n\n\nAn ordering principle for a [sequence](mathematics/sequence) where the most recently added element is the first one to \nbe removed.\n\n---\n\nA stack of plates follows last in first out: you add and remove plates only from the top, so the plate\nadded most recently is the first one taken off.\n\n",
       "deps": [
         "mathematics/sequence"
       ],
@@ -137,7 +137,7 @@
       "id": "mathematics/commutative_operation",
       "title": "commutative_operation",
       "category": "mathematics/fundamental/commutative_operation",
-      "content": "# commutative operation\n\n\n[commutative_operation](mathematics/commutative_operation) is an [operation](mathematics/operation) whose result does not \ndepend on the order of its [operands](mathematics/operand).\n\n---\n\nAddition is commutative: 2 + 3 and 3 + 2 both give the same result, 5.\n\n",
+      "content": "# commutative operation\n\n\nAn [operation](mathematics/operation) whose result does not depend on the order of its \n[operands](mathematics/operand).\n\n---\n\nAddition is commutative: 2 + 3 and 3 + 2 both give the same result, 5.\n\n",
       "deps": [
         "mathematics/operation",
         "mathematics/operand"
@@ -732,6 +732,18 @@
         "mathematics/root"
       ],
       "level": 13
+    },
+    {
+      "id": "mathematics/domain",
+      "title": "domain",
+      "category": "mathematics/fundamental/domain",
+      "content": "# domain\n\n\nA domain is a [set](mathematics/set) of all values for which something is defined, specifying the\ninputs or [elements](mathematics/item) over which it [operates](mathematics/operation).\n\n---\n\nFor a six-sided die, the domain is the set (1, 2, 3, 4, 5, 6): only those outcomes are possible.\n\n",
+      "deps": [
+        "mathematics/set",
+        "mathematics/item",
+        "mathematics/operation"
+      ],
+      "level": 3
     },
     {
       "id": "mathematics/merge",
@@ -1338,13 +1350,14 @@
       "id": "mathematics/distribution",
       "title": "distribution",
       "category": "mathematics/fundamental/distribution",
-      "content": "# distribution\n\n\nA distribution describes how values (or outcomes) are spread over a domain. Typically it associates elements of a \n[set](mathematics/set) or values to their frequencies or \n[probabilities](mathematics/probability), describing how likely or how common different \n[objects](mathematics/object) are.\n\n---\n\nA six-sided die has the following distribution over its outcomes:\n\nOutcome:     1     2     3     4     5     6\nProbability: 1/6   1/6   1/6   1/6   1/6   1/6\n\nEach outcome is equally likely. A loaded die might have a different distribution:\n\nOutcome:     1     2     3     4     5     6\nProbability: 0.1   0.1   0.1   0.1   0.1   0.5\n\nHere the value 6 is five times more likely than any other outcome. Both are valid distributions\nbecause all probabilities are in [0, 1] and sum to 1.\n\n",
+      "content": "# distribution\n\n\nA distribution describes how values (or outcomes) are spread over a [domain](mathematics/domain). Typically it associates elements of a \n[set](mathematics/set) or values to their frequencies or \n[probabilities](mathematics/probability), describing how likely or how common different \n[objects](mathematics/object) are.\n\n---\n\nA six-sided die has the following distribution over its outcomes:\n\nOutcome:     1     2     3     4     5     6\nProbability: 1/6   1/6   1/6   1/6   1/6   1/6\n\nEach outcome is equally likely. A loaded die might have a different distribution:\n\nOutcome:     1     2     3     4     5     6\nProbability: 0.1   0.1   0.1   0.1   0.1   0.5\n\nHere the value 6 is five times more likely than any other outcome. Both are valid distributions\nbecause all probabilities are in [0, 1] and sum to 1.\n\n",
       "deps": [
+        "mathematics/domain",
         "mathematics/set",
         "mathematics/probability",
         "mathematics/object"
       ],
-      "level": 3
+      "level": 4
     },
     {
       "id": "mathematics/randomness",
@@ -1355,7 +1368,7 @@
         "mathematics/probability",
         "mathematics/distribution"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/uniform_distribution",
@@ -1366,7 +1379,7 @@
         "mathematics/distribution",
         "mathematics/set"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/merge_sort",
@@ -1536,7 +1549,7 @@
       "id": "mathematics/square_root",
       "title": "square_root",
       "category": "mathematics/fundamental/square_root",
-      "content": "# square root\n\n\nThe [square_root](mathematics/square_root) of a non-negative [number](mathematics/number) x is a non-negative\nnumber y such that y² = x.\n\n---\n\n√9  = 3  because 3² = 9\n√25 = 5  because 5² = 25\n√2  ≈ 1.414 because 1.414² ≈ 2\n\n",
+      "content": "# square root\n\n\nThe [square_root](mathematics/square_root) of a non-negative [number](mathematics/number) x is a non-negative\nnumber y such that y² = x.\n\n---\n\n√9  = 3  because 3² = 9; √25 = 5  because 5² = 25; √2  ≈ 1.414 because 1.414² ≈ 2\n\n\n",
       "deps": [
         "mathematics/number"
       ],
@@ -1815,7 +1828,7 @@
       "id": "mathematics/factorial",
       "title": "factorial",
       "category": "mathematics/fundamental/factorial",
-      "content": "# factorial\n\n\nThe [factorial](mathematics/factorial) of a non-negative [integer](mathematics/integer) n, written n!, is the\n[product](mathematics/product) of all positive integers up to n.\n\nBy convention, 0! = 1.\n\n---\n\n5! = 5 × 4 × 3 × 2 × 1 = 120\n3! = 3 × 2 × 1 = 6\n0! = 1  (by convention)\n\n",
+      "content": "# factorial\n\n\nThe [factorial](mathematics/factorial) of a non-negative [integer](mathematics/integer) n, written n!, is the\n[product](mathematics/product) of all positive integers up to n.\n\nBy convention, 0! = 1.\n\n---\n\n5! = 5 × 4 × 3 × 2 × 1 = 120\n\n3! = 3 × 2 × 1 = 6\n\n0! = 1  (by convention)\n\n\n",
       "deps": [
         "mathematics/integer",
         "mathematics/product"
@@ -2336,7 +2349,7 @@
         "mathematics/distribution",
         "mathematics/probability"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/expected_case",
@@ -2653,7 +2666,7 @@
       "deps": [
         "mathematics/distribution"
       ],
-      "level": 4
+      "level": 5
     },
     {
       "id": "mathematics/majority_element",
@@ -2695,7 +2708,7 @@
       "id": "mathematics/transformation",
       "title": "transformation",
       "category": "mathematics/fundamental/transformation",
-      "content": "# transformation\n\n\nA [transformation](mathematics/transformation) is an [operation](mathematics/operation) applied to an \n[object](mathematics/object) that changes its position, orientation, size, or shape, producing \na new configuration of the same object.\n\n---\n\nTranslating the point (2, 3) by (5, 0) produces the point (7, 3): the transformation changes the point's \nposition while leaving its nature as a point unchanged.\n\n",
+      "content": "# transformation\n\n\nA [transformation](mathematics/transformation) is an [operation](mathematics/operation) applied to an \n[object](mathematics/object) that changes its position, orientation, size, or shape, producing \na new configuration of the same object.\n\n---\n\nApplying a transformation to the point (2, 3) can move it to the point (7, 3): the point's position changes, \nbut it is still a point — the same object in a new configuration.\n\n",
       "deps": [
         "mathematics/operation",
         "mathematics/object"
@@ -2725,6 +2738,18 @@
       "level": 3
     },
     {
+      "id": "mathematics/translation",
+      "title": "translation",
+      "category": "mathematics/fundamental/translation",
+      "content": "# translation\n\n\nA [translation](mathematics/translation) is a [transformation](mathematics/transformation) that moves every \npoint of an [object](mathematics/object) by the same [vector](mathematics/vector), \nwithout changing its orientation, size, or shape.\n\n---\n\nTranslating the point (2, 3) by the vector (5, 0) produces the point (7, 3): every point shifts the same \namount in the same direction, so the object keeps its shape and orientation.\n\n",
+      "deps": [
+        "mathematics/transformation",
+        "mathematics/object",
+        "mathematics/vector"
+      ],
+      "level": 3
+    },
+    {
       "id": "mathematics/symmetry",
       "title": "symmetry",
       "category": "mathematics/fundamental/symmetry",
@@ -2744,9 +2769,10 @@
       "id": "computer_science/data",
       "title": "data",
       "category": "computer_science/fundamental/data",
-      "content": "# data\n\n\nA collection of discrete or continuous values that convey [information](mathematics/information), \ndescribing quantities, qualities, facts, or simply sequences of symbols that may be further interpreted \nformally.\n\n---\n\nThe [numbers](mathematics/number) (72, 85, 90) are data representing three exam scores. On their own they are just values, but when\ninterpreted as \"scores out of 100\", they convey information about how well a group of students performed.\n\n",
+      "content": "# data\n\n\nA collection of discrete or continuous values that convey [information](mathematics/information), \ndescribing quantities, qualities, facts, or simply [sequences](mathematics/sequence) of symbols that may \nbe further interpreted formally.\n\n---\n\nThe [numbers](mathematics/number) (72, 85, 90) are data representing three exam scores. On their own they are just values, but when\ninterpreted as \"scores out of 100\", they convey information about how well a group of students performed.\n\n",
       "deps": [
         "mathematics/information",
+        "mathematics/sequence",
         "mathematics/number"
       ],
       "level": 2
@@ -5020,6 +5046,18 @@
       "target": "mathematics/root"
     },
     {
+      "source": "mathematics/domain",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/domain",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/domain",
+      "target": "mathematics/operation"
+    },
+    {
       "source": "mathematics/merge",
       "target": "mathematics/operation"
     },
@@ -5730,6 +5768,10 @@
     {
       "source": "mathematics/probability",
       "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/distribution",
+      "target": "mathematics/domain"
     },
     {
       "source": "mathematics/distribution",
@@ -7404,6 +7446,18 @@
       "target": "mathematics/object"
     },
     {
+      "source": "mathematics/translation",
+      "target": "mathematics/transformation"
+    },
+    {
+      "source": "mathematics/translation",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/translation",
+      "target": "mathematics/vector"
+    },
+    {
       "source": "mathematics/symmetry",
       "target": "mathematics/relation"
     },
@@ -7434,6 +7488,10 @@
     {
       "source": "computer_science/data",
       "target": "mathematics/information"
+    },
+    {
+      "source": "computer_science/data",
+      "target": "mathematics/sequence"
     },
     {
       "source": "computer_science/data",

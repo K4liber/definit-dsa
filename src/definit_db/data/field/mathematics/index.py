@@ -111,6 +111,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.composite_number 
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
+from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
@@ -397,6 +398,7 @@ field_index: list[Definition] = [
     QUICK_SORT,
     SELECTION_SORT,
     PROBABILITY,
+    DOMAIN,
     DISTRIBUTION,
     RANDOMNESS,
     UNIFORM_DISTRIBUTION,
