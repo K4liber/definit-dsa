@@ -15,8 +15,8 @@ a new configuration of the same object.
 
 ---
 
-Translating the point (2, 3) by (5, 0) produces the point (7, 3): the transformation changes the point's 
-position while leaving its nature as a point unchanged.
+Applying a transformation to the point (2, 3) can move it to the point (7, 3): the point's position changes, 
+but it is still a point — the same object in a new configuration.
 """
 
 

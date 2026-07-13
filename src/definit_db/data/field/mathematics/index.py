@@ -175,6 +175,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.square_root impor
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
 from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
+from definit_db.data.field.mathematics.definitions.fundamental.translation import TRANSLATION
 from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
 from definit_db.data.field.mathematics.definitions.fundamental.unary_operation import UNARY_OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniform_distribution import UNIFORM_DISTRIBUTION
@@ -471,5 +472,6 @@ field_index: list[Definition] = [
     TRANSFORMATION,
     REFLECTION,
     ROTATION,
+    TRANSLATION,
     SYMMETRY,
 ]

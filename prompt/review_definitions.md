@@ -4,7 +4,6 @@
 
 <data_md_file_path> = `src\definit_db\data_md`
 <index_md_file_path> = <data_md_file_path>\index.md`
-<index_review_md_file_path> = <data_md_file_path>\index_review.md`
 
 Inside file <index_md_file_path> all currently created definitions can be found.
 
@@ -18,20 +17,6 @@ Inside directory `src\definit_db\data\field` we place all definitions in the for
 4. [EXAMPLE] Check if a definition content contains an example that illustrates the definition. If does, please place it under a new segment under the content, and split it with a `---` separator. If it does not, please create an example that illustrates the definition. Every concept mentioned in the example that exists as a lower-level definition must be added as a formal reference (import + `get_reference()` call) — do not leave referenced concepts as plain text. The example does not need to reference all definitions that the definition body has, only those actually used in the example. The same hierarchy rule from step 3 applies: only reference definitions that are lower-level than the current one. If an example would naturally mention a higher-level definition (e.g. a specific algorithm when defining a general concept), then a different example should be created that does not reference the higher-level definition.
 5. [REFERENCES] Please add missing references to other definitions if there are any. To find missing references, compare every word/phrase used in the definition's content (both the main body and the example) against the full list of definitions in <index_md_file_path>: for each term in the content that matches an existing lower-level definition (per the HIERARCHY rule in step 3), add a formal reference (import + `get_reference()` call) instead of leaving it as plain text. Do this systematically — scan the whole content rather than relying only on the terms that stand out first — since it is easy to miss less obvious matches (e.g. generic words like "operation", "root", or "worst case" that happen to have their own definition). If a matching definition does not exist yet, please create it first before adding it as a reference. A concept only needs to be referenced once per definition — if a term is mentioned multiple times, add the reference on its first occurrence and leave the rest as plain text.
 
-## Tracking review progress
-
-A definition is considered reviewed when its content contains an example, which is marked by a standalone `---` separator (see step 3). We use this convention to track which definitions still need a review.
-
-The file <index_review_md_file_path> lists every definition with a checkbox in front of its name: `[x]` when the definition already has an example (reviewed) and `[ ]` when it does not (still to review). It preserves the same order as <index_md_file_path>.
-
-After adding any new definition (or to refresh the review status), regenerate the review index by running:
-
-```
-uv run python scripts/generate_index_review.py
-```
-
-This script (`scripts\generate_index_review.py`) first regenerates the markdown database and then rebuilds `index_review.md` based on the `---` example convention.
-
 ## Instruction execution
 
-Please now review all definitions (from the file <index_md_file_path>) following the above steps, starting from the definition the first one that is not yet reviewed. After each definition review, please stop and wait for [HUMAN] feedback on your remarks. Do not run tests, those will be run by [HUMAN] after your review. Do not include ASCI visualizations, just describe the structure in plain text.
+Please now review the definition "XXX".

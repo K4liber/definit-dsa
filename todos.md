@@ -5,7 +5,8 @@
 ### 4. Review all definitions
 
 - [x] Create a `review_definition.md` instruction file for how to review a definition
-- [ ] Check if they are accurate, complete and have all possible references to other definitions
+- [x] Check if they are accurate, complete and have all possible references to other definitions
+- [ ] Read them all for the final time on the app
 
 ## TODO
 
@@ -39,8 +40,9 @@ Maybe we should remove it and sort the index topologically. Then on the web app 
 
 ### 2. What to do with something named twice with different names?
 
-- [ ] hashmap (what to do with something named twice with different names?)
+- [ ] hashmap
 - [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+- [ ] introduce aliases? (probably in the definit lib, not in this repo)
 
 ### 3. New definitions
 
