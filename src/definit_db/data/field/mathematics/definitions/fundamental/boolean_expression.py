@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 
 
 class _BooleanExpression(Definition):
@@ -11,7 +12,7 @@ A {self.key.get_reference(phrase="boolean expression")} is an expression that ev
 
 ---
 
-The expression 3 < 5 is a boolean expression, because it evaluates to true.
+The boolean expression 3 < 5 compares two {NUMBER.key.get_reference(phrase="numbers")} and evaluates to true.
 """
 
 

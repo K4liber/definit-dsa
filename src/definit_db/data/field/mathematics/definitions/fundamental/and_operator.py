@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.logical_operator 
 class _AndOperator(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="AND")} is a {LOGICAL_OPERATOR.key.get_reference(phrase="logical operator")} that is true
+A {LOGICAL_OPERATOR.key.get_reference(phrase="logical operator")} that is true
 only when all of its inputs are true.
 
 For two {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expressions")} A and B, A AND B is true exactly when

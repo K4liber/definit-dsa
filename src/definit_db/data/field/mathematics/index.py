@@ -148,6 +148,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.not_operator impo
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.numeral_system import NUMERAL_SYSTEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.observable import OBSERVABLE
 from definit_db.data.field.mathematics.definitions.fundamental.operand import OPERAND
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.or_operator import OR_OPERATOR
@@ -255,6 +256,7 @@ from definit_db.data.field.mathematics.definitions.tree.unbalanced_binary_tree i
 
 field_index: list[Definition] = [
     OBJECT,
+    OBSERVABLE,
     ITEM,
     INFORMATION,
     BOOLEAN_EXPRESSION,
