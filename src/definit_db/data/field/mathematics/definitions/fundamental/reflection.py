@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.transformation im
 class _Reflection(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TRANSFORMATION.key.get_reference(phrase="transformation")} that produces a 
+A {TRANSFORMATION.key.get_reference(phrase="transformation")} that produces a 
 mirror image of an {OBJECT.key.get_reference(phrase="object")} across a line, point, or plane (the axis of 
 reflection), so that each point and its image are the same distance from the axis but on opposite sides.
 

@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _Test(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a procedure or experiment used to evaluate whether a system or component
+A procedure or experiment used to evaluate whether a system or component
 behaves as expected under specified {CRITERION.key.get_reference("conditions")}.
 
 A test typically takes some {DATA.key.get_reference("data")} (the {INPUT_DATA.key.get_reference()}) and produces

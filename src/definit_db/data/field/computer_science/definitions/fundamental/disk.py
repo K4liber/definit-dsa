@@ -9,7 +9,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.hardware imp
 class _Disk(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {HARDWARE.key.get_reference(phrase="hardware")} component that stores
+A {HARDWARE.key.get_reference(phrase="hardware")} component that stores
 {DATA.key.get_reference(phrase="data")} persistently, retaining it even when power is turned off (non-volatile
 storage). A disk provides long-term retention of large amounts of data that programs can read or write.
 

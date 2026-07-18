@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 class _AdjacencyMatrix(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a way of representing a {GRAPH.key.get_reference(phrase="graph")} as a 
+A way of representing a {GRAPH.key.get_reference(phrase="graph")} as a 
 {MATRIX.key.get_reference(phrase="matrix")}.
 
 If the rows and columns correspond to the {NODE.key.get_reference(phrase="nodes")} of the graph, then the 

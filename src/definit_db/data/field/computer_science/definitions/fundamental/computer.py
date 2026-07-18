@@ -15,7 +15,7 @@ class _Computer(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a device that can execute {INSTRUCTION.key.get_reference(phrase="instructions")}
+A device that can execute {INSTRUCTION.key.get_reference(phrase="instructions")}
 to process {INFORMATION.key.get_reference()} and perform tasks automatically. A computer can store, retrieve, and
 manipulate {DATA.key.get_reference(phrase="data")} according to instructions.
 

@@ -9,12 +9,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _Item(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a single {OBJECT.key.get_reference("object")} considered as an element of a
+A single {OBJECT.key.get_reference("object")} considered as an element of a
 {SET.key.get_reference("set")}.
 
 ---
 
-In the set (1, 2, 3), the number "2" is an {self.key.get_reference()}, 
+In the set (1, 2, 3), the number "2" is an item, 
 it is a single {OBJECT.key.get_reference("object")} that belongs to the {SET.key.get_reference("set")}.
 """
 

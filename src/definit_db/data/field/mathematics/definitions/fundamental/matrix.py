@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.vector import VEC
 class _Matrix(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a rectangular arrangement of {NUMBER.key.get_reference("numbers")} 
+A rectangular arrangement of {NUMBER.key.get_reference("numbers")} 
 in rows and columns.
 
 A matrix can be viewed as a collection of {VECTOR.key.get_reference("vectors")} (rows or columns).

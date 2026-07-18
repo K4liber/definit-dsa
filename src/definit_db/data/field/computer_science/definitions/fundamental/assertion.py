@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _Assertion(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a statement in {CODE.key.get_reference()} that checks whether a 
+A statement in {CODE.key.get_reference()} that checks whether a 
 {CRITERION.key.get_reference("condition")} holds.
 
 Assertions are commonly used in {TEST.key.get_reference("tests")} to detect unexpected states.

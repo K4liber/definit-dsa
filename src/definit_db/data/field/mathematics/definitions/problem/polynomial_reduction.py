@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.problem.reduction import REDU
 class _PolynomialReduction(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} (also called a many-one reduction or Karp reduction) is a type of 
+A polynomial reduction (also called a many-one reduction or Karp reduction) is a type of 
 {REDUCTION.key.get_reference()} used in computational complexity theory. {PROBLEM.key.get_reference()} A 
 is polynomially reducible to {PROBLEM.key.get_reference()} B if there exists a 
 {POLYNOMIAL.key.get_reference("polynomial")}-{TIME_COMPLEXITY.key.get_reference("time")} computable 

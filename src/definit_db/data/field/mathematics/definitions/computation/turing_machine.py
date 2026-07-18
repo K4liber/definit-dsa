@@ -13,7 +13,7 @@ class _TuringMachine(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a mathematical model of {COMPUTATION.key.get_reference()} that defines an
+A mathematical model of {COMPUTATION.key.get_reference()} that defines an
 abstract machine. It consists of an infinite tape divided into cells, a head that can read and write symbols on
 the tape, a state register that stores the machine's current state, and a finite table of
 {INSTRUCTION.key.get_reference("instructions")} that determines the machine's behavior. The Turing machine

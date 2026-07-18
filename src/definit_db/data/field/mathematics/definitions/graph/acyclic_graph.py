@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 class _AcyclicGraph(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a {GRAPH.key.get_reference(phrase="graph")} that contains no 
+A {GRAPH.key.get_reference(phrase="graph")} that contains no 
 {CYCLE.key.get_reference(phrase="cycles")}.
 
 ---

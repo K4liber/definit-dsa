@@ -15,7 +15,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _SpecialCase(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a particular {TEST_CASE.key.get_reference("test case")} that satisfies additional
+A particular {TEST_CASE.key.get_reference("test case")} that satisfies additional
 {CRITERION.key.get_reference("conditions")}, making it a more specific situation within a broader category.
 
 Special cases may be related to {EDGE_CASE.key.get_reference("edge cases")}, but they are not necessarily 

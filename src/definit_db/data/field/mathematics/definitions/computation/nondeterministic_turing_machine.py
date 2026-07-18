@@ -12,7 +12,7 @@ class _NondeterministicTuringMachine(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TURING_MACHINE.key.get_reference("Turing machine")} where each
+A {TURING_MACHINE.key.get_reference("Turing machine")} where each
 {INSTRUCTION.key.get_reference()} can have multiple possible next states and actions. Given the current
 state and the symbol being read, the machine can "choose" among several possible transitions, effectively
 exploring multiple computational paths simultaneously and accepting if any path leads to acceptance.

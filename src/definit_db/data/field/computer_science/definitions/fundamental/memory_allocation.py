@@ -17,7 +17,7 @@ class _MemoryAllocation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the {OPERATION.key.get_reference()} of assigning a block of 
+The {OPERATION.key.get_reference()} of assigning a block of 
 {COMPUTER_MEMORY.key.get_reference()} to store {DATA.key.get_reference()} for use by a {PROGRAM.key.get_reference()}. 
 It determines where and how much memory is reserved for storing {INFORMATION.key.get_reference()} during program 
 execution.

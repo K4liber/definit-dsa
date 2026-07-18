@@ -14,7 +14,7 @@ class _ComplementProblem(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of a decision {PROBLEM.key.get_reference()} is obtained by swapping its "yes" and 
+The complement problem of a decision {PROBLEM.key.get_reference()} is obtained by swapping its "yes" and 
 "no" answers: for any given {INPUT_DATA.key.get_reference("input")}, the complement answers "no" exactly when the 
 original answers "yes", and "yes" exactly when the original answers "no". It inverts the acceptance 
 {CRITERION.key.get_reference("criteria")} while keeping the same input structure.

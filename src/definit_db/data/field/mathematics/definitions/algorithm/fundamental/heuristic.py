@@ -15,7 +15,7 @@ class _Heuristic(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {FUNCTION.key.get_reference()} or strategy used in an 
+A {FUNCTION.key.get_reference()} or strategy used in an 
 {ALGORITHM.key.get_reference()} to guide decision-making when finding a {SOLUTION.key.get_reference()} to a 
 {PROBLEM.key.get_reference()}. It provides an estimate that helps the algorithm make more informed choices 
 by evaluating different options, allowing algorithms to explore more promising paths first and improve efficiency.

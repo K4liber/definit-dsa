@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 class _Collection(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {ABSTRACT_DATA_TYPE.key.get_reference(phrase="abstract data type")} that groups a 
+An {ABSTRACT_DATA_TYPE.key.get_reference(phrase="abstract data type")} that groups a 
 variable number of {ITEM.key.get_reference(phrase="items")} (possibly zero) that share some significance and need to be 
 {OPERATION.key.get_reference(phrase="operated")} upon together in a controlled fashion.
 

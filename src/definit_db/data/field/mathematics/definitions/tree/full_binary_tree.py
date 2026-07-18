@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
 class _FullBinaryTree(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {BINARY_TREE.key.get_reference("binary tree")} 
+A {BINARY_TREE.key.get_reference("binary tree")} 
 in which every {NODE.key.get_reference("node")} has either 0 or 2 children.
 
 Equivalently, every internal (non-{LEAF.key.get_reference("leaf")}) node has exactly two children.

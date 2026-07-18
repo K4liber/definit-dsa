@@ -9,7 +9,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.data_structu
 class _BitField(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {DATA_STRUCTURE.key.get_reference(phrase="data structure")} that consists of one or 
+A {DATA_STRUCTURE.key.get_reference(phrase="data structure")} that consists of one or 
 more adjacent {BIT.key.get_reference(phrase="bits")} which have been allocated for specific purposes, so that any 
 single bit or group of bits within the structure can be set or inspected.
 

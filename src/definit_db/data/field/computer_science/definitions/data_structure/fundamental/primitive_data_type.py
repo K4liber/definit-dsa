@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _PrimitiveDataType(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a basic {DATA_TYPE.key.get_reference(phrase="data type")} whose values are atomic and 
+A basic {DATA_TYPE.key.get_reference(phrase="data type")} whose values are atomic and 
 cannot be decomposed into simpler parts. The {SET.key.get_reference(phrase="set")} of primitive data types forms the 
 foundation from which all other data types are constructed.
 

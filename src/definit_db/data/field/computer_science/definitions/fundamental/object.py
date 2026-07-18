@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _Object(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is an instance of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
+An instance of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
 
 ---
 

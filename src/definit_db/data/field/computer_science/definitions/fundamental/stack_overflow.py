@@ -17,7 +17,7 @@ class _StackOverflow(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} occurs when a {PROGRAM.key.get_reference()} attempts to use more 
+stack overflow occurs when a {PROGRAM.key.get_reference()} attempts to use more 
 {STACK_MEMORY.key.get_reference()} than is available. This typically happens when the {CALL_STACK.key.get_reference()} 
 grows too large, often due to excessive {FUNCTION.key.get_reference()} {RECURSION.key.get_reference()} or allocating 
 too many local {VARIABLE.key.get_reference("variables")}. When stack overflow occurs, the program usually 

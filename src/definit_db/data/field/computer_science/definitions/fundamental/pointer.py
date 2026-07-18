@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.information impor
 class _Pointer(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {VARIABLE.key.get_reference()} whose value is a memory address: it refers to a
+A {VARIABLE.key.get_reference()} whose value is a memory address: it refers to a
 location in {COMPUTER_MEMORY.key.get_reference()}. A pointer can be used to indirectly access
 {INFORMATION.key.get_reference()} stored at that location.
 

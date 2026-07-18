@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _Dataset(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {SET.key.get_reference(phrase="set")} of {DATA.key.get_reference(phrase="data")}, 
+A {SET.key.get_reference(phrase="set")} of {DATA.key.get_reference(phrase="data")}, 
 typically organized as records or examples for analysis, training, or testing.
 
 ---

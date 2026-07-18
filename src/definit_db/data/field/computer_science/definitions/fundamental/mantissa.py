@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _Mantissa(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Mantissa")} (also called significand) is the part of a floating-point 
+Mantissa (also called significand) is the part of a floating-point 
 {NUMBER.key.get_reference(phrase="number")} that holds its significant digits, determining the precision of the 
 value. Together with a sign and an exponent, the mantissa encodes the full number: the exponent sets the scale 
 (magnitude) while the mantissa sets the significant digits that are kept.

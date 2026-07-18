@@ -15,7 +15,7 @@ from definit_db.data.field.mathematics.definitions.problem.constraint import CON
 class _Bottleneck(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a part of a system that limits overall
+A part of a system that limits overall
 {REAL_WORLD_PERFORMANCE.key.get_reference("performance")} because it is the slowest or most
 {CONSTRAINT.key.get_reference("constrained")} step.
 

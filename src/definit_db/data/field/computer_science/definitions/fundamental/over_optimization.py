@@ -14,7 +14,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_co
 class _OverOptimization(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the act of applying {OPTIMIZATION.key.get_reference()} 
+The act of applying {OPTIMIZATION.key.get_reference()} 
 beyond what is justified by the requirements.
 
 Over-optimization can make a {PROGRAM.key.get_reference()} harder to understand and maintain, 

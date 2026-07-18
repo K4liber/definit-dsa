@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _IfStatement(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a {CONTROL_STRUCTURE.key.get_reference()} that executes a block of
+A {CONTROL_STRUCTURE.key.get_reference()} that executes a block of
 {INSTRUCTION.key.get_reference("instructions")} only when a given 
 {BOOLEAN_EXPRESSION.key.get_reference(phrase="condition")} evaluates to true. It is the most direct way to make 
 execution depend on the {PROGRAM.key.get_reference(phrase="program")}'s state or input.

@@ -9,12 +9,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 class _UnaryOperation(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Unary operation")} is an {OPERATION.key.get_reference(phrase="operation")} that takes
+An {OPERATION.key.get_reference(phrase="operation")} that takes
 exactly one input (one operand).
 
 ---
 
-Negating the {NUMBER.key.get_reference("number")} "7" to get "-7" is a {self.key.get_reference("unary operation")}: 
+Negating the {NUMBER.key.get_reference("number")} "7" to get "-7" is a unary operation: 
 it takes exactly one input, "7", and produces one output, "-7".
 """
 

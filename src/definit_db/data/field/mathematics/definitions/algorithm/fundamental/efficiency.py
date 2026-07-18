@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _Efficiency(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is how well a method uses resources to achieve a result.
+efficiency is how well a method uses resources to achieve a result.
 
 In {ALGORITHM.key.get_reference("algorithm")} analysis, efficiency is typically described using 
 {TIME_COMPLEXITY.key.get_reference("time complexity")} and 

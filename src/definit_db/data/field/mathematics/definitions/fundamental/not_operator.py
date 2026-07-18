@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.unary_operation i
 class _NotOperator(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="NOT")} is a {UNARY_OPERATION.key.get_reference(phrase="unary operation")} and
+A {UNARY_OPERATION.key.get_reference(phrase="unary operation")} and
 {LOGICAL_OPERATOR.key.get_reference(phrase="logical operator")} that inverts the truth value of its input.
 
 For a {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expression")} A:
@@ -20,7 +20,7 @@ For a {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expression")} A:
 ---
 
 Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expression")} "it is raining" (true), 
-{self.key.get_reference("NOT")} inverts it as "NOT it is raining", which evaluates to false since the original 
+NOT inverts it as "NOT it is raining", which evaluates to false since the original 
 expression was true.
 """
 

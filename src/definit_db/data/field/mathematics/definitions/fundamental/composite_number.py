@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.prime_number impo
 class _CompositeNumber(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a positive {INTEGER.key.get_reference("integer")} greater than 1 that is not a
+A positive {INTEGER.key.get_reference("integer")} greater than 1 that is not a
 {PRIME_NUMBER.key.get_reference("prime number")} — equivalently, it has at least one positive divisor other than
 1 and itself.
 

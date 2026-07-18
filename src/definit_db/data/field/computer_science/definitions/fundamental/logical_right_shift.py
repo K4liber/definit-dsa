@@ -16,7 +16,7 @@ class _LogicalRightShift(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
+A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
 and a variant of {RIGHT_SHIFT.key.get_reference("right shift")} that always fills the 
 leftmost {BIT.key.get_reference("bits")} with zeros, regardless of the sign of the 
 {INTEGER.key.get_reference()}. This {OPERATION.key.get_reference()} treats the 

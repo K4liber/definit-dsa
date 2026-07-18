@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 class _Subgraph(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {GRAPH.key.get_reference()} formed from a subset of the 
+A {GRAPH.key.get_reference()} formed from a subset of the 
 {NODE.key.get_reference("nodes")} and {EDGE.key.get_reference("edges")} of another graph.
 
 ---

@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _MutualExclusivity(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference("Mutual exclusivity")} means that two events cannot occur at the same time.
+Mutual exclusivity means that two events cannot occur at the same time.
 
 In set terms, two {SET.key.get_reference(phrase="sets")} A and B are mutually exclusive if their
 {INTERSECTION.key.get_reference()} is empty.

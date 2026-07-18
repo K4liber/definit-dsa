@@ -14,7 +14,7 @@ class _RightShift(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
+A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
 that shifts all {BIT.key.get_reference("bits")} in a 
 {BINARY_REPRESENTATION.key.get_reference("binary representation")} to the right by a 
 specified number of positions. Right shift by one position is equivalent to 

@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.graph.path import PATH
 class _Branch(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is one possible {PATH.key.get_reference("path")} of execution in a
+A branch is one possible {PATH.key.get_reference("path")} of execution in a
 {PROGRAM.key.get_reference("program")}, typically chosen by evaluating a 
 {BOOLEAN_EXPRESSION.key.get_reference(phrase="condition")}.
 

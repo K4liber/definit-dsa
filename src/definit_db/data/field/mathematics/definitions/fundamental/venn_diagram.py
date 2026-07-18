@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.union import UNIO
 class _VennDiagram(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference(phrase="Venn diagram")} is a diagram that represents one or more
+A diagram that represents one or more
 {SET.key.get_reference(phrase="sets")} as overlapping regions (often circles) to visualize their relationships.
 
 In particular, it can illustrate set operations such as {UNION.key.get_reference(phrase="union")} and

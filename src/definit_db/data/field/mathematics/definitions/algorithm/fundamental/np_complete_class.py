@@ -22,7 +22,7 @@ class _NPCompleteClass(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a class of {PROBLEM.key.get_reference("problems")} that are both in 
+A class of {PROBLEM.key.get_reference("problems")} that are both in 
 {NP_CLASS.key.get_reference("NP")} and {NP_HARD_CLASS.key.get_reference("NP-Hard")}. A problem is 
 NP-Complete if: (1) given a proposed {SOLUTION.key.get_reference()}, it can be verified by a 
 {DETERMINISTIC_TURING_MACHINE.key.get_reference("deterministic Turing machine")} in 
@@ -34,7 +34,7 @@ computational difficulty.
 
 ---
 
-{SUBSET_SUM.key.get_reference()} is {self.key.get_reference("NP-Complete")}:
+{SUBSET_SUM.key.get_reference()} is NP-Complete:
 
 1. It is in {NP_CLASS.key.get_reference("NP")}: given a certificate (a subset), a
    {DETERMINISTIC_TURING_MACHINE.key.get_reference("deterministic Turing machine")} can verify it
@@ -44,7 +44,7 @@ computational difficulty.
    {POLYNOMIAL_REDUCTION.key.get_reference("reduced")} to {SUBSET_SUM.key.get_reference()} in polynomial time.
 
 Because it satisfies both conditions, {SUBSET_SUM.key.get_reference()} sits at the intersection of NP and NP-Hard —
-the definition of {self.key.get_reference()}.
+the definition of NP-Complete class.
 """
 
 

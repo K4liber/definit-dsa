@@ -16,7 +16,7 @@ class _BreadthFirstSearch(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for traversing or searching 
+An {ALGORITHM.key.get_reference()} for traversing or searching 
 a {GRAPH.key.get_reference()} structure. It explores all {NODE.key.get_reference("nodes")} at the current 
 depth level before moving to nodes at the next depth level. The algorithm starts at a given node and 
 systematically visits all neighboring nodes first, then visits all unvisited neighbors of those neighbors, 

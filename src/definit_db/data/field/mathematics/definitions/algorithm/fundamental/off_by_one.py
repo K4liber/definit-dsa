@@ -13,7 +13,7 @@ class _OffByOne(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a common error in {ALGORITHM.key.get_reference("algorithms")} where a 
+A common error in {ALGORITHM.key.get_reference("algorithms")} where a 
 {LOOP.key.get_reference()} iterates one time too many or one time too few, or where an {INDEX.key.get_reference()} is 
 off by one position. This often occurs when using zero-based indexing or when defining loop boundaries incorrectly. 
 Off-by-one errors can lead to incorrect results or missing the first or last element of a sequence.
@@ -22,7 +22,7 @@ Off-by-one errors can lead to incorrect results or missing the first or last ele
 
 A {LOOP.key.get_reference()} meant to visit every element of a 5-element list uses the condition "i <= 5" instead 
 of "i < 5". On its last pass the {INDEX.key.get_reference()} "i" equals "5", which lies outside the valid range of 
-"0" to "4", causing an {self.key.get_reference("off-by-one")} error.
+"0" to "4", causing an off-by-one error.
 """
 
 

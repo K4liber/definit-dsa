@@ -12,7 +12,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.thread impor
 class _Worker(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {PROCESS.key.get_reference(phrase="process")}, 
+A {PROCESS.key.get_reference(phrase="process")}, 
 {THREAD.key.get_reference(phrase="thread")}, or {MACHINE.key.get_reference(phrase="machine")} 
 that performs a unit of work as part of a larger computation.
 

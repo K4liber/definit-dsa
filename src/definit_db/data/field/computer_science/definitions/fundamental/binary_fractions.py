@@ -13,7 +13,7 @@ class _BinaryFractions(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} are a way to represent fractional {NUMBER.key.get_reference("numbers")} 
+A way to represent fractional {NUMBER.key.get_reference("numbers")} 
 using {BINARY_REPRESENTATION.key.get_reference("binary representation")}. In binary fractions, 
 {BIT.key.get_reference("bits")} to the right of a binary point represent negative powers of 2 
 (1/2, 1/4, 1/8, etc.), similar to how digits after a decimal point in base-10 represent 

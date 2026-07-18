@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.distribution impo
 class _Histogram(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a chart that summarizes how values are 
+A chart that summarizes how values are 
 {DISTRIBUTION.key.get_reference(phrase="distributed")} by grouping them into ranges (bins) and showing 
 the frequency in each bin.
 

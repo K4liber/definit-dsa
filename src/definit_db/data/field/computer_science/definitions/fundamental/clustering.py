@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 class _Clustering(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the task of {PARTITIONING.key.get_reference(phrase="partitioning")} a 
+The task of {PARTITIONING.key.get_reference(phrase="partitioning")} a 
 {DATASET.key.get_reference(phrase="dataset")} into multiple groups (clusters) such that 
 {ITEM.key.get_reference(phrase="items")} in the same cluster are more similar to each other than to items in other 
 clusters.

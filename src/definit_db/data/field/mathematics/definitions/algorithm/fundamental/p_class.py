@@ -21,7 +21,7 @@ class _PClass(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {COMPLEXITY.key.get_reference("complexity")} class in computational 
+A {COMPLEXITY.key.get_reference("complexity")} class in computational 
 complexity theory that contains all decision {PROBLEM.key.get_reference("problems")} that can be solved 
 by a {DETERMINISTIC_TURING_MACHINE.key.get_reference("deterministic Turing machine")} in 
 {POLYNOMIAL.key.get_reference("polynomial")} {TIME_COMPLEXITY.key.get_reference("time complexity")}. 
@@ -31,7 +31,7 @@ of the {INPUT_DATA.key.get_reference()}. Problems in P are considered efficientl
 
 ---
 
-Finding the maximum element in a {SEQUENCE.key.get_reference()} of n numbers is in {self.key.get_reference()}:
+Finding the maximum element in a {SEQUENCE.key.get_reference()} of n numbers is in P class:
 a single pass compares each element once, always finishing in O(n) {TIME_COMPLEXITY.key.get_reference("time")} —
 {POLYNOMIAL.key.get_reference("polynomial")} in the size of the {INPUT_DATA.key.get_reference()}.
 

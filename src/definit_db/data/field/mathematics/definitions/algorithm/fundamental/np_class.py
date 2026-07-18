@@ -25,7 +25,7 @@ class _NPClass(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {COMPLEXITY.key.get_reference("complexity")} class in computational 
+A {COMPLEXITY.key.get_reference("complexity")} class in computational 
 complexity theory that contains all decision {PROBLEM.key.get_reference("problems")} that can be solved 
 by a {NONDETERMINISTIC_TURING_MACHINE.key.get_reference("nondeterministic Turing machine")} in 
 {POLYNOMIAL.key.get_reference("polynomial")} {TIME_COMPLEXITY.key.get_reference("time complexity")}. 
@@ -46,7 +46,7 @@ But verifying a proposed {SOLUTION.key.get_reference()} is easy — given the ce
   4 + 5 = 9  ✓  (checked in O(n) {TIME_COMPLEXITY.key.get_reference("time")})
 
 Because {SOLUTION.key.get_reference("solutions")} can be verified in {POLYNOMIAL.key.get_reference("polynomial")} time,
-subset-sum is in {self.key.get_reference()}.
+subset-sum is in NP class.
 """
 
 

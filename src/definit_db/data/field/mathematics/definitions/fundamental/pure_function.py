@@ -13,7 +13,7 @@ class _PureFunction(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {FUNCTION.key.get_reference()} that always returns the same result 
+A {FUNCTION.key.get_reference()} that always returns the same result 
 for the same {INPUT_DATA.key.get_reference("input")}. 
 Pure functions are deterministic and depend only on their input values to produce their output values.
 

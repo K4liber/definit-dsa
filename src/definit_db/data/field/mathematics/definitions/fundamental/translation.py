@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.vector import VEC
 class _Translation(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TRANSFORMATION.key.get_reference(phrase="transformation")} that moves every 
+A {TRANSFORMATION.key.get_reference(phrase="transformation")} that moves every 
 point of an {OBJECT.key.get_reference(phrase="object")} by the same {VECTOR.key.get_reference(phrase="vector")}, 
 without changing its orientation, size, or shape.
 

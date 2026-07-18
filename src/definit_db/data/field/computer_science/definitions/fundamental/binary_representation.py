@@ -14,7 +14,7 @@ class _BinaryRepresentation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a way of expressing {INFORMATION.key.get_reference()} using only two symbols, 
+A way of expressing {INFORMATION.key.get_reference()} using only two symbols, 
 typically 0 and 1. In this system, each digit is called a {BIT.key.get_reference()}, and 
 {SEQUENCE.key.get_reference("sequences")} of bits are used to represent {NUMBER.key.get_reference("numbers")} 
 and other types of information.

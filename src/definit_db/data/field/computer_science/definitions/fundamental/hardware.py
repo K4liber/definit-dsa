@@ -15,7 +15,7 @@ class _Hardware(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} refers to the physical, tangible components of a {COMPUTER.key.get_reference()} —
+hardware refers to the physical, tangible components of a {COMPUTER.key.get_reference()} —
 the parts that can be touched. Hardware is contrasted with
 {PROGRAM.key.get_reference(phrase="programs")} (software), which are the intangible
 {INSTRUCTION.key.get_reference(phrase="instructions")} the hardware executes to process 

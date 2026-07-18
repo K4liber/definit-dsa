@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 class _AuxiliarySpace(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the extra {COMPUTER_MEMORY.key.get_reference(phrase="memory")} an
+The extra {COMPUTER_MEMORY.key.get_reference(phrase="memory")} an
 {ALGORITHM.key.get_reference(phrase="algorithm")} uses beyond the space needed to store its 
 {INPUT_DATA.key.get_reference(phrase="input")} (or output).
 

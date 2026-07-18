@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.real_number impor
 class _Float(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Float")} is a floating-point {DATA_TYPE.key.get_reference(phrase="data type")} used 
+A floating-point {DATA_TYPE.key.get_reference(phrase="data type")} used 
 to represent an approximation of a {REAL_NUMBER.key.get_reference(phrase="real number")} with finite precision.
 
 ---

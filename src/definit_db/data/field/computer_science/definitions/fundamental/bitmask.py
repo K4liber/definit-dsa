@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _Bitmask(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {BINARY_REPRESENTATION.key.get_reference(phrase="binary representation")} pattern 
+A {BINARY_REPRESENTATION.key.get_reference(phrase="binary representation")} pattern 
 whose {BIT.key.get_reference(phrase="bits")} are used with 
 {BITWISE_OPERATION.key.get_reference(phrase="bitwise operations")} to select, set, clear, toggle, or test corresponding 
 bits in another {NUMBER.key.get_reference(phrase="value")}.

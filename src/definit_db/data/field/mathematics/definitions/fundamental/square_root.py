@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _SquareRoot(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of a non-negative {NUMBER.key.get_reference("number")} x is a non-negative
+The square root of a non-negative {NUMBER.key.get_reference("number")} x is a non-negative
 number y such that y² = x.
 
 ---

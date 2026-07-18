@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.integer import IN
 class _PrimeNumber(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a positive {INTEGER.key.get_reference("integer")} greater than 1 that has
+A positive {INTEGER.key.get_reference("integer")} greater than 1 that has
 exactly two positive divisors: 1 and itself.
 
 ---

@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 class _Root(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of a {TREE.key.get_reference("tree")} is the unique 
+The root of a {TREE.key.get_reference("tree")} is the unique 
 {NODE.key.get_reference("node")} with no parent.
 
 ---

@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.tree.unbalanced_binary_tree i
 class _Lopsided(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} describes a situation where something is unbalanced or heavily skewed toward one side.
+lopsided describes a situation where something is unbalanced or heavily skewed toward one side.
 
 In computer science, it often refers to a {DATA_STRUCTURE.key.get_reference(phrase="data structure")} or workload
 whose shape or {DISTRIBUTION.key.get_reference(phrase="distribution")} is highly uneven.

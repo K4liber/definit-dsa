@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _Code(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the textual form of a {PROGRAM.key.get_reference()} written in a
+The textual form of a {PROGRAM.key.get_reference()} written in a
 {PROGRAMMING_LANGUAGE.key.get_reference(phrase="programming language")}. It is a sequence of
 {INSTRUCTION.key.get_reference("instructions")} expressed using the syntax and vocabulary of a specific language
 so that a {COMPUTER.key.get_reference()} can parse and execute it.

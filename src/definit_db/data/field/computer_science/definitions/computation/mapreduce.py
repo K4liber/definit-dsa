@@ -11,7 +11,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.worker impor
 class _MapReduce(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a programming model for processing large {DATASET.key.get_reference(phrase="datasets")}
+A programming model for processing large {DATASET.key.get_reference(phrase="datasets")}
 by splitting work into two phases:
 
 - map: transform input records into intermediate key/value pairs (conceptually a {MAP.key.get_reference(phrase="map")}).

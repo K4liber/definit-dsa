@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _BooleanExpression(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference(phrase="boolean expression")} is an expression that evaluates to either true or false.
+An expression that evaluates to either true or false.
 
 ---
 

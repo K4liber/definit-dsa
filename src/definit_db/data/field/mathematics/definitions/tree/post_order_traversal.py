@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 class _PostOrderTraversal(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
+A {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
 {BINARY_TREE.key.get_reference("binary tree")} where, for each {NODE.key.get_reference("node")}, the left
 {SUBTREE.key.get_reference("subtree")} is visited first, then the right subtree, and then the node itself.
 

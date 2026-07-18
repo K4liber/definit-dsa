@@ -13,7 +13,7 @@ class _InputData(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is the {INFORMATION.key.get_reference()} provided to a 
+The {INFORMATION.key.get_reference()} provided to a 
 {FUNCTION.key.get_reference()} to be processed. 
 It represents the initial state or values that the function operates on to produce an output.
 

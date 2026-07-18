@@ -10,14 +10,14 @@ from definit_db.data.field.computer_science.definitions.fundamental.program impo
 class _Process(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is an instance of a {PROGRAM.key.get_reference(phrase="program")}
+An instance of a {PROGRAM.key.get_reference(phrase="program")}
 that is being executed by the {OPERATING_SYSTEM.key.get_reference(phrase="operating system")}. When launched, a
 process receives its own region of {COMPUTER_MEMORY.key.get_reference(phrase="memory")} for its code and data.
 
 ---
 
 A {PROGRAM.key.get_reference(phrase="program")} is static code stored on disk, while a
-{self.key.get_reference(phrase="process")} is that program in motion. Running the same program twice creates two
+process is that program in motion. Running the same program twice creates two
 processes, each with its own {COMPUTER_MEMORY.key.get_reference(phrase="memory")} and state, even though both came
 from the same program.
 """

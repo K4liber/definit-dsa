@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 class _RealLifeEfficiency(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is {EFFICIENCY.key.get_reference("efficiency")} as observed in practice.
+real-life efficiency is {EFFICIENCY.key.get_reference("efficiency")} as observed in practice.
 
 It is closely related to {REAL_WORLD_PERFORMANCE.key.get_reference("real-world performance")}, 
 and depends on factors such as the implementation, constant factors, and typical 

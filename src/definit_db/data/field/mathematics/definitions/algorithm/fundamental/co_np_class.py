@@ -25,7 +25,7 @@ class _CoNPClass(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {COMPLEXITY.key.get_reference("complexity")} class in computational 
+A {COMPLEXITY.key.get_reference("complexity")} class in computational 
 complexity theory that contains all decision {PROBLEM.key.get_reference("problems")} whose 
 {COMPLEMENT_PROBLEM.key.get_reference("complement")} is in {NP_CLASS.key.get_reference("NP")}. A 
 problem is in Co-NP if the "no" instances can be verified by a 
@@ -39,7 +39,7 @@ Equivalently, the {COMPLEMENT_PROBLEM.key.get_reference("complement")} of the pr
 ---
 
 The {COMPLEMENT_PROBLEM.key.get_reference("complement")} of {SUBSET_SUM.key.get_reference()} - 
-"does NO subset of the integers sum to T?" is in {self.key.get_reference()}.
+"does NO subset of the integers sum to T?" is in Co-NP class.
 
   Input: {{3, 1, 4, 1, 5}},  T = 9
 

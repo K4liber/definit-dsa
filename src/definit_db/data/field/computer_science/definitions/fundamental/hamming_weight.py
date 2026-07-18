@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _HammingWeight(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of a {BINARY_REPRESENTATION.key.get_reference(phrase="binary representation")} is the 
+The Hamming weight of a {BINARY_REPRESENTATION.key.get_reference(phrase="binary representation")} is the 
 {NUMBER.key.get_reference(phrase="number")} of {BIT.key.get_reference(phrase="bits")} whose value is 1. It is also 
 called the population count or the number of set bits.
 

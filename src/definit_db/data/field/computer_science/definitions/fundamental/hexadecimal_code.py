@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.radix import RADI
 class _HexadecimalCode(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a representation of a {NUMBER.key.get_reference(phrase="value")} written in the 
+A representation of a {NUMBER.key.get_reference(phrase="value")} written in the 
 hexadecimal {NUMERAL_SYSTEM.key.get_reference("numeral system")}.
 
 Hexadecimal is a positional numeral system with {RADIX.key.get_reference("radix")} 16, 

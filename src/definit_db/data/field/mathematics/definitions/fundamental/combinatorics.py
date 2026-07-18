@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.permutation impor
 class _Combinatorics(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a branch of mathematics concerned with counting, arranging, and selecting
+A branch of mathematics concerned with counting, arranging, and selecting
 {OBJECT.key.get_reference("objects")}. It studies concepts such as 
 {PERMUTATION.key.get_reference("permutations")}, {COMBINATION.key.get_reference("combinations")} and 
 {FACTORIAL.key.get_reference("factorials")}.
@@ -20,7 +20,7 @@ class _Combinatorics(Definition):
 
 Counting how many {PERMUTATION.key.get_reference("orderings")} exist for 3 books on a shelf, or how many 
 {COMBINATION.key.get_reference("combinations")} of 2 people can be chosen from a group of 5, are both problems 
-studied in {self.key.get_reference("combinatorics")}.
+studied in combinatorics.
 """
 
 

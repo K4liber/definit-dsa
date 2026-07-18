@@ -15,7 +15,7 @@ class _DepthFirstSearch(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for traversing or searching 
+An {ALGORITHM.key.get_reference()} for traversing or searching 
 a {GRAPH.key.get_reference()} structure. It explores as far as possible along each {PATH.key.get_reference()} 
 before backtracking. Starting at a given {NODE.key.get_reference()}, it follows 
 {EDGE.key.get_reference("edges")} to visit a neighbor and continues exploring that neighbor's unvisited

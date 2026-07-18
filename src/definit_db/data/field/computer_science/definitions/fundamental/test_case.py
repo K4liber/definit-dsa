@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _TestCase(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a single instance of a {TEST.key.get_reference("test")}, defined by a specific
+A single instance of a {TEST.key.get_reference("test")}, defined by a specific
 set of {INPUT_DATA.key.get_reference("inputs")}, evaluation {CRITERION.key.get_reference("criteria")}, 
 and expected results.
 

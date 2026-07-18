@@ -17,7 +17,7 @@ class _CycleDetection(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for determining whether a 
+An {ALGORITHM.key.get_reference()} for determining whether a 
 {GRAPH.key.get_reference()} contains a {CYCLE.key.get_reference()}. The algorithm typically uses 
 {DEPTH_FIRST_SEARCH.key.get_reference("depth-first search")} to traverse the graph while tracking 
 visited {NODE.key.get_reference("nodes")} and the current {PATH.key.get_reference()}. If a node is encountered 

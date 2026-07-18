@@ -21,7 +21,7 @@ but they can be computationally expensive for large problem spaces as they do no
 
 ---
 
-A {self.key.get_reference("brute-force")} {SOLUTION.key.get_reference()} to the {SUBSET_SUM.key.get_reference()} 
+A brute-force {SOLUTION.key.get_reference()} to the {SUBSET_SUM.key.get_reference()} 
 {PROBLEM.key.get_reference()} enumerates every subset of the input set and checks whether its sum equals the 
 target, examining all candidates without applying any {OPTIMIZATION.key.get_reference()} technique to skip 
 unpromising subsets.

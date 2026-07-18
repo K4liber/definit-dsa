@@ -15,7 +15,7 @@ class _Program(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {SEQUENCE.key.get_reference()} of {INSTRUCTION.key.get_reference("instructions")} that 
+A {SEQUENCE.key.get_reference()} of {INSTRUCTION.key.get_reference("instructions")} that 
 a {COMPUTER.key.get_reference()} can execute to perform a specific task. A program defines the 
 {OPERATION.key.get_reference("operations")} that should be carried out and the order in which they should be executed.
 

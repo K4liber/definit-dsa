@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior 
 class _AsymptoticRuntime(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is the theoretical running time of an algorithm as the input size grows,
+The theoretical running time of an algorithm as the input size grows,
 ignoring constant factors and lower-order terms.
 
 It is typically expressed as a {BIG_O_NOTATION.key.get_reference("Big O")} 

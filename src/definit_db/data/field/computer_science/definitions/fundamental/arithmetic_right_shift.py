@@ -16,7 +16,7 @@ class _ArithmeticRightShift(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
+A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
 and a variant of {RIGHT_SHIFT.key.get_reference("right shift")} that preserves the sign 
 {BIT.key.get_reference()} when shifting signed {INTEGER.key.get_reference("integers")}. 
 Instead of filling the leftmost positions with zeros, it replicates the sign bit, 

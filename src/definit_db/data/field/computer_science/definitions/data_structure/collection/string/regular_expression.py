@@ -15,7 +15,7 @@ class _RegularExpression(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {SEQUENCE.key.get_reference(phrase="sequence")} of 
+A {SEQUENCE.key.get_reference(phrase="sequence")} of 
 {CHARACTER.key.get_reference(phrase="characters")} that defines a search pattern for 
 {STRING.key.get_reference(phrase="strings")}. Regular expressions use special syntax — including literal characters, 
 character classes (sets like `[0-9]`), quantifiers (such as `+` or `*`), and anchors (such as `^` and `$`) — 

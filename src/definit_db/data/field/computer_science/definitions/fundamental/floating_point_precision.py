@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.real_number impor
 class _FloatingPointPrecision(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Floating-point precision")} is the limited accuracy with which a 
+The limited accuracy with which a 
 {FLOAT.key.get_reference(phrase="float")} can represent a 
 {REAL_NUMBER.key.get_reference(phrase="real number")}, which causes rounding errors in computations.
 

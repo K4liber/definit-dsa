@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.partitioning impo
 class _Quadrant(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is one of the four regions produced by dividing a two-dimensional space with two
+A quadrant is one of the four regions produced by dividing a two-dimensional space with two
 perpendicular lines (typically the horizontal and vertical axes through a common center). The four resulting
 regions together form a {PARTITIONING.key.get_reference(phrase="partition")} of the original space: they are
 non-overlapping and cover it completely.

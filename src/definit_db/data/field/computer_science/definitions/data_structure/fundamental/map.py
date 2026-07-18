@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 class _Map(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {DATA_STRUCTURE.key.get_reference(phrase="data structure")} that associates each key 
+A {DATA_STRUCTURE.key.get_reference(phrase="data structure")} that associates each key 
 {ITEM.key.get_reference(phrase="item")} with at most one value item. It models the mathematical 
 {FUNCTION.key.get_reference(phrase="function")} abstraction, where the set of keys forms the function's domain and 
 each key maps to exactly one value.

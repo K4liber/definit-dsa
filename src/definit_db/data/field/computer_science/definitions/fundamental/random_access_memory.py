@@ -16,7 +16,7 @@ class _RandomAccessMemory(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a type of {COMPUTER_MEMORY.key.get_reference()} that allows {DATA.key.get_reference()} 
+A type of {COMPUTER_MEMORY.key.get_reference()} that allows {DATA.key.get_reference()} 
 to be read or written in almost the same amount of time regardless of the physical location of the data within the 
 memory. This enables fast access to any memory location, making it suitable for storing data that needs to be 
 quickly accessed and modified during {PROGRAM.key.get_reference()} execution.

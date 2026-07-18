@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _Pseudocode(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an informal, human-readable description of the steps of an 
+An informal, human-readable description of the steps of an 
 {ALGORITHM.key.get_reference("algorithm")} or {PROGRAM.key.get_reference("program")}, 
 written in a way that resembles {CODE.key.get_reference()} but is not tied to any specific language.
 Pseudocode is used to communicate ideas and logic without implementation details.

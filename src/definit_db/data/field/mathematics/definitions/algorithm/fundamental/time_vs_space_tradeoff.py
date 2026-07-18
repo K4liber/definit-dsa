@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.collection import
 class _TimeVsSpaceTradeOff(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is a common design trade-off where improving 
+A common design trade-off where improving 
 {TIME_COMPLEXITY.key.get_reference("time complexity")} usually requires using more 
 {SPACE_COMPLEXITY.key.get_reference("space complexity")}, and reducing memory usage may increase
 {ASYMPTOTIC_RUNTIME.key.get_reference("runtime")}.

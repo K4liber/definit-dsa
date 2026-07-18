@@ -18,7 +18,7 @@ class _BestConceivableRuntime(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} (BCR) is the theoretical best {TIME_COMPLEXITY.key.get_reference("time complexity")} 
+best conceivable runtime (BCR) is the theoretical best {TIME_COMPLEXITY.key.get_reference("time complexity")} 
 that any {ALGORITHM.key.get_reference()} could possibly achieve for solving a particular {PROBLEM.key.get_reference()}. 
 It represents a lower {BOUND.key.get_reference()} on the runtime based on the fundamental 
 {CONSTRAINT.key.get_reference("constraints")} of the problem, such as the amount of 
@@ -30,7 +30,7 @@ performance.
 
 For the {PROBLEM.key.get_reference()} of finding the largest {NUMBER.key.get_reference()} in a 
 {SEQUENCE.key.get_reference()} of "n" numbers, every number in the {INPUT_DATA.key.get_reference()} must be inspected 
-at least once, otherwise the unexamined number could turn out to be the largest. The {self.key.get_reference("BCR")} 
+at least once, otherwise the unexamined number could turn out to be the largest. The BCR 
 for this problem is therefore "n" steps, and no algorithm can solve it correctly any faster.
 """
 

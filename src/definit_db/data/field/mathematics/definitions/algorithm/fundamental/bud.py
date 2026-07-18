@@ -20,7 +20,7 @@ class _Bud(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {OPTIMIZATION.key.get_reference()} framework for improving 
+An {OPTIMIZATION.key.get_reference()} framework for improving 
 {ALGORITHM.key.get_reference("algorithms")} by identifying and addressing three types of inefficiencies: Bottlenecks 
 (the slowest parts that limit overall {REAL_WORLD_PERFORMANCE.key.get_reference("performance")}), Unnecessary work 
 ({OPERATION.key.get_reference("operations")} that can be eliminated without affecting the result), and Duplicated 
@@ -31,7 +31,7 @@ results). By systematically examining these three areas, BUD helps identify oppo
 ---
 
 A {BRUTE_FORCE.key.get_reference("brute-force")} routine that searches for a duplicate value in a list by comparing 
-every element with every other element can be improved by applying {self.key.get_reference("BUD")}: the nested 
+every element with every other element can be improved by applying BUD: the nested 
 comparison loop is the bottleneck, re-checking pairs that were already ruled out is unnecessary work, and rescanning 
 the list from the start for each element revisits the same 
 {OVERLAPPING_SUBPROBLEMS.key.get_reference("overlapping subproblem")}, which is duplicated work. Replacing the nested 

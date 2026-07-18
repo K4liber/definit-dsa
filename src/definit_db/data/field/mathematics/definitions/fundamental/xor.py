@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.logical_operator 
 class _Xor(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="XOR")} is a {LOGICAL_OPERATOR.key.get_reference(phrase="logical operator")} that is true
+A {LOGICAL_OPERATOR.key.get_reference(phrase="logical operator")} that is true
 exactly when one of its inputs is true and the other is false.
 
 Equivalently, for two {BOOLEAN_EXPRESSION.key.get_reference(phrase="boolean expressions")} A and B, A XOR B is true
@@ -18,7 +18,7 @@ when A and B have different truth values.
 ---
 
 Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expressions")} "the light is on" (true) and "the switch 
-is up" (false), {self.key.get_reference("XOR")} combines them as "the light is on XOR the switch is up", which 
+is up" (false), XOR combines them as "the light is on XOR the switch is up", which 
 evaluates to true because exactly one of the two expressions is true.
 """
 

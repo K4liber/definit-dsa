@@ -9,7 +9,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.disk import 
 class _FileStorage(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the persistent retention of {DATA.key.get_reference(phrase="data")} organized as
+The persistent retention of {DATA.key.get_reference(phrase="data")} organized as
 named files, typically held on a {DISK.key.get_reference(phrase="disk")}. Storing data as named files lets
 programs locate, read, and update it by name rather than by physical location on the disk.
 

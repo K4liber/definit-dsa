@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out
 class _AbstractDataType(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a mathematical model of a {DATA_TYPE.key.get_reference(phrase="data type")}, defined by 
+A mathematical model of a {DATA_TYPE.key.get_reference(phrase="data type")}, defined by 
 its behavior from the point of view of a user of the {DATA.key.get_reference(phrase="data")}, specifically in terms 
 of possible values, possible {OPERATION.key.get_reference(phrase="operations")} on data of this type, and the 
 behavior of these operations.

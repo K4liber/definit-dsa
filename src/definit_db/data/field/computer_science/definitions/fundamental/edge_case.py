@@ -13,7 +13,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _EdgeCase(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a {TEST_CASE.key.get_reference("test case")} designed to cover unusual or
+A {TEST_CASE.key.get_reference("test case")} designed to cover unusual or
 {BOUND.key.get_reference("boundary")} {CRITERION.key.get_reference("conditions")} where a system, 
 {ALGORITHM.key.get_reference("algorithm")}, or {FUNCTION.key.get_reference("function")} 
 may behave differently.

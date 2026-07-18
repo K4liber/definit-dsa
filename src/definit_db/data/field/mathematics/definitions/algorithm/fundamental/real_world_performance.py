@@ -18,7 +18,7 @@ class _RealWorldPerformance(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of an {ALGORITHM.key.get_reference()} refers to its actual execution 
+The real-world performance of an {ALGORITHM.key.get_reference()} refers to its actual execution 
 efficiency in practical applications, as opposed to theoretical 
 {COMPLEXITY.key.get_reference()} analysis. While {TIME_COMPLEXITY.key.get_reference("time complexity")} 
 and {SPACE_COMPLEXITY.key.get_reference("space complexity")} provide 

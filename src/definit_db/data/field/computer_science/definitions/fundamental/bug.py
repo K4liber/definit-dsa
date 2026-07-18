@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _Bug(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is an error or defect in a system, {PROGRAM.key.get_reference("program")}, or
+An error or defect in a system, {PROGRAM.key.get_reference("program")}, or
 {ALGORITHM.key.get_reference("algorithm")} that causes it to behave incorrectly or produce unexpected results.
 
 ---

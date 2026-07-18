@@ -14,7 +14,7 @@ class _Concurrency(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the ability of a {PROGRAM.key.get_reference()} to execute multiple tasks or 
+The ability of a {PROGRAM.key.get_reference()} to execute multiple tasks or 
 {OPERATION.key.get_reference("operations")} simultaneously or in overlapping time periods. In concurrent execution, 
 multiple streams of {INSTRUCTION.key.get_reference("instructions")} make progress without necessarily running at the 
 exact same instant, allowing for more efficient use of system resources and improved responsiveness. Concurrency 

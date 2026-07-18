@@ -15,7 +15,7 @@ class _Core(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an independent processing unit within a {PROCESSOR.key.get_reference()} 
+An independent processing unit within a {PROCESSOR.key.get_reference()} 
 that can execute {INSTRUCTION.key.get_reference("instructions")} and perform {OPERATION.key.get_reference("operations")} 
 independently of other cores. Modern processors often contain multiple cores, enabling them to execute multiple 
 tasks simultaneously, which is essential for {PARALLELISM.key.get_reference(phrase="parallel computing")}.

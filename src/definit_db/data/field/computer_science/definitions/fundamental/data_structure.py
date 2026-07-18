@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 class _DataStructure(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a way of organizing and storing {DATA.key.get_reference(phrase="data")} so it can be 
+A way of organizing and storing {DATA.key.get_reference(phrase="data")} so it can be 
 accessed and modified {EFFICIENCY.key.get_reference(phrase="efficiently")}. A data structure contains a value or group 
 of values and the {FUNCTION.key.get_reference(phrase="functions")} or 
 {OPERATION.key.get_reference(phrase="operations")} that can be applied to the data.

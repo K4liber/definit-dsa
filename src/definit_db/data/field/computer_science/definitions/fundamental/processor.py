@@ -17,7 +17,7 @@ class _Processor(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {HARDWARE.key.get_reference()} component of a {COMPUTER.key.get_reference()} 
+A {HARDWARE.key.get_reference()} component of a {COMPUTER.key.get_reference()} 
 that executes {INSTRUCTION.key.get_reference("instructions")} and performs {OPERATION.key.get_reference("operations")} 
 on {DATA.key.get_reference(phrase="data")}. It is the central component responsible for carrying out the computational 
 tasks defined by {PROGRAM.key.get_reference("programs")}, often referred to as the central processing unit (CPU).

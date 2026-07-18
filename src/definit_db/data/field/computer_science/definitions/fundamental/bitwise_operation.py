@@ -16,7 +16,7 @@ class _BitwiseOperation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {OPERATION.key.get_reference()} that acts on individual {BIT.key.get_reference("bits")} 
+An {OPERATION.key.get_reference()} that acts on individual {BIT.key.get_reference("bits")} 
 within a {BINARY_REPRESENTATION.key.get_reference()}. Bitwise operations work directly on the bits of 
 {DATA.key.get_reference()}, allowing for {EFFICIENCY.key.get_reference(phrase="efficient")} manipulation and comparison 
 at the lowest level of representation.

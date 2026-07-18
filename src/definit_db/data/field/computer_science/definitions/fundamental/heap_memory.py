@@ -16,7 +16,7 @@ class _HeapMemory(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a region of {COMPUTER_MEMORY.key.get_reference()} used for dynamic 
+A region of {COMPUTER_MEMORY.key.get_reference()} used for dynamic 
 {MEMORY_ALLOCATION.key.get_reference()} during {PROGRAM.key.get_reference()} execution. It allows 
 {DATA.key.get_reference()} to be allocated and {DEALLOCATION.key.get_reference(phrase="deallocated")} at runtime as 
 needed. The heap is flexible: memory blocks can be allocated in any order and freed in any order.

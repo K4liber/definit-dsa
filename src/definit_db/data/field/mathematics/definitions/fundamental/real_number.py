@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _RealNumber(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Real number")} is a {NUMBER.key.get_reference(phrase="number")} that can represent a
+A {NUMBER.key.get_reference(phrase="number")} that can represent a
 quantity on the continuous number line.
 
 ---

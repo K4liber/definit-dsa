@@ -8,7 +8,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.object impor
 class _Operation(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an action that is carried out to accomplish a given task. In the most simple scenario, 
+An action that is carried out to accomplish a given task. In the most simple scenario, 
 it is an action performed on at least one {OBJECT.key.get_reference(phrase="object")}.
 
 ---

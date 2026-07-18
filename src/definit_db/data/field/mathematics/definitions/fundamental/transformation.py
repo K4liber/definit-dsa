@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 class _Transformation(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is an {OPERATION.key.get_reference(phrase="operation")} applied to an 
+An {OPERATION.key.get_reference(phrase="operation")} applied to an 
 {OBJECT.key.get_reference(phrase="object")} that changes its position, orientation, size, or shape, producing 
 a new configuration of the same object.
 

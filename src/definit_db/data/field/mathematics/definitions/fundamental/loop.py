@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Loop(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {CONTROL_STRUCTURE.key.get_reference()} that repeats a {SEQUENCE.key.get_reference()} of 
+A {CONTROL_STRUCTURE.key.get_reference()} that repeats a {SEQUENCE.key.get_reference()} of 
 {INSTRUCTION.key.get_reference("instructions")} until a specified condition is met or for a predetermined 
 number of {ITERATION.key.get_reference("iterations")}.
 

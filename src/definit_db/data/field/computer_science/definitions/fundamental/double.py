@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.real_number impor
 class _Double(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Double")} (short for double precision) is a floating-point
+Double (short for double precision) is a floating-point
 {DATA_TYPE.key.get_reference(phrase="data type")} used to represent an approximation of a
 {REAL_NUMBER.key.get_reference(phrase="real number")} with finite precision. In many systems, a double provides
 about twice the precision of a {FLOAT.key.get_reference(phrase="float")} because it allocates more

@@ -14,7 +14,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.program impo
 class _OperatingSystem(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is system software that manages a {COMPUTER.key.get_reference(phrase="computer")}'s
+An operating system is system software that manages a {COMPUTER.key.get_reference(phrase="computer")}'s
 {HARDWARE.key.get_reference(phrase="hardware")} and {PROGRAM.key.get_reference(phrase="software")} resources. It
 allocates {COMPUTER_MEMORY.key.get_reference(phrase="memory")} to running programs, schedules their use of the
 hardware, and provides services they rely on, such as {FILE_STORAGE.key.get_reference(phrase="file storage")}

@@ -14,7 +14,7 @@ class _TwosComplement(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BINARY_REPRESENTATION.key.get_reference("binary representation")} method used to 
+A {BINARY_REPRESENTATION.key.get_reference("binary representation")} method used to 
 represent signed {INTEGER.key.get_reference("integers")} in computing. Positive {NUMBER.key.get_reference("numbers")} 
 are written in standard binary form, while a negative number is represented by inverting all 
 {BIT.key.get_reference("bits")} of its positive counterpart and adding 1. This lets the same hardware circuitry perform 

@@ -12,7 +12,7 @@ class _Index(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {INTEGER.key.get_reference()} value that identifies the position of an element 
+An {INTEGER.key.get_reference()} value that identifies the position of an element 
 within a {SEQUENCE.key.get_reference()}. Indices are used to access, modify, or reference specific 
 elements, and can be zero-based (starting at 0) or one-based (starting at 1) depending on the context.
 
@@ -20,10 +20,10 @@ elements, and can be zero-based (starting at 0) or one-based (starting at 1) dep
 
 Given the {SEQUENCE.key.get_reference()} ['a', 'b', 'c', 'd']:
 
-  Zero-based {self.key.get_reference("indices")}: 0 → 'a',  1 → 'b',  2 → 'c',  3 → 'd'
-  One-based  {self.key.get_reference("indices")}: 1 → 'a',  2 → 'b',  3 → 'c',  4 → 'd'
+  Zero-based indices: 0 → 'a',  1 → 'b',  2 → 'c',  3 → 'd'
+  One-based  indices: 1 → 'a',  2 → 'b',  3 → 'c',  4 → 'd'
 
-Using zero-based indexing, the element at {self.key.get_reference()} 2 is 'c'.
+Using zero-based indexing, the element at index 2 is 'c'.
 """
 
 

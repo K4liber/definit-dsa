@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.relation import R
 class _Independence(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} describes a {RELATION.key.get_reference(phrase="relationship")} 
+independence describes a {RELATION.key.get_reference(phrase="relationship")} 
 between events where the occurrence of one event does not change the {PROBABILITY.key.get_reference()} of the other.
 
 Two events A and B are independent if P(A and B) = P(A) * P(B).

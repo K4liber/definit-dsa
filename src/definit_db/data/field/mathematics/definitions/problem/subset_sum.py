@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 class _SubsetSum(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a decision {PROBLEM.key.get_reference()} that asks: given a 
+A decision {PROBLEM.key.get_reference()} that asks: given a 
 {SET.key.get_reference()} of {INTEGER.key.get_reference("integers")} and a target 
 {NUMBER.key.get_reference()} T, does there exist a subset that sums exactly to T?
 

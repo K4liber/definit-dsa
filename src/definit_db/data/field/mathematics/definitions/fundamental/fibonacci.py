@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Fibonacci(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference("Fibonacci")} commonly refers to the Fibonacci 
+Fibonacci commonly refers to the Fibonacci 
 {SEQUENCE.key.get_reference("sequence")} (F0, F1, F2, ...) defined by:
 
 - F0 = 0

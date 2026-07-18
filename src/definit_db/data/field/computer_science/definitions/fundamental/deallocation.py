@@ -15,7 +15,7 @@ class _Deallocation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the {OPERATION.key.get_reference()} of releasing a block of 
+The {OPERATION.key.get_reference()} of releasing a block of 
 {COMPUTER_MEMORY.key.get_reference()} that was previously reserved through 
 {MEMORY_ALLOCATION.key.get_reference()}, returning it to the pool of memory available for future use by a 
 {PROGRAM.key.get_reference()}.

@@ -18,7 +18,7 @@ class _StackMemory(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a region of {COMPUTER_MEMORY.key.get_reference()} used for static 
+A region of {COMPUTER_MEMORY.key.get_reference()} used for static 
 {MEMORY_ALLOCATION.key.get_reference()} during {PROGRAM.key.get_reference()} execution. It stores 
 {DATA.key.get_reference()} in a {LAST_IN_FIRST_OUT.key.get_reference()} order, automatically allocating and 
 {DEALLOCATION.key.get_reference(phrase="deallocating")} memory as {FUNCTION.key.get_reference("functions")} are called 

@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior 
 class _AsymptoticEfficiency(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a notion of {EFFICIENCY.key.get_reference("efficiency")} that focuses on the 
+A notion of {EFFICIENCY.key.get_reference("efficiency")} that focuses on the 
 {ASYMPTOTIC_BEHAVIOR.key.get_reference("asymptotic behavior")} of resource usage as input size grows.
 
 It is commonly expressed using {BIG_O_NOTATION.key.get_reference("Big O notation")}.

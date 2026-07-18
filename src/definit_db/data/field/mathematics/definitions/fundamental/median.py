@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Median(Definition):
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} of a {SEQUENCE.key.get_reference()} of {NUMBER.key.get_reference(phrase="values")}
+The median of a {SEQUENCE.key.get_reference()} of {NUMBER.key.get_reference(phrase="values")}
 is the middle value when the values are ordered.
 
 If there is an even number of values, the median is typically taken to be the average of the two middle values.

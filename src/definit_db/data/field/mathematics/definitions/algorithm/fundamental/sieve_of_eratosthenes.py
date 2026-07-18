@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.prime_number impo
 class _SieveOfEratosthenes(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference(phrase="Sieve of Eratosthenes")} is an {ALGORITHM.key.get_reference()} that finds all
+An {ALGORITHM.key.get_reference()} that finds all
 {PRIME_NUMBER.key.get_reference(phrase="prime numbers")} up to a given bound n.
 
 It works by iteratively marking multiples of each prime starting from 2; any unmarked number remaining is prime.

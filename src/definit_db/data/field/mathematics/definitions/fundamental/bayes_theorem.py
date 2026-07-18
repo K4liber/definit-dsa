@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.probability impor
 class _BayesTheorem(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference("Bayes theorem")} is a rule for calculating 
+A rule for calculating 
 {CONDITIONAL_PROBABILITY.key.get_reference(phrase="conditional probabilities")}.
 
 For two events A and B with P(B) != 0, it states:

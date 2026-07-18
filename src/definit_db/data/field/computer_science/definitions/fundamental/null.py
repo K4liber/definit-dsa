@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 class _Null(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a special value that represents "no value" or 
+A special value that represents "no value" or 
 "no {OBJECT.key.get_reference(phrase="object")}".
 
 It is often used to indicate that a {POINTER.key.get_reference(phrase="pointer")} does not refer to

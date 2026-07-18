@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.problem.base_case import BASE
 class _MathematicalInduction(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a proof technique used to show that a statement holds for all 
+A proof technique used to show that a statement holds for all 
 {NATURAL_NUMBER.key.get_reference("natural numbers")}.
 
 It typically consists of proving a {BASE_CASE.key.get_reference("base case")} and then proving that if the 

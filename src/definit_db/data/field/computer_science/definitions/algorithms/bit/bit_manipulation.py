@@ -15,7 +15,7 @@ class _BitManipulation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a technique that uses {BITWISE_OPERATION.key.get_reference(phrase="bitwise operations")} 
+A technique that uses {BITWISE_OPERATION.key.get_reference(phrase="bitwise operations")} 
 to perform direct operations on individual {BIT.key.get_reference(phrase="bits")} or groups of bits in a 
 {BINARY_REPRESENTATION.key.get_reference(phrase="binary representation")}. It is commonly used in 
 {ALGORITHM.key.get_reference(phrase="algorithms")} for tasks like setting, clearing, toggling, or checking specific 

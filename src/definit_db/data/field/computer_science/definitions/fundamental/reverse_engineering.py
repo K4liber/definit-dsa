@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorit
 class _ReverseEngineering(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the process of analyzing a {PROGRAM.key.get_reference("program")} or system to 
+The process of analyzing a {PROGRAM.key.get_reference("program")} or system to 
 discover its components, structure, and {OPERATION.key.get_reference("operation")}, often by examining its 
 {DATA.key.get_reference("data")} and behavior, without access to its source {CODE.key.get_reference()}. 
 Reverse engineering is used to understand how something works.

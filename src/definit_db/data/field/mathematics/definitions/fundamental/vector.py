@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Vector(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is an ordered {SEQUENCE.key.get_reference("sequence")} of
+An ordered {SEQUENCE.key.get_reference("sequence")} of
 {NUMBER.key.get_reference("numbers")}, often used to represent a point or a direction in space.
 
 ---

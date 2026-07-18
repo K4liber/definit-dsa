@@ -15,7 +15,7 @@ class _CallStack(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a region of {STACK_MEMORY.key.get_reference()} that tracks active 
+A region of {STACK_MEMORY.key.get_reference()} that tracks active 
 {FUNCTION.key.get_reference("function")} calls during {PROGRAM.key.get_reference()} execution. 
 It stores {INFORMATION.key.get_reference()} about each function call, including where to return after 
 the function completes. When a function is called, its information is added to the call stack, 

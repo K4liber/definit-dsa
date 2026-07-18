@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _ProgrammingLanguage(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a formal system of syntax and vocabulary used to write 
+A formal system of syntax and vocabulary used to write 
 {PROGRAM.key.get_reference("programs")} as text. It defines which sequences of 
 {INSTRUCTION.key.get_reference("instructions")} are valid and what each one means, so that a 
 {COMPUTER.key.get_reference()} can parse and execute them.

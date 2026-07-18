@@ -14,7 +14,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Precomputation(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a technique where some results are computed in advance and stored, so they can be
+A technique where some results are computed in advance and stored, so they can be
 reused later to reduce computation time.
 
 Precomputation often improves {TIME_COMPLEXITY.key.get_reference("time complexity")} at the cost of higher

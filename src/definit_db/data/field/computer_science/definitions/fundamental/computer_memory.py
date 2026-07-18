@@ -16,7 +16,7 @@ class _ComputerMemory(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {HARDWARE.key.get_reference()} component that stores {DATA.key.get_reference()} 
+A {HARDWARE.key.get_reference()} component that stores {DATA.key.get_reference()} 
 for immediate use by a {COMPUTER.key.get_reference()}. It provides storage for 
 {INSTRUCTION.key.get_reference("instructions")} and data that are actively being processed or accessed, enabling the 
 computer to perform {OPERATION.key.get_reference("operations")} efficiently.

@@ -13,14 +13,14 @@ class _Optimization(Definition):
     def _get_content(self) -> str:
         return f"""
 The process of improving an {ALGORITHM.key.get_reference()} or {SOLUTION.key.get_reference()} to make it more 
-efficient by reducing resource consumption. {self.key.get_reference()} 
+efficient by reducing resource consumption. optimization 
 involves finding the best approach to solve a {PROBLEM.key.get_reference()} within given 
 {CONSTRAINT.key.get_reference("constraints")}, often by minimizing costs or maximizing benefits.
 
 ---
 
 A first {SOLUTION.key.get_reference()} to the {SUBSET_SUM.key.get_reference()} {PROBLEM.key.get_reference()} checks 
-every possible subset before answering. {self.key.get_reference("Optimizing")} this solution to stop as soon as a 
+every possible subset before answering. Optimizing this solution to stop as soon as a 
 subset satisfying the target-sum {CONSTRAINT.key.get_reference()} is found avoids examining the remaining subsets, 
 reducing the work performed.
 """

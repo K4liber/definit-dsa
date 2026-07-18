@@ -16,7 +16,7 @@ class _AmortizedTime(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a method of analyzing the {TIME_COMPLEXITY.key.get_reference("time complexity")} 
+A method of analyzing the {TIME_COMPLEXITY.key.get_reference("time complexity")} 
 of a {SEQUENCE.key.get_reference()} of {OPERATION.key.get_reference("operations")} by calculating the average 
 cost per {OPERATION.key.get_reference()} over the entire sequence, rather than analyzing individual operations 
 in isolation. This approach is particularly useful for {ALGORITHM.key.get_reference("algorithms")} 

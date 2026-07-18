@@ -9,12 +9,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Permutation(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {REORDERING.key.get_reference("reordering")} of the elements of a
+A {REORDERING.key.get_reference("reordering")} of the elements of a
 {SEQUENCE.key.get_reference("sequence")}, i.e., the same elements arranged in a different order.
 
 ---
 
-The {SEQUENCE.key.get_reference("sequence")} "1, 2, 3" has six {self.key.get_reference("permutations")}: 
+The {SEQUENCE.key.get_reference("sequence")} "1, 2, 3" has six permutations: 
 "1, 2, 3", "1, 3, 2", "2, 1, 3", "2, 3, 1", "3, 1, 2", and "3, 2, 1", each a {REORDERING.key.get_reference()} of 
 the same three elements.
 """

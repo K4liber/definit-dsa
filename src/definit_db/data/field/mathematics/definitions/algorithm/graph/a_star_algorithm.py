@@ -19,7 +19,7 @@ class _AStarAlgorithm(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is a {GREEDY_ALGORITHM.key.get_reference("greedy")} 
+A {GREEDY_ALGORITHM.key.get_reference("greedy")} 
 {ALGORITHM.key.get_reference()} that finds the shortest {PATH.key.get_reference()} between two 
 {NODE.key.get_reference("nodes")} in a weighted {GRAPH.key.get_reference()}. It extends 
 {DIJKSTRAS_ALGORITHM.key.get_reference("Dijkstra's algorithm")} by using a 

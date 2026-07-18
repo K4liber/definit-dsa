@@ -16,7 +16,7 @@ class _LogarithmicComplexity(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {TIME_COMPLEXITY.key.get_reference("time complexity")} classification where 
+A {TIME_COMPLEXITY.key.get_reference("time complexity")} classification where 
 an {ALGORITHM.key.get_reference()} performs a number of {OPERATION.key.get_reference("operations")} that grows 
 logarithmically with the size of the {INPUT_DATA.key.get_reference("input")}. Expressed in 
 {BIG_O_NOTATION.key.get_reference("Big O notation")} as O(log n), logarithmic complexity means that each 

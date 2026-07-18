@@ -18,7 +18,7 @@ both A and B are true.
 ---
 
 Given the {BOOLEAN_EXPRESSION.key.get_reference("boolean expressions")} "it is raining" (true) and "it is windy" 
-(true), {self.key.get_reference("AND")} combines them as "it is raining AND it is windy", which evaluates to true 
+(true), AND combines them as "it is raining AND it is windy", which evaluates to true 
 because both expressions are true.
 """
 

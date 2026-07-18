@@ -15,7 +15,7 @@ class _ProblemSpace(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the {SET.key.get_reference()} of all possible candidates for 
+The {SET.key.get_reference()} of all possible candidates for 
 {SOLUTION.key.get_reference("solutions")} to a {PROBLEM.key.get_reference()}. It represents the entire 
 domain that must be searched through to find a valid or {OPTIMAL_SOLUTION.key.get_reference("optimal solution")}.
 

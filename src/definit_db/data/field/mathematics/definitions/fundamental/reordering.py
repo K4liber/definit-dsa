@@ -8,7 +8,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Reordering(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a change in the order of items in a
+A change in the order of items in a
 {SEQUENCE.key.get_reference("sequence")}, without changing which items are present.
 
 ---

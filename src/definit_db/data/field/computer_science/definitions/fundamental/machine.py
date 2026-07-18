@@ -12,7 +12,7 @@ from definit_db.data.field.mathematics.definitions.computation.computation impor
 class _Machine(Definition):
     def _get_content(self) -> str:
         return f"""
-In computing, a {self.key.get_reference()} is a physical or virtual {COMPUTER.key.get_reference(phrase="computer")}
+In computing, a machine is a physical or virtual {COMPUTER.key.get_reference(phrase="computer")}
 that can run {PROGRAM.key.get_reference(phrase="programs")} and perform 
 {COMPUTATION.key.get_reference(phrase="computation")}.
 

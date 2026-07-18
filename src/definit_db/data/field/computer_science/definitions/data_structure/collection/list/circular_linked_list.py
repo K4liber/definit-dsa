@@ -10,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 class _CircularLinkedList(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {LINKED_LIST.key.get_reference("linked list")} in which the last 
+A {LINKED_LIST.key.get_reference("linked list")} in which the last 
 {NODE.key.get_reference("node")} points back to the first node.
 
 This forms a {CYCLE.key.get_reference("cycle")} and allows traversal to wrap around indefinitely.

@@ -14,7 +14,7 @@ class _Character(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {PRIMITIVE_DATA_TYPE.key.get_reference(phrase="primitive data type")} that represents 
+A {PRIMITIVE_DATA_TYPE.key.get_reference(phrase="primitive data type")} that represents 
 a single textual symbol, such as a letter, digit, or punctuation mark. It is the atomic unit of 
 {INFORMATION.key.get_reference(phrase="information")} from which text is composed.
 

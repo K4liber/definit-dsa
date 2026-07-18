@@ -13,22 +13,22 @@ class _Polynomial(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a mathematical expression consisting of variables and coefficients, 
+A mathematical expression consisting of variables and coefficients, 
 involving only the {OPERATION.key.get_reference("operations")} of addition, subtraction, multiplication, 
 and non-negative {INTEGER.key.get_reference("integer")} exponentiation of variables. A 
-{self.key.get_reference()} is a type of {FUNCTION.key.get_reference()} that can be written in the form 
+A type of {FUNCTION.key.get_reference()} that can be written in the form 
 a_n*x^n + a_(n-1)*x^(n-1) + ... + a_1*x + a_0, where the coefficients a_i are constants and n is a 
 non-negative {INTEGER.key.get_reference("integer")} called the degree of the polynomial.
 
 ---
 
-3x² + 2x - 5 is a {self.key.get_reference()} of degree 2, with coefficients a_2=3, a_1=2, a_0=-5.
+3x² + 2x - 5 is a polynomial of degree 2, with coefficients a_2=3, a_1=2, a_0=-5.
 
 Evaluating it at x=4 using the {OPERATION.key.get_reference("operations")} of the definition:
 
   3(4²) + 2(4) - 5 = 3(16) + 8 - 5 = 48 + 8 - 5 = 51
 
-Non-example: 3/x is not a {self.key.get_reference()} because the exponent of x is -1,
+Non-example: 3/x is not a polynomial because the exponent of x is -1,
 which is not a non-negative {INTEGER.key.get_reference("integer")}.
 """
 

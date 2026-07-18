@@ -15,7 +15,7 @@ class _Constraint(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {CRITERION.key.get_reference("condition")} or restriction that must be satisfied 
+A {CRITERION.key.get_reference("condition")} or restriction that must be satisfied 
 by any valid {SOLUTION.key.get_reference()} to a {PROBLEM.key.get_reference()}. Constraints define 
 {BOUND.key.get_reference("bounds")} and limitations within which a solution must operate, 
 determining which solutions are acceptable and which are not.

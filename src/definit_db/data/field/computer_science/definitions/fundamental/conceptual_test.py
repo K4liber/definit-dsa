@@ -11,7 +11,7 @@ from definit_db.data.field.mathematics.definitions.problem.criterion import CRIT
 class _ConceptualTest(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TEST.key.get_reference("test")} used to check understanding of an idea,
+A {TEST.key.get_reference("test")} used to check understanding of an idea,
 model, or design, rather than to execute {CODE.key.get_reference()}.
 
 A conceptual test evaluates whether some {CRITERION.key.get_reference("criteria")} are satisfied.

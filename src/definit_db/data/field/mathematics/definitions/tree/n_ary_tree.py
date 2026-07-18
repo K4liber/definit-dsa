@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 class _NAryTree(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a {TREE.key.get_reference("tree")} in which each 
+A {TREE.key.get_reference("tree")} in which each 
 {NODE.key.get_reference("node")} has no more than n children.
 
 ---

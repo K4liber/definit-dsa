@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.transformation im
 class _Rotation(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {TRANSFORMATION.key.get_reference(phrase="transformation")} that turns an 
+A {TRANSFORMATION.key.get_reference(phrase="transformation")} that turns an 
 {OBJECT.key.get_reference(phrase="object")} around a fixed point (the center of rotation) by a given angle, 
 keeping the distance from each point to the center unchanged.
 

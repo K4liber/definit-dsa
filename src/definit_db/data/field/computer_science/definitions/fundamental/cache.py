@@ -16,7 +16,7 @@ class _Cache(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a high-speed {COMPUTER_MEMORY.key.get_reference()} storage layer that temporarily 
+A high-speed {COMPUTER_MEMORY.key.get_reference()} storage layer that temporarily 
 holds frequently accessed or recently used {DATA.key.get_reference()} to reduce access time and improve 
 {REAL_WORLD_PERFORMANCE.key.get_reference(phrase="performance")}. 
 When data is requested, the cache is checked first; if the data is found (a cache hit), it can be retrieved quickly 

@@ -19,7 +19,7 @@ class _FloydWarshallAlgorithm(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} that finds the shortest 
+An {ALGORITHM.key.get_reference()} that finds the shortest 
 {PATH.key.get_reference("paths")} between all pairs of {NODE.key.get_reference("nodes")} in a weighted 
 {GRAPH.key.get_reference()}. The algorithm uses {DYNAMIC_PROGRAMMING.key.get_reference("dynamic programming")} 
 by iteratively considering each node as an intermediate node and updating the 

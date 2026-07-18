@@ -18,7 +18,7 @@ class _NPHardClass(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a class of {PROBLEM.key.get_reference("problems")} in computational 
+A class of {PROBLEM.key.get_reference("problems")} in computational 
 complexity theory that are at least as hard as the hardest problems in {NP_CLASS.key.get_reference("NP")}. 
 A problem is NP-Hard if every problem in NP can be {POLYNOMIAL_REDUCTION.key.get_reference("reduced")} to it in 
 {POLYNOMIAL.key.get_reference("polynomial")} {TIME_COMPLEXITY.key.get_reference("time")}. This means that 

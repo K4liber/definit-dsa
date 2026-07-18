@@ -14,7 +14,7 @@ class _Variable(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a named storage location identified by a {LABEL.key.get_reference()} 
+A named storage location identified by a {LABEL.key.get_reference()} 
 that holds {DATA.key.get_reference()} which can be modified during {PROGRAM.key.get_reference()} execution. 
 A variable associates a name with a value that can change over time.
 

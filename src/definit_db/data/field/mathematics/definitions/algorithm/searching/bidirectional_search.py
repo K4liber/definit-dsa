@@ -14,7 +14,7 @@ class _BidirectionalSearch(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for finding a {PATH.key.get_reference()} 
+An {ALGORITHM.key.get_reference()} for finding a {PATH.key.get_reference()} 
 between two {NODE.key.get_reference("nodes")} in a {GRAPH.key.get_reference()}. It simultaneously runs a search 
 forward from the start node and backward from the goal node, stopping when the two frontiers meet. 
 By searching from both ends, the algorithm can significantly reduce the search space compared to 

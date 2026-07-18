@@ -9,16 +9,16 @@ from definit_db.data.field.mathematics.definitions.fundamental.radix import RADI
 class _NumeralSystem(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a method for representing {NUMBER.key.get_reference("numbers")}
+A method for representing {NUMBER.key.get_reference("numbers")}
 using a set of symbols and rules. Positional numeral systems are characterized by their
 {RADIX.key.get_reference("radix")} — the count of distinct symbols available.
 
 ---
 
-Decimal is a {self.key.get_reference()} with {RADIX.key.get_reference("radix")} 10: it uses
+Decimal is a numeral system with {RADIX.key.get_reference("radix")} 10: it uses
 symbols 0–9 and each position represents a power of 10.
 
-Binary is a {self.key.get_reference()} with {RADIX.key.get_reference("radix")} 2: it uses only
+Binary is a numeral system with {RADIX.key.get_reference("radix")} 2: it uses only
 0 and 1. The {NUMBER.key.get_reference("number")} ten is written as 1010.
 """
 

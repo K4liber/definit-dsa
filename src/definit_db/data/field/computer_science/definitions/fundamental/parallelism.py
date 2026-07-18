@@ -16,11 +16,11 @@ class _Parallelism(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a form of {CONCURRENCY.key.get_reference()} where multiple 
+A form of {CONCURRENCY.key.get_reference()} where multiple 
 {OPERATION.key.get_reference("operations")} or tasks are executed simultaneously at the exact same time, typically by 
 utilizing multiple {PROCESSOR.key.get_reference("processors")} or processing units. Unlike 
 {CONCURRENCY.key.get_reference()}, which is about managing multiple tasks that may overlap in time, 
-{self.key.get_reference()} specifically requires the physical simultaneous execution of tasks. This approach enables 
+parallelism specifically requires the physical simultaneous execution of tasks. This approach enables 
 {PROGRAM.key.get_reference("programs")} to achieve significant performance improvements by dividing work across 
 multiple processing units.
 

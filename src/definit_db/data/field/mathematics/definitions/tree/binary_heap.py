@@ -9,7 +9,7 @@ from definit_db.data.field.mathematics.definitions.tree.heap_tree import HEAP_TR
 class _BinaryHeap(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a {HEAP_TREE.key.get_reference("heap")} that is structured as a
+A {HEAP_TREE.key.get_reference("heap")} that is structured as a
 {COMPLETE_BINARY_TREE.key.get_reference("complete binary tree")}.
 
 ---

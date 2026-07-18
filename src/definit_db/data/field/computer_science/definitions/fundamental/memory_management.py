@@ -14,7 +14,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.stack_memory
 class _MemoryManagement(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is the {OPERATION.key.get_reference()} of controlling how a {PROGRAM.key.get_reference()} 
+The {OPERATION.key.get_reference()} of controlling how a {PROGRAM.key.get_reference()} 
 uses {COMPUTER_MEMORY.key.get_reference()}.
 
 It includes when and how {MEMORY_ALLOCATION.key.get_reference("memory is allocated")} and 
