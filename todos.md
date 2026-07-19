@@ -10,6 +10,48 @@
 
 ## TODO
 
+## 13. Filtering by a definition should be a multiple-choice and have "include descendants" option
+
+## 12. Introduce Definition Groups and filtering by a group
+
+## 11. Handling multiple definition sources/databases
+
+## 10. Limit number of nodes on visualization to 200
+
+Add a pop-up window whenever filtering allows more than 200 nodes.
+
+Figure out conditions for limiting the number of nodes displayed.
+
+## 9. Introduce React Router
+
+Apply filtering based on URL parameters and query strings.
+
+## 7. Asking question instead of "Mark as learned"
+
+## 8. Create a json serializer compatible with the definit-visualization package
+
+- [ ] Remove the JS-based serializer.
+- [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
+
+### 5. Rethink the category concept
+
+Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
+
+### 2. What to do with something named twice with different names? Introduce synonyms
+
+When a definition has more than one synonym, all synonyms should be displayed in the UI and be searchable.
+
+- [ ] hashmap
+- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+- [ ] introduce aliases? (probably in the definit lib, not in this repo)
+
+### 3. New definitions
+
+- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
+- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
+
+## DONE
+
 ### 6. Fix slow `get_dag` in the `definit` library (upstream)
 
 `DatabaseMd.get_dag` / `_update_dag_in_place` (in `definit/db/md.py`) is the root cause of the
@@ -33,23 +75,6 @@ Proper fix (in the `definit` library):
 - [ ] Optionally cache the parsed child references per definition instead of re-running
       `re.findall` + `Definition` construction on every visit.
 - [ ] This makes `get_dag` linear (`O(V + E)`) regardless of how many times a term is referenced.
-
-### 5. Rethink the category concept
-
-Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
-
-### 2. What to do with something named twice with different names?
-
-- [ ] hashmap
-- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
-- [ ] introduce aliases? (probably in the definit lib, not in this repo)
-
-### 3. New definitions
-
-- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
-- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
-
-## DONE
 
 ### 1. Add DSA definitions found during doing LeetCode exercises
 
