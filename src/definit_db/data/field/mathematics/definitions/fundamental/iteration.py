@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
 
@@ -15,7 +16,7 @@ A single execution of a {SEQUENCE.key.get_reference()} of
 ---
 
 Counting from 1 to 3 takes three iterations: one
-{INSTRUCTION.key.get_reference("instruction")} carried out for each number.
+{INSTRUCTION.key.get_reference("instruction")} carried out for each {NUMBER.key.get_reference(phrase="number")}.
 """
 
 

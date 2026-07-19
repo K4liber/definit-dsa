@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.reordering import REORDERING
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
@@ -9,7 +10,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Permutation(Definition):
     def _get_content(self) -> str:
         return f"""
-A {REORDERING.key.get_reference("reordering")} of the elements of a
+A {REORDERING.key.get_reference("reordering")} of the {ITEM.key.get_reference(phrase="elements")} of a
 {SEQUENCE.key.get_reference("sequence")}, i.e., the same elements arranged in a different order.
 
 ---

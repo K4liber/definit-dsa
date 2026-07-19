@@ -37,13 +37,14 @@ Apply filtering based on URL parameters and query strings.
 
 Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
 
-### 2. What to do with something named twice with different names? Introduce synonyms
+### 2. What to do with something named twice with different names?
 
-When a definition has more than one synonym, all synonyms should be displayed in the UI and be searchable.
+When a definition has more than one synonym/alias, all of those should be displayed in the UI and be searchable.
 
+- [ ] Introduce synonyms/aliases (in definit package)
+- [ ] item, element
 - [ ] hashmap
-- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
-- [ ] introduce aliases? (probably in the definit lib, not in this repo)
+- [ ] matrix, grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
 
 ### 3. New definitions
 

@@ -113,6 +113,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.conditional_proba
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
 from definit_db.data.field.mathematics.definitions.fundamental.distinctness import DISTINCTNESS
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
+from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
 from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
@@ -416,6 +417,7 @@ field_index: list[Definition] = [
     PERFECT_SQUARE,
     INTEGER,
     NATURAL_NUMBER,
+    DIVISOR,
     PRIME_NUMBER,
     COMPOSITE_NUMBER,
     PRIME_FACTORIZATION,

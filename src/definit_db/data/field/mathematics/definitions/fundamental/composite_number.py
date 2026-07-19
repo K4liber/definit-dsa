@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.prime_number import PRIME_NUMBER
 
@@ -10,8 +11,8 @@ class _CompositeNumber(Definition):
     def _get_content(self) -> str:
         return f"""
 A positive {INTEGER.key.get_reference("integer")} greater than 1 that is not a
-{PRIME_NUMBER.key.get_reference("prime number")} — equivalently, it has at least one positive divisor other than
-1 and itself.
+{PRIME_NUMBER.key.get_reference("prime number")} — equivalently, it has at least one positive
+{DIVISOR.key.get_reference(phrase="divisor")} other than 1 and itself.
 
 ---
 
