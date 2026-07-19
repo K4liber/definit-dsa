@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.operand import OPERAND
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 
 
@@ -10,7 +11,7 @@ class _UnaryOperation(Definition):
     def _get_content(self) -> str:
         return f"""
 An {OPERATION.key.get_reference(phrase="operation")} that takes
-exactly one input (one operand).
+exactly one input (one {OPERAND.key.get_reference(phrase="operand")}).
 
 ---
 

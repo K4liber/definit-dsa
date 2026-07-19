@@ -20,8 +20,11 @@ A bag contains 3 red balls and 2 blue balls (5 total). The probability of each o
 drawing one ball at random:
 
 P(red)  = 3/5 = 0.6
+
 P(blue) = 2/5 = 0.4
+
 P(green) = 0   (impossible — no green balls)
+
 P(red or blue) = 1 (certain — every ball is one of the two)
 
 All probabilities lie in [0, 1] and the probabilities of all possible outcomes sum to 1.

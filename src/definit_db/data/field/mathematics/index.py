@@ -98,6 +98,7 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
 )
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
 from definit_db.data.field.mathematics.definitions.fundamental.and_operator import AND_OPERATOR
+from definit_db.data.field.mathematics.definitions.fundamental.axis import AXIS
 from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem import BAYES_THEOREM
 from definit_db.data.field.mathematics.definitions.fundamental.bijection import BIJECTION
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
@@ -110,6 +111,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.commutative_opera
 from definit_db.data.field.mathematics.definitions.fundamental.composite_number import COMPOSITE_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
+from definit_db.data.field.mathematics.definitions.fundamental.distinctness import DISTINCTNESS
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
@@ -264,6 +266,7 @@ field_index: list[Definition] = [
     FINITE_SEQUENCE,
     FIBONACCI,
     FIRST_IN_FIRST_OUT,
+    AXIS,
     VECTOR,
     MATRIX,
     TRANSPOSING,
@@ -422,6 +425,7 @@ field_index: list[Definition] = [
     BINOMIAL_COEFFICIENT,
     PRODUCT,
     REORDERING,
+    DISTINCTNESS,
     UNIQUENESS,
     BIJECTION,
     ISOMORPHISM,

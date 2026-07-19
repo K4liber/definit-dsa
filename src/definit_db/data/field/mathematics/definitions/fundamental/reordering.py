@@ -2,13 +2,14 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
 
 class _Reordering(Definition):
     def _get_content(self) -> str:
         return f"""
-A change in the order of items in a
+A change in the order of {ITEM.key.get_reference(phrase="items")} in a
 {SEQUENCE.key.get_reference("sequence")}, without changing which items are present.
 
 ---

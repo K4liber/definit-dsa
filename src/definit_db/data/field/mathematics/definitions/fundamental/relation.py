@@ -13,8 +13,8 @@ A relation (also called relationship) describes a connection or association betw
 
 ---
 
-"is less than" is a relation on the {SET.key.get_reference(phrase="set")} (1, 2, 3).
-It connects 1 to 2, 1 to 3, and 2 to 3.
+"is less than" is a relation. Applying it to the {SET.key.get_reference(phrase="set")} 
+(1, 2, 3) it connects 1 to 2, 1 to 3, and 2 to 3.
 """
 
 

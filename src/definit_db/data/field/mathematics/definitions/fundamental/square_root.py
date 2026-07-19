@@ -13,7 +13,11 @@ number y such that y² = x.
 
 ---
 
-√9  = 3  because 3² = 9; √25 = 5  because 5² = 25; √2  ≈ 1.414 because 1.414² ≈ 2
+√9  = 3  because 3² = 9
+
+√25 = 5  because 5² = 25
+
+√2  ≈ 1.414 because 1.414² ≈ 2
 
 """
 

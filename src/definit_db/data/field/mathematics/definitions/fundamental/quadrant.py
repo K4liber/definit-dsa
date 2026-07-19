@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.axis import AXIS
 from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
 
 
@@ -9,7 +10,8 @@ class _Quadrant(Definition):
     def _get_content(self) -> str:
         return f"""
 A quadrant is one of the four regions produced by dividing a two-dimensional space with two
-perpendicular lines (typically the horizontal and vertical axes through a common center). The four resulting
+perpendicular lines (typically the horizontal and vertical {AXIS.key.get_reference(phrase="axes")} through a
+common center). The four resulting
 regions together form a {PARTITIONING.key.get_reference(phrase="partition")} of the original space: they are
 non-overlapping and cover it completely.
 
