@@ -10,12 +10,12 @@ class _Dataset(Definition):
     def _get_content(self) -> str:
         return f"""
 A {SET.key.get_reference(phrase="set")} of {DATA.key.get_reference(phrase="data")}, 
-typically organized as records or examples for analysis, training, or testing.
+typically organized into rows and columns, or grouped as examples, for analysis, training, or testing.
 
 ---
 
-A table of 100 rows, each containing a student's exam scores across five subjects, is a dataset: it is a set
-of data records that can be analyzed to study student performance.
+A group of 100 rows, each containing a student's exam scores across five subjects, is a dataset: it is a
+set of data records that can be analyzed to study student performance.
 """
 
 
