@@ -2,26 +2,26 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
-from definit_db.data.field.mathematics.definitions.fundamental.expression import EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 
 
-class _Operand(Definition):
+class _Expression(Definition):
     def _get_content(self) -> str:
         return f"""
-An {OBJECT.key.get_reference()} that an {OPERATION.key.get_reference()} is applied to.
+A combination of {OBJECT.key.get_reference(phrase="objects")} and
+{OPERATION.key.get_reference(phrase="operations")} that represents a value. When evaluated, it produces a result.
 
 ---
 
-In the {EXPRESSION.key.get_reference()} 2 + 3, the {OBJECT.key.get_reference(phrase="objects")} 2 and 3 are the 
-operands of the addition.
+2 + 3 is an expression: combining the {OBJECT.key.get_reference(phrase="objects")} 2 and 3 with the addition
+operation produces the result 5.
 """
 
 
-OPERAND = _Operand(
+EXPRESSION = _Expression(
     key=DefinitionKey(
-        name="operand",
+        name="expression",
         field=FieldName.MATHEMATICS,
     )
 )

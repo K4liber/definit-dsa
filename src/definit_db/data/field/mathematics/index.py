@@ -116,6 +116,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.distribution impo
 from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
 from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
+from definit_db.data.field.mathematics.definitions.fundamental.expression import EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
 from definit_db.data.field.mathematics.definitions.fundamental.finite_sequence import FINITE_SEQUENCE
@@ -178,6 +179,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
+from definit_db.data.field.mathematics.definitions.fundamental.subset import SUBSET
 from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
 from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.translation import TRANSLATION
@@ -279,12 +281,14 @@ field_index: list[Definition] = [
     LAST_IN_FIRST_OUT,
     OPERATION,
     OPERAND,
+    EXPRESSION,
     COMMUTATIVE_OPERATION,
     RELATION,
     SET,
     INTERSECTION,
     UNION,
     FINITE_SET,
+    SUBSET,
     COLLECTION,
     FUNCTION,
     HASH,

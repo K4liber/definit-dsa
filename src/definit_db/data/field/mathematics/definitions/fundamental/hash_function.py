@@ -13,8 +13,7 @@ class _HashFunction(Definition):
         return f"""
 A {FUNCTION.key.get_reference(phrase="function")} that maps an input {OBJECT.key.get_reference(phrase="object")}
 of arbitrary size to a {HASH.key.get_reference(phrase="hash")} (or 'digest') of fixed size.
-A good hash function makes it unlikely that two different inputs produce the same digest, but such collisions
-are still possible.
+A good hash function makes it unlikely that two different inputs produce the same digest.
 
 ---
 
