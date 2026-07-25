@@ -6,6 +6,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.combination impor
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
+from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 
 
 class _Combinatorics(Definition):
@@ -19,8 +20,8 @@ A branch of mathematics concerned with counting, arranging, and selecting
 ---
 
 Counting how many {PERMUTATION.key.get_reference("orderings")} exist for 3 books on a shelf, or how many 
-{COMBINATION.key.get_reference("combinations")} of 2 people can be chosen from a group of 5, are both problems 
-studied in combinatorics.
+{COMBINATION.key.get_reference("combinations")} of 2 people can be chosen from a group of 5, are both 
+{PROBLEM.key.get_reference(phrase="problems")} studied in combinatorics.
 """
 
 

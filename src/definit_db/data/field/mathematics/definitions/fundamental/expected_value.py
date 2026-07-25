@@ -4,12 +4,13 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.probability import PROBABILITY
+from definit_db.data.field.mathematics.definitions.fundamental.randomness import RANDOMNESS
 
 
 class _ExpectedValue(Definition):
     def _get_content(self) -> str:
         return f"""
-The long-run average value of a random outcome.
+The long-run average value of a {RANDOMNESS.key.get_reference(phrase="random")} outcome.
 
 For a {DISTRIBUTION.key.get_reference("distribution")}, the expected value is computed by weighting each
 possible value by its {PROBABILITY.key.get_reference()} and summing the results.

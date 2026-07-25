@@ -97,6 +97,7 @@ from definit_db.data.field.mathematics.definitions.computation.nondeterministic_
     NONDETERMINISTIC_TURING_MACHINE,
 )
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
+from definit_db.data.field.mathematics.definitions.fundamental.adjacent import ADJACENT
 from definit_db.data.field.mathematics.definitions.fundamental.and_operator import AND_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.axis import AXIS
 from definit_db.data.field.mathematics.definitions.fundamental.bayes_theorem import BAYES_THEOREM
@@ -209,6 +210,7 @@ from definit_db.data.field.mathematics.definitions.graph.subgraph import SUBGRAP
 from definit_db.data.field.mathematics.definitions.graph.weighted_graph import WEIGHTED_GRAPH
 from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 from definit_db.data.field.mathematics.definitions.notations.reverse_polish_notation import REVERSE_POLISH_NOTATION
+from definit_db.data.field.mathematics.definitions.notations.scientific_notation import SCIENTIFIC_NOTATION
 from definit_db.data.field.mathematics.definitions.problem.base_case import BASE_CASE
 from definit_db.data.field.mathematics.definitions.problem.complement_problem import COMPLEMENT_PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
@@ -266,6 +268,7 @@ field_index: list[Definition] = [
     INFORMATION,
     BOOLEAN_EXPRESSION,
     SEQUENCE,
+    ADJACENT,
     FINITE_SEQUENCE,
     FIBONACCI,
     FIRST_IN_FIRST_OUT,
@@ -298,6 +301,7 @@ field_index: list[Definition] = [
     MULTISET,
     LABEL,
     REVERSE_POLISH_NOTATION,
+    SCIENTIFIC_NOTATION,
     ASYMPTOTIC_BEHAVIOR,
     BOUND,
     UPPER_BOUND,

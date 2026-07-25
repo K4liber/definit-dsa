@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
+from definit_db.data.field.mathematics.definitions.fundamental.adjacent import ADJACENT
 from definit_db.data.field.mathematics.definitions.graph.graph import GRAPH
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.graph.path import PATH
@@ -28,7 +29,8 @@ Finding a {PATH.key.get_reference()} from A to F in the {GRAPH.key.get_reference
   Forward  from A: step 1 → {{B}},  step 2 → {{C}}
   Backward from F: step 1 → {{E}},  step 2 → {{D}}
 
-  C and D are adjacent → searches meet → {PATH.key.get_reference("path")}: A → B → C → D → E → F
+  C and D are {ADJACENT.key.get_reference(phrase="adjacent")} → searches meet → 
+  {PATH.key.get_reference("path")}: A → B → C → D → E → F
 """
 
 

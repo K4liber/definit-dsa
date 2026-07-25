@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
@@ -18,7 +19,8 @@ class _Heuristic(Definition):
 A {FUNCTION.key.get_reference()} or strategy used in an 
 {ALGORITHM.key.get_reference()} to guide decision-making when finding a {SOLUTION.key.get_reference()} to a 
 {PROBLEM.key.get_reference()}. It provides an estimate that helps the algorithm make more informed choices 
-by evaluating different options, allowing algorithms to explore more promising paths first and improve efficiency.
+by evaluating different options, allowing algorithms to explore more promising paths first and improve 
+{EFFICIENCY.key.get_reference(phrase="efficiency")}.
 
 ---
 
