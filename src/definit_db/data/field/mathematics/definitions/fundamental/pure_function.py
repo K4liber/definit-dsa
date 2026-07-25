@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.determinism import DETERMINISM
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
@@ -14,8 +15,9 @@ class _PureFunction(Definition):
     def _get_content(self) -> str:
         return f"""
 A {FUNCTION.key.get_reference()} that always returns the same result 
-for the same {INPUT_DATA.key.get_reference("input")}. 
-Pure functions are deterministic and depend only on their input values to produce their output values.
+for the same {INPUT_DATA.key.get_reference("input")}. Pure functions are 
+{DETERMINISM.key.get_reference(phrase="deterministic")} and depend only on their input values to produce their 
+output values.
 
 ---
 

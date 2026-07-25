@@ -22,7 +22,7 @@ original answers "yes", and "yes" exactly when the original answers "no". It inv
 ---
 
 The decision {PROBLEM.key.get_reference()} "Is this {NUMBER.key.get_reference("number")} even?" has the complement 
-problem "Is this number odd?". For the {INPUT_DATA.key.get_reference("input")} "4" the original answers "yes" while 
+problem "Is this number odd?". For the input "4" the original answers "yes" while 
 the complement answers "no"; for the input "3" the two answers are reversed.
 """
 

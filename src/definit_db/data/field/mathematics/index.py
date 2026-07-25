@@ -105,6 +105,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.bijection import 
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.cartesian_plane import CARTESIAN_PLANE
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
 from definit_db.data.field.mathematics.definitions.fundamental.combinatorics import COMBINATORICS
@@ -112,6 +113,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.commutative_opera
 from definit_db.data.field.mathematics.definitions.fundamental.composite_number import COMPOSITE_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.conditional_probability import CONDITIONAL_PROBABILITY
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
+from definit_db.data.field.mathematics.definitions.fundamental.determinism import DETERMINISM
 from definit_db.data.field.mathematics.definitions.fundamental.distinctness import DISTINCTNESS
 from definit_db.data.field.mathematics.definitions.fundamental.distribution import DISTRIBUTION
 from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
@@ -162,6 +164,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.partitioning impo
 from definit_db.data.field.mathematics.definitions.fundamental.peak import PEAK
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
+from definit_db.data.field.mathematics.definitions.fundamental.plane import PLANE
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
 from definit_db.data.field.mathematics.definitions.fundamental.prime_factorization import PRIME_FACTORIZATION
 from definit_db.data.field.mathematics.definitions.fundamental.prime_number import PRIME_NUMBER
@@ -437,6 +440,7 @@ field_index: list[Definition] = [
     REORDERING,
     DISTINCTNESS,
     UNIQUENESS,
+    DETERMINISM,
     BIJECTION,
     ISOMORPHISM,
     RADIX,
@@ -487,6 +491,8 @@ field_index: list[Definition] = [
     MAJORITY_ELEMENT,
     PALINDROME,
     SUBSEQUENCE,
+    PLANE,
+    CARTESIAN_PLANE,
     TRANSFORMATION,
     REFLECTION,
     ROTATION,

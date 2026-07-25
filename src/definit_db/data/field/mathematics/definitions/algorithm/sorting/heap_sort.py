@@ -6,6 +6,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorit
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.sorting import SORTING
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.tree.heap_tree import HEAP_TREE
+from definit_db.data.field.mathematics.definitions.tree.root import ROOT
 
 
 class _HeapSort(Definition):
@@ -13,18 +14,23 @@ class _HeapSort(Definition):
         return f"""
 Heap Sort is a {SORTING.key.get_reference()} {ALGORITHM.key.get_reference()} that builds a 
 {HEAP_TREE.key.get_reference(phrase="heap tree")} from the elements of a {SEQUENCE.key.get_reference("sequence")}, 
-and then repeatedly extracts the root (the maximum or minimum) and restores the heap until the entire 
-{SEQUENCE.key.get_reference("sequence")} is sorted.
+and then repeatedly extracts the {ROOT.key.get_reference(phrase="root")} (the maximum or minimum) and restores the heap 
+until the entire {SEQUENCE.key.get_reference("sequence")} is sorted.
 
 ---
 
 Sorting [4, 1, 3, 2] using a max-{HEAP_TREE.key.get_reference(phrase="heap")}:
 
-  Build heap:  [4, 2, 3, 1]
-  Extract 4 →  [3, 2, 1]  | sorted: [4]
-  Extract 3 →  [2, 1]     | sorted: [3, 4]
-  Extract 2 →  [1]        | sorted: [2, 3, 4]
-  Extract 1 →  []         | sorted: [1, 2, 3, 4]  ✓
+
+Build heap:  [4, 2, 3, 1]
+
+Extract 4 → [3, 2, 1] ; sorted: [4]
+
+Extract 3 → [2, 1] ; sorted: [3, 4]
+
+Extract 2 → [1] ; sorted: [2, 3, 4]
+
+Extract 1 → [] ; sorted: [1, 2, 3, 4]  ✓
 """
 
 
