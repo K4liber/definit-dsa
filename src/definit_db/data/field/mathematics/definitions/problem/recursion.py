@@ -23,16 +23,29 @@ The base case is when n equals 1, at which point the sum is simply 1.
 
 On the diagram below we can see the recursive calls and their evaluations:
 
+
 sum(5) = 5 + sum(4)
-    sum(4) = 4 + sum(3)
-        sum(3) = 3 + sum(2)
-            sum(2) = 2 + sum(1)
-                sum(1) = 1
-            sum(2) = 2 + 1 = 3
-        sum(3) = 3 + 3 = 6
-    sum(4) = 4 + 6 = 10
+
+-> sum(4) = 4 + sum(3)
+
+-> -> sum(3) = 3 + sum(2)
+
+-> -> -> sum(2) = 2 + sum(1)
+
+-> -> -> -> sum(1) = 1
+
+-> -> -> sum(2) = 2 + 1 = 3
+
+-> -> sum(3) = 3 + 3 = 6
+
+-> sum(4) = 4 + 6 = 10
+
+
 sum(5) = 5 + 10 = 15
 
+
+"->" indicates a recursive call. Number of arrows indicates depth of recursion. 
+The base case is reached when the function is called with 1 (no further recursive calls are made).
 """
 
 

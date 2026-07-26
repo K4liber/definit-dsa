@@ -10,25 +10,29 @@
 
 ## TODO
 
-## 13. Filtering by a definition should be a multiple-choice and have "include descendants" option
+### 14. Definition content locked into previous scroll
 
-## 12. Introduce Definition Groups and filtering by a group
+When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position.
 
-## 11. Handling multiple definition sources/databases
+### 13. Filtering by a definition should be a multiple-choice and have "include descendants" option
 
-## 10. Limit number of nodes on visualization to 200
+### 12. Introduce Definition Groups and filtering by a group
+
+### 11. Handling multiple definition sources/databases
+
+### 10. Limit number of nodes on visualization to 200
 
 Add a pop-up window whenever filtering allows more than 200 nodes.
 
 Figure out conditions for limiting the number of nodes displayed.
 
-## 9. Introduce React Router
+### 9. Introduce React Router
 
 Apply filtering based on URL parameters and query strings.
 
-## 7. Asking question instead of "Mark as learned"
+### 7. Asking question instead of "Mark as learned"
 
-## 8. Create a json serializer compatible with the definit-visualization package
+### 8. Create a json serializer compatible with the definit-visualization package
 
 - [ ] Remove the JS-based serializer.
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.

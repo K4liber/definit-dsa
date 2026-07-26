@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.metric import METRIC
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.graph.edge import EDGE
@@ -17,9 +18,9 @@ class _WeightedGraph(Definition):
         return f"""
 A {GRAPH.key.get_reference()} in which each {EDGE.key.get_reference()} 
 has an associated {NUMBER.key.get_reference(phrase="numerical value")} called a weight. The weight typically 
-represents a cost, distance, capacity, or other metric relevant to the problem being modeled. Weighted graphs 
-are used in many algorithms where the {RELATION.key.get_reference("relationship")} between nodes has varying 
-significance or cost.
+represents a cost, distance, capacity, or other {METRIC.key.get_reference()} attached to the connection between the two 
+{NODE.key.get_reference(phrase="nodes")}. Weighted graphs are useful whenever the 
+{RELATION.key.get_reference("relationship")} between nodes has varying significance or cost.
 
 ---
 

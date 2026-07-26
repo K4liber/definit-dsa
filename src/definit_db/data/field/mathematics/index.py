@@ -105,6 +105,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.bijection import 
 from definit_db.data.field.mathematics.definitions.fundamental.binomial_coefficient import BINOMIAL_COEFFICIENT
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.boundary import BOUNDARY
 from definit_db.data.field.mathematics.definitions.fundamental.cartesian_plane import CARTESIAN_PLANE
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.combination import COMBINATION
@@ -142,12 +143,14 @@ from definit_db.data.field.mathematics.definitions.fundamental.isomorphism impor
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.iteration import ITERATION
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
+from definit_db.data.field.mathematics.definitions.fundamental.limit import LIMIT
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.majority_element import MAJORITY_ELEMENT
 from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
 from definit_db.data.field.mathematics.definitions.fundamental.median import MEDIAN
 from definit_db.data.field.mathematics.definitions.fundamental.merge import MERGE
+from definit_db.data.field.mathematics.definitions.fundamental.metric import METRIC
 from definit_db.data.field.mathematics.definitions.fundamental.multiset import MULTISET
 from definit_db.data.field.mathematics.definitions.fundamental.mutual_exclusivity import MUTUAL_EXCLUSIVITY
 from definit_db.data.field.mathematics.definitions.fundamental.natural_number import NATURAL_NUMBER
@@ -181,6 +184,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.reordering import
 from definit_db.data.field.mathematics.definitions.fundamental.rotation import ROTATION
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
+from definit_db.data.field.mathematics.definitions.fundamental.square import SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.subset import SUBSET
@@ -278,6 +282,7 @@ field_index: list[Definition] = [
     AXIS,
     VECTOR,
     MATRIX,
+    METRIC,
     TRANSPOSING,
     INSTRUCTION,
     ITERATION,
@@ -285,6 +290,7 @@ field_index: list[Definition] = [
     INDEX,
     LOOP,
     LAST_IN_FIRST_OUT,
+    LIMIT,
     OPERATION,
     OPERAND,
     EXPRESSION,
@@ -307,6 +313,7 @@ field_index: list[Definition] = [
     SCIENTIFIC_NOTATION,
     ASYMPTOTIC_BEHAVIOR,
     BOUND,
+    BOUNDARY,
     UPPER_BOUND,
     BIG_O_NOTATION,
     ASYMPTOTIC_EFFICIENCY,
@@ -424,6 +431,7 @@ field_index: list[Definition] = [
     BUCKET_SORT,
     NUMBER,
     INFINITY,
+    SQUARE,
     SQUARE_ROOT,
     PERFECT_SQUARE,
     INTEGER,

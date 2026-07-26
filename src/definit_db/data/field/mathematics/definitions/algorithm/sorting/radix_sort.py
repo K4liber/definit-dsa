@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.sorting.sorting import SORTING
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
@@ -20,15 +21,17 @@ individual digits one position at a time, from least significant digit (LSD) to 
 
 Instead of comparing elements directly, it distributes them into buckets according to the current digit
 and then collects them in order. When k (the number of digits) is treated as a constant independent of
-n (the number of elements), radix sort runs in O(n·k) = O(n) time — otherwise O(n·k) is no better
-than comparison-based sorts.
+n (the number of {ITEM.key.get_reference(phrase="elements")}), radix sort runs in O(n·k) = O(n) time — otherwise O(n·k) 
+is no better than comparison-based sorts.
 
 ---
 
 Sorting [53, 21, 74, 42, 35] by LSD {RADIX.key.get_reference("radix")} sort:
 
-  Pass 1 — sort by ones digit:  [21, 42, 53, 74, 35]
-  Pass 2 — sort by tens digit:  [21, 35, 42, 53, 74]  ✓
+
+Pass 1 — sort by ones digit:  [21, 42, 53, 74, 35]
+
+Pass 2 — sort by tens digit:  [21, 35, 42, 53, 74]  ✓
 """
 
 
