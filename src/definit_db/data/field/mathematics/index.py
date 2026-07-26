@@ -15,6 +15,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.brute_f
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.bud import BUD
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.co_np_class import CO_NP_CLASS
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complexity import COMPLEXITY
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complexity_theory import COMPLEXITY_THEORY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.divide_and_conquer import DIVIDE_AND_CONQUER
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.dynamic_programming import DYNAMIC_PROGRAMMING
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
@@ -41,6 +42,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.one_dim
 )
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.p_class import P_CLASS
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.performance import PERFORMANCE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.precomputation import PRECOMPUTATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_life_efficiency import (
     REAL_LIFE_EFFICIENCY,
@@ -139,6 +141,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 from definit_db.data.field.mathematics.definitions.fundamental.integer import INTEGER
 from definit_db.data.field.mathematics.definitions.fundamental.intersection import INTERSECTION
 from definit_db.data.field.mathematics.definitions.fundamental.interval import INTERVAL
+from definit_db.data.field.mathematics.definitions.fundamental.irrational import IRRATIONAL
 from definit_db.data.field.mathematics.definitions.fundamental.isomorphism import ISOMORPHISM
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.iteration import ITERATION
@@ -167,6 +170,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.partitioning impo
 from definit_db.data.field.mathematics.definitions.fundamental.peak import PEAK
 from definit_db.data.field.mathematics.definitions.fundamental.perfect_square import PERFECT_SQUARE
 from definit_db.data.field.mathematics.definitions.fundamental.permutation import PERMUTATION
+from definit_db.data.field.mathematics.definitions.fundamental.pi import PI
 from definit_db.data.field.mathematics.definitions.fundamental.plane import PLANE
 from definit_db.data.field.mathematics.definitions.fundamental.polynomial import POLYNOMIAL
 from definit_db.data.field.mathematics.definitions.fundamental.prime_factorization import PRIME_FACTORIZATION
@@ -325,6 +329,7 @@ field_index: list[Definition] = [
     PROBLEM_SPACE,
     COMPLEMENT_PROBLEM,
     INPUT_DATA,
+    IRRATIONAL,
     CRITERION,
     OPTIMAL_SOLUTION,
     OPTIMAL_SUBSTRUCTURE,
@@ -334,6 +339,7 @@ field_index: list[Definition] = [
     ALGORITHM,
     HEURISTIC,
     COMPLEXITY,
+    COMPLEXITY_THEORY,
     EFFICIENCY,
     AMORTIZED_TIME,
     ASYMPTOTIC_RUNTIME,
@@ -357,6 +363,7 @@ field_index: list[Definition] = [
     NP_HARD_CLASS,
     OPTIMIZATION,
     P_CLASS,
+    PERFORMANCE,
     A_STAR_ALGORITHM,
     DIJKSTRAS_ALGORITHM,
     BELLMAN_FORD_ALGORITHM,
@@ -498,6 +505,7 @@ field_index: list[Definition] = [
     HISTOGRAM,
     MAJORITY_ELEMENT,
     PALINDROME,
+    PI,
     SUBSEQUENCE,
     PLANE,
     CARTESIAN_PLANE,

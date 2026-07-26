@@ -14,13 +14,13 @@ class _Integer(Definition):
     def _get_content(self) -> str:
         return f"""
 A {PRIMITIVE_DATA_TYPE.key.get_reference(phrase="primitive data type")} that represents whole 
-{NUMBER.key.get_reference(phrase="numbers")}, i.e. {MATH_INTEGER.key.get_reference(phrase="integers")} stored in a 
-fixed amount of memory. Integers can be positive, negative, or zero.
+{NUMBER.key.get_reference(phrase="numbers")}, i.e. {MATH_INTEGER.key.get_reference(phrase="integers")} stored using 
+a fixed number of {BIT.key.get_reference(phrase="bits")}. Integers can be positive, negative, or zero.
 
 ---
 
-A signed 8-{BIT.key.get_reference(phrase="bit")} integer can store values from -128 to 127. The value 42 fits, while 200 does not, because it exceeds 
-the range that 8 bits can hold.
+A signed 8-bit integer can store values from -128 to 127. The value 42 fits, while 
+200 does not, because it exceeds the range that 8 bits can hold.
 """
 
 

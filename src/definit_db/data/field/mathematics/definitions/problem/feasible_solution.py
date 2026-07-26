@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
+from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.solution import SOLUTION
 
@@ -14,8 +15,9 @@ class _FeasibleSolution(Definition):
     def _get_content(self) -> str:
         return f"""
 A {SOLUTION.key.get_reference()} to a {PROBLEM.key.get_reference()} 
-that satisfies all the {CONSTRAINT.key.get_reference("constraints")}. A feasible solution may not be optimal, 
-but it meets all the requirements and restrictions of the problem.
+that satisfies all the {CONSTRAINT.key.get_reference("constraints")}. A feasible solution may not be 
+{OPTIMAL_SOLUTION.key.get_reference(phrase="optimal")}, but it meets all the requirements and restrictions 
+of the problem.
 
 ---
 
