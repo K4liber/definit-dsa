@@ -25,12 +25,15 @@ neighbors, going deeper into the graph until reaching a dead end, then backtrack
 
 {GRAPH.key.get_reference("Graph")} edges: A–B, A–C, B–D, B–E
 
-DFS from {NODE.key.get_reference("node")} A:
+DFS (Depth-First Search) from {NODE.key.get_reference("node")} A:
 
-  Visit A → go deep to B → go deep to D (dead end) → backtrack to B
-  → visit E (dead end) → backtrack to A → visit C (dead end)
 
-  Visit order: A, B, D, E, C
+Visit A → go deep to B → go deep to D (dead end) → backtrack to B
+
+→ visit E (dead end) → backtrack to A → visit C (dead end)
+
+
+Visit order: A, B, D, E, C
 """
 
 

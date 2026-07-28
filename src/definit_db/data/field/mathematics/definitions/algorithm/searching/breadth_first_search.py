@@ -28,13 +28,17 @@ non-{WEIGHTED_GRAPH.key.get_reference("weighted graphs")}.
 
 {GRAPH.key.get_reference("Graph")} {EDGE.key.get_reference("edges")}: A–B, A–C, B–D, B–E
 
-BFS from {NODE.key.get_reference("node")} A:
+BFS (Breadth-First Search) from {NODE.key.get_reference("node")} A:
 
-  Level 0: [A]
-  Level 1: [B, C]      (neighbors of A)
-  Level 2: [D, E]      (unvisited neighbors of B)
 
-  Visit order: A, B, C, D, E
+Level 0: [A]
+
+Level 1: [B, C] (neighbors of A)
+
+Level 2: [D, E] (unvisited neighbors of B)
+
+
+Visit order: A, B, C, D, E
 """
 
 

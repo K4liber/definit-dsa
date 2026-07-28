@@ -92,6 +92,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.strategy.top_down_a
 from definit_db.data.field.mathematics.definitions.analysis.asymptotic_behavior import ASYMPTOTIC_BEHAVIOR
 from definit_db.data.field.mathematics.definitions.analysis.upper_bound import UPPER_BOUND
 from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
+from definit_db.data.field.mathematics.definitions.computation.deterministic import DETERMINISTIC
 from definit_db.data.field.mathematics.definitions.computation.deterministic_turing_machine import (
     DETERMINISTIC_TURING_MACHINE,
 )
@@ -322,6 +323,7 @@ field_index: list[Definition] = [
     BIG_O_NOTATION,
     ASYMPTOTIC_EFFICIENCY,
     COMPUTATION,
+    DETERMINISTIC,
     TURING_MACHINE,
     DETERMINISTIC_TURING_MACHINE,
     NONDETERMINISTIC_TURING_MACHINE,
