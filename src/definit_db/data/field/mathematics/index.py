@@ -183,6 +183,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.quadrant import Q
 from definit_db.data.field.mathematics.definitions.fundamental.radix import RADIX
 from definit_db.data.field.mathematics.definitions.fundamental.randomness import RANDOMNESS
 from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
+from definit_db.data.field.mathematics.definitions.fundamental.recurrence import RECURRENCE
 from definit_db.data.field.mathematics.definitions.fundamental.reflection import REFLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.fundamental.reordering import REORDERING
@@ -194,6 +195,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.square_root impor
 from definit_db.data.field.mathematics.definitions.fundamental.subsequence import SUBSEQUENCE
 from definit_db.data.field.mathematics.definitions.fundamental.subset import SUBSET
 from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
+from definit_db.data.field.mathematics.definitions.fundamental.table import TABLE
 from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.translation import TRANSLATION
 from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
@@ -280,6 +282,7 @@ field_index: list[Definition] = [
     INFORMATION,
     BOOLEAN_EXPRESSION,
     SEQUENCE,
+    RECURRENCE,
     ADJACENT,
     FINITE_SEQUENCE,
     FIBONACCI,
@@ -307,6 +310,7 @@ field_index: list[Definition] = [
     FINITE_SET,
     SUBSET,
     COLLECTION,
+    TABLE,
     FUNCTION,
     HASH,
     HASH_FUNCTION,
