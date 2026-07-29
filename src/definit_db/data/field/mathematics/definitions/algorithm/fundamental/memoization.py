@@ -2,7 +2,10 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.performance import PERFORMANCE
+from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.problem.overlapping_subproblems import OVERLAPPING_SUBPROBLEMS
@@ -16,10 +19,12 @@ class _Memoization(Definition):
         return f"""
 An {OPTIMIZATION.key.get_reference()} technique that stores the results of expensive {FUNCTION.key.get_reference()} 
 calls and returns the stored result when the same inputs occur again. memoization is particularly 
-effective for {RECURSION.key.get_reference("recursive")} {FUNCTION.key.get_reference("functions")} with 
+{EFFICIENCY.key.get_reference(phrase="efficient")} for {RECURSION.key.get_reference("recursive")} 
+{FUNCTION.key.get_reference("functions")} with 
 {OVERLAPPING_SUBPROBLEMS.key.get_reference()}, where the same {SUBPROBLEM.key.get_reference("subproblems")} are 
 computed multiple times. By storing previously computed {SOLUTION.key.get_reference("solutions")}, memoization 
-significantly reduces redundant computations and improves performance.
+significantly reduces redundant {COMPUTATION.key.get_reference(phrase="computations")} and improves 
+{PERFORMANCE.key.get_reference()}.
 
 ---
 
