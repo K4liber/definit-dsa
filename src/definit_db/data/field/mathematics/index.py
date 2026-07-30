@@ -229,6 +229,7 @@ from definit_db.data.field.mathematics.definitions.problem.base_case import BASE
 from definit_db.data.field.mathematics.definitions.problem.complement_problem import COMPLEMENT_PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
 from definit_db.data.field.mathematics.definitions.problem.criterion import CRITERION
+from definit_db.data.field.mathematics.definitions.problem.delivery_route_problem import DELIVERY_ROUTE_PROBLEM
 from definit_db.data.field.mathematics.definitions.problem.feasible_solution import FEASIBLE_SOLUTION
 from definit_db.data.field.mathematics.definitions.problem.mathematical_induction import MATHEMATICAL_INDUCTION
 from definit_db.data.field.mathematics.definitions.problem.optimal_solution import OPTIMAL_SOLUTION
@@ -426,6 +427,7 @@ field_index: list[Definition] = [
     REDUCTION,
     POLYNOMIAL_REDUCTION,
     SUBSET_SUM,
+    DELIVERY_ROUTE_PROBLEM,
     BASE_CASE,
     MATHEMATICAL_INDUCTION,
     RECURSION,
