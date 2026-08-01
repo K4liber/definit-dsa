@@ -3,6 +3,7 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.cwd": "${workspaceFolder}",
+    "python.envFile": "${workspaceFolder}/.env",
     // python analysis
     "python.analysis.extraPaths": [
         "./src",

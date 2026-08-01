@@ -6,6 +6,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.fundamental.function import FUNCTION
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
+from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
 
 class _DataStructure(Definition):
@@ -19,7 +20,8 @@ of values and the {FUNCTION.key.get_reference(phrase="functions")} or
 ---
 
 A list of exam scores (72, 85, 90), together with operations such as "add a score" or "find the highest score",
-forms a data structure: the values are organized in a sequence and paired with the functions that act on them.
+forms a data structure: the values are organized in a {SEQUENCE.key.get_reference()} and paired with the functions 
+that act on them.
 """
 
 

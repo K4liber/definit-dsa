@@ -154,6 +154,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.pseudocode i
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
 from definit_db.data.field.computer_science.definitions.fundamental.right_shift import RIGHT_SHIFT
+from definit_db.data.field.computer_science.definitions.fundamental.software_system import SOFTWARE_SYSTEM
 from definit_db.data.field.computer_science.definitions.fundamental.special_case import SPECIAL_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.stack_memory import STACK_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.stack_overflow import STACK_OVERFLOW
@@ -194,6 +195,7 @@ field_index: list[Definition] = [
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    SOFTWARE_SYSTEM,
     PROGRAMMING_LANGUAGE,
     OVER_OPTIMIZATION,
     PSEUDOCODE,
