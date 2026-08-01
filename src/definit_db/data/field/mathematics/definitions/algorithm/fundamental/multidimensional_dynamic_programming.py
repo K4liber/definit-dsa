@@ -27,16 +27,21 @@ Count the number of paths from (0,0) to (2,2) in a grid, moving only right or do
 Each {SUBPROBLEM.key.get_reference()} state is identified by two {INDEX.key.get_reference(phrase="indices")} (i, j)
 and stored in a {MATRIX.key.get_reference()}:
 
-  dp[i][j] = number of paths to reach cell (i, j)
+dp[i][j] = number of paths to reach cell (i, j).
 
-Base cases: dp[0][j] = 1  (only one way: go right along the top row)
-            dp[i][0] = 1  (only one way: go down along the left column)
-Recurrence: dp[i][j] = dp[i-1][j] + dp[i][j-1]
+Base case 1: dp[0][j] = 1 (only one way: go right along the top row).
 
-  dp =
-    1  1  1
-    1  2  3
-    1  3  6
+Base case 2: dp[i][0] = 1 (only one way: go down along the left column).
+
+Recurrence: dp[i][j] = dp[i-1][j] + dp[i][j-1].
+
+After filling the table, the matrix is:
+
+Row 0: 1, 1, 1
+
+Row 1: 1, 2, 3
+
+Row 2: 1, 3, 6
 
 There are 6 paths from (0,0) to (2,2). The state space is two-dimensional (row × column),
 which is why a single {INDEX.key.get_reference()}, as in 

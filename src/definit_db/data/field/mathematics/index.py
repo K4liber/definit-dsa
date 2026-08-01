@@ -123,6 +123,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.distribution impo
 from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
 from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
+from definit_db.data.field.mathematics.definitions.fundamental.exponential import EXPONENTIAL
 from definit_db.data.field.mathematics.definitions.fundamental.expression import EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
@@ -316,6 +317,7 @@ field_index: list[Definition] = [
     HASH,
     HASH_FUNCTION,
     PURE_FUNCTION,
+    EXPONENTIAL,
     POLYNOMIAL,
     MULTISET,
     LABEL,
