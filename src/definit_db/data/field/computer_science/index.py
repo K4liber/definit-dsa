@@ -145,6 +145,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.operating_sy
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.over_optimization import OVER_OPTIMIZATION
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
+from definit_db.data.field.computer_science.definitions.fundamental.pixel import PIXEL
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
 from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
@@ -163,6 +164,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.test_case im
 from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
 from definit_db.data.field.computer_science.definitions.fundamental.twos_complement import TWOS_COMPLEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.variable import VARIABLE
+from definit_db.data.field.computer_science.definitions.fundamental.volatile import VOLATILE
 from definit_db.data.field.computer_science.definitions.fundamental.worker import WORKER
 
 field_index: list[Definition] = [
@@ -190,6 +192,7 @@ field_index: list[Definition] = [
     FILE_STORAGE,
     INPUT_OUTPUT,
     POINTER,
+    PIXEL,
     CONCURRENCY,
     CORE,
     PARALLELISM,
@@ -221,6 +224,7 @@ field_index: list[Definition] = [
     MEMORY_MANAGEMENT,
     DEALLOCATION,
     VARIABLE,
+    VOLATILE,
     TWOS_COMPLEMENT,
     DEEP_COPY,
     ABSTRACT_DATA_TYPE,
