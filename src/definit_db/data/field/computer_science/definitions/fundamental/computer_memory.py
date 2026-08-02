@@ -8,7 +8,6 @@ from definit_db.data.field.computer_science.definitions.fundamental.file_storage
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.pixel import PIXEL
-from definit_db.data.field.computer_science.definitions.fundamental.volatile import VOLATILE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.information import INFORMATION
@@ -34,8 +33,7 @@ When you open a photo, the {INFORMATION.key.get_reference()} describing its
 {PIXEL.key.get_reference("pixels")} is loaded from
 {FILE_STORAGE.key.get_reference()} into memory so
 that each edit appears instantly while you work. If power is lost before saving, the in-memory contents disappear —
-illustrating that this storage is {VOLATILE.key.get_reference()}, unlike the
-{FILE_STORAGE.key.get_reference()} it was loaded from.
+they are held only temporarily while you work, unlike files stored on disk which persist.
 """
 
 

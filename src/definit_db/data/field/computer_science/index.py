@@ -100,7 +100,6 @@ from definit_db.data.field.computer_science.definitions.fundamental.binary_repre
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
 from definit_db.data.field.computer_science.definitions.fundamental.bitmask import BITMASK
 from definit_db.data.field.computer_science.definitions.fundamental.bitwise_operation import BITWISE_OPERATION
-from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
 from definit_db.data.field.computer_science.definitions.fundamental.bug import BUG
 from definit_db.data.field.computer_science.definitions.fundamental.cache import CACHE
@@ -181,7 +180,6 @@ field_index: list[Definition] = [
     BITWISE_OPERATION,
     BITMASK,
     HAMMING_WEIGHT,
-    BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
     HARDWARE,
