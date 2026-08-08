@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.data import DATA
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
@@ -14,7 +15,7 @@ class _Variable(Definition):
 
     def _get_content(self) -> str:
         return f"""
-A named storage location identified by a {LABEL.key.get_reference()} 
+A named {COMPUTER_MEMORY.key.get_reference(phrase="memory")} location identified by a {LABEL.key.get_reference()} 
 that holds {DATA.key.get_reference()} which can be modified during {PROGRAM.key.get_reference()} execution. 
 A variable associates a name with a value that can change over time.
 

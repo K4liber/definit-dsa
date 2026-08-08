@@ -9,12 +9,12 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 class _Object(Definition):
     def _get_content(self) -> str:
         return f"""
-An instance of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
+A concrete realization of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
 
 ---
 
-The array (72, 85, 90) is an object: it is one specific instance of the array data structure, holding these
-particular {NUMBER.key.get_reference(phrase="numbers")}.
+A {DATA_STRUCTURE.key.get_reference(phrase="data structure")} holding the particular
+{NUMBER.key.get_reference(phrase="numbers")} 72, 85, and 90 is an object.
 """
 
 

@@ -11,6 +11,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.best_co
     BEST_CONCEIVABLE_RUNTIME,
 )
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.big_o_notation import BIG_O_NOTATION
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.brute_force import BRUTE_FORCE
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.bud import BUD
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.co_np_class import CO_NP_CLASS
@@ -123,6 +124,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.distribution impo
 from definit_db.data.field.mathematics.definitions.fundamental.divisor import DIVISOR
 from definit_db.data.field.mathematics.definitions.fundamental.domain import DOMAIN
 from definit_db.data.field.mathematics.definitions.fundamental.expected_value import EXPECTED_VALUE
+from definit_db.data.field.mathematics.definitions.fundamental.exponential import EXPONENTIAL
 from definit_db.data.field.mathematics.definitions.fundamental.expression import EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.factorial import FACTORIAL
 from definit_db.data.field.mathematics.definitions.fundamental.fibonacci import FIBONACCI
@@ -149,6 +151,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.iteration import 
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
 from definit_db.data.field.mathematics.definitions.fundamental.limit import LIMIT
 from definit_db.data.field.mathematics.definitions.fundamental.logical_operator import LOGICAL_OPERATOR
+from definit_db.data.field.mathematics.definitions.fundamental.lookup_table import LOOKUP_TABLE
 from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.majority_element import MAJORITY_ELEMENT
 from definit_db.data.field.mathematics.definitions.fundamental.matrix import MATRIX
@@ -196,6 +199,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.subsequence impor
 from definit_db.data.field.mathematics.definitions.fundamental.subset import SUBSET
 from definit_db.data.field.mathematics.definitions.fundamental.symmetry import SYMMETRY
 from definit_db.data.field.mathematics.definitions.fundamental.table import TABLE
+from definit_db.data.field.mathematics.definitions.fundamental.trade_off import TRADE_OFF
 from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
 from definit_db.data.field.mathematics.definitions.fundamental.translation import TRANSLATION
 from definit_db.data.field.mathematics.definitions.fundamental.transposing import TRANSPOSING
@@ -311,11 +315,14 @@ field_index: list[Definition] = [
     FINITE_SET,
     SUBSET,
     COLLECTION,
+    TRADE_OFF,
     TABLE,
+    LOOKUP_TABLE,
     FUNCTION,
     HASH,
     HASH_FUNCTION,
     PURE_FUNCTION,
+    EXPONENTIAL,
     POLYNOMIAL,
     MULTISET,
     LABEL,
@@ -347,6 +354,7 @@ field_index: list[Definition] = [
     HEURISTIC,
     COMPLEXITY,
     COMPLEXITY_THEORY,
+    BOTTLENECK,
     EFFICIENCY,
     AMORTIZED_TIME,
     ASYMPTOTIC_RUNTIME,

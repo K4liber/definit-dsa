@@ -100,7 +100,6 @@ from definit_db.data.field.computer_science.definitions.fundamental.binary_repre
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
 from definit_db.data.field.computer_science.definitions.fundamental.bitmask import BITMASK
 from definit_db.data.field.computer_science.definitions.fundamental.bitwise_operation import BITWISE_OPERATION
-from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
 from definit_db.data.field.computer_science.definitions.fundamental.bug import BUG
 from definit_db.data.field.computer_science.definitions.fundamental.byte import BYTE
@@ -148,6 +147,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.operating_sy
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.over_optimization import OVER_OPTIMIZATION
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
+from definit_db.data.field.computer_science.definitions.fundamental.pixel import PIXEL
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
 from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
@@ -157,6 +157,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.pseudocode i
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
 from definit_db.data.field.computer_science.definitions.fundamental.right_shift import RIGHT_SHIFT
+from definit_db.data.field.computer_science.definitions.fundamental.software_system import SOFTWARE_SYSTEM
 from definit_db.data.field.computer_science.definitions.fundamental.special_case import SPECIAL_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.stack_memory import STACK_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.stack_overflow import STACK_OVERFLOW
@@ -166,6 +167,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.test_case im
 from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
 from definit_db.data.field.computer_science.definitions.fundamental.twos_complement import TWOS_COMPLEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.variable import VARIABLE
+from definit_db.data.field.computer_science.definitions.fundamental.volatile import VOLATILE
 from definit_db.data.field.computer_science.definitions.fundamental.worker import WORKER
 
 field_index: list[Definition] = [
@@ -183,7 +185,6 @@ field_index: list[Definition] = [
     BITWISE_OPERATION,
     BITMASK,
     HAMMING_WEIGHT,
-    BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
     HARDWARE,
@@ -195,11 +196,13 @@ field_index: list[Definition] = [
     FILE_STORAGE,
     INPUT_OUTPUT,
     POINTER,
+    PIXEL,
     CONCURRENCY,
     CORE,
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    SOFTWARE_SYSTEM,
     PROGRAMMING_LANGUAGE,
     OVER_OPTIMIZATION,
     PSEUDOCODE,
@@ -227,6 +230,7 @@ field_index: list[Definition] = [
     MEMORY_MANAGEMENT,
     DEALLOCATION,
     VARIABLE,
+    VOLATILE,
     TWOS_COMPLEMENT,
     DEEP_COPY,
     ABSTRACT_DATA_TYPE,

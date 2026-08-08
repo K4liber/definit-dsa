@@ -10,6 +10,10 @@
 
 ## TODO
 
+### 15. Progress tab should split into "track" and "overall"
+
+- [ ] Track shows progress for the currently filtered definitions (e.g. "DSA" group or "Turing Machine" definition with descendants included)
+
 ### 14. Definition content locked into previous scroll
 
 When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position.
@@ -18,6 +22,9 @@ When marking as learned, the scroll position of the definition content is locked
 
 ### 12. Introduce Definition Groups and filtering by a group
 
+- [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
+- [ ] Add filtering by a group in the "Filters" tab.
+
 ### 11. Handling multiple definition sources/databases
 
 ### 10. Limit number of nodes on visualization to 200
@@ -25,6 +32,8 @@ When marking as learned, the scroll position of the definition content is locked
 Add a pop-up window whenever filtering allows more than 200 nodes.
 
 Figure out conditions for limiting the number of nodes displayed.
+
+We could go for 200 most low-level (according to topological sorting) definitions after filters are applied. Then we could "cut-off" the already-learned definitions.
 
 ### 9. Introduce React Router
 

@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.mathematics.definitions.fundamental.boolean_expression import BOOLEAN_EXPRESSION
 from definit_db.data.field.mathematics.definitions.fundamental.control_structure import CONTROL_STRUCTURE
+from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 
 
@@ -14,7 +15,8 @@ class _IfStatement(Definition):
 A {CONTROL_STRUCTURE.key.get_reference()} that executes a block of
 {INSTRUCTION.key.get_reference("instructions")} only when a given 
 {BOOLEAN_EXPRESSION.key.get_reference(phrase="condition")} evaluates to true. It is the most direct way to make 
-execution depend on the {PROGRAM.key.get_reference(phrase="program")}'s state or input.
+execution depend on the {PROGRAM.key.get_reference(phrase="program")}'s state or 
+{INPUT_DATA.key.get_reference("input")}.
 
 ---
 

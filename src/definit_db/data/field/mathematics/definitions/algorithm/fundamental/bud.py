@@ -4,13 +4,17 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.brute_force import BRUTE_FORCE
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.real_world_performance import (
     REAL_WORLD_PERFORMANCE,
 )
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_complexity import TIME_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
+from definit_db.data.field.mathematics.definitions.fundamental.loop import LOOP
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
+from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.problem.overlapping_subproblems import OVERLAPPING_SUBPROBLEMS
 
 
@@ -20,8 +24,9 @@ class _Bud(Definition):
 
     def _get_content(self) -> str:
         return f"""
-An {OPTIMIZATION.key.get_reference()} framework for improving 
-{ALGORITHM.key.get_reference("algorithms")} by identifying and addressing three types of inefficiencies: Bottlenecks 
+BUD is an {OPTIMIZATION.key.get_reference()} framework for improving 
+{ALGORITHM.key.get_reference("algorithms")} by identifying and addressing three types of 
+{EFFICIENCY.key.get_reference("inefficiencies")}: Bottlenecks 
 (the slowest parts that limit overall {REAL_WORLD_PERFORMANCE.key.get_reference("performance")}), Unnecessary work 
 ({OPERATION.key.get_reference("operations")} that can be eliminated without affecting the result), and Duplicated 
 work (redundant {COMPUTATION.key.get_reference("computations")} that can be avoided by reusing previously computed 
@@ -30,13 +35,17 @@ results). By systematically examining these three areas, BUD helps identify oppo
 
 ---
 
-A {BRUTE_FORCE.key.get_reference("brute-force")} routine that searches for a duplicate value in a list by comparing 
-every element with every other element can be improved by applying BUD: the nested 
-comparison loop is the bottleneck, re-checking pairs that were already ruled out is unnecessary work, and rescanning 
-the list from the start for each element revisits the same 
-{OVERLAPPING_SUBPROBLEMS.key.get_reference("overlapping subproblem")}, which is duplicated work. Replacing the nested 
-loop with a single pass that remembers previously seen elements removes all three inefficiencies and lowers the 
-{TIME_COMPLEXITY.key.get_reference()} of the routine.
+A {BRUTE_FORCE.key.get_reference("brute-force")} routine that searches for a duplicate value in a 
+{SEQUENCE.key.get_reference()} by comparing 
+every {ITEM.key.get_reference()} with every other {ITEM.key.get_reference()} can be improved by applying BUD: the nested 
+comparison {LOOP.key.get_reference()} is the bottleneck, re-checking pairs that were already ruled out is 
+unnecessary work, and re-scanning 
+the {SEQUENCE.key.get_reference()} from the start for each {ITEM.key.get_reference()} revisits the same 
+{OVERLAPPING_SUBPROBLEMS.key.get_reference("overlapping subproblem")}, which is duplicated work. 
+Replacing the nested 
+{LOOP.key.get_reference()} with a single pass that remembers previously seen 
+{ITEM.key.get_reference("elements")} removes all three {EFFICIENCY.key.get_reference("inefficiencies")} 
+and lowers the {TIME_COMPLEXITY.key.get_reference()} of the routine.
 """
 
 

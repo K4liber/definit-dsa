@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.software_system import SOFTWARE_SYSTEM
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 
@@ -10,8 +11,9 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 class _Bug(Definition):
     def _get_content(self) -> str:
         return f"""
-An error or defect in a system, {PROGRAM.key.get_reference("program")}, or
-{ALGORITHM.key.get_reference("algorithm")} that causes it to behave incorrectly or produce unexpected results.
+An error or defect in a {SOFTWARE_SYSTEM.key.get_reference("software system")}, 
+{PROGRAM.key.get_reference("program")}, or {ALGORITHM.key.get_reference("algorithm")} that causes it to 
+behave incorrectly or produce unexpected results.
 
 ---
 
