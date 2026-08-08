@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.linked_list import LINKED_LIST
+from definit_db.data.field.computer_science.definitions.data_structure.collection.list.list import LIST
 from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.object import OBJECT
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
@@ -22,7 +23,8 @@ a valid {COMPUTER_MEMORY.key.get_reference(phrase="memory")} location (i.e., it 
 
 In a {LINKED_LIST.key.get_reference(phrase="linked list")}, each {NODE.key.get_reference(phrase="node")} holds a
 {POINTER.key.get_reference(phrase="pointer")} to the next node. The last node has no successor, so its pointer is
-set to null to mark the end of the list. Code that walks the list checks for null to know when to stop.
+set to null to mark the end of the {LIST.key.get_reference(phrase="list")}. 
+Code that walks the list checks for null to know when to stop.
 """
 
 

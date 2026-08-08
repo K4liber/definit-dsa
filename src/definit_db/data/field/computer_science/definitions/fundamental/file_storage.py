@@ -4,14 +4,17 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.data import DATA
 from definit_db.data.field.computer_science.definitions.fundamental.disk import DISK
+from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.storage import STORAGE
 
 
 class _FileStorage(Definition):
     def _get_content(self) -> str:
         return f"""
 The persistent retention of {DATA.key.get_reference(phrase="data")} organized as
-named files, typically held on a {DISK.key.get_reference(phrase="disk")}. Storing data as named files lets
-programs locate, read, and update it by name rather than by physical location on the disk.
+named files, typically held on a {DISK.key.get_reference(phrase="disk")}. {STORAGE.key.get_reference(phrase="Storing")} 
+data as named files lets {PROGRAM.key.get_reference(phrase="programs")} locate, read, and update it by name rather than 
+by physical location on the disk.
 
 ---
 

@@ -8,6 +8,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.data_type im
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out import LAST_IN_FIRST_OUT
+from definit_db.data.field.mathematics.definitions.graph.node import NODE
 
 
 class _AbstractDataType(Definition):
@@ -23,7 +24,8 @@ behavior of these operations.
 For example, an abstract data type might describe a container that supports adding 
 {ITEM.key.get_reference(phrase="items")}, removing the most recently added one, and checking whether it is empty - 
 a {LAST_IN_FIRST_OUT.key.get_reference()} discipline - without specifying whether the items are stored as a contiguous 
-block of {COMPUTER_MEMORY.key.get_reference(phrase="memory")} or as a chain of linked nodes. Any concrete realization 
+block of {COMPUTER_MEMORY.key.get_reference(phrase="memory")} or as a chain of linked 
+{NODE.key.get_reference(phrase="nodes")}. Any concrete realization 
 that provides those operations with the agreed behavior is a valid implementation of that abstract data type.
 """
 

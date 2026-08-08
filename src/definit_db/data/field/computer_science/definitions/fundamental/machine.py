@@ -7,6 +7,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.hardware imp
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
+from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 
 
 class _Machine(Definition):
@@ -19,9 +20,9 @@ that can run {PROGRAM.key.get_reference(phrase="programs")} and perform
 ---
 
 A laptop is a physical machine: its {HARDWARE.key.get_reference(phrase="hardware")} components, including a
-{PROCESSOR.key.get_reference(phrase="processor")} that executes instructions, work together to run programs. A
-virtual machine is also a machine, but it is implemented in software that emulates physical hardware, so programs
-run on it as if it were real hardware.
+{PROCESSOR.key.get_reference(phrase="processor")} that executes {INSTRUCTION.key.get_reference(phrase="instructions")}, 
+work together to run programs. A virtual machine is also a machine, but it is implemented in software that emulates 
+physical hardware, so programs run on it as if it were real hardware.
 """
 
 

@@ -5,6 +5,9 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
+from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
+from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 
 
@@ -17,8 +20,10 @@ class _Concurrency(Definition):
 The ability of a {PROGRAM.key.get_reference()} to execute multiple tasks or 
 {OPERATION.key.get_reference("operations")} simultaneously or in overlapping time periods. In concurrent execution, 
 multiple streams of {INSTRUCTION.key.get_reference("instructions")} make progress without necessarily running at the 
-exact same instant, allowing for more efficient use of system resources and improved responsiveness. Concurrency 
-enables programs to handle multiple operations such as user input or background processing at the same time.
+exact same instant, allowing for more {EFFICIENCY.key.get_reference(phrase="efficient")} use of system resources and 
+improved responsiveness. Concurrency enables programs to handle multiple operations such as user 
+{INPUT_DATA.key.get_reference(phrase="input")} or background 
+{COMPUTATION.key.get_reference(phrase="processing")} at the same time.
 
 ---
 

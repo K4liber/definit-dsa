@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.worst_case import WORST_CASE
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.graph.path import PATH
@@ -21,12 +22,18 @@ used to represent the {NODE.key.get_reference(phrase="nodes")}. It maintains the
 not themselves what make {OPERATION.key.get_reference(phrase="operations")} fast, but instead guarantee that the
 tree's height stays low:
 
+
 1. Each node is either red or black.
+
 2. The {ROOT.key.get_reference(phrase="root")} node is always black.
+
 3. Every empty child position (where a node has no left or right child) is treated as black.
+
 4. If a node is red, both of its children are black.
+
 5. Every {PATH.key.get_reference(phrase="path")} from a node down to an empty child position passes through the
-   same number of black nodes.
+same {NUMBER.key.get_reference(phrase="number")} of black nodes.
+
 
 Properties 4 and 5 together bound the height of the tree: since two red nodes can never appear in a row, no
 path can contain more red nodes than black ones, so the longest possible path is at most twice as long as the
