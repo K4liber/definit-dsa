@@ -12,9 +12,12 @@ from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 class _BTree(Definition):
     def _get_content(self) -> str:
         return f"""
-A self-balancing {TREE.key.get_reference(phrase="tree")} data structure in which each 
-{NODE.key.get_reference(phrase="node")} can hold multiple keys, kept in sorted order, and have multiple children. 
-The keys of a node {PARTITIONING.key.get_reference(phrase="partition")} the values stored in its child 
+A self-balancing {TREE.key.get_reference(phrase="tree")} data structure 
+in which each 
+{NODE.key.get_reference(phrase="node")} can hold multiple keys, kept in sorted order, 
+and have multiple children. 
+The keys of a node {PARTITIONING.key.get_reference(phrase="partition")} 
+the values stored in its child 
 {SUBTREE.key.get_reference(phrase="subtrees")}, so that every key in a given subtree falls within the range marked 
 by the surrounding keys. All {LEAF.key.get_reference(phrase="leaves")} are kept at the same depth.
 

@@ -7,6 +7,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_co
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.time_vs_space_tradeoff import (
     TIME_VS_SPACE_TRADE_OFF,
 )
+from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
@@ -14,8 +15,8 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Precomputation(Definition):
     def _get_content(self) -> str:
         return f"""
-A technique where some results are computed in advance and stored, so they can be
-reused later to reduce computation time.
+A technique where some results are {COMPUTATION.key.get_reference(phrase="computed")} in advance and stored, 
+so they can be reused later to reduce computation time.
 
 Precomputation often improves {TIME_COMPLEXITY.key.get_reference("time complexity")} at the cost of higher
 {SPACE_COMPLEXITY.key.get_reference("space complexity")}, illustrating a 

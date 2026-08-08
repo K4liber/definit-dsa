@@ -24,14 +24,17 @@ result is a topological ordering.
 
 Given the {DIRECTED_ACYCLIC_GRAPH.key.get_reference(phrase="DAG")} A→B→D, A→C→D:
 
-  {IN_DEGREE.key.get_reference(phrase="In-degrees")}: A=0, B=1, C=1, D=2
+{IN_DEGREE.key.get_reference(phrase="In-degrees")}: A=0, B=1, C=1, D=2
 
-  Pick A (in-degree 0) → remove {EDGE.key.get_reference(phrase="edges")} A→B, A→C → in-degrees: B=0, C=0, D=2
-  Pick B (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} B→D       → in-degrees: C=0, D=1
-  Pick C (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} C→D       → in-degrees: D=0
-  Pick D (in-degree 0) → done
+Step 1: Pick A (in-degree 0) → remove {EDGE.key.get_reference(phrase="edges")} A→B, A→C → in-degrees: B=0, C=0, D=2
 
-  Result: [A, B, C, D]  ✓
+Step 2: Pick B (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} B→D → in-degrees: C=0, D=1
+
+Step 3: Pick C (in-degree 0) → remove {EDGE.key.get_reference(phrase="edge")} C→D → in-degrees: D=0
+
+Step 4: Pick D (in-degree 0) → done
+
+Result: [A, B, C, D] ✓
 """
 
 

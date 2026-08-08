@@ -5,14 +5,18 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
 from definit_db.data.field.mathematics.definitions.fundamental.quadrant import QUADRANT
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
+from definit_db.data.field.mathematics.definitions.problem.problem_space import PROBLEM_SPACE
+from definit_db.data.field.mathematics.definitions.problem.recursion import RECURSION
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 
 
 class _Quadtree(Definition):
     def _get_content(self) -> str:
         return f"""
-A quadtree is a {TREE.key.get_reference(phrase="tree")} data structure used for recursive 
-{PARTITIONING.key.get_reference(phrase="partitioning")} of a two-dimensional space. Each internal 
+A quadtree is a {TREE.key.get_reference(phrase="tree")} data structure 
+used for {RECURSION.key.get_reference(phrase="recursive")} 
+{PARTITIONING.key.get_reference(phrase="partitioning")} of a two-dimensional 
+{PROBLEM_SPACE.key.get_reference(phrase="space")}. Each internal 
 {NODE.key.get_reference(phrase="node")} represents a region and has four children corresponding to four 
 subregions, often called {QUADRANT.key.get_reference(phrase="quadrants")}.
 

@@ -10,13 +10,15 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.collection.string.utf import UTF
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
+from definit_db.data.field.computer_science.definitions.fundamental.byte import BYTE
 
 
 class _Utf8(Definition):
     def _get_content(self) -> str:
         return f"""
 A {UTF.key.get_reference(phrase="UTF")} {CHARACTER_ENCODING.key.get_reference(phrase="character encoding")} 
-scheme that uses 8-{BIT.key.get_reference(phrase="bit")} code units, meaning each unit is one byte. A 
+scheme that uses 8-{BIT.key.get_reference(phrase="bit")} code units, meaning each unit is one 
+{BYTE.key.get_reference(phrase="byte")}. A 
 {UNICODE.key.get_reference(phrase="Unicode")} {CHARACTER.key.get_reference(phrase="character")} is encoded as 1 to 4 
 such units. It is backward compatible with {ASCII.key.get_reference(phrase="ASCII")} and can represent any character 
 in the Unicode standard.

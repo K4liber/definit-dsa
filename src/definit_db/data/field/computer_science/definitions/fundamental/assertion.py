@@ -3,8 +3,10 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.code import CODE
+from definit_db.data.field.computer_science.definitions.fundamental.division_by_zero import DIVISION_BY_ZERO
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.computer_science.definitions.fundamental.test import TEST
+from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.problem.criterion import CRITERION
 
 
@@ -18,9 +20,11 @@ Assertions are commonly used in {TEST.key.get_reference("tests")} to detect unex
 
 ---
 
-In code that computes an average, an assertion might state "the count is greater than zero" before the division
+In code that {COMPUTATION.key.get_reference(phrase="computes")} an average, an assertion might state "the count is 
+greater than zero" before the division
 happens. If the count is in fact zero, the assertion fails immediately and stops the {PROGRAM.key.get_reference()} 
-at that line - making the false assumption visible instead of letting a silent division-by-zero error occur later.
+at that line - making the false assumption visible instead of letting a silent 
+{DIVISION_BY_ZERO.key.get_reference(phrase="division-by-zero error")} occur later.
 """
 
 

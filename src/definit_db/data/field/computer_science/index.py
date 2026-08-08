@@ -103,6 +103,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.bitwise_oper
 from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
 from definit_db.data.field.computer_science.definitions.fundamental.bug import BUG
+from definit_db.data.field.computer_science.definitions.fundamental.byte import BYTE
 from definit_db.data.field.computer_science.definitions.fundamental.cache import CACHE
 from definit_db.data.field.computer_science.definitions.fundamental.call_stack import CALL_STACK
 from definit_db.data.field.computer_science.definitions.fundamental.clustering import CLUSTERING
@@ -119,6 +120,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.dataset impo
 from definit_db.data.field.computer_science.definitions.fundamental.deallocation import DEALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
 from definit_db.data.field.computer_science.definitions.fundamental.disk import DISK
+from definit_db.data.field.computer_science.definitions.fundamental.division_by_zero import DIVISION_BY_ZERO
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.file_storage import FILE_STORAGE
@@ -133,6 +135,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.heap_overflo
 from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
 from definit_db.data.field.computer_science.definitions.fundamental.if_statement import IF_STATEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.input_output import INPUT_OUTPUT
+from definit_db.data.field.computer_science.definitions.fundamental.key import KEY
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
 from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
@@ -157,6 +160,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.right_shift 
 from definit_db.data.field.computer_science.definitions.fundamental.special_case import SPECIAL_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.stack_memory import STACK_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.stack_overflow import STACK_OVERFLOW
+from definit_db.data.field.computer_science.definitions.fundamental.storage import STORAGE
 from definit_db.data.field.computer_science.definitions.fundamental.test import TEST
 from definit_db.data.field.computer_science.definitions.fundamental.test_case import TEST_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
@@ -172,6 +176,7 @@ field_index: list[Definition] = [
     DATA_TYPE,
     OPERATION,
     BIT,
+    BYTE,
     BINARY_REPRESENTATION,
     HEXADECIMAL_CODE,
     BINARY_FRACTIONS,
@@ -186,6 +191,7 @@ field_index: list[Definition] = [
     CODE,
     COMPUTER_MEMORY,
     DISK,
+    DIVISION_BY_ZERO,
     FILE_STORAGE,
     INPUT_OUTPUT,
     POINTER,
@@ -199,6 +205,7 @@ field_index: list[Definition] = [
     PSEUDOCODE,
     BRANCH,
     IF_STATEMENT,
+    KEY,
     RANDOM_ACCESS_MEMORY,
     RIGHT_SHIFT,
     REVERSE_ENGINEERING,
@@ -209,6 +216,7 @@ field_index: list[Definition] = [
     CALL_STACK,
     CACHE,
     STACK_OVERFLOW,
+    STORAGE,
     ASSERTION,
     TEST,
     CONCEPTUAL_TEST,
