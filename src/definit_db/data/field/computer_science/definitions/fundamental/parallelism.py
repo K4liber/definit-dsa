@@ -6,6 +6,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.concurrency 
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.performance import PERFORMANCE
 from definit_db.data.field.mathematics.definitions.fundamental.instruction import INSTRUCTION
 from definit_db.data.field.mathematics.definitions.fundamental.quadrant import QUADRANT
 
@@ -21,7 +22,7 @@ A form of {CONCURRENCY.key.get_reference()} where multiple
 utilizing multiple {PROCESSOR.key.get_reference("processors")} or processing units. Unlike 
 {CONCURRENCY.key.get_reference()}, which is about managing multiple tasks that may overlap in time, 
 parallelism specifically requires the physical simultaneous execution of tasks. This approach enables 
-{PROGRAM.key.get_reference("programs")} to achieve significant performance improvements by dividing work across 
+{PROGRAM.key.get_reference("programs")} to achieve significant {PERFORMANCE.key.get_reference(phrase="performance")} improvements by dividing work across 
 multiple processing units.
 
 ---

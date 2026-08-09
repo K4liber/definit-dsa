@@ -9,7 +9,9 @@ from definit_db.data.field.computer_science.definitions.data_structure.fundament
     ABSTRACT_DATA_TYPE,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.fundamental.map import MAP
+from definit_db.data.field.computer_science.definitions.fundamental.key import KEY
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.fundamental.distinctness import DISTINCTNESS
 
 
@@ -17,10 +19,12 @@ class _AssociativeArray(Definition):
     def _get_content(self) -> str:
         return f"""
 An {ABSTRACT_DATA_TYPE.key.get_reference(phrase="abstract data type")} that 
-{MAP.key.get_reference(phrase="maps")} keys to values. It is a {COLLECTION.key.get_reference(phrase="collection")} 
-of key-value pairs, where each key is {DISTINCTNESS.key.get_reference(phrase="distinct")} and is used to access the 
-corresponding value. Associative arrays allow for efficient {OPERATION.key.get_reference(phrase="operations")}: 
-retrieval, insertion, and deletion of values based on their keys.
+{MAP.key.get_reference(phrase="maps")} {KEY.key.get_reference(phrase="keys")} to values. It is a 
+{COLLECTION.key.get_reference(phrase="collection")} of key-value pairs, where each 
+{KEY.key.get_reference(phrase="key")} is {DISTINCTNESS.key.get_reference(phrase="distinct")} and is used to access 
+the corresponding value. Associative arrays allow for {EFFICIENCY.key.get_reference(phrase="efficient")} 
+{OPERATION.key.get_reference(phrase="operations")}: retrieval, insertion, and deletion of values based on their 
+{KEY.key.get_reference(phrase="keys")}.
 
 ---
 

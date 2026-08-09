@@ -23,9 +23,10 @@ needed. The heap is flexible: memory blocks can be allocated in any order and fr
 
 ---
 
-For example, when a program creates data whose size or lifetime is not known in advance, that data is placed on the
-heap. The program receives a {POINTER.key.get_reference()} to the allocated block and can access it for as long as
-needed, freeing the block only when the data is no longer required.
+For example, when a {PROGRAM.key.get_reference()} creates data whose size or lifetime is not known in advance, 
+that data is placed on the heap. The {PROGRAM.key.get_reference()} receives a {POINTER.key.get_reference()} 
+to the allocated block and can access it for as long as needed, 
+freeing the block only when the data is no longer required.
 """
 
 

@@ -6,6 +6,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
     COLLECTION,
 )
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
 
@@ -13,8 +14,9 @@ class _List(Definition):
     def _get_content(self) -> str:
         return f"""
 An ordered {COLLECTION.key.get_reference(phrase="collection")}. Also known as a 
-{SEQUENCE.key.get_reference(phrase="sequence")}. One can add, remove, and pop any element from the list. A list 
-can store elements of different {DATA_TYPE.key.get_reference(phrase="types")}.
+{SEQUENCE.key.get_reference(phrase="sequence")}. One can add, remove, and pop any
+{ITEM.key.get_reference(phrase="element")} from the list. A list can store
+{ITEM.key.get_reference(phrase="elements")} of different {DATA_TYPE.key.get_reference(phrase="types")}.
 
 ---
 

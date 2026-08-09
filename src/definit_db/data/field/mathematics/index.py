@@ -278,6 +278,7 @@ from definit_db.data.field.mathematics.definitions.tree.red_black_tree import RE
 from definit_db.data.field.mathematics.definitions.tree.root import ROOT
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
+from definit_db.data.field.mathematics.definitions.tree.tree_rotation import TREE_ROTATION
 from definit_db.data.field.mathematics.definitions.tree.unbalanced_binary_tree import UNBALANCED_BINARY_TREE
 
 field_index: list[Definition] = [
@@ -430,6 +431,7 @@ field_index: list[Definition] = [
     RED_BLACK_TREE,
     SUBTREE,
     TREE,
+    TREE_ROTATION,
     UNBALANCED_BINARY_TREE,
     HEAP_TREE,
     REDUCTION,

@@ -17,7 +17,7 @@ class _HeapOverflow(Definition):
 
     def _get_content(self) -> str:
         return f"""
-heap overflow occurs when a {PROGRAM.key.get_reference()} attempts to use more 
+Heap overflow occurs when a {PROGRAM.key.get_reference()} attempts to use more 
 {HEAP_MEMORY.key.get_reference()} than is available. This typically happens when too much dynamic 
 {MEMORY_ALLOCATION.key.get_reference()} occurs without proper {DEALLOCATION.key.get_reference()}, or when attempting to 
 allocate a very large amount of {COMPUTER_MEMORY.key.get_reference()} at once. When heap overflow occurs, the program 
@@ -25,8 +25,9 @@ may fail to allocate memory and typically terminates with an error.
 
 ---
 
-For example, a program that allocates memory inside a {LOOP.key.get_reference()} without ever freeing it gradually fills
-the heap. After enough {ITERATION.key.get_reference("iterations")}, the next allocation cannot find a free block large 
+For example, a program that allocates {COMPUTER_MEMORY.key.get_reference(phrase="memory")} inside a 
+{LOOP.key.get_reference()} without ever freeing it gradually fills the heap. 
+After enough {ITERATION.key.get_reference("iterations")}, the next allocation cannot find a free block large 
 enough, so it fails; the program must then either handle the failure or terminate.
 """
 

@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.queue import QUEUE
 from definit_db.data.field.computer_science.definitions.fundamental.code import CODE
 from definit_db.data.field.computer_science.definitions.fundamental.test import TEST
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.problem.criterion import CRITERION
 
 
@@ -19,8 +20,9 @@ A conceptual test evaluates whether some {CRITERION.key.get_reference("criteria"
 ---
 
 Before writing any code, a designer might ask: "If the {QUEUE.key.get_reference()} is empty and we try to remove
-an element, what should happen?" Answering "it should report that there is nothing to remove, not crash" is a
-conceptual test — it checks that the design handles the empty case correctly, without yet building anything.
+an {ITEM.key.get_reference(phrase="element")}, what should happen? Answering "it should report that there is 
+nothing to remove, not crash" is a conceptual test — it checks that the design handles the empty case correctly, 
+without yet building anything.
 """
 
 

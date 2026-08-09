@@ -7,6 +7,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.list import LIST
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 
 
@@ -14,8 +15,9 @@ class _LinkedList(Definition):
     def _get_content(self) -> str:
         return f"""
 A {LIST.key.get_reference(phrase="list")} implemented as an ordered {COLLECTION.key.get_reference(phrase="collection")} 
-of elements. Each element is stored in a {NODE.key.get_reference(phrase="node")} that contains a 
-{POINTER.key.get_reference(phrase="reference")} to the next node. Linked lists can be singly linked or doubly linked, 
+of {ITEM.key.get_reference(phrase="elements")}. Each {ITEM.key.get_reference(phrase="element")} is stored in a 
+{NODE.key.get_reference(phrase="node")} that contains a {POINTER.key.get_reference(phrase="reference")} 
+to the next node. Linked lists can be singly linked or doubly linked, 
 depending on whether each node has a reference to the next node only or both the next and previous nodes.
 
 ---

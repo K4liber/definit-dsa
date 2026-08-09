@@ -25,7 +25,8 @@ terminates with an error.
 
 ---
 
-For example, a recursive function that calls itself on every step without ever reaching 
+For example, a {RECURSION.key.get_reference(phrase="recursive")} 
+{FUNCTION.key.get_reference(phrase="function")} that calls itself on every step without ever reaching 
 a {BASE_CASE.key.get_reference()} keeps adding entries to the call stack: one for the first call, another for the 
 recursive call, another for the next, and so on. Because each entry consumes stack memory, the stack eventually fills 
 up and the next call cannot be placed, which is when the stack overflow occurs.

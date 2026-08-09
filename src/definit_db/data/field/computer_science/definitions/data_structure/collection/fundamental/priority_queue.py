@@ -6,17 +6,22 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.fundamental.abstract_data_type import (
     ABSTRACT_DATA_TYPE,
 )
+from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.mathematics.definitions.fundamental.first_in_first_out import FIRST_IN_FIRST_OUT
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 
 
 class _PriorityQueue(Definition):
     def _get_content(self) -> str:
         return f"""
-A priority queue is an {ABSTRACT_DATA_TYPE.key.get_reference(phrase="abstract data type")} that operates similarly 
-to a regular {QUEUE.key.get_reference(phrase="queue")} but with an added feature: each element in the priority 
-queue has a 'priority' associated with it. Elements with higher priority are served before elements with lower 
-priority. If two elements have the same priority, they are served according to their 
+A priority queue is an {ABSTRACT_DATA_TYPE.key.get_reference(phrase="abstract data type")} that 
+{OPERATION.key.get_reference(phrase="operates")} similarly 
+to a regular {QUEUE.key.get_reference(phrase="queue")} but with an added feature: each 
+{ITEM.key.get_reference(phrase="element")} in the priority queue has a 'priority' associated with it. 
+{ITEM.key.get_reference(phrase="Elements")} with higher priority are served before 
+{ITEM.key.get_reference(phrase="elements")} with lower priority. 
+If two {ITEM.key.get_reference(phrase="elements")} have the same priority, they are served according to their 
 {FIRST_IN_FIRST_OUT.key.get_reference()} order.
 
 ---
