@@ -2,6 +2,8 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complexity import COMPLEXITY
+from definit_db.data.field.mathematics.definitions.algorithm.fundamental.complexity_theory import COMPLEXITY_THEORY
 from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.computation.deterministic import DETERMINISTIC
 from definit_db.data.field.mathematics.definitions.computation.turing_machine import TURING_MACHINE
@@ -24,6 +26,12 @@ and accepting if any path leads to acceptance. It recognizes exactly the same la
 {DETERMINISTIC.key.get_reference("deterministic")} Turing machine, but this branching
 can reach an accepting path in far fewer steps, which makes it a convenient model for reasoning about how hard a 
 {PROBLEM.key.get_reference("problem")} is to solve.
+
+No physical device implements a nondeterministic Turing machine, and none ever will. The model assumes a
+device that can always guess the correct {PATH.key.get_reference("path")} and explore every possible future at once, 
+which no real device can do. It is a purely mathematical abstraction, useful for defining 
+{COMPLEXITY_THEORY.key.get_reference(phrase="complexity classes")} and reasoning about problem 
+{COMPLEXITY.key.get_reference(phrase="hardness")}, not a blueprint for a buildable device.
 
 ---
 
