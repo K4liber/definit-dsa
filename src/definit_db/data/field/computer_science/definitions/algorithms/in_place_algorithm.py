@@ -10,6 +10,7 @@ from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorit
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.big_o_notation import BIG_O_NOTATION
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.space_complexity import SPACE_COMPLEXITY
 from definit_db.data.field.mathematics.definitions.fundamental.input_data import INPUT_DATA
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 
 
 class _InPlaceAlgorithm(Definition):
@@ -25,10 +26,10 @@ not counting the space used by the input itself.
 
 ---
 
-Reversing an {ARRAY.key.get_reference(phrase="array")} in place is done by swapping the first and last elements, then
-the second and second-to-last, and so on, moving toward the middle. The array is modified directly, using only a
-single temporary variable to hold one value during each swap, so the auxiliary space stays constant regardless of
-the array's length.
+Reversing an {ARRAY.key.get_reference(phrase="array")} in place is done by swapping the first and last
+{ITEM.key.get_reference(phrase="elements")}, then the second and second-to-last, and so on, moving toward the
+middle. The array is modified directly, using only a single temporary variable to hold one value during each swap,
+so the auxiliary space stays constant regardless of the array's length.
 """
 
 

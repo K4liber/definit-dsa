@@ -7,8 +7,10 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 )
 from definit_db.data.field.computer_science.definitions.data_structure.collection.fundamental.set import SET
 from definit_db.data.field.computer_science.definitions.data_structure.collection.list.array import ARRAY
+from definit_db.data.field.computer_science.definitions.data_structure.fundamental.map import MAP
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.efficiency import EFFICIENCY
 from definit_db.data.field.mathematics.definitions.fundamental.distinctness import DISTINCTNESS
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 
 
 class _HashSet(Definition):
@@ -16,7 +18,8 @@ class _HashSet(Definition):
         return f"""
 A hash set is a {SET.key.get_reference(phrase="set")} implementation that uses a 
 {HASH_TABLE.key.get_reference(phrase="hash table")} to store {DISTINCTNESS.key.get_reference(phrase="distinct")} 
-elements. It maps each element through a hash-based structure so membership tests, insertions, and removals can 
+{ITEM.key.get_reference(phrase="elements")}. It {MAP.key.get_reference(phrase="maps")} each element through a 
+hash-based structure so membership tests, insertions, and removals can 
 usually be performed {EFFICIENCY.key.get_reference(phrase="efficiently")}.
 
 ---

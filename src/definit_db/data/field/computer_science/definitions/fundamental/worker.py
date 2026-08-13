@@ -6,7 +6,9 @@ from definit_db.data.field.computer_science.definitions.fundamental.machine impo
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
 from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.software_system import SOFTWARE_SYSTEM
 from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
+from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 
 
 class _Worker(Definition):
@@ -14,9 +16,10 @@ class _Worker(Definition):
         return f"""
 A {PROCESS.key.get_reference(phrase="process")}, 
 {THREAD.key.get_reference(phrase="thread")}, or {MACHINE.key.get_reference(phrase="machine")} 
-that performs a unit of work as part of a larger computation.
+that performs a unit of work as part of a larger {COMPUTATION.key.get_reference()}.
 
-In distributed or {PARALLELISM.key.get_reference(phrase="parallel")} systems, workers execute parts of a
+In distributed or {PARALLELISM.key.get_reference(phrase="parallel")} 
+{SOFTWARE_SYSTEM.key.get_reference(phrase="systems")}, workers execute parts of a
 {PROGRAM.key.get_reference(phrase="program")} (tasks) assigned by a coordinator.
 
 ---
