@@ -10,6 +10,11 @@ class _Sequence(Definition):
         return f"""
 A collection of {OBJECT.key.get_reference(phrase="objects")} in which repetitions are allowed and order 
 matters.
+
+---
+
+The sequence (3, 3, 5) lists three {OBJECT.key.get_reference(phrase="objects")} where order matters,
+so it is different from the sequence (5, 3, 3).
 """
 
 

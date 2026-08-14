@@ -9,6 +9,11 @@ class _Collection(Definition):
     def _get_content(self) -> str:
         return f"""
 A collection is a group of {OBJECT.key.get_reference(phrase="objects")} considered together.
+
+---
+
+The books placed on a single shelf form a collection of {OBJECT.key.get_reference(phrase="objects")}
+considered together. Adding a new book or removing one changes the collection.
 """
 
 

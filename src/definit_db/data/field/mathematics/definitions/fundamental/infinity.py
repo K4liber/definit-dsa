@@ -5,8 +5,10 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.finite_set import FINITE_SET
+from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.real_number import REAL_NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 
 
@@ -16,9 +18,15 @@ class _Infinity(Definition):
 Infinity is a mathematical concept representing something without an end or limit: a quantity, process, or 
 {OBJECT.key.get_reference(phrase="object")} that is not limited by any finite 
 {BOUND.key.get_reference(phrase="bound")}. It is not an ordinary 
-{NUMBER.key.get_reference(phrase="number")} in the usual real-number system; instead, it is used to describe 
-objects that grow without bound or a {COLLECTION.key.get_reference(phrase="collection")} or 
-{SET.key.get_reference(phrase="set")} that is not {FINITE_SET.key.get_reference(phrase="finite")}.
+{NUMBER.key.get_reference(phrase="number")} in the usual {REAL_NUMBER.key.get_reference(phrase="real-number")} system; 
+instead, it is used to describe objects that grow without bound or a 
+{COLLECTION.key.get_reference(phrase="collection")} or {SET.key.get_reference(phrase="set")} that is not 
+{FINITE_SET.key.get_reference(phrase="finite")}.
+
+---
+
+The set of natural numbers {{0, 1, 2, 3, ...}} is infinite — for any number n you name, n+1 is
+also in the set, so the set has no largest {ITEM.key.get_reference(phrase="element")} and no finite bound.
 """
 
 

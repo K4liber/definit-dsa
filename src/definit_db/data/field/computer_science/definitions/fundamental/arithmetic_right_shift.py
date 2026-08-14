@@ -16,13 +16,19 @@ class _ArithmeticRightShift(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
+A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
 and a variant of {RIGHT_SHIFT.key.get_reference("right shift")} that preserves the sign 
 {BIT.key.get_reference()} when shifting signed {INTEGER.key.get_reference("integers")}. 
 Instead of filling the leftmost positions with zeros, it replicates the sign bit, 
 maintaining the correct sign for negative numbers in {TWOS_COMPLEMENT.key.get_reference()} 
 representation. This {OPERATION.key.get_reference()} effectively performs signed integer 
 division by powers of 2.
+
+---
+
+The 8-bit value 10110100 (-76 in two's complement) shifted right by two with arithmetic shift 
+gives 11101101 (-19): two copies of the sign bit (1) enter from the left, preserving the negative sign, and the 
+result is exactly -76 // 4. A logical shift on the same bits would instead produce 00101101 (45), losing the sign.
 """
 
 

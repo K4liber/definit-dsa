@@ -90,6 +90,7 @@ from definit_db.data.field.computer_science.definitions.data_structure.operation
     STRING_CONCATENATION,
 )
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.boolean import BOOLEAN
+from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.integer import INTEGER
 from definit_db.data.field.computer_science.definitions.fundamental.arithmetic_right_shift import ARITHMETIC_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.assertion import ASSERTION
@@ -99,12 +100,13 @@ from definit_db.data.field.computer_science.definitions.fundamental.binary_repre
 from definit_db.data.field.computer_science.definitions.fundamental.bit import BIT
 from definit_db.data.field.computer_science.definitions.fundamental.bitmask import BITMASK
 from definit_db.data.field.computer_science.definitions.fundamental.bitwise_operation import BITWISE_OPERATION
-from definit_db.data.field.computer_science.definitions.fundamental.bottleneck import BOTTLENECK
 from definit_db.data.field.computer_science.definitions.fundamental.branch import BRANCH
 from definit_db.data.field.computer_science.definitions.fundamental.bug import BUG
+from definit_db.data.field.computer_science.definitions.fundamental.byte import BYTE
 from definit_db.data.field.computer_science.definitions.fundamental.cache import CACHE
 from definit_db.data.field.computer_science.definitions.fundamental.call_stack import CALL_STACK
 from definit_db.data.field.computer_science.definitions.fundamental.clustering import CLUSTERING
+from definit_db.data.field.computer_science.definitions.fundamental.code import CODE
 from definit_db.data.field.computer_science.definitions.fundamental.computer import COMPUTER
 from definit_db.data.field.computer_science.definitions.fundamental.computer_memory import COMPUTER_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.conceptual_test import CONCEPTUAL_TEST
@@ -114,18 +116,29 @@ from definit_db.data.field.computer_science.definitions.fundamental.data import 
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
 from definit_db.data.field.computer_science.definitions.fundamental.data_type import DATA_TYPE
 from definit_db.data.field.computer_science.definitions.fundamental.dataset import DATASET
+from definit_db.data.field.computer_science.definitions.fundamental.deallocation import DEALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.deep_copy import DEEP_COPY
+from definit_db.data.field.computer_science.definitions.fundamental.disk import DISK
+from definit_db.data.field.computer_science.definitions.fundamental.division_by_zero import DIVISION_BY_ZERO
 from definit_db.data.field.computer_science.definitions.fundamental.double import DOUBLE
 from definit_db.data.field.computer_science.definitions.fundamental.edge_case import EDGE_CASE
+from definit_db.data.field.computer_science.definitions.fundamental.file_storage import FILE_STORAGE
 from definit_db.data.field.computer_science.definitions.fundamental.float import FLOAT
+from definit_db.data.field.computer_science.definitions.fundamental.floating_point_precision import (
+    FLOATING_POINT_PRECISION,
+)
 from definit_db.data.field.computer_science.definitions.fundamental.hamming_weight import HAMMING_WEIGHT
 from definit_db.data.field.computer_science.definitions.fundamental.hardware import HARDWARE
 from definit_db.data.field.computer_science.definitions.fundamental.heap_memory import HEAP_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.heap_overflow import HEAP_OVERFLOW
 from definit_db.data.field.computer_science.definitions.fundamental.hexadecimal_code import HEXADECIMAL_CODE
+from definit_db.data.field.computer_science.definitions.fundamental.if_statement import IF_STATEMENT
+from definit_db.data.field.computer_science.definitions.fundamental.input_output import INPUT_OUTPUT
+from definit_db.data.field.computer_science.definitions.fundamental.key import KEY
 from definit_db.data.field.computer_science.definitions.fundamental.logical_right_shift import LOGICAL_RIGHT_SHIFT
 from definit_db.data.field.computer_science.definitions.fundamental.lopsided import LOPSIDED
 from definit_db.data.field.computer_science.definitions.fundamental.machine import MACHINE
+from definit_db.data.field.computer_science.definitions.fundamental.mantissa import MANTISSA
 from definit_db.data.field.computer_science.definitions.fundamental.memory_allocation import MEMORY_ALLOCATION
 from definit_db.data.field.computer_science.definitions.fundamental.memory_management import MEMORY_MANAGEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.null import NULL
@@ -134,22 +147,28 @@ from definit_db.data.field.computer_science.definitions.fundamental.operating_sy
 from definit_db.data.field.computer_science.definitions.fundamental.operation import OPERATION
 from definit_db.data.field.computer_science.definitions.fundamental.over_optimization import OVER_OPTIMIZATION
 from definit_db.data.field.computer_science.definitions.fundamental.parallelism import PARALLELISM
+from definit_db.data.field.computer_science.definitions.fundamental.pixel import PIXEL
 from definit_db.data.field.computer_science.definitions.fundamental.pointer import POINTER
 from definit_db.data.field.computer_science.definitions.fundamental.process import PROCESS
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
+from definit_db.data.field.computer_science.definitions.fundamental.programming_language import PROGRAMMING_LANGUAGE
+from definit_db.data.field.computer_science.definitions.fundamental.programming_model import PROGRAMMING_MODEL
 from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
 from definit_db.data.field.computer_science.definitions.fundamental.right_shift import RIGHT_SHIFT
+from definit_db.data.field.computer_science.definitions.fundamental.software_system import SOFTWARE_SYSTEM
 from definit_db.data.field.computer_science.definitions.fundamental.special_case import SPECIAL_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.stack_memory import STACK_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.stack_overflow import STACK_OVERFLOW
+from definit_db.data.field.computer_science.definitions.fundamental.storage import STORAGE
 from definit_db.data.field.computer_science.definitions.fundamental.test import TEST
 from definit_db.data.field.computer_science.definitions.fundamental.test_case import TEST_CASE
 from definit_db.data.field.computer_science.definitions.fundamental.thread import THREAD
 from definit_db.data.field.computer_science.definitions.fundamental.twos_complement import TWOS_COMPLEMENT
 from definit_db.data.field.computer_science.definitions.fundamental.variable import VARIABLE
+from definit_db.data.field.computer_science.definitions.fundamental.volatile import VOLATILE
 from definit_db.data.field.computer_science.definitions.fundamental.worker import WORKER
 
 field_index: list[Definition] = [
@@ -160,27 +179,38 @@ field_index: list[Definition] = [
     DATA_TYPE,
     OPERATION,
     BIT,
+    BYTE,
     BINARY_REPRESENTATION,
     HEXADECIMAL_CODE,
     BINARY_FRACTIONS,
     BITWISE_OPERATION,
     BITMASK,
     HAMMING_WEIGHT,
-    BOTTLENECK,
     BUG,
     ARITHMETIC_RIGHT_SHIFT,
     HARDWARE,
     COMPUTER,
+    CODE,
     COMPUTER_MEMORY,
+    DISK,
+    DIVISION_BY_ZERO,
+    FILE_STORAGE,
+    INPUT_OUTPUT,
     POINTER,
+    PIXEL,
     CONCURRENCY,
     CORE,
     PARALLELISM,
     PROCESSOR,
     PROGRAM,
+    SOFTWARE_SYSTEM,
+    PROGRAMMING_LANGUAGE,
+    PROGRAMMING_MODEL,
     OVER_OPTIMIZATION,
     PSEUDOCODE,
     BRANCH,
+    IF_STATEMENT,
+    KEY,
     RANDOM_ACCESS_MEMORY,
     RIGHT_SHIFT,
     REVERSE_ENGINEERING,
@@ -191,6 +221,7 @@ field_index: list[Definition] = [
     CALL_STACK,
     CACHE,
     STACK_OVERFLOW,
+    STORAGE,
     ASSERTION,
     TEST,
     CONCEPTUAL_TEST,
@@ -199,7 +230,9 @@ field_index: list[Definition] = [
     SPECIAL_CASE,
     MEMORY_ALLOCATION,
     MEMORY_MANAGEMENT,
+    DEALLOCATION,
     VARIABLE,
+    VOLATILE,
     TWOS_COMPLEMENT,
     DEEP_COPY,
     ABSTRACT_DATA_TYPE,
@@ -223,6 +256,7 @@ field_index: list[Definition] = [
     QUEUE,
     STACK,
     BOOLEAN,
+    CHARACTER,
     INTEGER,
     CHARACTER_ENCODING,
     ASCII,
@@ -254,7 +288,9 @@ field_index: list[Definition] = [
     TWO_POINTERS_TECHNIQUE,
     SLIDING_WINDOW_TECHNIQUE,
     FLOAT,
+    FLOATING_POINT_PRECISION,
     DOUBLE,
+    MANTISSA,
     AUXILIARY_SPACE,
     CLUSTERING,
     LOPSIDED,

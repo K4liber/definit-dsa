@@ -37,6 +37,9 @@ type ReducerState = {
   // Search / selected definition filter
   searchQuery: string;
   searchSelectedId: string | null;
+  // Include the full prerequisite closure of the selected definition,
+  // bypassing the node-state filters.
+  includeDescendants: boolean;
   // State filters (positive)
   showNotReady: boolean;
   showPreReady: boolean;
@@ -57,6 +60,7 @@ function initialReducerState(): ReducerState {
     activeTab: 'definition',
     searchQuery: '',
     searchSelectedId: null,
+    includeDescendants: true,
     showNotReady: false,
     showPreReady: true,
     showReady: true,
@@ -85,6 +89,7 @@ const enum A {
   SET_ACTIVE_TAB = 'SET_ACTIVE_TAB',
   SET_SEARCH_QUERY = 'SET_SEARCH_QUERY',
   SET_SEARCH_SELECTED = 'SET_SEARCH_SELECTED',
+  SET_INCLUDE_DESCENDANTS = 'SET_INCLUDE_DESCENDANTS',
   SET_INFO_OPEN = 'SET_INFO_OPEN',
   SET_RESET_CONFIRM_OPEN = 'SET_RESET_CONFIRM_OPEN',
   FOCUS_MODE = 'FOCUS_MODE',
@@ -113,6 +118,7 @@ type Action =
   | { type: A.SET_ACTIVE_TAB; tab: BottomTab }
   | { type: A.SET_SEARCH_QUERY; query: string }
   | { type: A.SET_SEARCH_SELECTED; id: string | null }
+  | { type: A.SET_INCLUDE_DESCENDANTS; value: boolean }
   | { type: A.SET_INFO_OPEN; open: boolean }
   | { type: A.SET_RESET_CONFIRM_OPEN; open: boolean }
   | { type: A.FOCUS_MODE; selectedLeafId: string | null }
@@ -224,6 +230,9 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         searchQuery: action.id ?? '',
       };
 
+    case A.SET_INCLUDE_DESCENDANTS:
+      return { ...state, includeDescendants: action.value };
+
     case A.SET_INFO_OPEN:
       return { ...state, infoOpen: action.open };
 
@@ -270,6 +279,7 @@ export type AppState = {
   searchQuery: string;
   searchSelectedId: string | null;
   searchMatches: DefNode[];
+  includeDescendants: boolean;
   showNotReady: boolean;
   showPreReady: boolean;
   showReady: boolean;
@@ -289,6 +299,7 @@ export type AppActions = {
   setActiveTab: (tab: BottomTab) => void;
   setSearchQuery: (q: string) => void;
   setSearchSelectedId: (id: string | null) => void;
+  setIncludeDescendants: (v: boolean) => void;
   setInfoOpen: (open: boolean) => void;
   setResetConfirmOpen: (open: boolean) => void;
   focusMode: () => void;
@@ -367,12 +378,18 @@ export function useAppState(): AppState & AppActions {
     };
 
     const keep = new Set<string>();
-    for (const n of preGraph.nodes) {
-      const st = stateOf(n);
-      if (st === 'learned' && state.showLearned) keep.add(n.id);
-      else if (st === 'ready' && state.showReady) keep.add(n.id);
-      else if (st === 'pre-ready' && state.showPreReady) keep.add(n.id);
-      else if (st === 'not-ready' && state.showNotReady) keep.add(n.id);
+    if (state.searchSelectedId && state.includeDescendants) {
+      // Keep the entire prerequisite closure of the selected definition,
+      // ignoring the node-state filters so no descendants are hidden.
+      for (const n of preGraph.nodes) keep.add(n.id);
+    } else {
+      for (const n of preGraph.nodes) {
+        const st = stateOf(n);
+        if (st === 'learned' && state.showLearned) keep.add(n.id);
+        else if (st === 'ready' && state.showReady) keep.add(n.id);
+        else if (st === 'pre-ready' && state.showPreReady) keep.add(n.id);
+        else if (st === 'not-ready' && state.showNotReady) keep.add(n.id);
+      }
     }
 
     // Ensure searched node stays visible if present
@@ -383,6 +400,7 @@ export function useAppState(): AppState & AppActions {
     state.raw,
     state.includedIds,
     state.searchSelectedId,
+    state.includeDescendants,
     state.learned,
     state.showNotReady,
     state.showPreReady,
@@ -487,6 +505,10 @@ export function useAppState(): AppState & AppActions {
     dispatch({ type: A.SET_SEARCH_SELECTED, id });
   }, []);
 
+  const setIncludeDescendants = useCallback((v: boolean) => {
+    dispatch({ type: A.SET_INCLUDE_DESCENDANTS, value: v });
+  }, []);
+
   const setInfoOpen = useCallback((open: boolean) => {
     dispatch({ type: A.SET_INFO_OPEN, open });
   }, []);
@@ -541,6 +563,7 @@ export function useAppState(): AppState & AppActions {
     searchQuery: state.searchQuery,
     searchSelectedId: state.searchSelectedId,
     searchMatches,
+    includeDescendants: state.includeDescendants,
     showNotReady: state.showNotReady,
     showPreReady: state.showPreReady,
     showReady: state.showReady,
@@ -557,6 +580,7 @@ export function useAppState(): AppState & AppActions {
     setActiveTab,
     setSearchQuery,
     setSearchSelectedId,
+    setIncludeDescendants,
     setShowNotReady,
     setShowPreReady,
     setShowReady,

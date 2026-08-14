@@ -10,6 +10,13 @@ class _NaturalNumber(Definition):
     def _get_content(self) -> str:
         return f"""
 A natural {NUMBER.key.get_reference("number")} is a non-negative {INTEGER.key.get_reference("integer")}.
+
+---
+
+Natural numbers: 0, 1, 2, 3, 4, 5, ...
+
+-1 and -5 are not natural numbers — they are negative {INTEGER.key.get_reference("integers")}.
+1.5 and π are not natural numbers — they are not {INTEGER.key.get_reference("integers")} at all.
 """
 
 

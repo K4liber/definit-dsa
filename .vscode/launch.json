@@ -11,12 +11,21 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src",
+            "justMyCode": false,
         },
         {
             "name": "Debug Unit Test",
             "type": "debugpy",
-            "request": "attach",
+            "request": "launch",
+            "purpose": [
+                "debug-test"
+            ],
             "justMyCode": false,
+            "console": "integratedTerminal",
+            "env": {
+                // Force frozen modules OFF so stepping into abc/dataclasses/enum/typing works.
+                "PYTHON_FROZEN_MODULES": "off"
+            }
         }
     ]
 }

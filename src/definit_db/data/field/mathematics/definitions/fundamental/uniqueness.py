@@ -8,8 +8,13 @@ from definit_db.data.field.mathematics.definitions.fundamental.object import OBJ
 class _Uniqueness(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference("Uniqueness")} means that there is exactly one
+Uniqueness means that there is exactly one
 {OBJECT.key.get_reference("object")} satisfying a given description, within the intended context.
+
+---
+
+The equation x + 5 = 8 has a unique solution: exactly one {OBJECT.key.get_reference("object")} x = 3
+satisfies it. No other value works.
 """
 
 

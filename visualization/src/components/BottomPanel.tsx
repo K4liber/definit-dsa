@@ -24,6 +24,8 @@ type Props = {
   searchMatches: Array<{ id: string; title: string }>;
   onSearchChange: (q: string) => void;
   onSelectMatch: (id: string | null) => void;
+  includeDescendants: boolean;
+  onSetIncludeDescendants: (v: boolean) => void;
   showNotReady: boolean;
   showPreReady: boolean;
   showReady: boolean;
@@ -53,6 +55,8 @@ const BottomPanel: React.FC<Props> = ({
   searchMatches,
   onSearchChange,
   onSelectMatch,
+  includeDescendants,
+  onSetIncludeDescendants,
   showNotReady,
   showPreReady,
   showReady,
@@ -99,6 +103,8 @@ const BottomPanel: React.FC<Props> = ({
               matches={searchMatches}
               onSearchChange={onSearchChange}
               onSelectMatch={onSelectMatch}
+              includeDescendants={includeDescendants}
+              onSetIncludeDescendants={onSetIncludeDescendants}
               showNotReady={showNotReady}
               showPreReady={showPreReady}
               showReady={showReady}

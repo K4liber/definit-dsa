@@ -237,14 +237,14 @@ describe('graph helpers', () => {
 
   it('renders dependency links as clickable spans in definition HTML', () => {
     const renderedNodes = (defs as DefGraph).nodes;
-    const kAryTree = renderedNodes.find((node) => node.id === 'mathematics/k_ary_tree');
+    const nAryTree = renderedNodes.find((node) => node.id === 'mathematics/n_ary_tree');
 
-    expect(kAryTree).toBeTruthy();
+    expect(nAryTree).toBeTruthy();
 
-    const html = renderMdToHtml(kAryTree!.content, kAryTree!.deps, renderedNodes);
+    const html = renderMdToHtml(nAryTree!.content, nAryTree!.deps, renderedNodes);
 
-    expect(html).toContain('data-dep="mathematics/n_ary_tree"');
-    expect(html).toContain('>n-ary tree<');
+    expect(html).toContain('data-dep="mathematics/tree"');
+    expect(html).toContain('>tree<');
     expect(html).toContain('data-dep="mathematics/node"');
   });
 });

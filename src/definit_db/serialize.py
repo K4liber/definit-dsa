@@ -1,5 +1,8 @@
 import importlib
 import os
+import re
+from heapq import heappop
+from heapq import heappush
 from pathlib import Path
 
 from definit.db.md import DatabaseMd
@@ -8,6 +11,8 @@ from definit.definition.definition import DefinitionKey
 from definit.definition.field import Field
 
 from definit_db.data.field import FieldName
+
+_REFERENCE_PATTERN = re.compile(r"\[(?:.*?)\]\((.*?)\)")
 
 _FIELDS = [FieldName.MATHEMATICS, FieldName.COMPUTER_SCIENCE]
 _DEFINIT_DB_PACKAGE_ROOT = Path(os.path.dirname(__file__))
@@ -74,11 +79,66 @@ def serialize() -> Path:
             )
             all_definitions.append(fixed_definition)
 
+    all_definitions = topological_sort(definitions=all_definitions)
+
     DatabaseMd.serialize(
         definitions=all_definitions,
         db_path=_PATH_DATA_MD,
     )
     return _PATH_DATA_MD
+
+
+def topological_sort(definitions: list[Definition]) -> list[Definition]:
+    """Topologically sort definitions so that every referenced (lower-level) definition comes first.
+
+    A definition that references another definition depends on it, so the referenced definition
+    must appear earlier in the list. Ties are broken by the original input order to keep the
+    output stable. Uses Kahn's algorithm.
+    """
+    uid_to_definition: dict[str, Definition] = {definition.key.uid: definition for definition in definitions}
+    original_order: dict[str, int] = {definition.key.uid: index for index, definition in enumerate(definitions)}
+
+    # dependencies[uid] = set of uids this definition references (must come before it)
+    dependencies: dict[str, set[str]] = {}
+    # dependents[uid] = set of uids that reference this definition
+    dependents: dict[str, set[str]] = {uid: set() for uid in uid_to_definition}
+
+    for definition in definitions:
+        uid = definition.key.uid
+        referenced_uids = {
+            referenced_uid
+            for referenced_uid in _REFERENCE_PATTERN.findall(definition.content)
+            if referenced_uid in uid_to_definition and referenced_uid != uid
+        }
+        dependencies[uid] = referenced_uids
+
+        for referenced_uid in referenced_uids:
+            dependents[referenced_uid].add(uid)
+
+    in_degree: dict[str, int] = {uid: len(deps) for uid, deps in dependencies.items()}
+    # Min-heap keyed by original position so ties keep the original (stable) order.
+    ready: list[tuple[int, str]] = []
+    for definition in definitions:
+        uid = definition.key.uid
+        if in_degree[uid] == 0:
+            heappush(ready, (original_order[uid], uid))
+
+    ordered: list[Definition] = []
+
+    while ready:
+        _, uid = heappop(ready)
+        ordered.append(uid_to_definition[uid])
+
+        for dependent_uid in dependents[uid]:
+            in_degree[dependent_uid] -= 1
+            if in_degree[dependent_uid] == 0:
+                heappush(ready, (original_order[dependent_uid], dependent_uid))
+
+    if len(ordered) != len(definitions):
+        remaining = [definition.key.uid for definition in definitions if in_degree[definition.key.uid] > 0]
+        raise ValueError(f"Cycle detected in definition references; cannot topologically sort: {remaining}")
+
+    return ordered
 
 
 if __name__ == "__main__":

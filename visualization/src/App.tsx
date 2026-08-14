@@ -182,6 +182,8 @@ const App = () => {
               state.setSearchSelectedId(id);
               if (id) state.selectLeaf(id);
             }}
+            includeDescendants={state.includeDescendants}
+            onSetIncludeDescendants={state.setIncludeDescendants}
             showNotReady={state.showNotReady}
             showPreReady={state.showPreReady}
             showReady={state.showReady}

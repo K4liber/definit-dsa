@@ -9,8 +9,13 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 class _StringConcatenation(Definition):
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference("String concatenation")} is the {OPERATION.key.get_reference("operation")} of 
-joining two or more {STRING.key.get_reference("strings")} end-to-end to form a new string.
+The {OPERATION.key.get_reference(phrase="operation")} of 
+joining two or more {STRING.key.get_reference(phrase="strings")} end-to-end to form a new string.
+
+---
+
+Concatenating `foo` and `bar` yields `foobar`. Concatenating `hello`, a single space ` `, and `world` yields 
+`hello world`.
 """
 
 

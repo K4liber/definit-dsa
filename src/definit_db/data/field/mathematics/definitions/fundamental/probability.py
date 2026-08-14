@@ -13,6 +13,21 @@ class _Probability(Definition):
 Probability is a measure that quantifies the likelihood of elements in a {SET.key.get_reference("set")} 
 or events, typically expressed as a {NUMBER.key.get_reference("number")} between 0 and 1. Probabilities indicate 
 how likely different {OBJECT.key.get_reference(phrase="objects")} or outcomes are to occur.
+
+---
+
+A bag contains 3 red balls and 2 blue balls (5 total). The probability of each outcome when
+drawing one ball at random:
+
+P(red)  = 3/5 = 0.6
+
+P(blue) = 2/5 = 0.4
+
+P(green) = 0   (impossible — no green balls)
+
+P(red or blue) = 1 (certain — every ball is one of the two)
+
+All probabilities lie in [0, 1] and the probabilities of all possible outcomes sum to 1.
 """
 
 

@@ -9,10 +9,13 @@ from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 class _Dataset(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is a group of {DATA.key.get_reference("data")}, 
-typically organized for analysis, training, or testing.
+A {SET.key.get_reference(phrase="set")} of {DATA.key.get_reference(phrase="data")}, 
+typically organized into rows and columns, or grouped as examples, for analysis, training, or testing.
 
-A dataset can be viewed as a {SET.key.get_reference("set")} of records or examples.
+---
+
+A group of 100 rows, each containing a student's exam scores across five subjects, is a dataset: it is a
+set of data records that can be analyzed to study student performance.
 """
 
 

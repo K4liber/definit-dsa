@@ -15,6 +15,15 @@ A {BINARY_TREE.key.get_reference(phrase="binary tree")} that does not satisfy th
 {BALANCED_BINARY_TREE.key.get_reference(phrase="balanced binary tree")} property. In an unbalanced binary tree, 
 the depth of the two {SUBTREE.key.get_reference(phrase="subtrees")} of at least one 
 {NODE.key.get_reference(phrase="node")} differs by more than one.
+
+---
+
+Take a {BINARY_TREE.key.get_reference(phrase="binary tree")} where {NODE.key.get_reference(phrase="node")} "A" 
+has left child "B" and right child "C". On the left side the {NODE.key.get_reference(phrase="nodes")} form a 
+chain: "B" has left child "D", and "D" has left child "E". At "A" the left 
+{SUBTREE.key.get_reference(phrase="subtree")} (B, D, E) has height 2 while the right subtree (C) has height 0 — 
+a difference of two — so the {BALANCED_BINARY_TREE.key.get_reference(phrase="balance")} property fails and the 
+tree is unbalanced.
 """
 
 

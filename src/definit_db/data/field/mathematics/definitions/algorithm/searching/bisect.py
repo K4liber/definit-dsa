@@ -14,6 +14,17 @@ Bisect is a {BINARY_SEARCH.key.get_reference(phrase="binary search")} technique 
 {INDEX.key.get_reference(phrase="index")} where a value should be inserted into a sorted 
 {SEQUENCE.key.get_reference(phrase="sequence")} while preserving the order of the sequence. It can return the 
 leftmost or rightmost valid insertion position when equal values are already present.
+
+---
+
+{SEQUENCE.key.get_reference("Sequence")}: [1, 3, 5, 7, 9]
+
+  bisect(4) → {INDEX.key.get_reference("index")} 2  (insert between 3 and 5)
+
+{SEQUENCE.key.get_reference("Sequence")}: [1, 3, 5, 5, 7]
+
+  bisect_left(5)  → {INDEX.key.get_reference("index")} 2  (leftmost position before existing 5s)
+  bisect_right(5) → {INDEX.key.get_reference("index")} 4  (rightmost position after existing 5s)
 """
 
 

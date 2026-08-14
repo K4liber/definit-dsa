@@ -14,9 +14,15 @@ class _BinaryRepresentation(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a way of expressing {INFORMATION.key.get_reference()} using only two symbols, typically 0 and 1. 
-In this system, each digit is called a {BIT.key.get_reference()}, and {SEQUENCE.key.get_reference("sequences")} of bits are used to represent {NUMBER.key.get_reference("numbers")} 
+A way of expressing {INFORMATION.key.get_reference()} using only two symbols, 
+typically 0 and 1. In this system, each digit is called a {BIT.key.get_reference()}, and 
+{SEQUENCE.key.get_reference("sequences")} of bits are used to represent {NUMBER.key.get_reference("numbers")} 
 and other types of information.
+
+---
+
+The number 13 has the binary representation 1101: reading the bits from left to right as powers of two gives
+1x2^3 + 1x2^2 + 0x2^1 + 1x2^0 = 8 + 4 + 0 + 1 = 13.
 """
 
 

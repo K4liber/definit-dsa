@@ -4,15 +4,54 @@
 
 ## TODO
 
-### 4. Review all definitions
+### 15. Progress tab should split into "track" and "overall"
 
-- [ ] Create a `review_definition.md` instruction file for how to review a definition
-- [ ] Check if they are accurate, complete and have all possible references to other definitions
+- [ ] Track shows progress for the currently filtered definitions (e.g. "DSA" group or "Turing Machine" definition with descendants included)
+
+### 14. Definition content locked into previous scroll
+
+When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position.
+
+### 13. Filtering by a definition should be a multiple-choice and have "include descendants" option
+
+### 12. Introduce Definition Groups and filtering by a group
+
+- [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
+- [ ] Add filtering by a group in the "Filters" tab.
+
+### 11. Handling multiple definition sources/databases
+
+### 10. Limit number of nodes on visualization to 200
+
+Add a pop-up window whenever filtering allows more than 200 nodes.
+
+Figure out conditions for limiting the number of nodes displayed.
+
+We could go for 200 most low-level (according to topological sorting) definitions after filters are applied. Then we could "cut-off" the already-learned definitions.
+
+### 9. Introduce React Router
+
+Apply filtering based on URL parameters and query strings.
+
+### 7. Asking question instead of "Mark as learned"
+
+### 8. Create a json serializer compatible with the definit-visualization package
+
+- [ ] Remove the JS-based serializer.
+- [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
+
+### 5. Rethink the category concept
+
+Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
 
 ### 2. What to do with something named twice with different names?
 
-- [ ] hashmap (what to do with something named twice with different names?)
-- [ ] grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
+When a definition has more than one synonym/alias, all of those should be displayed in the UI and be searchable.
+
+- [ ] Introduce synonyms/aliases (in definit package)
+- [ ] item, element
+- [ ] hashmap
+- [ ] matrix, grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
 
 ### 3. New definitions
 
@@ -20,6 +59,36 @@
 - [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
 
 ## DONE
+
+### 4. Review all definitions
+
+- [x] Create a `review_definition.md` instruction file for how to review a definition
+- [x] Check if they are accurate, complete and have all possible references to other definitions
+- [x] Read them all for the final time on the app
+
+### 6. Fix slow `get_dag` in the `definit` library (upstream)
+
+`DatabaseMd.get_dag` / `_update_dag_in_place` (in `definit/db/md.py`) is the root cause of the
+slow `test_generate_and_load` test (minutes instead of seconds). It is not a cycle.
+
+Two compounding flaws make the cost proportional to the number of directed walks counted with
+link multiplicity, instead of `O(V + E)`:
+
+- It keeps **no visited set**, so a shared subtree is re-expanded every time it is reached.
+- It iterates **every regex link match, including duplicate links** in the same definition, and
+  recurses per occurrence. Duplicate references (e.g. examples re-linking `tree`/`node`/`leaf`)
+  add no new edge but multiply the work up the dependency chain.
+
+Measured impact: walk count grew from ~35.5k (unique edges) to ~2.56M with duplicate links
+(72x), driven entirely by the example sections.
+
+Proper fix (in the `definit` library):
+
+- [ ] Add a `visited: set[DefinitionKey]` guard to `_update_dag_in_place` so each subtree is
+      expanded once, and/or deduplicate the child links before recursing.
+- [ ] Optionally cache the parsed child references per definition instead of re-running
+      `re.findall` + `Definition` construction on every visit.
+- [ ] This makes `get_dag` linear (`O(V + E)`) regardless of how many times a term is referenced.
 
 ### 1. Add DSA definitions found during doing LeetCode exercises
 

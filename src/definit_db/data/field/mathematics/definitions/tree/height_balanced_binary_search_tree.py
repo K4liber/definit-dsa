@@ -15,6 +15,15 @@ A height-balanced binary search tree is a {BINARY_SEARCH_TREE.key.get_reference(
 that satisfies the {BALANCED_BINARY_TREE.key.get_reference(phrase="balanced binary tree")} property: for every 
 {NODE.key.get_reference(phrase="node")}, the heights of the left and right 
 {SUBTREE.key.get_reference(phrase="subtrees")} differ by at most one.
+
+---
+
+Consider a {BINARY_SEARCH_TREE.key.get_reference(phrase="binary search tree")} whose root 
+{NODE.key.get_reference(phrase="node")} holds "8", with left child "3" and right child "10". The search ordering 
+holds ("3" < "8" < "10"), and the left and right {SUBTREE.key.get_reference(phrase="subtrees")} of every node 
+differ in height by at most one (here both have height 0), so the 
+{BALANCED_BINARY_TREE.key.get_reference(phrase="balance")} property is met. It is therefore a height-balanced 
+binary search tree.
 """
 
 

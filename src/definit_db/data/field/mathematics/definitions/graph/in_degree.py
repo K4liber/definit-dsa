@@ -13,6 +13,13 @@ class _InDegree(Definition):
 The in-degree of a {NODE.key.get_reference(phrase="node")} in a 
 {DIRECTED_GRAPH.key.get_reference(phrase="directed graph")} is the number of 
 {EDGE.key.get_reference(phrase="edges")} that point into that node.
+
+---
+
+Take a {DIRECTED_GRAPH.key.get_reference(phrase="directed graph")} with the 
+{EDGE.key.get_reference(phrase="edges")} "A→C" and "B→C". Two edges point into 
+{NODE.key.get_reference(phrase="node")} "C", so its in-degree is 2. No edge points into "A", 
+so the in-degree of "A" is 0.
 """
 
 

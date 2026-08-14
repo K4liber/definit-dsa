@@ -16,12 +16,17 @@ class _LogicalRightShift(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is a {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
+A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
 and a variant of {RIGHT_SHIFT.key.get_reference("right shift")} that always fills the 
 leftmost {BIT.key.get_reference("bits")} with zeros, regardless of the sign of the 
 {INTEGER.key.get_reference()}. This {OPERATION.key.get_reference()} treats the 
 {BINARY_REPRESENTATION.key.get_reference("binary representation")} as an unsigned value, 
 making it suitable for unsigned integer division by powers of 2.
+
+---
+
+The 8-bit value 10000000 (128 as unsigned) shifted right by two with logical shift gives 00100000 (32): two
+zeros enter from the left, and the original sign bit is treated as ordinary data.
 """
 
 

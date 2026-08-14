@@ -19,6 +19,12 @@ The XOR swap algorithm is an {ALGORITHM.key.get_reference(phrase="algorithm")} t
 {BIT_MANIPULATION.key.get_reference(phrase="bit manipulation")} technique and an 
 {IN_PLACE_ALGORITHM.key.get_reference(phrase="in-place algorithm")} because it exchanges the values without using 
 an additional temporary variable.
+
+---
+
+Swapping two values a = 5 (0101) and b = 3 (0011) takes three XOR steps. First, a = a XOR b becomes 0110. Second,
+b = a XOR b becomes 0101, which is the original value of a. Third, a = a XOR b becomes 0011, which is the original
+value of b. The values are now exchanged using only XOR, with no temporary variable.
 """
 
 

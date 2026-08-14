@@ -3,12 +3,18 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.computer_science.definitions.fundamental.data_structure import DATA_STRUCTURE
+from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 
 
 class _Object(Definition):
     def _get_content(self) -> str:
         return f"""
-An object is an instance of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
+A concrete realization of a {DATA_STRUCTURE.key.get_reference(phrase="data structure")}.
+
+---
+
+A {DATA_STRUCTURE.key.get_reference(phrase="data structure")} holding the particular
+{NUMBER.key.get_reference(phrase="numbers")} 72, 85, and 90 is an object.
 """
 
 

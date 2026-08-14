@@ -27,5 +27,5 @@ def test_generate_definition_levels_histogram() -> None:
     plt.xlabel("Level")
     plt.ylabel("Number of Definitions")
     plt.title("Number of Definitions per Level")
-    plt.savefig("definition_levels_histogram.png")
     plt.show()
+    plt.savefig("definition_levels_histogram.png")

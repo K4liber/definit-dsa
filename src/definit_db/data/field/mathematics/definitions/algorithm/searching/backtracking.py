@@ -19,6 +19,15 @@ Backtracking is an {ALGORITHM.key.get_reference(phrase="algorithmic")} technique
 {CONSTRAINT.key.get_reference(phrase="constraint")} or cannot lead to a valid solution, the algorithm abandons 
 that branch and tries another choice. It is commonly implemented with {RECURSION.key.get_reference()} and follows 
 the search pattern of {DEPTH_FIRST_SEARCH.key.get_reference(phrase="depth-first search")}.
+
+---
+
+Solving the eight-queens problem, placing eight queens on a chessboard so that no two share a row, column, or 
+diagonal, illustrates backtracking: a queen is placed in each column in turn, and if a 
+placement violates the row, column, or diagonal {CONSTRAINT.key.get_reference()}, that row is skipped and the next 
+row in the same column is tried. When no row in a column works, the algorithm backtracks to the previous column and 
+tries its next row, continuing until a full {SOLUTION.key.get_reference()} is found or every possibility has been 
+tried.
 """
 
 

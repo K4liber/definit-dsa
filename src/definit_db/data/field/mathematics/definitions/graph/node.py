@@ -10,6 +10,11 @@ class _Node(Definition):
         return f"""
 A node (also called vertex) is an abstract entity that can represent an {OBJECT.key.get_reference(phrase="object")} 
 or position in a structure. It does not imply any connections or context on its own.
+
+---
+
+Consider three cities labeled "A", "B", and "C". Each city is an {OBJECT.key.get_reference(phrase="object")} 
+that we place in a structure as a node.
 """
 
 

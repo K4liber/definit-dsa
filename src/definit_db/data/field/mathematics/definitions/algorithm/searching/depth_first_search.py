@@ -15,14 +15,26 @@ class _DepthFirstSearch(Definition):
 
     def _get_content(self) -> str:
         return f"""
-The {self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for traversing or searching 
+An {ALGORITHM.key.get_reference()} for traversing or searching 
 a {GRAPH.key.get_reference()} structure. It explores as far as possible along each {PATH.key.get_reference()} 
-before backtracking. The algorithm starts at a given {NODE.key.get_reference()} and follows 
-{EDGE.key.get_reference("edges")} to visit a neighbor, then recursively visits that neighbor's unvisited neighbors, 
-and so on, until it reaches a {NODE.key.get_reference()} with no unvisited neighbors, at which point it backtracks. 
-This approach goes deep into the graph structure before exploring other paths.
+before backtracking. Starting at a given {NODE.key.get_reference()}, it follows 
+{EDGE.key.get_reference("edges")} to visit a neighbor and continues exploring that neighbor's unvisited
+neighbors, going deeper into the graph until reaching a dead end, then backtracks to explore other paths.
+
+---
+
+{GRAPH.key.get_reference("Graph")} edges: A–B, A–C, B–D, B–E
+
+DFS (Depth-First Search) from {NODE.key.get_reference("node")} A:
+
+
+Visit A → go deep to B → go deep to D (dead end) → backtrack to B
+
+→ visit E (dead end) → backtrack to A → visit C (dead end)
+
+
+Visit order: A, B, D, E, C
 """
 
 
 DEPTH_FIRST_SEARCH = _DepthFirstSearch(DefinitionKey(name="depth-first search", field=FieldName.MATHEMATICS))
-# TODO(K4liber): it does not have to recursively visit neighbors, it can be implemented iteratively with a stack.

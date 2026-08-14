@@ -11,9 +11,16 @@ from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 class _InOrderTraversal(Definition):
     def _get_content(self) -> str:
         return f"""
-An {self.key.get_reference()} is a {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
+A {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
 {BINARY_TREE.key.get_reference("binary tree")} where, for each {NODE.key.get_reference("node")}, the left 
 {SUBTREE.key.get_reference("subtree")} is visited first, then the node itself, and then the right subtree.
+
+---
+
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left child 
+"B" and right child "C". An in-order traversal visits the left {SUBTREE.key.get_reference("subtree")} first ("B"), 
+then the node itself ("A"), and finally the right subtree ("C"), reporting the 
+{NODE.key.get_reference("nodes")} in the order "B", "A", "C".
 """
 
 

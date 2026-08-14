@@ -17,12 +17,23 @@ class _CycleDetection(Definition):
 
     def _get_content(self) -> str:
         return f"""
-{self.key.get_reference()} is an {ALGORITHM.key.get_reference()} for determining whether a 
+An {ALGORITHM.key.get_reference()} for determining whether a 
 {GRAPH.key.get_reference()} contains a {CYCLE.key.get_reference()}. The algorithm typically uses 
 {DEPTH_FIRST_SEARCH.key.get_reference("depth-first search")} to traverse the graph while tracking 
 visited {NODE.key.get_reference("nodes")} and the current {PATH.key.get_reference()}. If a node is encountered 
 that is already in the current path, a cycle has been detected. Different approaches are used for 
 {DIRECTED_GRAPH.key.get_reference("directed")} versus undirected graphs.
+
+---
+
+{DIRECTED_GRAPH.key.get_reference("Directed graph")} edges: A→B, B→C, C→A
+
+  {DEPTH_FIRST_SEARCH.key.get_reference("DFS")} from A: visit A → visit B → visit C
+  → C points back to A, which is already in the current {PATH.key.get_reference()} 
+  → {CYCLE.key.get_reference()} detected ✓
+
+Removing edge C→A (edges: A→B, B→C): DFS completes without revisiting any {NODE.key.get_reference("node")} 
+  → no {CYCLE.key.get_reference()} ✓
 """
 
 

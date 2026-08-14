@@ -17,6 +17,11 @@ Boolean (sometimes shortened to Bool) is a {PRIMITIVE_DATA_TYPE.key.get_referenc
 that has one of two possible values usually denoted true and false. Boolean is a 
 {BIT_FIELD.key.get_reference(phrase="bit field")} that stores a single {BIT.key.get_reference(phrase="bit")} of 
 {INFORMATION.key.get_reference(phrase="information")}.
+
+---
+
+A boolean can represent whether a light is on (true) or off (false). Since there are only two possibilities, a 
+single bit suffices to distinguish them.
 """
 
 

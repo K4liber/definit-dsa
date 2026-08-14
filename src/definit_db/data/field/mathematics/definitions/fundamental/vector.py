@@ -2,6 +2,7 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
+from definit_db.data.field.mathematics.definitions.fundamental.axis import AXIS
 from definit_db.data.field.mathematics.definitions.fundamental.number import NUMBER
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 
@@ -9,8 +10,15 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 class _Vector(Definition):
     def _get_content(self) -> str:
         return f"""
-A {self.key.get_reference()} is an ordered {SEQUENCE.key.get_reference("sequence")} of
+An ordered {SEQUENCE.key.get_reference("sequence")} of
 {NUMBER.key.get_reference("numbers")}, often used to represent a point or a direction in space.
+
+---
+
+The {SEQUENCE.key.get_reference("sequence")} ("2", "3") is a vector of two {NUMBER.key.get_reference("numbers")}: 
+it can represent the point two units along one {AXIS.key.get_reference(phrase="axis")} and three units along
+another, or the direction pointing that way from the origin. 
+way from the origin.
 """
 
 
