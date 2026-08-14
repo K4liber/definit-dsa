@@ -2,12 +2,6 @@
 
 ## IN PROGRESS
 
-### 4. Review all definitions
-
-- [x] Create a `review_definition.md` instruction file for how to review a definition
-- [x] Check if they are accurate, complete and have all possible references to other definitions
-- [ ] Read them all for the final time on the app
-
 ## TODO
 
 ### 15. Progress tab should split into "track" and "overall"
@@ -65,6 +59,12 @@ When a definition has more than one synonym/alias, all of those should be displa
 - [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
 
 ## DONE
+
+### 4. Review all definitions
+
+- [x] Create a `review_definition.md` instruction file for how to review a definition
+- [x] Check if they are accurate, complete and have all possible references to other definitions
+- [x] Read them all for the final time on the app
 
 ### 6. Fix slow `get_dag` in the `definit` library (upstream)
 

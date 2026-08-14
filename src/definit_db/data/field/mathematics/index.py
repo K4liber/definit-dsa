@@ -209,6 +209,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.union import UNIO
 from definit_db.data.field.mathematics.definitions.fundamental.uniqueness import UNIQUENESS
 from definit_db.data.field.mathematics.definitions.fundamental.vector import VECTOR
 from definit_db.data.field.mathematics.definitions.fundamental.venn_diagram import VENN_DIAGRAM
+from definit_db.data.field.mathematics.definitions.fundamental.window import WINDOW
 from definit_db.data.field.mathematics.definitions.fundamental.xor import XOR
 from definit_db.data.field.mathematics.definitions.graph.acyclic_graph import ACYCLIC_GRAPH
 from definit_db.data.field.mathematics.definitions.graph.adjacency_list import ADJACENCY_LIST
@@ -525,6 +526,7 @@ field_index: list[Definition] = [
     PALINDROME,
     PI,
     SUBSEQUENCE,
+    WINDOW,
     PLANE,
     CARTESIAN_PLANE,
     TRANSFORMATION,

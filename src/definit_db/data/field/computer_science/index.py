@@ -153,6 +153,7 @@ from definit_db.data.field.computer_science.definitions.fundamental.process impo
 from definit_db.data.field.computer_science.definitions.fundamental.processor import PROCESSOR
 from definit_db.data.field.computer_science.definitions.fundamental.program import PROGRAM
 from definit_db.data.field.computer_science.definitions.fundamental.programming_language import PROGRAMMING_LANGUAGE
+from definit_db.data.field.computer_science.definitions.fundamental.programming_model import PROGRAMMING_MODEL
 from definit_db.data.field.computer_science.definitions.fundamental.pseudocode import PSEUDOCODE
 from definit_db.data.field.computer_science.definitions.fundamental.random_access_memory import RANDOM_ACCESS_MEMORY
 from definit_db.data.field.computer_science.definitions.fundamental.reverse_engineering import REVERSE_ENGINEERING
@@ -204,6 +205,7 @@ field_index: list[Definition] = [
     PROGRAM,
     SOFTWARE_SYSTEM,
     PROGRAMMING_LANGUAGE,
+    PROGRAMMING_MODEL,
     OVER_OPTIMIZATION,
     PSEUDOCODE,
     BRANCH,

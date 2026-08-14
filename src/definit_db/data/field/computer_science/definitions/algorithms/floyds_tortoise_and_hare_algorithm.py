@@ -26,9 +26,13 @@ if the hare reaches the end, no cycle exists. It is commonly used to detect cycl
 
 Consider a {LINKED_LIST.key.get_reference(phrase="linked list")} whose {NODE.key.get_reference(phrase="nodes")} run
 A then B then C then D, where D points back to B, forming a cycle. Both pointers start at A:
+
 - After one step: tortoise at B, hare at C
+
 - After two steps: tortoise at C, hare at B (having wrapped around)
+
 - After three steps: tortoise at D, hare at D
+
 Because the faster hare has caught the tortoise, a cycle is confirmed.
 """
 

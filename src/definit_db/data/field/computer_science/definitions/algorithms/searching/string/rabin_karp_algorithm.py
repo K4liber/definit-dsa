@@ -9,12 +9,13 @@ from definit_db.data.field.computer_science.definitions.data_structure.collectio
 from definit_db.data.field.computer_science.definitions.data_structure.primitive.character import CHARACTER
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.algorithm import ALGORITHM
 from definit_db.data.field.mathematics.definitions.fundamental.hash_function import HASH_FUNCTION
+from definit_db.data.field.mathematics.definitions.fundamental.window import WINDOW
 
 
 class _RabinKarpAlgorithm(Definition):
     def _get_content(self) -> str:
         return f"""
-A string searching {ALGORITHM.key.get_reference(phrase="algorithm")} that uses a 
+A {STRING.key.get_reference(phrase="string")} searching {ALGORITHM.key.get_reference(phrase="algorithm")} that uses a 
 {ROLLING_HASH.key.get_reference(phrase="rolling hash")} to find a pattern in a 
 {STRING.key.get_reference(phrase="string")}. It computes the {HASH_FUNCTION.key.get_reference(phrase="hash")} of the 
 pattern and the hash of each {SUBSTRING.key.get_reference(phrase="substring")} of the text of the same length as the 
@@ -26,7 +27,8 @@ match and avoid false positives from {HASH_COLLISION.key.get_reference(phrase="h
 
 To search for the pattern `abc` in the text `zabcab`, the algorithm hashes `abc`, then hashes each length-3 
 {SUBSTRING.key.get_reference(phrase="substring")} of the text (`zab`, `abc`, `bca`, `cab`) using a 
-{ROLLING_HASH.key.get_reference(phrase="rolling hash")} so that each new window's hash is computed from the previous 
+{ROLLING_HASH.key.get_reference(phrase="rolling hash")} so that each new 
+{WINDOW.key.get_reference(phrase="window")}'s hash is computed from the previous 
 one. Only when a window's hash equals the pattern's hash does the algorithm compare the characters to confirm the 
 match.
 """
