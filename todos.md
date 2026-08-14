@@ -1,27 +1,55 @@
-# TODOs
+# Definit-DB TODOs
+
+As much as possible, the items should be prioritized in order of importance. We split the items into 4 categories:
+- IN PROGRESS: Items that are currently being worked on.
+- TODO: Items that are planned to be implemented in the future.
+- DONE: Items that have been completed.
+- ABANDONED: Items that are no longer being pursued, but are kept for historical purposes.
+
+Each item should have a title, a description, and a list of tasks to be completed. The tasks should be checkboxes that can be checked off as they are completed. Each item should also have a category [FEATURE, BUG, DOCS, or OTHER] to indicate the type of work being done. If a task depends on another task, it should be indicated next to the category e.g. [FEATURE, depends on 1].
 
 ## IN PROGRESS
 
 ## TODO
 
-### 15. Progress tab should split into "track" and "overall"
+### 5. [FEATURE] Remove categories from definitions
 
-- [ ] Track shows progress for the currently filtered definitions (e.g. "DSA" group or "Turing Machine" definition with descendants included)
+- [ ] Update the definitions and python scripts
+- [ ] Update the visualization package to not use categories anymore
 
-### 14. Definition content locked into previous scroll
+### 2. [FEATURE] Add definition aliases
+
+- [ ] Add aliases to all definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.)
+
+### 12. [FEATURE] Add a new group
+
+- [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
+
+### 13. [FEATURE, depends on: 12] Simplify filtering
+
+Filtering should have only 3 options:
+- "Include descendants" (boolean, default: true)
+- "Definitions" (list of definitions, default: "ready to learn" definitions)
+- "Groups" (list of groups, default: none)
+
+- [ ] Update the visualization package to use the new filtering options.
+- [ ] Add a button "Reset filters" to reset the filters to the default values.
+
+### 9. [FEATURE, depends on: 13] Introduce React Router
+
+Apply filtering based on URL parameters and query strings. If no parameter is provided, use the default values. This will allow sharing links to specific filtered views. The filtering should be stored in the browser storage so that the user can return to the same filtered view after closing the browser. The "Reset filters" button should reset the filters to the default values, update the URL accordingly and clear the browser storage.
+
+### 15. [FEATURE] Update "Progress" tab
+
+For sure, we should display a progress bar. To be discussed how to improve it further.
+
+### 14. [BUG] Definition content locked into previous scroll
 
 When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position.
 
-### 13. Filtering by a definition should be a multiple-choice and have "include descendants" option
+### 11. [FEATURE] Handling multiple definition sources/databases
 
-### 12. Introduce Definition Groups and filtering by a group
-
-- [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
-- [ ] Add filtering by a group in the "Filters" tab.
-
-### 11. Handling multiple definition sources/databases
-
-### 10. Limit number of nodes on visualization to 200
+### 10. [FEATURE] Limit number of nodes on visualization to 200
 
 Add a pop-up window whenever filtering allows more than 200 nodes.
 
@@ -29,34 +57,12 @@ Figure out conditions for limiting the number of nodes displayed.
 
 We could go for 200 most low-level (according to topological sorting) definitions after filters are applied. Then we could "cut-off" the already-learned definitions.
 
-### 9. Introduce React Router
+### 7. [FEATURE] Asking question instead of "Mark as learned"
 
-Apply filtering based on URL parameters and query strings.
-
-### 7. Asking question instead of "Mark as learned"
-
-### 8. Create a json serializer compatible with the definit-visualization package
+### 8. [FEATURE] Create a json serializer compatible with the definit-visualization package
 
 - [ ] Remove the JS-based serializer.
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
-
-### 5. Rethink the category concept
-
-Maybe we should remove it and sort the index topologically. Then on the web app filters view we have a flat list of definitions sorted topologically.
-
-### 2. What to do with something named twice with different names?
-
-When a definition has more than one synonym/alias, all of those should be displayed in the UI and be searchable.
-
-- [ ] Introduce synonyms/aliases (in definit package)
-- [ ] item, element
-- [ ] hashmap
-- [ ] matrix, grid (need a logic handling definitions named with multiple names? grid is the same as matrix, with exchangeable usage)
-
-### 3. New definitions
-
-- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
-- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
 
 ## DONE
 
@@ -136,3 +142,12 @@ Proper fix (in the `definit` library):
 - [x] Levenshtein distance
 - [x] 1D DP
 - [x] Multidimensional DP
+
+## ABANDONED
+
+### 3. [FEATURE] New definitions
+
+- [ ] unix-style file system (does it belong here? It seems more related to file systems and OS concepts)
+- [ ] simplified canonical path (does it belong here? It seems more related to file systems and OS concepts)
+
+Abandoned because those will wait until a whole new module is created.
