@@ -3,12 +3,13 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.bound import BOUND
+from definit_db.data.field.mathematics.definitions.fundamental.set import SET
 
 
 class _Boundary(Definition):
     def _get_content(self) -> str:
         return f"""
-A {BOUND.key.get_reference()} that marks an edge or endpoint of a range, region, or set of allowed values.
+A {BOUND.key.get_reference()} that marks an endpoint of a range, region, or {SET.key.get_reference()} of allowed values.
 Boundaries delimit where a range begins and ends, separating values inside it from those outside it.
 
 ---

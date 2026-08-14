@@ -2,11 +2,9 @@ from definit.definition.definition import Definition
 from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
-from definit_db.data.field.mathematics.definitions.computation.computation import COMPUTATION
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.index import INDEX
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
-from definit_db.data.field.mathematics.definitions.fundamental.square_root import SQUARE_ROOT
 
 
 class _Table(Definition):
@@ -20,11 +18,8 @@ Tables are used to organize values for quick reference.
 
 ---
 
-A multiplication table arranges products into rows and columns: the entry at row 3, column 4 holds the value 12,
-so one can look up 3 × 4 by finding that position instead of {COMPUTATION.key.get_reference("recomputing")} it. 
-A one-dimensional table of {SQUARE_ROOT.key.get_reference("square roots")} might store 
-(√1, √2, √3, √4) = (1, 1.41, 1.73, 2), letting each value be retrieved by its {INDEX.key.get_reference(phrase="index")} 
-without recalculating it.
+A one-dimensional table of city populations might store
+(3, 1, 8) for cities A, B, and C, letting each value be retrieved by its {INDEX.key.get_reference(phrase="index")}.
 """
 
 

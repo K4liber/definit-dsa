@@ -3,6 +3,8 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.algorithm.fundamental.optimization import OPTIMIZATION
+from definit_db.data.field.mathematics.definitions.fundamental.set import SET
+from definit_db.data.field.mathematics.definitions.fundamental.window import WINDOW
 from definit_db.data.field.mathematics.definitions.problem.constraint import CONSTRAINT
 from definit_db.data.field.mathematics.definitions.problem.problem import PROBLEM
 
@@ -11,10 +13,10 @@ class _DeliveryRouteProblem(Definition):
     def _get_content(self) -> str:
         return f"""
 An {OPTIMIZATION.key.get_reference()} {PROBLEM.key.get_reference()} in which one or more vehicles must deliver goods
-from a depot to a set of locations, and the goal is to choose routes that satisfy the
-{CONSTRAINT.key.get_reference("constraints")} of the task (such as vehicle capacity, delivery time windows,
-or the requirement that each location is visited exactly once) while keeping a cost such as the total
-distance traveled as low as possible.
+from a depot to a {SET.key.get_reference()} of locations, and the goal is to choose routes that satisfy the
+{CONSTRAINT.key.get_reference("constraints")} of the task (such as vehicle capacity, delivery time 
+{WINDOW.key.get_reference("windows")}, or the requirement that each location is visited exactly once) 
+while keeping a cost such as the total distance traveled as low as possible.
 
 ---
 

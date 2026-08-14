@@ -14,12 +14,14 @@ class _Determinism(Definition):
         return f"""
 Determinism is the property of a {FUNCTION.key.get_reference()} or process whereby its output is fully 
 determined by its {INPUT_DATA.key.get_reference("input")}: given the same input, it always produces the same 
-result, with no variation between calls.
+result by following the same sequence of steps, with no randomness, arbitrary choice, or variation between 
+calls.
 
 ---
 
-The function f(x) = x + 1 has determinism: every call with the input 3 returns 4. A function that returns the 
-current time lacks determinism, because the same input (no input at all) yields a different result on each call.
+The function f(x) = x + 1 has determinism: every call with the input 3 returns 4. A function g(x) that returns
+x plus a random number lacks determinism: calling g(3) might return 4 on one call and 7 on the next, because the
+output depends on more than just the input.
 """
 
 

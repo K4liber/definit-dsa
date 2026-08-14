@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.plane import PLANE
 from definit_db.data.field.mathematics.definitions.fundamental.transformation import TRANSFORMATION
 
 
@@ -10,7 +11,7 @@ class _Axis(Definition):
     def _get_content(self) -> str:
         return f"""
 An axis is a reference line about which a geometric or coordinate space is organized. Positions may be measured
-along an axis (as coordinates are along the x-axis and y-axis of a plane), and
+along an axis (as coordinates are along the x-axis and y-axis of a {PLANE.key.get_reference()}), and
 {TRANSFORMATION.key.get_reference(phrase="transformations")} may be defined with respect to an axis (as a
 reflection mirrors points across it). An axis is itself an
 {OBJECT.key.get_reference(phrase="object")} of the space.

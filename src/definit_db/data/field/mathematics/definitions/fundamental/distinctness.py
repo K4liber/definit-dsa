@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.collection import COLLECTION
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.fundamental.object import OBJECT
+from definit_db.data.field.mathematics.definitions.fundamental.relation import RELATION
 from definit_db.data.field.mathematics.definitions.fundamental.uniqueness import UNIQUENESS
 
 
@@ -14,7 +15,7 @@ class _Distinctness(Definition):
 Distinctness is the property that no two {OBJECT.key.get_reference("objects")} in a given
 {COLLECTION.key.get_reference(phrase="collection")} are equal to one another: each object occurs at most once.
 Whereas {UNIQUENESS.key.get_reference(phrase="uniqueness")} concerns a single object satisfying a condition,
-distinctness is a pairwise relation between the members of a group.
+distinctness is a pairwise {RELATION.key.get_reference()} between the members of a group.
 
 ---
 

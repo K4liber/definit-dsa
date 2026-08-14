@@ -22,7 +22,7 @@ architectures and is commonly used to represent a single {CHARACTER.key.get_refe
 
 A single byte can store 256 distinct values (2^8), ranging from 00000000 to 11111111 in 
 {BINARY_REPRESENTATION.key.get_reference(phrase="binary")}. For example, the byte 01000001 represents the decimal 
-value 65, which corresponds to the character `A` in ASCII.
+value 65.
 """
 
 

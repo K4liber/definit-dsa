@@ -102,6 +102,14 @@
       "level": 4
     },
     {
+      "id": "mathematics/relation",
+      "title": "relation",
+      "category": "mathematics/fundamental/relation",
+      "content": "# relation\n\n\nA relation (also called relationship) describes a connection or association between elements of a \ncollection or set.\n\n---\n\n\"is less than\" is a relation. Applying it to the collection \n(1, 2, 3) it connects 1 to 2, 1 to 3, and 2 to 3.\n\n",
+      "deps": [],
+      "level": 0
+    },
+    {
       "id": "mathematics/collection",
       "title": "collection",
       "category": "mathematics/fundamental/collection",
@@ -161,6 +169,247 @@
         "mathematics/object"
       ],
       "level": 1
+    },
+    {
+      "id": "mathematics/edge",
+      "title": "edge",
+      "category": "mathematics/graph/edge",
+      "content": "# edge\n\n\nAn edge is a directed or undirected connection between two [nodes](mathematics/node). \nIt defines a [relationship](mathematics/relation) or link between them.\n\n---\n\nSuppose two cities \"A\" and \"B\" are each a [node](mathematics/node). A road that runs \ndirectly between them is an edge: it links the two [nodes](mathematics/node) and expresses \nthe [relationship](mathematics/relation) \"is connected by road to\".\n\n",
+      "deps": [
+        "mathematics/node",
+        "mathematics/relation"
+      ],
+      "level": 2
+    },
+    {
+      "id": "mathematics/graph",
+      "title": "graph",
+      "category": "mathematics/graph/graph",
+      "content": "# graph\n\n\nGraphs are used to model pairwise [relations](mathematics/relation) between \n[objects](mathematics/object). A graph is made up of [nodes](mathematics/node) and \n[edges](mathematics/edge). Graphs can represent various types of relationships in different fields.\n\n---\n\nConsider three cities \"A\", \"B\", and \"C\", each a [node](mathematics/node). The roads \n\"A-B\" and \"B-C\" are [edges](mathematics/edge). Together these nodes and edges form a \ngraph that captures the [relation](mathematics/relation) \"is connected by road to\" \nacross all three cities.\n\n",
+      "deps": [
+        "mathematics/relation",
+        "mathematics/object",
+        "mathematics/node",
+        "mathematics/edge"
+      ],
+      "level": 3
+    },
+    {
+      "id": "mathematics/adjacency_list",
+      "title": "adjacency_list",
+      "category": "mathematics/graph/adjacency_list",
+      "content": "# adjacency_list\n\n\nAn adjacency list is a way of representing a [graph](mathematics/graph) as a \n[collection](mathematics/collection) of [lists](mathematics/sequence). Each list corresponds to a \n[node](mathematics/node) in the graph and contains a list of its adjacent nodes.\n\n---\n\nTake a [graph](mathematics/graph) of three cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Its adjacency list stores, for each \n[node](mathematics/node), the nodes it directly connects to:\n\nA: [B]\n\nB: [A, C]\n\nC: [B]\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/collection",
+        "mathematics/sequence",
+        "mathematics/node",
+        "mathematics/edge"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/directed_graph",
+      "title": "directed_graph",
+      "category": "mathematics/graph/directed_graph",
+      "content": "# directed_graph\n\n\nA directed graph is a [graph](mathematics/graph) in which the \n[edges](mathematics/edge) have a direction. Each edge connects an ordered pair of \n[nodes](mathematics/node), meaning that the connection goes from one node to another in a \nspecific direction.\n\n---\n\nPicture cities \"A\" and \"B\" as [nodes](mathematics/node) joined by a one-way street. \nThe [edge](mathematics/edge) \"A→B\" lets you travel from \"A\" to \"B\" but not back. \nA [graph](mathematics/graph) built from such one-way connections is a directed graph.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/edge",
+        "mathematics/node"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/in_degree",
+      "title": "in_degree",
+      "category": "mathematics/graph/in_degree",
+      "content": "# in-degree\n\n\nThe in-degree of a [node](mathematics/node) in a \n[directed graph](mathematics/directed_graph) is the number of \n[edges](mathematics/edge) that point into that node.\n\n---\n\nTake a [directed graph](mathematics/directed_graph) with the \n[edges](mathematics/edge) \"A→C\" and \"B→C\". Two edges point into \n[node](mathematics/node) \"C\", so its in-degree is 2. No edge points into \"A\", \nso the in-degree of \"A\" is 0.\n\n",
+      "deps": [
+        "mathematics/node",
+        "mathematics/directed_graph",
+        "mathematics/edge"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/path",
+      "title": "path",
+      "category": "mathematics/graph/path",
+      "content": "# path\n\n\nA path in a [graph](mathematics/graph) is a [sequence](mathematics/sequence) of \n[edges](mathematics/edge) which joins a sequence of [nodes](mathematics/node) \nwhich, by most definitions, are all distinct (and since the nodes are distinct, so are the edges).\n\n---\n\nIn a [graph](mathematics/graph) of cities \"A\", \"B\", \"C\", and \"D\" with the \n[edges](mathematics/edge) \"A-B\", \"B-C\", and \"C-D\", the \n[sequence](mathematics/sequence) A-B, B-C, C-D is a path: it walks through the distinct \n[nodes](mathematics/node) A, B, C, D without repeating any of them.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/sequence",
+        "mathematics/edge",
+        "mathematics/node"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/cycle",
+      "title": "cycle",
+      "category": "mathematics/graph/cycle",
+      "content": "# cycle\n\n\nA cycle in a [graph](mathematics/graph) is a non-empty [path](mathematics/path) \nin which only the first and last [nodes](mathematics/node) are equal.\n\n---\n\nIn a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" connected as A-B, B-C, and C-A, \nthe [path](mathematics/path) A-B-C-A starts and ends at the same \n[node](mathematics/node) \"A\" while visiting the others once. That closed walk is a cycle.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/path",
+        "mathematics/node"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/acyclic_graph",
+      "title": "acyclic_graph",
+      "category": "mathematics/graph/acyclic_graph",
+      "content": "# acyclic graph\n\n\nA [graph](mathematics/graph) that contains no \n[cycles](mathematics/cycle).\n\n---\n\nConsider cities \"A\", \"B\", and \"C\" connected as A-B and B-C, with no link back from \"C\" to \"A\". \nStarting at any [node](mathematics/node) you can never return to it, so this \n[graph](mathematics/graph) has no [cycle](mathematics/cycle) and is acyclic.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/cycle",
+        "mathematics/node"
+      ],
+      "level": 6
+    },
+    {
+      "id": "mathematics/directed_acyclic_graph",
+      "title": "directed_acyclic_graph",
+      "category": "mathematics/graph/directed_acyclic_graph",
+      "content": "# directed_acyclic_graph\n\n\nA directed acyclic graph is a [directed graph](mathematics/directed_graph) with no \n[cycles](mathematics/cycle).\n\n---\n\nPicture three tasks \"A\", \"B\", and \"C\" as [nodes](mathematics/node), where the \n[edges](mathematics/edge) \"A→B\" and \"B→C\" mean \"must finish before\". Following the arrows \nyou can never return to a task you already completed, so this \n[directed graph](mathematics/directed_graph) has no [cycle](mathematics/cycle) \nand is a directed acyclic graph.\n\n",
+      "deps": [
+        "mathematics/directed_graph",
+        "mathematics/cycle",
+        "mathematics/node",
+        "mathematics/edge"
+      ],
+      "level": 6
+    },
+    {
+      "id": "mathematics/graph_distance",
+      "title": "graph_distance",
+      "category": "mathematics/graph/graph_distance",
+      "content": "# graph_distance\n\n\nA measure of the shortest [path](mathematics/path) between two \n[nodes](mathematics/node) in a [graph](mathematics/graph).\n\n---\n\nTake a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\", \"B-C\", and \"A-C\". The [path](mathematics/path) \nA-B-C uses two edges, but the direct edge \"A-C\" uses one. The graph distance between \n[nodes](mathematics/node) \"A\" and \"C\" is therefore 1, the length of the shortest path.\n\n",
+      "deps": [
+        "mathematics/path",
+        "mathematics/node",
+        "mathematics/graph",
+        "mathematics/edge"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/connected_graph",
+      "title": "connected_graph",
+      "category": "mathematics/graph/connected_graph",
+      "content": "# connected graph\n\n\nA [graph](mathematics/graph) in which every pair of \n[nodes](mathematics/node) is connected by a [path](mathematics/path).\n\n---\n\nConsider a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Every pair of \n[nodes](mathematics/node) can be reached from any other: \"A\" reaches \"C\" through the \n[path](mathematics/path) A-B-C. Because no city is isolated, this is a connected graph.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/node",
+        "mathematics/path",
+        "mathematics/edge"
+      ],
+      "level": 5
+    },
+    {
+      "id": "mathematics/tree",
+      "title": "tree",
+      "category": "mathematics/tree/tree",
+      "content": "# tree\n\n\nA tree is a [directed acyclic graph](mathematics/directed_acyclic_graph) with the restriction that \na child can only have one parent. Each [node](mathematics/node) can have zero or more child nodes.\n\n---\n\nArrange family members as [nodes](mathematics/node): \"A\" is the parent of \"B\" and \"C\", \nand \"B\" is the parent of \"D\". Every member has exactly one parent (except \"A\", which has none), and no \narrows ever loop back, so this [directed acyclic graph](mathematics/directed_acyclic_graph) \nis a tree.\n\n",
+      "deps": [
+        "mathematics/directed_acyclic_graph",
+        "mathematics/node"
+      ],
+      "level": 7
+    },
+    {
+      "id": "mathematics/n_ary_tree",
+      "title": "n_ary_tree",
+      "category": "mathematics/tree/n_ary_tree",
+      "content": "# n-ary tree\n\n\nA [tree](mathematics/tree) in which each \n[node](mathematics/node) has no more than n children.\n\n---\n\nFix n = 3 and build a [tree](mathematics/tree) where no [node](mathematics/node) \nmay have more than three children: \"A\" has children \"B\", \"C\", \"D\", and \"B\" has a single child \"E\". \nEvery node stays within the limit of three children, so this is an n-ary tree with n = 3.\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node"
+      ],
+      "level": 8
+    },
+    {
+      "id": "mathematics/binary_tree",
+      "title": "binary_tree",
+      "category": "mathematics/tree/binary_tree",
+      "content": "# binary_tree\n\n\nA [tree](mathematics/tree) in which each [node](mathematics/node) has at most \ntwo children, referred to as the left child and the right child.\n\nA binary tree is a special case of an [n-ary tree](mathematics/n_ary_tree) where n = 2.\n\n---\n\nArrange [nodes](mathematics/node) as a [tree](mathematics/tree): \"A\" has \nleft child \"B\" and right child \"C\", and \"B\" has a left child \"D\" but no right child. Since no node holds \nmore than two children, this is a binary tree.\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/n_ary_tree"
+      ],
+      "level": 9
+    },
+    {
+      "id": "mathematics/binary_search_tree",
+      "title": "binary_search_tree",
+      "category": "mathematics/tree/binary_search_tree",
+      "content": "# binary_search_tree\n\n\nA [binary_tree](mathematics/binary_tree) in which the [nodes](mathematics/node) are \nkept in sorted order: for every node, every key in its left subtree is smaller than the node's key, and every key \nin its right subtree is larger. This ordering lets a search for a key proceed by repeatedly moving left or right.\n\n---\n\nConsider a binary search tree whose root [node](mathematics/node) holds the key \"8\", with left child \n\"3\" and right child \"10\". To find \"3\", start at the root: since \"3\" < \"8\", move to the left child and find it. Every \nkey in the left subtree (\"3\") is smaller than \"8\", and every key in the right subtree (\"10\") is larger, satisfying \nthe ordering property.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/binary_tree_traversal",
+      "title": "binary_tree_traversal",
+      "category": "mathematics/tree/binary_tree_traversal",
+      "content": "# binary tree traversal\n\n\nA procedure for visiting each [node](mathematics/node) in a\n[binary tree](mathematics/binary_tree) in a specified order.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\". A binary tree traversal that visits a node before its children would report the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\", touching each node exactly once.\n\n",
+      "deps": [
+        "mathematics/node",
+        "mathematics/binary_tree"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/complete_binary_tree",
+      "title": "complete_binary_tree",
+      "category": "mathematics/tree/complete_binary_tree",
+      "content": "# complete_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) in which every level, except possibly the last, is \ncompletely filled, and all [nodes](mathematics/node) are as far left as possible. In a complete \nbinary tree, all nodes at the last level are filled from left to right. It can have between 1 and 2^h nodes at \nthe last level h.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", \"B\" has children \"D\" and \"E\", and \"C\" has a single child \"F\". The first two \nlevels are completely filled, and the last level is filled left to right (\"D\", \"E\", \"F\") with no gap before \n\"F\". Because every [node](mathematics/node) sits as far left as possible, this is a complete \nbinary tree.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/leaf",
+      "title": "leaf",
+      "category": "mathematics/tree/leaf",
+      "content": "# leaf\n\n\nA [node](mathematics/node) in a [tree](mathematics/tree) that does not have \nany children (descendants).\n\n---\n\nPicture a small [tree](mathematics/tree) where [node](mathematics/node) \"A\" \nbranches to \"B\" and \"C\". Since \"B\" and \"C\" have no children of their own, each of them is a leaf, while \"A\" \nis not.\n\n",
+      "deps": [
+        "mathematics/node",
+        "mathematics/tree"
+      ],
+      "level": 8
+    },
+    {
+      "id": "mathematics/full_binary_tree",
+      "title": "full_binary_tree",
+      "category": "mathematics/tree/full_binary_tree",
+      "content": "# full binary tree\n\n\nA [binary tree](mathematics/binary_tree) \nin which every [node](mathematics/node) has either 0 or 2 children.\n\nEquivalently, every internal (non-[leaf](mathematics/leaf)) node has exactly two children.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\", and \"B\" has children \"D\" and \"E\". The [nodes](mathematics/node) \"C\", \"D\", \nand \"E\" have no children, so they are [leaves](mathematics/leaf). Every node holds either 0 or 2 \nchildren, so this is a full binary tree.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/leaf"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/perfect_binary_tree",
+      "title": "perfect_binary_tree",
+      "category": "mathematics/tree/perfect_binary_tree",
+      "content": "# perfect binary tree\n\n\nA [binary tree](mathematics/binary_tree) in which every internal \n(non-[leaf](mathematics/leaf)) [node](mathematics/node) has exactly two children \nand all [leaf](mathematics/leaf) nodes are at the same depth.\n\nEquivalently, a perfect binary tree is [full](mathematics/full_binary_tree) \nand all leaves are at the same depth.\n\n---\n\nTake [node](mathematics/node) \"A\" with children \"B\" and \"C\", where \"B\" has children \"D\" and \"E\" \nand \"C\" has children \"F\" and \"G\". Every internal node has exactly two children, and the \n[leaves](mathematics/leaf) \"D\", \"E\", \"F\", \"G\" all sit at the same depth, so this \n[full](mathematics/full_binary_tree) binary tree is also perfect.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/leaf",
+        "mathematics/node",
+        "mathematics/full_binary_tree"
+      ],
+      "level": 11
     },
     {
       "id": "mathematics/merge",
@@ -284,6 +533,59 @@
       "level": 4
     },
     {
+      "id": "mathematics/weighted_graph",
+      "title": "weighted_graph",
+      "category": "mathematics/graph/weighted_graph",
+      "content": "# weighted graph\n\n\nA [graph](mathematics/graph) in which each [edge](mathematics/edge) \nhas an associated [numerical value](mathematics/number) called a weight. The weight typically \nrepresents a cost, distance, capacity, or other [metric](mathematics/metric) attached to the connection between the two \n[nodes](mathematics/node). Weighted graphs are useful whenever the \n[relationship](mathematics/relation) between nodes has varying significance or cost.\n\n---\n\nTake a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Label \"A-B\" with the \n[number](mathematics/number) 5 and \"B-C\" with 3 to represent the kilometers between the \n[nodes](mathematics/node). These weights make it a weighted graph, so traveling A-B-C costs \n5 + 3 = 8 kilometers.\n\n",
+      "deps": [
+        "mathematics/graph",
+        "mathematics/edge",
+        "mathematics/number",
+        "mathematics/metric",
+        "mathematics/node",
+        "mathematics/relation"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/minimum_spanning_tree",
+      "title": "minimum_spanning_tree",
+      "category": "mathematics/tree/minimum_spanning_tree",
+      "content": "# minimum_spanning_tree\n\n\nA [tree](mathematics/tree) that connects all the [nodes](mathematics/node) in a \n[weighted graph](mathematics/weighted_graph) with the minimum possible total \n[edge](mathematics/edge) weight. In other words, it is a subset of the edges of the \n[graph](mathematics/graph) that forms a tree and includes every node, such \nthat the sum of the weights of the edges is minimized.\n\n---\n\nConsider a [weighted graph](mathematics/weighted_graph) of three cities \"A\", \"B\", and \"C\", where \nthe road A-B has weight 1, B-C has weight 2, and A-C has weight 4. The minimum spanning \n[tree](mathematics/tree) connects all three cities using roads A-B and B-C (total weight 3), since \nincluding A-C instead would give a larger total [edge](mathematics/edge) weight.\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/weighted_graph",
+        "mathematics/edge",
+        "mathematics/graph"
+      ],
+      "level": 8
+    },
+    {
+      "id": "mathematics/reduction",
+      "title": "reduction",
+      "category": "mathematics/problem/reduction",
+      "content": "# reduction\n\n\nReduction is a process of transforming a \n[problem](mathematics/problem) into a simpler or smaller instance of the same or a \n[related](mathematics/relation) problem, often to make it easier to find a \n[solution](mathematics/solution).\n\n---\n\nIn the problem of finding the oldest person among a group of people, \nthe reduction is to comparing the ages of two people.\n\n",
+      "deps": [
+        "mathematics/problem",
+        "mathematics/relation",
+        "mathematics/solution"
+      ],
+      "level": 4
+    },
+    {
+      "id": "mathematics/base_case",
+      "title": "base_case",
+      "category": "mathematics/problem/base_case",
+      "content": "# base_case\n\n\nThe simplest instance of the [problem](mathematics/problem), which can be \n[solved](mathematics/solution) directly without further [reduction](mathematics/reduction).\n\n---\n\nIn the [problem](mathematics/problem) of finding the oldest person among a group of people, the base case is\na reduction to comparing the ages of two people.\n\n",
+      "deps": [
+        "mathematics/problem",
+        "mathematics/solution",
+        "mathematics/reduction"
+      ],
+      "level": 5
+    },
+    {
       "id": "mathematics/square",
       "title": "square",
       "category": "mathematics/fundamental/square",
@@ -337,6 +639,18 @@
       "level": 3
     },
     {
+      "id": "mathematics/table",
+      "title": "table",
+      "category": "mathematics/fundamental/table",
+      "content": "# table\n\n\nA table is a structured [collection](mathematics/collection) of [items](mathematics/item)\narranged so that each entry can be looked up by its position or by an associated \n[index](mathematics/index). A one-dimensional table stores entries in a single row or column, \nwhile a two-dimensional table arranges them into rows and columns. \nTables are used to organize values for quick reference.\n\n---\n\nA one-dimensional table of city populations might store\n(3, 1, 8) for cities A, B, and C, letting each value be retrieved by its [index](mathematics/index).\n\n",
+      "deps": [
+        "mathematics/collection",
+        "mathematics/item",
+        "mathematics/index"
+      ],
+      "level": 4
+    },
+    {
       "id": "mathematics/perfect_square",
       "title": "perfect_square",
       "category": "mathematics/fundamental/perfect_square",
@@ -357,6 +671,17 @@
         "mathematics/integer"
       ],
       "level": 3
+    },
+    {
+      "id": "mathematics/mathematical_induction",
+      "title": "mathematical_induction",
+      "category": "mathematics/problem/mathematical_induction",
+      "content": "# mathematical induction\n\n\nA proof technique used to show that a statement holds for all \n[natural numbers](mathematics/natural_number).\n\nIt typically consists of proving a [base case](mathematics/base_case) and then proving that if the \nstatement holds for one value, it also holds for the next.\n\n---\n\nProving that 1 + 2 + ... + n = n(n+1)/2 for all [natural numbers](mathematics/natural_number) n:\n\n[Base case](mathematics/base_case) (n = 1): the sum is 1, and 1(1+1)/2 = 1. ✓\n\nInductive step: assume the formula holds for some n = k, i.e. 1 + 2 + ... + k = k(k+1)/2.\nThen 1 + 2 + ... + k + (k+1) = k(k+1)/2 + (k+1) = (k+1)(k+2)/2. ✓\n\nSince both steps hold, the formula is true for all natural numbers.\n\n",
+      "deps": [
+        "mathematics/natural_number",
+        "mathematics/base_case"
+      ],
+      "level": 6
     },
     {
       "id": "mathematics/divisor",
@@ -448,14 +773,183 @@
       "level": 1
     },
     {
+      "id": "mathematics/root",
+      "title": "root",
+      "category": "mathematics/tree/root",
+      "content": "# root\n\n\nThe root of a [tree](mathematics/tree) is the [unique](mathematics/uniqueness) \n[node](mathematics/node) with no parent.\n\n---\n\nIn a [tree](mathematics/tree) where [node](mathematics/node) \"A\" is the parent of \"B\" \nand \"C\", and \"B\" is the parent of \"D\", only \"A\" has no parent. \"A\" is therefore the root of the tree.\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/uniqueness",
+        "mathematics/node"
+      ],
+      "level": 8
+    },
+    {
+      "id": "mathematics/ancestor",
+      "title": "ancestor",
+      "category": "mathematics/tree/ancestor",
+      "content": "# ancestor\n\n\nIn a [tree](mathematics/tree), an ancestor of a [node](mathematics/node) is any \nnode on the [path](mathematics/path) from the [root](mathematics/root) to that node. \nDepending on convention, the node itself may also be considered its own ancestor.\n\n---\n\nIn a [tree](mathematics/tree) where [root](mathematics/root) \"A\" is the parent of \"B\", \nand \"B\" is the parent of \"D\", the ancestors of [node](mathematics/node) \"D\" are \"B\" and \"A\", since \nboth lie on the [path](mathematics/path) from the root to \"D\".\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/path",
+        "mathematics/root"
+      ],
+      "level": 9
+    },
+    {
+      "id": "mathematics/descendant",
+      "title": "descendant",
+      "category": "mathematics/tree/descendant",
+      "content": "# descendant\n\n\nIn a [tree](mathematics/tree), a descendant of a [node](mathematics/node) is any \nnode that can be reached by repeatedly moving from that node to one of its children. Equivalently, a node is a \ndescendant of another node exactly when that other node is its [ancestor](mathematics/ancestor).\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the descendants of [node](mathematics/node) \"A\" are \"B\", \"C\", \"D\", and \"E\", while the \ndescendants of \"B\" are \"D\" and \"E\".\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/ancestor"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/lowest_common_ancestor",
+      "title": "lowest_common_ancestor",
+      "category": "mathematics/tree/lowest_common_ancestor",
+      "content": "# lowest common ancestor\n\n\nThe lowest common ancestor of two [nodes](mathematics/node) in a \n[tree](mathematics/tree) is the deepest node that is an \n[ancestor](mathematics/ancestor) of both nodes. Equivalently, it is the common ancestor farthest \nfrom the root and closest to the two given nodes.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the lowest common [ancestor](mathematics/ancestor) of [nodes](mathematics/node) \n\"D\" and \"E\" is \"B\", while the lowest common ancestor of \"D\" and \"C\" is \"A\".\n\n",
+      "deps": [
+        "mathematics/node",
+        "mathematics/tree",
+        "mathematics/ancestor"
+      ],
+      "level": 10
+    },
+    {
+      "id": "mathematics/subtree",
+      "title": "subtree",
+      "category": "mathematics/tree/subtree",
+      "content": "# subtree\n\n\nA [tree](mathematics/tree) formed from a [node](mathematics/node) and all its \n[descendants](mathematics/descendant) in a tree.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the subtree rooted at [node](mathematics/node) \"B\" consists of \"B\" together with its \n[descendants](mathematics/descendant) \"D\" and \"E\".\n\n",
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/descendant"
+      ],
+      "level": 11
+    },
+    {
+      "id": "mathematics/balanced_binary_tree",
+      "title": "balanced_binary_tree",
+      "category": "mathematics/tree/balanced_binary_tree",
+      "content": "# balanced_binary_tree\n\n\nA type of [binary tree](mathematics/binary_tree) in which the depth of the two \n[subtrees](mathematics/subtree) of every [node](mathematics/node) never differs \nby more than one. This means that for any given node in the tree, the height of its left and right subtrees can \ndiffer by at most one.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", and \"B\" has a single child \"D\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D) has height 1 and the right subtree (C) has height 0; \nthe difference is 1, so the tree is a balanced binary tree.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/subtree",
+        "mathematics/node"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/height_balanced_binary_search_tree",
+      "title": "height_balanced_binary_search_tree",
+      "category": "mathematics/tree/height_balanced_binary_search_tree",
+      "content": "# height-balanced_binary_search_tree\n\n\nA height-balanced binary search tree is a [binary search tree](mathematics/binary_search_tree) \nthat satisfies the [balanced binary tree](mathematics/balanced_binary_tree) property: for every \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one.\n\n---\n\nConsider a [binary search tree](mathematics/binary_search_tree) whose root \n[node](mathematics/node) holds \"8\", with left child \"3\" and right child \"10\". The search ordering \nholds (\"3\" < \"8\" < \"10\"), and the left and right [subtrees](mathematics/subtree) of every node \ndiffer in height by at most one (here both have height 0), so the \n[balance](mathematics/balanced_binary_tree) property is met. It is therefore a height-balanced \nbinary search tree.\n\n",
+      "deps": [
+        "mathematics/binary_search_tree",
+        "mathematics/balanced_binary_tree",
+        "mathematics/node",
+        "mathematics/subtree"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/in_order_traversal",
+      "title": "in_order_traversal",
+      "category": "mathematics/tree/in_order_traversal",
+      "content": "# in-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left \n[subtree](mathematics/subtree) is visited first, then the node itself, and then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". An in-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the node itself (\"A\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"A\", \"C\".\n\n",
+      "deps": [
+        "mathematics/binary_tree_traversal",
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/subtree"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/pre_order_traversal",
+      "title": "pre_order_traversal",
+      "category": "mathematics/tree/pre_order_traversal",
+      "content": "# pre-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), \nthe node itself is visited first, then the left [subtree](mathematics/subtree), \nand then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A pre-order traversal visits the node itself first (\"A\"), then the left \n[subtree](mathematics/subtree) (\"B\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\".\n\n",
+      "deps": [
+        "mathematics/binary_tree_traversal",
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/subtree"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/post_order_traversal",
+      "title": "post_order_traversal",
+      "category": "mathematics/tree/post_order_traversal",
+      "content": "# post-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left\n[subtree](mathematics/subtree) is visited first, then the right subtree, and then the node itself.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A post-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the right subtree (\"C\"), and finally the node itself (\"A\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"C\", \"A\".\n\n",
+      "deps": [
+        "mathematics/binary_tree_traversal",
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/subtree"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/tree_rotation",
+      "title": "tree_rotation",
+      "category": "mathematics/tree/tree_rotation",
+      "content": "# tree_rotation\n\n\nAn [operation](mathematics/operation) on a [binary tree](mathematics/binary_tree) \nthat changes the structure without disturbing the order of the [nodes](mathematics/node). A rotation \nmoves a [node](mathematics/node) down and brings its child up, preserving the in-order \n[sequence](mathematics/sequence) of [elements](mathematics/item).\n\n---\n\nConsider a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas a right child \"B\". A left rotation at \"A\" makes \"B\" the new parent: \"B\" takes the place of \"A\", and \"A\" becomes \nthe left child of \"B\". The in-order traversal remains unchanged — any [subtree](mathematics/subtree) \nthat was between \"A\" and \"B\" stays between them after the rotation.\n\n",
+      "deps": [
+        "mathematics/operation",
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/sequence",
+        "mathematics/item",
+        "mathematics/subtree"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/avl_tree",
+      "title": "avl_tree",
+      "category": "mathematics/tree/avl_tree",
+      "content": "# avl_tree\n\n\nA [height-balanced binary search tree](mathematics/height_balanced_binary_search_tree) that keeps \nitself balanced automatically: after every insertion or deletion it restores the invariant that, for any \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one. When a node violates this invariant, the \ntree performs a [rotation](mathematics/tree_rotation) to restore balance. It was the first such \nself-balancing structure to be invented, named after its inventors \nGeorgy Adelson-Velsky and Evgenii Landis.\n\n---\n\nInsert the [elements](mathematics/item) \"1\", \"2\", and \"3\" in order into an AVL tree. After \ninserting \"3\", the [node](mathematics/node) \"1\" would have a left \n[subtree](mathematics/subtree) of height 0 and a right subtree of height 2 - a difference of \ntwo, violating the balance rule. The tree rebalances by performing a \n[rotation](mathematics/tree_rotation) so that \"2\" becomes the \n[root](mathematics/root) with \"1\" and \"3\" as its children, restoring the height difference to at \nmost one.\n\n",
+      "deps": [
+        "mathematics/height_balanced_binary_search_tree",
+        "mathematics/node",
+        "mathematics/subtree",
+        "mathematics/tree_rotation",
+        "mathematics/item",
+        "mathematics/root"
+      ],
+      "level": 14
+    },
+    {
+      "id": "mathematics/unbalanced_binary_tree",
+      "title": "unbalanced_binary_tree",
+      "category": "mathematics/tree/unbalanced_binary_tree",
+      "content": "# unbalanced_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) that does not satisfy the \n[balanced binary tree](mathematics/balanced_binary_tree) property. In an unbalanced binary tree, \nthe depth of the two [subtrees](mathematics/subtree) of at least one \n[node](mathematics/node) differs by more than one.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas left child \"B\" and right child \"C\". On the left side the [nodes](mathematics/node) form a \nchain: \"B\" has left child \"D\", and \"D\" has left child \"E\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D, E) has height 2 while the right subtree (C) has height 0 — \na difference of two — so the [balance](mathematics/balanced_binary_tree) property fails and the \ntree is unbalanced.\n\n",
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/balanced_binary_tree",
+        "mathematics/subtree",
+        "mathematics/node"
+      ],
+      "level": 13
+    },
+    {
       "id": "mathematics/distinctness",
       "title": "distinctness",
       "category": "mathematics/fundamental/distinctness",
-      "content": "# distinctness\n\n\nDistinctness is the property that no two [objects](mathematics/object) in a given\n[collection](mathematics/collection) are equal to one another: each object occurs at most once.\nWhereas [uniqueness](mathematics/uniqueness) concerns a single object satisfying a condition,\ndistinctness is a pairwise relation between the members of a group.\n\n---\n\nIn the collection {\"a\", \"b\", \"c\"}, all three [elements](mathematics/item) are distinct: no two\nare equal. In the collection {\"a\", \"a\", \"b\"}, the two copies of \"a\" are not distinct from each other, so the\ncollection does not have distinct elements. The strings \"abc\" and \"ABC\" are distinct (they differ), while \"abc\"\nand \"abc\" are not (they are equal).\n\n",
+      "content": "# distinctness\n\n\nDistinctness is the property that no two [objects](mathematics/object) in a given\n[collection](mathematics/collection) are equal to one another: each object occurs at most once.\nWhereas [uniqueness](mathematics/uniqueness) concerns a single object satisfying a condition,\ndistinctness is a pairwise [relation](mathematics/relation) between the members of a group.\n\n---\n\nIn the collection {\"a\", \"b\", \"c\"}, all three [elements](mathematics/item) are distinct: no two\nare equal. In the collection {\"a\", \"a\", \"b\"}, the two copies of \"a\" are not distinct from each other, so the\ncollection does not have distinct elements. The strings \"abc\" and \"ABC\" are distinct (they differ), while \"abc\"\nand \"abc\" are not (they are equal).\n\n",
       "deps": [
         "mathematics/object",
         "mathematics/collection",
         "mathematics/uniqueness",
+        "mathematics/relation",
         "mathematics/item"
       ],
       "level": 3
@@ -471,16 +965,6 @@
         "mathematics/object"
       ],
       "level": 4
-    },
-    {
-      "id": "mathematics/relation",
-      "title": "relation",
-      "category": "mathematics/fundamental/relation",
-      "content": "# relation\n\n\nA relation (also called relationship) describes a connection or association between elements of a \n[set(s)](mathematics/set).\n\n---\n\n\"is less than\" is a relation. Applying it to the [set](mathematics/set) \n(1, 2, 3) it connects 1 to 2, 1 to 3, and 2 to 3.\n\n",
-      "deps": [
-        "mathematics/set"
-      ],
-      "level": 5
     },
     {
       "id": "mathematics/intersection",
@@ -538,7 +1022,7 @@
         "mathematics/item",
         "mathematics/object"
       ],
-      "level": 6
+      "level": 5
     },
     {
       "id": "mathematics/recurrence",
@@ -551,7 +1035,7 @@
         "mathematics/fibonacci",
         "mathematics/number"
       ],
-      "level": 7
+      "level": 6
     },
     {
       "id": "mathematics/hash_function",
@@ -564,7 +1048,7 @@
         "mathematics/hash",
         "mathematics/integer"
       ],
-      "level": 7
+      "level": 6
     },
     {
       "id": "mathematics/polynomial",
@@ -577,7 +1061,7 @@
         "mathematics/integer",
         "mathematics/function"
       ],
-      "level": 7
+      "level": 6
     },
     {
       "id": "mathematics/multiset",
@@ -602,17 +1086,18 @@
         "mathematics/expression",
         "mathematics/number"
       ],
-      "level": 7
+      "level": 6
     },
     {
       "id": "mathematics/boundary",
       "title": "boundary",
       "category": "mathematics/fundamental/boundary",
-      "content": "# boundary\n\n\nA [bound](mathematics/bound) that marks an edge or endpoint of a range, region, or set of allowed values.\nBoundaries delimit where a range begins and ends, separating values inside it from those outside it.\n\n---\n\nFor the integer range 0 through 4, the boundaries are 0 and 4: any value inside this range is valid, while a\nvalue outside it (such as -1 or 5) crosses a boundary and lies out of range.\n\n",
+      "content": "# boundary\n\n\nA [bound](mathematics/bound) that marks an endpoint of a range, region, or [set](mathematics/set) of allowed values.\nBoundaries delimit where a range begins and ends, separating values inside it from those outside it.\n\n---\n\nFor the integer range 0 through 4, the boundaries are 0 and 4: any value inside this range is valid, while a\nvalue outside it (such as -1 or 5) crosses a boundary and lies out of range.\n\n",
       "deps": [
-        "mathematics/bound"
+        "mathematics/bound",
+        "mathematics/set"
       ],
-      "level": 8
+      "level": 7
     },
     {
       "id": "mathematics/upper_bound",
@@ -625,45 +1110,7 @@
         "mathematics/expression",
         "mathematics/number"
       ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/edge",
-      "title": "edge",
-      "category": "mathematics/graph/edge",
-      "content": "# edge\n\n\nAn edge is a directed or undirected connection between two [nodes](mathematics/node). \nIt defines a [relationship](mathematics/relation) or link between them.\n\n---\n\nSuppose two cities \"A\" and \"B\" are each a [node](mathematics/node). A road that runs \ndirectly between them is an edge: it links the two [nodes](mathematics/node) and expresses \nthe [relationship](mathematics/relation) \"is connected by road to\".\n\n",
-      "deps": [
-        "mathematics/node",
-        "mathematics/relation"
-      ],
-      "level": 6
-    },
-    {
-      "id": "mathematics/graph",
-      "title": "graph",
-      "category": "mathematics/graph/graph",
-      "content": "# graph\n\n\nGraphs are used to model pairwise [relations](mathematics/relation) between \n[objects](mathematics/object). A graph is made up of [nodes](mathematics/node) and \n[edges](mathematics/edge). Graphs can represent various types of relationships in different fields.\n\n---\n\nConsider three cities \"A\", \"B\", and \"C\", each a [node](mathematics/node). The roads \n\"A-B\" and \"B-C\" are [edges](mathematics/edge). Together these nodes and edges form a \ngraph that captures the [relation](mathematics/relation) \"is connected by road to\" \nacross all three cities.\n\n",
-      "deps": [
-        "mathematics/relation",
-        "mathematics/object",
-        "mathematics/node",
-        "mathematics/edge"
-      ],
       "level": 7
-    },
-    {
-      "id": "mathematics/adjacency_list",
-      "title": "adjacency_list",
-      "category": "mathematics/graph/adjacency_list",
-      "content": "# adjacency_list\n\n\nAn adjacency list is a way of representing a [graph](mathematics/graph) as a \n[collection](mathematics/collection) of [lists](mathematics/sequence). Each list corresponds to a \n[node](mathematics/node) in the graph and contains a list of its adjacent nodes.\n\n---\n\nTake a [graph](mathematics/graph) of three cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Its adjacency list stores, for each \n[node](mathematics/node), the nodes it directly connects to:\n\nA: [B]\n\nB: [A, C]\n\nC: [B]\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/collection",
-        "mathematics/sequence",
-        "mathematics/node",
-        "mathematics/edge"
-      ],
-      "level": 8
     },
     {
       "id": "mathematics/bipartite_graph",
@@ -676,94 +1123,7 @@
         "mathematics/set",
         "mathematics/edge"
       ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/directed_graph",
-      "title": "directed_graph",
-      "category": "mathematics/graph/directed_graph",
-      "content": "# directed_graph\n\n\nA directed graph is a [graph](mathematics/graph) in which the \n[edges](mathematics/edge) have a direction. Each edge connects an ordered pair of \n[nodes](mathematics/node), meaning that the connection goes from one node to another in a \nspecific direction.\n\n---\n\nPicture cities \"A\" and \"B\" as [nodes](mathematics/node) joined by a one-way street. \nThe [edge](mathematics/edge) \"A→B\" lets you travel from \"A\" to \"B\" but not back. \nA [graph](mathematics/graph) built from such one-way connections is a directed graph.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/edge",
-        "mathematics/node"
-      ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/in_degree",
-      "title": "in_degree",
-      "category": "mathematics/graph/in_degree",
-      "content": "# in-degree\n\n\nThe in-degree of a [node](mathematics/node) in a \n[directed graph](mathematics/directed_graph) is the number of \n[edges](mathematics/edge) that point into that node.\n\n---\n\nTake a [directed graph](mathematics/directed_graph) with the \n[edges](mathematics/edge) \"A→C\" and \"B→C\". Two edges point into \n[node](mathematics/node) \"C\", so its in-degree is 2. No edge points into \"A\", \nso the in-degree of \"A\" is 0.\n\n",
-      "deps": [
-        "mathematics/node",
-        "mathematics/directed_graph",
-        "mathematics/edge"
-      ],
-      "level": 9
-    },
-    {
-      "id": "mathematics/path",
-      "title": "path",
-      "category": "mathematics/graph/path",
-      "content": "# path\n\n\nA path in a [graph](mathematics/graph) is a [sequence](mathematics/sequence) of \n[edges](mathematics/edge) which joins a sequence of [nodes](mathematics/node) \nwhich, by most definitions, are all distinct (and since the nodes are distinct, so are the edges).\n\n---\n\nIn a [graph](mathematics/graph) of cities \"A\", \"B\", \"C\", and \"D\" with the \n[edges](mathematics/edge) \"A-B\", \"B-C\", and \"C-D\", the \n[sequence](mathematics/sequence) A-B, B-C, C-D is a path: it walks through the distinct \n[nodes](mathematics/node) A, B, C, D without repeating any of them.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/sequence",
-        "mathematics/edge",
-        "mathematics/node"
-      ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/cycle",
-      "title": "cycle",
-      "category": "mathematics/graph/cycle",
-      "content": "# cycle\n\n\nA cycle in a [graph](mathematics/graph) is a non-empty [path](mathematics/path) \nin which only the first and last [nodes](mathematics/node) are equal.\n\n---\n\nIn a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" connected as A-B, B-C, and C-A, \nthe [path](mathematics/path) A-B-C-A starts and ends at the same \n[node](mathematics/node) \"A\" while visiting the others once. That closed walk is a cycle.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/path",
-        "mathematics/node"
-      ],
-      "level": 9
-    },
-    {
-      "id": "mathematics/acyclic_graph",
-      "title": "acyclic_graph",
-      "category": "mathematics/graph/acyclic_graph",
-      "content": "# acyclic graph\n\n\nA [graph](mathematics/graph) that contains no \n[cycles](mathematics/cycle).\n\n---\n\nConsider cities \"A\", \"B\", and \"C\" connected as A-B and B-C, with no link back from \"C\" to \"A\". \nStarting at any [node](mathematics/node) you can never return to it, so this \n[graph](mathematics/graph) has no [cycle](mathematics/cycle) and is acyclic.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/cycle",
-        "mathematics/node"
-      ],
-      "level": 10
-    },
-    {
-      "id": "mathematics/directed_acyclic_graph",
-      "title": "directed_acyclic_graph",
-      "category": "mathematics/graph/directed_acyclic_graph",
-      "content": "# directed_acyclic_graph\n\n\nA directed acyclic graph is a [directed graph](mathematics/directed_graph) with no \n[cycles](mathematics/cycle).\n\n---\n\nPicture three tasks \"A\", \"B\", and \"C\" as [nodes](mathematics/node), where the \n[edges](mathematics/edge) \"A→B\" and \"B→C\" mean \"must finish before\". Following the arrows \nyou can never return to a task you already completed, so this \n[directed graph](mathematics/directed_graph) has no [cycle](mathematics/cycle) \nand is a directed acyclic graph.\n\n",
-      "deps": [
-        "mathematics/directed_graph",
-        "mathematics/cycle",
-        "mathematics/node",
-        "mathematics/edge"
-      ],
-      "level": 10
-    },
-    {
-      "id": "mathematics/graph_distance",
-      "title": "graph_distance",
-      "category": "mathematics/graph/graph_distance",
-      "content": "# graph_distance\n\n\nA measure of the shortest [path](mathematics/path) between two \n[nodes](mathematics/node) in a [graph](mathematics/graph).\n\n---\n\nTake a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\", \"B-C\", and \"A-C\". The [path](mathematics/path) \nA-B-C uses two edges, but the direct edge \"A-C\" uses one. The graph distance between \n[nodes](mathematics/node) \"A\" and \"C\" is therefore 1, the length of the shortest path.\n\n",
-      "deps": [
-        "mathematics/path",
-        "mathematics/node",
-        "mathematics/graph",
-        "mathematics/edge"
-      ],
-      "level": 9
+      "level": 5
     },
     {
       "id": "mathematics/subgraph",
@@ -775,331 +1135,6 @@
         "mathematics/subset",
         "mathematics/node",
         "mathematics/edge"
-      ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/connected_graph",
-      "title": "connected_graph",
-      "category": "mathematics/graph/connected_graph",
-      "content": "# connected graph\n\n\nA [graph](mathematics/graph) in which every pair of \n[nodes](mathematics/node) is connected by a [path](mathematics/path).\n\n---\n\nConsider a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Every pair of \n[nodes](mathematics/node) can be reached from any other: \"A\" reaches \"C\" through the \n[path](mathematics/path) A-B-C. Because no city is isolated, this is a connected graph.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/node",
-        "mathematics/path",
-        "mathematics/edge"
-      ],
-      "level": 9
-    },
-    {
-      "id": "mathematics/weighted_graph",
-      "title": "weighted_graph",
-      "category": "mathematics/graph/weighted_graph",
-      "content": "# weighted graph\n\n\nA [graph](mathematics/graph) in which each [edge](mathematics/edge) \nhas an associated [numerical value](mathematics/number) called a weight. The weight typically \nrepresents a cost, distance, capacity, or other [metric](mathematics/metric) attached to the connection between the two \n[nodes](mathematics/node). Weighted graphs are useful whenever the \n[relationship](mathematics/relation) between nodes has varying significance or cost.\n\n---\n\nTake a [graph](mathematics/graph) of cities \"A\", \"B\", and \"C\" with the \n[edges](mathematics/edge) \"A-B\" and \"B-C\". Label \"A-B\" with the \n[number](mathematics/number) 5 and \"B-C\" with 3 to represent the kilometers between the \n[nodes](mathematics/node). These weights make it a weighted graph, so traveling A-B-C costs \n5 + 3 = 8 kilometers.\n\n",
-      "deps": [
-        "mathematics/graph",
-        "mathematics/edge",
-        "mathematics/number",
-        "mathematics/metric",
-        "mathematics/node",
-        "mathematics/relation"
-      ],
-      "level": 8
-    },
-    {
-      "id": "mathematics/tree",
-      "title": "tree",
-      "category": "mathematics/tree/tree",
-      "content": "# tree\n\n\nA tree is a [directed acyclic graph](mathematics/directed_acyclic_graph) with the restriction that \na child can only have one parent. Each [node](mathematics/node) can have zero or more child nodes.\n\n---\n\nArrange family members as [nodes](mathematics/node): \"A\" is the parent of \"B\" and \"C\", \nand \"B\" is the parent of \"D\". Every member has exactly one parent (except \"A\", which has none), and no \narrows ever loop back, so this [directed acyclic graph](mathematics/directed_acyclic_graph) \nis a tree.\n\n",
-      "deps": [
-        "mathematics/directed_acyclic_graph",
-        "mathematics/node"
-      ],
-      "level": 11
-    },
-    {
-      "id": "mathematics/n_ary_tree",
-      "title": "n_ary_tree",
-      "category": "mathematics/tree/n_ary_tree",
-      "content": "# n-ary tree\n\n\nA [tree](mathematics/tree) in which each \n[node](mathematics/node) has no more than n children.\n\n---\n\nFix n = 3 and build a [tree](mathematics/tree) where no [node](mathematics/node) \nmay have more than three children: \"A\" has children \"B\", \"C\", \"D\", and \"B\" has a single child \"E\". \nEvery node stays within the limit of three children, so this is an n-ary tree with n = 3.\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/binary_tree",
-      "title": "binary_tree",
-      "category": "mathematics/tree/binary_tree",
-      "content": "# binary_tree\n\n\nA [tree](mathematics/tree) in which each [node](mathematics/node) has at most \ntwo children, referred to as the left child and the right child.\n\nA binary tree is a special case of an [n-ary tree](mathematics/n_ary_tree) where n = 2.\n\n---\n\nArrange [nodes](mathematics/node) as a [tree](mathematics/tree): \"A\" has \nleft child \"B\" and right child \"C\", and \"B\" has a left child \"D\" but no right child. Since no node holds \nmore than two children, this is a binary tree.\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/n_ary_tree"
-      ],
-      "level": 13
-    },
-    {
-      "id": "mathematics/binary_search_tree",
-      "title": "binary_search_tree",
-      "category": "mathematics/tree/binary_search_tree",
-      "content": "# binary_search_tree\n\n\nA [binary_tree](mathematics/binary_tree) in which the [nodes](mathematics/node) are \nkept in sorted order: for every node, every key in its left subtree is smaller than the node's key, and every key \nin its right subtree is larger. This ordering lets a search for a key proceed by repeatedly moving left or right.\n\n---\n\nConsider a binary search tree whose root [node](mathematics/node) holds the key \"8\", with left child \n\"3\" and right child \"10\". To find \"3\", start at the root: since \"3\" < \"8\", move to the left child and find it. Every \nkey in the left subtree (\"3\") is smaller than \"8\", and every key in the right subtree (\"10\") is larger, satisfying \nthe ordering property.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/binary_tree_traversal",
-      "title": "binary_tree_traversal",
-      "category": "mathematics/tree/binary_tree_traversal",
-      "content": "# binary tree traversal\n\n\nA procedure for visiting each [node](mathematics/node) in a\n[binary tree](mathematics/binary_tree) in a specified order.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\". A binary tree traversal that visits a node before its children would report the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\", touching each node exactly once.\n\n",
-      "deps": [
-        "mathematics/node",
-        "mathematics/binary_tree"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/complete_binary_tree",
-      "title": "complete_binary_tree",
-      "category": "mathematics/tree/complete_binary_tree",
-      "content": "# complete_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) in which every level, except possibly the last, is \ncompletely filled, and all [nodes](mathematics/node) are as far left as possible. In a complete \nbinary tree, all nodes at the last level are filled from left to right. It can have between 1 and 2^h nodes at \nthe last level h.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", \"B\" has children \"D\" and \"E\", and \"C\" has a single child \"F\". The first two \nlevels are completely filled, and the last level is filled left to right (\"D\", \"E\", \"F\") with no gap before \n\"F\". Because every [node](mathematics/node) sits as far left as possible, this is a complete \nbinary tree.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/leaf",
-      "title": "leaf",
-      "category": "mathematics/tree/leaf",
-      "content": "# leaf\n\n\nA [node](mathematics/node) in a [tree](mathematics/tree) that does not have \nany children (descendants).\n\n---\n\nPicture a small [tree](mathematics/tree) where [node](mathematics/node) \"A\" \nbranches to \"B\" and \"C\". Since \"B\" and \"C\" have no children of their own, each of them is a leaf, while \"A\" \nis not.\n\n",
-      "deps": [
-        "mathematics/node",
-        "mathematics/tree"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/full_binary_tree",
-      "title": "full_binary_tree",
-      "category": "mathematics/tree/full_binary_tree",
-      "content": "# full binary tree\n\n\nA [binary tree](mathematics/binary_tree) \nin which every [node](mathematics/node) has either 0 or 2 children.\n\nEquivalently, every internal (non-[leaf](mathematics/leaf)) node has exactly two children.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\", and \"B\" has children \"D\" and \"E\". The [nodes](mathematics/node) \"C\", \"D\", \nand \"E\" have no children, so they are [leaves](mathematics/leaf). Every node holds either 0 or 2 \nchildren, so this is a full binary tree.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/leaf"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/perfect_binary_tree",
-      "title": "perfect_binary_tree",
-      "category": "mathematics/tree/perfect_binary_tree",
-      "content": "# perfect binary tree\n\n\nA [binary tree](mathematics/binary_tree) in which every internal \n(non-[leaf](mathematics/leaf)) [node](mathematics/node) has exactly two children \nand all [leaf](mathematics/leaf) nodes are at the same depth.\n\nEquivalently, a perfect binary tree is [full](mathematics/full_binary_tree) \nand all leaves are at the same depth.\n\n---\n\nTake [node](mathematics/node) \"A\" with children \"B\" and \"C\", where \"B\" has children \"D\" and \"E\" \nand \"C\" has children \"F\" and \"G\". Every internal node has exactly two children, and the \n[leaves](mathematics/leaf) \"D\", \"E\", \"F\", \"G\" all sit at the same depth, so this \n[full](mathematics/full_binary_tree) binary tree is also perfect.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/leaf",
-        "mathematics/node",
-        "mathematics/full_binary_tree"
-      ],
-      "level": 15
-    },
-    {
-      "id": "mathematics/root",
-      "title": "root",
-      "category": "mathematics/tree/root",
-      "content": "# root\n\n\nThe root of a [tree](mathematics/tree) is the [unique](mathematics/uniqueness) \n[node](mathematics/node) with no parent.\n\n---\n\nIn a [tree](mathematics/tree) where [node](mathematics/node) \"A\" is the parent of \"B\" \nand \"C\", and \"B\" is the parent of \"D\", only \"A\" has no parent. \"A\" is therefore the root of the tree.\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/uniqueness",
-        "mathematics/node"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/ancestor",
-      "title": "ancestor",
-      "category": "mathematics/tree/ancestor",
-      "content": "# ancestor\n\n\nIn a [tree](mathematics/tree), an ancestor of a [node](mathematics/node) is any \nnode on the [path](mathematics/path) from the [root](mathematics/root) to that node. \nDepending on convention, the node itself may also be considered its own ancestor.\n\n---\n\nIn a [tree](mathematics/tree) where [root](mathematics/root) \"A\" is the parent of \"B\", \nand \"B\" is the parent of \"D\", the ancestors of [node](mathematics/node) \"D\" are \"B\" and \"A\", since \nboth lie on the [path](mathematics/path) from the root to \"D\".\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/path",
-        "mathematics/root"
-      ],
-      "level": 13
-    },
-    {
-      "id": "mathematics/descendant",
-      "title": "descendant",
-      "category": "mathematics/tree/descendant",
-      "content": "# descendant\n\n\nIn a [tree](mathematics/tree), a descendant of a [node](mathematics/node) is any \nnode that can be reached by repeatedly moving from that node to one of its children. Equivalently, a node is a \ndescendant of another node exactly when that other node is its [ancestor](mathematics/ancestor).\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the descendants of [node](mathematics/node) \"A\" are \"B\", \"C\", \"D\", and \"E\", while the \ndescendants of \"B\" are \"D\" and \"E\".\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/ancestor"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/lowest_common_ancestor",
-      "title": "lowest_common_ancestor",
-      "category": "mathematics/tree/lowest_common_ancestor",
-      "content": "# lowest common ancestor\n\n\nThe lowest common ancestor of two [nodes](mathematics/node) in a \n[tree](mathematics/tree) is the deepest node that is an \n[ancestor](mathematics/ancestor) of both nodes. Equivalently, it is the common ancestor farthest \nfrom the root and closest to the two given nodes.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the lowest common [ancestor](mathematics/ancestor) of [nodes](mathematics/node) \n\"D\" and \"E\" is \"B\", while the lowest common ancestor of \"D\" and \"C\" is \"A\".\n\n",
-      "deps": [
-        "mathematics/node",
-        "mathematics/tree",
-        "mathematics/ancestor"
-      ],
-      "level": 14
-    },
-    {
-      "id": "mathematics/minimum_spanning_tree",
-      "title": "minimum_spanning_tree",
-      "category": "mathematics/tree/minimum_spanning_tree",
-      "content": "# minimum_spanning_tree\n\n\nA [tree](mathematics/tree) that connects all the [nodes](mathematics/node) in a \n[weighted graph](mathematics/weighted_graph) with the minimum possible total \n[edge](mathematics/edge) weight. In other words, it is a subset of the edges of the \n[graph](mathematics/graph) that forms a tree and includes every node, such \nthat the sum of the weights of the edges is minimized.\n\n---\n\nConsider a [weighted graph](mathematics/weighted_graph) of three cities \"A\", \"B\", and \"C\", where \nthe road A-B has weight 1, B-C has weight 2, and A-C has weight 4. The minimum spanning \n[tree](mathematics/tree) connects all three cities using roads A-B and B-C (total weight 3), since \nincluding A-C instead would give a larger total [edge](mathematics/edge) weight.\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/weighted_graph",
-        "mathematics/edge",
-        "mathematics/graph"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/subtree",
-      "title": "subtree",
-      "category": "mathematics/tree/subtree",
-      "content": "# subtree\n\n\nA [tree](mathematics/tree) formed from a [node](mathematics/node) and all its \n[descendants](mathematics/descendant) in a tree.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the subtree rooted at [node](mathematics/node) \"B\" consists of \"B\" together with its \n[descendants](mathematics/descendant) \"D\" and \"E\".\n\n",
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/descendant"
-      ],
-      "level": 15
-    },
-    {
-      "id": "mathematics/balanced_binary_tree",
-      "title": "balanced_binary_tree",
-      "category": "mathematics/tree/balanced_binary_tree",
-      "content": "# balanced_binary_tree\n\n\nA type of [binary tree](mathematics/binary_tree) in which the depth of the two \n[subtrees](mathematics/subtree) of every [node](mathematics/node) never differs \nby more than one. This means that for any given node in the tree, the height of its left and right subtrees can \ndiffer by at most one.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", and \"B\" has a single child \"D\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D) has height 1 and the right subtree (C) has height 0; \nthe difference is 1, so the tree is a balanced binary tree.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/subtree",
-        "mathematics/node"
-      ],
-      "level": 16
-    },
-    {
-      "id": "mathematics/height_balanced_binary_search_tree",
-      "title": "height_balanced_binary_search_tree",
-      "category": "mathematics/tree/height_balanced_binary_search_tree",
-      "content": "# height-balanced_binary_search_tree\n\n\nA height-balanced binary search tree is a [binary search tree](mathematics/binary_search_tree) \nthat satisfies the [balanced binary tree](mathematics/balanced_binary_tree) property: for every \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one.\n\n---\n\nConsider a [binary search tree](mathematics/binary_search_tree) whose root \n[node](mathematics/node) holds \"8\", with left child \"3\" and right child \"10\". The search ordering \nholds (\"3\" < \"8\" < \"10\"), and the left and right [subtrees](mathematics/subtree) of every node \ndiffer in height by at most one (here both have height 0), so the \n[balance](mathematics/balanced_binary_tree) property is met. It is therefore a height-balanced \nbinary search tree.\n\n",
-      "deps": [
-        "mathematics/binary_search_tree",
-        "mathematics/balanced_binary_tree",
-        "mathematics/node",
-        "mathematics/subtree"
-      ],
-      "level": 17
-    },
-    {
-      "id": "mathematics/in_order_traversal",
-      "title": "in_order_traversal",
-      "category": "mathematics/tree/in_order_traversal",
-      "content": "# in-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left \n[subtree](mathematics/subtree) is visited first, then the node itself, and then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". An in-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the node itself (\"A\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"A\", \"C\".\n\n",
-      "deps": [
-        "mathematics/binary_tree_traversal",
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/subtree"
-      ],
-      "level": 16
-    },
-    {
-      "id": "mathematics/pre_order_traversal",
-      "title": "pre_order_traversal",
-      "category": "mathematics/tree/pre_order_traversal",
-      "content": "# pre-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), \nthe node itself is visited first, then the left [subtree](mathematics/subtree), \nand then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A pre-order traversal visits the node itself first (\"A\"), then the left \n[subtree](mathematics/subtree) (\"B\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\".\n\n",
-      "deps": [
-        "mathematics/binary_tree_traversal",
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/subtree"
-      ],
-      "level": 16
-    },
-    {
-      "id": "mathematics/post_order_traversal",
-      "title": "post_order_traversal",
-      "category": "mathematics/tree/post_order_traversal",
-      "content": "# post-order traversal\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left\n[subtree](mathematics/subtree) is visited first, then the right subtree, and then the node itself.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A post-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the right subtree (\"C\"), and finally the node itself (\"A\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"C\", \"A\".\n\n",
-      "deps": [
-        "mathematics/binary_tree_traversal",
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/subtree"
-      ],
-      "level": 16
-    },
-    {
-      "id": "mathematics/tree_rotation",
-      "title": "tree_rotation",
-      "category": "mathematics/tree/tree_rotation",
-      "content": "# tree_rotation\n\n\nAn [operation](mathematics/operation) on a [binary tree](mathematics/binary_tree) \nthat changes the structure without disturbing the order of the [nodes](mathematics/node). A rotation \nmoves a [node](mathematics/node) down and brings its child up, preserving the in-order \n[sequence](mathematics/sequence) of [elements](mathematics/item).\n\n---\n\nConsider a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas a right child \"B\". A left rotation at \"A\" makes \"B\" the new parent: \"B\" takes the place of \"A\", and \"A\" becomes \nthe left child of \"B\". The in-order traversal remains unchanged — any [subtree](mathematics/subtree) \nthat was between \"A\" and \"B\" stays between them after the rotation.\n\n",
-      "deps": [
-        "mathematics/operation",
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/sequence",
-        "mathematics/item",
-        "mathematics/subtree"
-      ],
-      "level": 16
-    },
-    {
-      "id": "mathematics/avl_tree",
-      "title": "avl_tree",
-      "category": "mathematics/tree/avl_tree",
-      "content": "# avl_tree\n\n\nA [height-balanced binary search tree](mathematics/height_balanced_binary_search_tree) that keeps \nitself balanced automatically: after every insertion or deletion it restores the invariant that, for any \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one. When a node violates this invariant, the \ntree performs a [rotation](mathematics/tree_rotation) to restore balance. It was the first such \nself-balancing structure to be invented, named after its inventors \nGeorgy Adelson-Velsky and Evgenii Landis.\n\n---\n\nInsert the [elements](mathematics/item) \"1\", \"2\", and \"3\" in order into an AVL tree. After \ninserting \"3\", the [node](mathematics/node) \"1\" would have a left \n[subtree](mathematics/subtree) of height 0 and a right subtree of height 2 - a difference of \ntwo, violating the balance rule. The tree rebalances by performing a \n[rotation](mathematics/tree_rotation) so that \"2\" becomes the \n[root](mathematics/root) with \"1\" and \"3\" as its children, restoring the height difference to at \nmost one.\n\n",
-      "deps": [
-        "mathematics/height_balanced_binary_search_tree",
-        "mathematics/node",
-        "mathematics/subtree",
-        "mathematics/tree_rotation",
-        "mathematics/item",
-        "mathematics/root"
-      ],
-      "level": 18
-    },
-    {
-      "id": "mathematics/unbalanced_binary_tree",
-      "title": "unbalanced_binary_tree",
-      "category": "mathematics/tree/unbalanced_binary_tree",
-      "content": "# unbalanced_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) that does not satisfy the \n[balanced binary tree](mathematics/balanced_binary_tree) property. In an unbalanced binary tree, \nthe depth of the two [subtrees](mathematics/subtree) of at least one \n[node](mathematics/node) differs by more than one.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas left child \"B\" and right child \"C\". On the left side the [nodes](mathematics/node) form a \nchain: \"B\" has left child \"D\", and \"D\" has left child \"E\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D, E) has height 2 while the right subtree (C) has height 0 — \na difference of two — so the [balance](mathematics/balanced_binary_tree) property fails and the \ntree is unbalanced.\n\n",
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/balanced_binary_tree",
-        "mathematics/subtree",
-        "mathematics/node"
-      ],
-      "level": 17
-    },
-    {
-      "id": "mathematics/reduction",
-      "title": "reduction",
-      "category": "mathematics/problem/reduction",
-      "content": "# reduction\n\n\nReduction is a process of transforming a \n[problem](mathematics/problem) into a simpler or smaller instance of the same or a \n[related](mathematics/relation) problem, often to make it easier to find a \n[solution](mathematics/solution).\n\n---\n\nIn the problem of finding the oldest person among a group of people, \nthe reduction is to comparing the ages of two people.\n\n",
-      "deps": [
-        "mathematics/problem",
-        "mathematics/relation",
-        "mathematics/solution"
       ],
       "level": 6
     },
@@ -1117,29 +1152,6 @@
       "level": 5
     },
     {
-      "id": "mathematics/base_case",
-      "title": "base_case",
-      "category": "mathematics/problem/base_case",
-      "content": "# base_case\n\n\nThe simplest instance of the [problem](mathematics/problem), which can be \n[solved](mathematics/solution) directly without further [reduction](mathematics/reduction).\n\n---\n\nIn the [problem](mathematics/problem) of finding the oldest person among a group of people, the base case is\na reduction to comparing the ages of two people.\n\n",
-      "deps": [
-        "mathematics/problem",
-        "mathematics/solution",
-        "mathematics/reduction"
-      ],
-      "level": 7
-    },
-    {
-      "id": "mathematics/mathematical_induction",
-      "title": "mathematical_induction",
-      "category": "mathematics/problem/mathematical_induction",
-      "content": "# mathematical induction\n\n\nA proof technique used to show that a statement holds for all \n[natural numbers](mathematics/natural_number).\n\nIt typically consists of proving a [base case](mathematics/base_case) and then proving that if the \nstatement holds for one value, it also holds for the next.\n\n---\n\nProving that 1 + 2 + ... + n = n(n+1)/2 for all [natural numbers](mathematics/natural_number) n:\n\n[Base case](mathematics/base_case) (n = 1): the sum is 1, and 1(1+1)/2 = 1. ✓\n\nInductive step: assume the formula holds for some n = k, i.e. 1 + 2 + ... + k = k(k+1)/2.\nThen 1 + 2 + ... + k + (k+1) = k(k+1)/2 + (k+1) = (k+1)(k+2)/2. ✓\n\nSince both steps hold, the formula is true for all natural numbers.\n\n",
-      "deps": [
-        "mathematics/natural_number",
-        "mathematics/base_case"
-      ],
-      "level": 8
-    },
-    {
       "id": "mathematics/recursion",
       "title": "recursion",
       "category": "mathematics/problem/recursion",
@@ -1150,7 +1162,7 @@
         "mathematics/function",
         "mathematics/base_case"
       ],
-      "level": 8
+      "level": 6
     },
     {
       "id": "mathematics/probability",
@@ -1313,20 +1325,6 @@
       "level": 10
     },
     {
-      "id": "mathematics/table",
-      "title": "table",
-      "category": "mathematics/fundamental/table",
-      "content": "# table\n\n\nA table is a structured [collection](mathematics/collection) of [items](mathematics/item)\narranged so that each entry can be looked up by its position or by an associated \n[index](mathematics/index). A one-dimensional table stores entries in a single row or column, \nwhile a two-dimensional table arranges them into rows and columns. \nTables are used to organize values for quick reference.\n\n---\n\nA multiplication table arranges products into rows and columns: the entry at row 3, column 4 holds the value 12,\nso one can look up 3 × 4 by finding that position instead of [recomputing](mathematics/computation) it. \nA one-dimensional table of [square roots](mathematics/square_root) might store \n(√1, √2, √3, √4) = (1, 1.41, 1.73, 2), letting each value be retrieved by its [index](mathematics/index) \nwithout recalculating it.\n\n",
-      "deps": [
-        "mathematics/collection",
-        "mathematics/item",
-        "mathematics/index",
-        "mathematics/computation",
-        "mathematics/square_root"
-      ],
-      "level": 11
-    },
-    {
       "id": "mathematics/lookup_table",
       "title": "lookup_table",
       "category": "mathematics/fundamental/lookup_table",
@@ -1334,17 +1332,6 @@
       "deps": [
         "mathematics/table",
         "mathematics/computation"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/deterministic",
-      "title": "deterministic",
-      "category": "mathematics/computation/deterministic",
-      "content": "# deterministic\n\n\nA property of a [computation](mathematics/computation) or system: given the same\n[input](mathematics/input_data), a deterministic process always produces the same output by following the\nsame sequence of steps, with no randomness or arbitrary choice involved.\n\n---\n\nA function that adds 2 to its [input](mathematics/input_data) is deterministic: feeding in 3 always\nyields 5, never 4 or 6. Running it a thousand times on the same value never changes the result, because every\nstep of the [computation](mathematics/computation) is fixed in advance.\n\n",
-      "deps": [
-        "mathematics/computation",
-        "mathematics/input_data"
       ],
       "level": 11
     },
@@ -1359,19 +1346,6 @@
         "mathematics/sequence"
       ],
       "level": 11
-    },
-    {
-      "id": "mathematics/deterministic_turing_machine",
-      "title": "deterministic_turing_machine",
-      "category": "mathematics/computation/deterministic_turing_machine",
-      "content": "# deterministic Turing machine\n\n\nA [deterministic](mathematics/deterministic) [Turing machine](mathematics/turing_machine) where each\n[instruction](mathematics/instruction) [uniquely](mathematics/uniqueness) determines the next state and action. \nGiven the current state and the symbol being read, there is exactly one possible transition, making the machine's \nbehavior completely predictable and reproducible.\n\n---\n\nA [Turing machine](mathematics/turing_machine) that always writes \"1\" and moves right when it reads \"0\",\nand always halts when it reads \"1\", is deterministic: for every (state, symbol) pair there is exactly one\n[instruction](mathematics/instruction) to follow, so it behaves the same way every time it runs on the same input.\n\n",
-      "deps": [
-        "mathematics/deterministic",
-        "mathematics/turing_machine",
-        "mathematics/instruction",
-        "mathematics/uniqueness"
-      ],
-      "level": 12
     },
     {
       "id": "mathematics/complement_problem",
@@ -1565,7 +1539,7 @@
       "id": "mathematics/determinism",
       "title": "determinism",
       "category": "mathematics/fundamental/determinism",
-      "content": "# determinism\n\n\nDeterminism is the property of a [function](mathematics/function) or process whereby its output is fully \ndetermined by its [input](mathematics/input_data): given the same input, it always produces the same \nresult, with no variation between calls.\n\n---\n\nThe function f(x) = x + 1 has determinism: every call with the input 3 returns 4. A function that returns the \ncurrent time lacks determinism, because the same input (no input at all) yields a different result on each call.\n\n",
+      "content": "# determinism\n\n\nDeterminism is the property of a [function](mathematics/function) or process whereby its output is fully \ndetermined by its [input](mathematics/input_data): given the same input, it always produces the same \nresult by following the same sequence of steps, with no randomness, arbitrary choice, or variation between \ncalls.\n\n---\n\nThe function f(x) = x + 1 has determinism: every call with the input 3 returns 4. A function g(x) that returns\nx plus a random number lacks determinism: calling g(3) might return 4 on one call and 7 on the next, because the\noutput depends on more than just the input.\n\n",
       "deps": [
         "mathematics/function",
         "mathematics/input_data"
@@ -1586,6 +1560,19 @@
       "level": 11
     },
     {
+      "id": "mathematics/deterministic_turing_machine",
+      "title": "deterministic_turing_machine",
+      "category": "mathematics/computation/deterministic_turing_machine",
+      "content": "# deterministic Turing machine\n\n\nA [deterministic](mathematics/determinism) [Turing machine](mathematics/turing_machine) where each\n[instruction](mathematics/instruction) [uniquely](mathematics/uniqueness) determines the next state and action. \nGiven the current state and the symbol being read, there is exactly one possible transition, making the machine's \nbehavior completely predictable and reproducible.\n\n---\n\nA [Turing machine](mathematics/turing_machine) that always writes \"1\" and moves right when it reads \"0\",\nand always halts when it reads \"1\", is deterministic: for every (state, symbol) pair there is exactly one\n[instruction](mathematics/instruction) to follow, so it behaves the same way every time it runs on the same input.\n\n",
+      "deps": [
+        "mathematics/determinism",
+        "mathematics/turing_machine",
+        "mathematics/instruction",
+        "mathematics/uniqueness"
+      ],
+      "level": 12
+    },
+    {
       "id": "mathematics/bijection",
       "title": "bijection",
       "category": "mathematics/fundamental/bijection",
@@ -1596,7 +1583,7 @@
         "mathematics/item",
         "mathematics/uniqueness"
       ],
-      "level": 7
+      "level": 6
     },
     {
       "id": "mathematics/isomorphism",
@@ -1609,7 +1596,7 @@
         "mathematics/relation",
         "mathematics/operation"
       ],
-      "level": 8
+      "level": 7
     },
     {
       "id": "mathematics/radix",
@@ -1826,7 +1813,7 @@
         "mathematics/bound",
         "mathematics/subset_sum"
       ],
-      "level": 8
+      "level": 7
     },
     {
       "id": "mathematics/optimization",
@@ -1864,18 +1851,6 @@
       "level": 12
     },
     {
-      "id": "mathematics/delivery_route_problem",
-      "title": "delivery_route_problem",
-      "category": "mathematics/problem/delivery_route_problem",
-      "content": "# delivery-route problem\n\n\nAn [optimization](mathematics/optimization) [problem](mathematics/problem) in which one or more vehicles must deliver goods\nfrom a depot to a set of locations, and the goal is to choose routes that satisfy the\n[constraints](mathematics/constraint) of the task (such as vehicle capacity, delivery time windows,\nor the requirement that each location is visited exactly once) while keeping a cost such as the total\ndistance traveled as low as possible.\n\n---\n\nA depot must deliver packages to four locations. Each vehicle can carry at most 10 packages, and each\nlocation must be visited exactly once. Finding an assignment of locations to vehicles and an ordering\nof stops for each vehicle, so that no vehicle exceeds its capacity constraint while the total distance\ntraveled is kept small, is a delivery-route problem.\n\n",
-      "deps": [
-        "mathematics/optimization",
-        "mathematics/problem",
-        "mathematics/constraint"
-      ],
-      "level": 12
-    },
-    {
       "id": "mathematics/backtracking",
       "title": "backtracking",
       "category": "mathematics/algorithm/searching/backtracking",
@@ -1891,19 +1866,6 @@
       "level": 12
     },
     {
-      "id": "mathematics/objective_function",
-      "title": "objective_function",
-      "category": "mathematics/algorithm/fundamental/objective_function",
-      "content": "# objective function\n\n\nA [function](mathematics/function) that represents the goal or objective \nto be [optimized](mathematics/optimization) in a [problem](mathematics/problem). \nThe objective function is either maximized or minimized to find the best solution, and its value determines \nthe quality of any given solution.\n\n---\n\nFor a [delivery_route_problem](mathematics/delivery_route_problem), the total distance traveled is the \nobjective function: it is a [function](mathematics/function) of the chosen route, and \n[optimizing](mathematics/optimization) the route means minimizing this function's value to find the \nshortest route among all valid routes.\n\n",
-      "deps": [
-        "mathematics/function",
-        "mathematics/optimization",
-        "mathematics/problem",
-        "mathematics/delivery_route_problem"
-      ],
-      "level": 13
-    },
-    {
       "id": "mathematics/feasible_solution",
       "title": "feasible_solution",
       "category": "mathematics/problem/feasible_solution",
@@ -1914,23 +1876,7 @@
         "mathematics/constraint",
         "mathematics/optimal_solution"
       ],
-      "level": 9
-    },
-    {
-      "id": "mathematics/mathematical_programming",
-      "title": "mathematical_programming",
-      "category": "mathematics/algorithm/fundamental/mathematical_programming",
-      "content": "# mathematical programming\n\n\nA mathematical approach to finding the \n[optimal solution](mathematics/optimal_solution) to a [problem](mathematics/problem) by \n[optimizing](mathematics/optimization) an [objective_function](mathematics/objective_function) subject to \n[constraints](mathematics/constraint). The goal is to maximize or minimize the objective function while \nensuring the solution is a [feasible_solution](mathematics/feasible_solution).\n\n---\n\nA factory [problem](mathematics/problem) of maximizing profit from producing two products, subject to a limited \n[number](mathematics/number) of labor hours and raw materials as [constraints](mathematics/constraint), \nis a case of mathematical programming: the profit formula is the \n[objective_function](mathematics/objective_function), every production plan that respects the labor and material limits is a \n[feasible_solution](mathematics/feasible_solution), and the plan yielding the highest profit among them is the \n[optimal solution](mathematics/optimal_solution).\n\n",
-      "deps": [
-        "mathematics/optimal_solution",
-        "mathematics/problem",
-        "mathematics/optimization",
-        "mathematics/objective_function",
-        "mathematics/constraint",
-        "mathematics/feasible_solution",
-        "mathematics/number"
-      ],
-      "level": 14
+      "level": 8
     },
     {
       "id": "mathematics/off_by_one",
@@ -2130,7 +2076,7 @@
         "mathematics/finite_set",
         "mathematics/item"
       ],
-      "level": 8
+      "level": 7
     },
     {
       "id": "mathematics/asymptotic_behavior",
@@ -2149,7 +2095,7 @@
       "id": "mathematics/performance",
       "title": "performance",
       "category": "mathematics/algorithm/fundamental/performance",
-      "content": "# performance\n\n\nHow well an [algorithm](mathematics/algorithm) uses resources (such as time and space) to produce its result.\nPerformance is gauged by the [complexity](mathematics/complexity) of the resource usage, either theoretically (as\n[asymptotic growth](mathematics/asymptotic_behavior)) or empirically (as observed behavior on actual\n[data](mathematics/input_data)).\n\n---\n\nTwo [algorithms](mathematics/algorithm) may both solve the same [problem](mathematics/problem), \nyet one inspects every [element](mathematics/item) while the other skips ahead by halves; \nthe second has better performance because its resource usage grows more slowly as the input grows.\n\n",
+      "content": "# performance\n\n\nHow well an [algorithm](mathematics/algorithm) uses resources (such as time and space) to produce its result.\nPerformance is gauged by the [complexity](mathematics/complexity) of the resource usage, either theoretically (as\n[asymptotic growth](mathematics/asymptotic_behavior)) or empirically (as observed behavior on actual\n[input data](mathematics/input_data)).\n\n---\n\nTwo [algorithms](mathematics/algorithm) may both solve the same [problem](mathematics/problem), \nyet one inspects every [element](mathematics/item) while the other skips ahead by halves; \nthe second has better performance because its resource usage grows more slowly as the input grows.\n\n",
       "deps": [
         "mathematics/algorithm",
         "mathematics/complexity",
@@ -2188,7 +2134,7 @@
         "mathematics/real_number",
         "mathematics/boundary"
       ],
-      "level": 9
+      "level": 8
     },
     {
       "id": "mathematics/efficiency",
@@ -2260,11 +2206,12 @@
       "id": "mathematics/complexity_theory",
       "title": "complexity_theory",
       "category": "mathematics/algorithm/fundamental/complexity_theory",
-      "content": "# complexity theory\n\n\nThe branch of study that analyzes the resources (such as time and space) required to \nsolve [problems](mathematics/problem) by [complexity](mathematics/complexity) classes.\nIt groups problems by their intrinsic difficulty and studies [relationships](mathematics/relation) \nbetween those classes, such as which problems are tractable, which are equivalent in hardness, \nand which are harder than others.\n\n---\n\nComplexity theory classifies [problems](mathematics/problem) like \"can this Boolean formula be\nsatisfied?\" according to whether they can be solved [efficiently](mathematics/efficiency),\nwhether proposed answers can be checked efficiently, and how those classes are connected by\n[relationships](mathematics/relation) of difficulty. A central question in the area is whether\nevery problem whose answer can be checked quickly can also be solved quickly.\n\n",
+      "content": "# complexity theory\n\n\nThe branch of study that analyzes the resources (such as time and space) required to \nsolve [problems](mathematics/problem) by [complexity](mathematics/complexity) classes.\nIt groups problems by their intrinsic difficulty and studies [relationships](mathematics/relation) \nbetween those classes, such as which problems are tractable, which are equivalent in hardness, \nand which are harder than others.\n\n---\n\nComplexity theory classifies [problems](mathematics/problem) like \"can this \n[Boolean](mathematics/boolean_expression) formula be satisfied?\" according to whether they can be solved \n[efficiently](mathematics/efficiency), whether proposed answers can be checked efficiently, \nand how those classes are connected by [relationships](mathematics/relation) of difficulty. \nA central question in the area is whether every problem whose answer can be checked quickly can also be solved quickly.\n\n",
       "deps": [
         "mathematics/problem",
         "mathematics/complexity",
         "mathematics/relation",
+        "mathematics/boolean_expression",
         "mathematics/efficiency"
       ],
       "level": 14
@@ -2273,13 +2220,13 @@
       "id": "mathematics/nondeterministic_turing_machine",
       "title": "nondeterministic_turing_machine",
       "category": "mathematics/computation/nondeterministic_turing_machine",
-      "content": "# nondeterministic Turing machine\n\n\nA [Turing machine](mathematics/turing_machine) where each\n[instruction](mathematics/instruction) can have multiple possible next states and actions. Given the current\nstate and the symbol being read, the machine can \"choose\" among several possible transitions, effectively\nexploring multiple [computational](mathematics/computation) [paths](mathematics/path) simultaneously \nand accepting if any path leads to acceptance. It recognizes exactly the same languages as a \n[deterministic](mathematics/deterministic) Turing machine, but this branching\ncan reach an accepting path in far fewer steps, which makes it a convenient model for reasoning about how hard a \n[problem](mathematics/problem) is to solve.\n\nNo physical device implements a nondeterministic Turing machine, and none ever will. The model assumes a\ndevice that can always guess the correct [path](mathematics/path) and explore every possible future at once, \nwhich no real device can do. It is a purely mathematical abstraction, useful for defining \n[complexity classes](mathematics/complexity_theory) and reasoning about problem \n[hardness](mathematics/complexity), not a blueprint for a buildable device.\n\n---\n\nA [Turing machine](mathematics/turing_machine) that, upon reading \"0\", may either write \"1\" and move\nright or instead halt — two different transitions allowed for the same (state, symbol) pair — is\nnondeterministic. Conceptually it follows both [instructions](mathematics/instruction) at once and\naccepts the input if any of the explored paths accepts.\n\n",
+      "content": "# nondeterministic Turing machine\n\n\nA [Turing machine](mathematics/turing_machine) where each\n[instruction](mathematics/instruction) can have multiple possible next states and actions. Given the current\nstate and the symbol being read, the machine can \"choose\" among several possible transitions, effectively\nexploring multiple [computational](mathematics/computation) [paths](mathematics/path) simultaneously \nand accepting if any path leads to acceptance. It recognizes exactly the same languages as a \n[deterministic](mathematics/determinism) Turing machine, but this branching\ncan reach an accepting path in far fewer steps, which makes it a convenient model for reasoning about how hard a \n[problem](mathematics/problem) is to solve.\n\nNo physical device implements a nondeterministic Turing machine, and none ever will. The model assumes a\ndevice that can always guess the correct [path](mathematics/path) and explore every possible future at once, \nwhich no real device can do. It is a purely mathematical abstraction, useful for defining \n[complexity classes](mathematics/complexity_theory) and reasoning about problem \n[hardness](mathematics/complexity), not a blueprint for a buildable device.\n\n---\n\nA [Turing machine](mathematics/turing_machine) that, upon reading \"0\", may either write \"1\" and move\nright or instead halt — two different transitions allowed for the same (state, symbol) pair — is\nnondeterministic. Conceptually it follows both [instructions](mathematics/instruction) at once and\naccepts the input if any of the explored paths accepts.\n\n",
       "deps": [
         "mathematics/turing_machine",
         "mathematics/instruction",
         "mathematics/computation",
         "mathematics/path",
-        "mathematics/deterministic",
+        "mathematics/determinism",
         "mathematics/problem",
         "mathematics/complexity_theory",
         "mathematics/complexity"
@@ -2581,7 +2528,7 @@
         "mathematics/tree",
         "mathematics/balanced_binary_tree"
       ],
-      "level": 17
+      "level": 13
     },
     {
       "id": "mathematics/red_black_tree",
@@ -2599,7 +2546,7 @@
         "mathematics/worst_case",
         "mathematics/efficiency"
       ],
-      "level": 17
+      "level": 14
     },
     {
       "id": "mathematics/heap_tree",
@@ -2973,7 +2920,7 @@
         "mathematics/subtree",
         "mathematics/leaf"
       ],
-      "level": 16
+      "level": 12
     },
     {
       "id": "mathematics/bucket_sort",
@@ -3116,7 +3063,50 @@
         "mathematics/boundary",
         "mathematics/item"
       ],
-      "level": 9
+      "level": 8
+    },
+    {
+      "id": "mathematics/delivery_route_problem",
+      "title": "delivery_route_problem",
+      "category": "mathematics/problem/delivery_route_problem",
+      "content": "# delivery-route problem\n\n\nAn [optimization](mathematics/optimization) [problem](mathematics/problem) in which one or more vehicles must deliver goods\nfrom a depot to a [set](mathematics/set) of locations, and the goal is to choose routes that satisfy the\n[constraints](mathematics/constraint) of the task (such as vehicle capacity, delivery time \n[windows](mathematics/window), or the requirement that each location is visited exactly once) \nwhile keeping a cost such as the total distance traveled as low as possible.\n\n---\n\nA depot must deliver packages to four locations. Each vehicle can carry at most 10 packages, and each\nlocation must be visited exactly once. Finding an assignment of locations to vehicles and an ordering\nof stops for each vehicle, so that no vehicle exceeds its capacity constraint while the total distance\ntraveled is kept small, is a delivery-route problem.\n\n",
+      "deps": [
+        "mathematics/optimization",
+        "mathematics/problem",
+        "mathematics/set",
+        "mathematics/constraint",
+        "mathematics/window"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/objective_function",
+      "title": "objective_function",
+      "category": "mathematics/algorithm/fundamental/objective_function",
+      "content": "# objective function\n\n\nA [function](mathematics/function) that represents the goal or objective \nto be [optimized](mathematics/optimization) in a [problem](mathematics/problem). \nThe objective function is either maximized or minimized to find the best solution, and its value determines \nthe quality of any given solution.\n\n---\n\nFor a [delivery_route_problem](mathematics/delivery_route_problem), the total distance traveled is the \nobjective function: it is a [function](mathematics/function) of the chosen route, and \n[optimizing](mathematics/optimization) the route means minimizing this function's value to find the \nshortest route among all valid routes.\n\n",
+      "deps": [
+        "mathematics/function",
+        "mathematics/optimization",
+        "mathematics/problem",
+        "mathematics/delivery_route_problem"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/mathematical_programming",
+      "title": "mathematical_programming",
+      "category": "mathematics/algorithm/fundamental/mathematical_programming",
+      "content": "# mathematical programming\n\n\nA mathematical approach to finding the \n[optimal solution](mathematics/optimal_solution) to a [problem](mathematics/problem) by \n[optimizing](mathematics/optimization) an [objective_function](mathematics/objective_function) subject to \n[constraints](mathematics/constraint). The goal is to maximize or minimize the objective function while \nensuring the solution is a [feasible_solution](mathematics/feasible_solution).\n\n---\n\nA factory [problem](mathematics/problem) of maximizing profit from producing two products, subject to a limited \n[number](mathematics/number) of labor hours and raw materials as [constraints](mathematics/constraint), \nis a case of mathematical programming: the profit formula is the \n[objective_function](mathematics/objective_function), every production plan that respects the labor and material limits is a \n[feasible_solution](mathematics/feasible_solution), and the plan yielding the highest profit among them is the \n[optimal solution](mathematics/optimal_solution).\n\n",
+      "deps": [
+        "mathematics/optimal_solution",
+        "mathematics/problem",
+        "mathematics/optimization",
+        "mathematics/objective_function",
+        "mathematics/constraint",
+        "mathematics/feasible_solution",
+        "mathematics/number"
+      ],
+      "level": 14
     },
     {
       "id": "mathematics/plane",
@@ -3143,8 +3133,9 @@
       "id": "mathematics/axis",
       "title": "axis",
       "category": "mathematics/fundamental/axis",
-      "content": "# axis\n\n\nAn axis is a reference line about which a geometric or coordinate space is organized. Positions may be measured\nalong an axis (as coordinates are along the x-axis and y-axis of a plane), and\n[transformations](mathematics/transformation) may be defined with respect to an axis (as a\nreflection mirrors points across it). An axis is itself an\n[object](mathematics/object) of the space.\n\n---\n\nIn the two-dimensional plane, the x-axis and y-axis are two perpendicular reference lines. The point (3, 5) is\nlocated three units along the x-axis and five units along the y-axis. Reflecting that point across the x-axis\ngives (3, -5): the axis serves both as a basis for measuring position and as the line of reflection.\n\n",
+      "content": "# axis\n\n\nAn axis is a reference line about which a geometric or coordinate space is organized. Positions may be measured\nalong an axis (as coordinates are along the x-axis and y-axis of a [plane](mathematics/plane)), and\n[transformations](mathematics/transformation) may be defined with respect to an axis (as a\nreflection mirrors points across it). An axis is itself an\n[object](mathematics/object) of the space.\n\n---\n\nIn the two-dimensional plane, the x-axis and y-axis are two perpendicular reference lines. The point (3, 5) is\nlocated three units along the x-axis and five units along the y-axis. Reflecting that point across the x-axis\ngives (3, -5): the axis serves both as a basis for measuring position and as the line of reflection.\n\n",
       "deps": [
+        "mathematics/plane",
         "mathematics/transformation",
         "mathematics/object"
       ],
@@ -3210,7 +3201,7 @@
         "mathematics/node",
         "mathematics/edge"
       ],
-      "level": 8
+      "level": 6
     },
     {
       "id": "mathematics/cartesian_plane",
@@ -3250,7 +3241,7 @@
         "mathematics/node",
         "mathematics/quadrant"
       ],
-      "level": 12
+      "level": 8
     },
     {
       "id": "mathematics/reflection",
@@ -3301,7 +3292,7 @@
         "mathematics/rotation",
         "mathematics/palindrome"
       ],
-      "level": 6
+      "level": 5
     },
     {
       "id": "computer_science/data",
@@ -3696,7 +3687,7 @@
         "mathematics/number",
         "mathematics/table"
       ],
-      "level": 12
+      "level": 10
     },
     {
       "id": "computer_science/key",
@@ -4468,7 +4459,7 @@
       "id": "computer_science/byte",
       "title": "byte",
       "category": "computer_science/fundamental/byte",
-      "content": "# byte\n\n\nA unit of digital [information](mathematics/information) consisting of eight \n[bits](computer_science/bit). A byte is the smallest addressable unit of \n[memory](computer_science/computer_memory) in most [computer](computer_science/computer) \narchitectures and is commonly used to represent a single [character](computer_science/character) of text.\n\n---\n\nA single byte can store 256 distinct values (2^8), ranging from 00000000 to 11111111 in \n[binary](computer_science/binary_representation). For example, the byte 01000001 represents the decimal \nvalue 65, which corresponds to the character `A` in ASCII.\n\n",
+      "content": "# byte\n\n\nA unit of digital [information](mathematics/information) consisting of eight \n[bits](computer_science/bit). A byte is the smallest addressable unit of \n[memory](computer_science/computer_memory) in most [computer](computer_science/computer) \narchitectures and is commonly used to represent a single [character](computer_science/character) of text.\n\n---\n\nA single byte can store 256 distinct values (2^8), ranging from 00000000 to 11111111 in \n[binary](computer_science/binary_representation). For example, the byte 01000001 represents the decimal \nvalue 65.\n\n",
       "deps": [
         "mathematics/information",
         "computer_science/bit",
@@ -4919,7 +4910,7 @@
       "id": "computer_science/floyds_tortoise_and_hare_algorithm",
       "title": "floyds_tortoise_and_hare_algorithm",
       "category": "computer_science/algorithms/floyds_tortoise_and_hare_algorithm",
-      "content": "# Floyd's Tortoise and Hare algorithm\n\n\nFloyd's Tortoise and Hare algorithm is a [cycle detection](mathematics/cycle_detection) \n[algorithm](mathematics/algorithm) that uses the \n[two pointers technique](computer_science/two_pointers_technique). One \n[pointer](computer_science/pointer), the tortoise, advances one step at a time, while the other pointer, \nthe hare, advances two steps at a time. If the two pointers meet, a [cycle](mathematics/cycle) exists; \nif the hare reaches the end, no cycle exists. It is commonly used to detect cycles in a \n[linked list](computer_science/linked_list).\n\n---\n\nConsider a [linked list](computer_science/linked_list) whose [nodes](mathematics/node) run\nA then B then C then D, where D points back to B, forming a cycle. Both pointers start at A:\n- After one step: tortoise at B, hare at C\n- After two steps: tortoise at C, hare at B (having wrapped around)\n- After three steps: tortoise at D, hare at D\nBecause the faster hare has caught the tortoise, a cycle is confirmed.\n\n",
+      "content": "# Floyd's Tortoise and Hare algorithm\n\n\nFloyd's Tortoise and Hare algorithm is a [cycle detection](mathematics/cycle_detection) \n[algorithm](mathematics/algorithm) that uses the \n[two pointers technique](computer_science/two_pointers_technique). One \n[pointer](computer_science/pointer), the tortoise, advances one step at a time, while the other pointer, \nthe hare, advances two steps at a time. If the two pointers meet, a [cycle](mathematics/cycle) exists; \nif the hare reaches the end, no cycle exists. It is commonly used to detect cycles in a \n[linked list](computer_science/linked_list).\n\n---\n\nConsider a [linked list](computer_science/linked_list) whose [nodes](mathematics/node) run\nA then B then C then D, where D points back to B, forming a cycle. Both pointers start at A:\n\n- After one step: tortoise at B, hare at C\n\n- After two steps: tortoise at C, hare at B (having wrapped around)\n\n- After three steps: tortoise at D, hare at D\n\nBecause the faster hare has caught the tortoise, a cycle is confirmed.\n\n",
       "deps": [
         "mathematics/cycle_detection",
         "mathematics/algorithm",
@@ -4935,14 +4926,17 @@
       "id": "computer_science/sliding_window_technique",
       "title": "sliding_window_technique",
       "category": "computer_science/algorithms/sliding_window_technique",
-      "content": "# sliding window technique\n\n\nThe sliding window technique is an [algorithmic](mathematics/algorithm) pattern for \nprocessing a [sequence](mathematics/sequence) by maintaining a contiguous [window](mathematics/window), often a \n[subarray](computer_science/subarray) or [substring](computer_science/substring), and moving \nits boundaries as the computation proceeds. It is commonly implemented as a specialized \n[two pointers technique](computer_science/two_pointers_technique): one boundary expands the [window](mathematics/window) \nto include new elements, while the other boundary contracts it when the current window no longer satisfies a \nrequired condition.\n\n---\n\nTo find the largest sum of any length-3 [subarray](computer_science/subarray) in the\n[array](computer_science/array) [2, 1, 5, 1, 3, 2], a [window](mathematics/window) of size 3 slides one position at a time:\n- window [2, 1, 5]: sum = 8\n- window [1, 5, 1]: sum = 7\n- window [5, 1, 3]: sum = 9\n- window [1, 3, 2]: sum = 6\nThe maximum sum is 9, from the subarray [5, 1, 3]. At each step the window drops its leftmost value and adds the\nnext value on the right, so each sum is updated from the previous one instead of recomputed.\n\n",
+      "content": "# sliding window technique\n\n\nThe sliding window technique is an [algorithmic](mathematics/algorithm) pattern for \nprocessing a [sequence](mathematics/sequence) by maintaining a contiguous \n[window](mathematics/window), often a [subarray](computer_science/subarray) \nor [substring](computer_science/substring), and moving \nits [boundaries](mathematics/boundary) as the [computation](mathematics/computation) \nproceeds. It is commonly implemented as a specialized \n[two pointers technique](computer_science/two_pointers_technique): one boundary expands the \n[window](mathematics/window) to include new [elements](mathematics/item), \nwhile the other boundary contracts it when the current window no longer satisfies a required condition.\n\n---\n\nTo find the largest sum of any length-3 [subarray](computer_science/subarray) in the\n[array](computer_science/array) [2, 1, 5, 1, 3, 2], a [window](mathematics/window) \nof size 3 slides one position at a time:\n\n- window [2, 1, 5]: sum = 8\n\n- window [1, 5, 1]: sum = 7\n\n- window [5, 1, 3]: sum = 9\n\n- window [1, 3, 2]: sum = 6\n\nThe maximum sum is 9, from the subarray [5, 1, 3]. At each step the window drops its leftmost value and adds the\nnext value on the right, so each sum is updated from the previous one instead of recomputed.\n\n",
       "deps": [
         "mathematics/algorithm",
         "mathematics/sequence",
         "mathematics/window",
         "computer_science/subarray",
         "computer_science/substring",
+        "mathematics/boundary",
+        "mathematics/computation",
         "computer_science/two_pointers_technique",
+        "mathematics/item",
         "computer_science/array"
       ],
       "level": 28
@@ -4973,7 +4967,7 @@
         "mathematics/unbalanced_binary_tree",
         "mathematics/node"
       ],
-      "level": 18
+      "level": 15
     },
     {
       "id": "computer_science/null",
@@ -5230,390 +5224,6 @@
       "target": "mathematics/object"
     },
     {
-      "source": "mathematics/merge",
-      "target": "mathematics/operation"
-    },
-    {
-      "source": "mathematics/merge",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/number",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/boolean_expression",
-      "target": "mathematics/expression"
-    },
-    {
-      "source": "mathematics/boolean_expression",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/finite_sequence",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/finite_sequence",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/finite_sequence",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/metric",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/metric",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/exponential",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/label",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/label",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/problem",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/criterion",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/solution",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/solution",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/solution",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/optimal_solution",
-      "target": "mathematics/solution"
-    },
-    {
-      "source": "mathematics/optimal_solution",
-      "target": "mathematics/criterion"
-    },
-    {
-      "source": "mathematics/optimal_solution",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/optimal_solution",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/square",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/square_root",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/integer",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/fibonacci",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/fibonacci",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/index",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/index",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/index",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/perfect_square",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/perfect_square",
-      "target": "mathematics/square_root"
-    },
-    {
-      "source": "mathematics/natural_number",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/natural_number",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/divisor",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/prime_number",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/prime_number",
-      "target": "mathematics/divisor"
-    },
-    {
-      "source": "mathematics/composite_number",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/composite_number",
-      "target": "mathematics/prime_number"
-    },
-    {
-      "source": "mathematics/composite_number",
-      "target": "mathematics/divisor"
-    },
-    {
-      "source": "mathematics/product",
-      "target": "mathematics/operation"
-    },
-    {
-      "source": "mathematics/product",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/factorial",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/factorial",
-      "target": "mathematics/product"
-    },
-    {
-      "source": "mathematics/reordering",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/reordering",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/prime_factorization",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/prime_factorization",
-      "target": "mathematics/product"
-    },
-    {
-      "source": "mathematics/prime_factorization",
-      "target": "mathematics/prime_number"
-    },
-    {
-      "source": "mathematics/prime_factorization",
-      "target": "mathematics/reordering"
-    },
-    {
-      "source": "mathematics/uniqueness",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/distinctness",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/distinctness",
-      "target": "mathematics/collection"
-    },
-    {
-      "source": "mathematics/distinctness",
-      "target": "mathematics/uniqueness"
-    },
-    {
-      "source": "mathematics/distinctness",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/set",
-      "target": "mathematics/collection"
-    },
-    {
-      "source": "mathematics/set",
-      "target": "mathematics/distinctness"
-    },
-    {
-      "source": "mathematics/set",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/relation",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/intersection",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/intersection",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/union",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/union",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/finite_set",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/finite_set",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/finite_set",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/subset",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/subset",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/function",
-      "target": "mathematics/relation"
-    },
-    {
-      "source": "mathematics/function",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/function",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/function",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/recurrence",
-      "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/recurrence",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/recurrence",
-      "target": "mathematics/fibonacci"
-    },
-    {
-      "source": "mathematics/recurrence",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/hash_function",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/hash_function",
-      "target": "mathematics/object"
-    },
-    {
-      "source": "mathematics/hash_function",
-      "target": "mathematics/hash"
-    },
-    {
-      "source": "mathematics/hash_function",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/polynomial",
-      "target": "mathematics/expression"
-    },
-    {
-      "source": "mathematics/polynomial",
-      "target": "mathematics/operation"
-    },
-    {
-      "source": "mathematics/polynomial",
-      "target": "mathematics/integer"
-    },
-    {
-      "source": "mathematics/polynomial",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/multiset",
-      "target": "mathematics/collection"
-    },
-    {
-      "source": "mathematics/multiset",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/multiset",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/multiset",
-      "target": "mathematics/distinctness"
-    },
-    {
-      "source": "mathematics/bound",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/bound",
-      "target": "mathematics/expression"
-    },
-    {
-      "source": "mathematics/bound",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/boundary",
-      "target": "mathematics/bound"
-    },
-    {
-      "source": "mathematics/upper_bound",
-      "target": "mathematics/bound"
-    },
-    {
-      "source": "mathematics/upper_bound",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/upper_bound",
-      "target": "mathematics/expression"
-    },
-    {
-      "source": "mathematics/upper_bound",
-      "target": "mathematics/number"
-    },
-    {
       "source": "mathematics/edge",
       "target": "mathematics/node"
     },
@@ -5655,22 +5265,6 @@
     },
     {
       "source": "mathematics/adjacency_list",
-      "target": "mathematics/edge"
-    },
-    {
-      "source": "mathematics/bipartite_graph",
-      "target": "mathematics/graph"
-    },
-    {
-      "source": "mathematics/bipartite_graph",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/bipartite_graph",
-      "target": "mathematics/set"
-    },
-    {
-      "source": "mathematics/bipartite_graph",
       "target": "mathematics/edge"
     },
     {
@@ -5770,22 +5364,6 @@
       "target": "mathematics/edge"
     },
     {
-      "source": "mathematics/subgraph",
-      "target": "mathematics/graph"
-    },
-    {
-      "source": "mathematics/subgraph",
-      "target": "mathematics/subset"
-    },
-    {
-      "source": "mathematics/subgraph",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/subgraph",
-      "target": "mathematics/edge"
-    },
-    {
       "source": "mathematics/connected_graph",
       "target": "mathematics/graph"
     },
@@ -5800,30 +5378,6 @@
     {
       "source": "mathematics/connected_graph",
       "target": "mathematics/edge"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/graph"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/edge"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/metric"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/weighted_graph",
-      "target": "mathematics/relation"
     },
     {
       "source": "mathematics/tree",
@@ -5914,6 +5468,298 @@
       "target": "mathematics/full_binary_tree"
     },
     {
+      "source": "mathematics/merge",
+      "target": "mathematics/operation"
+    },
+    {
+      "source": "mathematics/merge",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/number",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/boolean_expression",
+      "target": "mathematics/expression"
+    },
+    {
+      "source": "mathematics/boolean_expression",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/finite_sequence",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/finite_sequence",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/finite_sequence",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/metric",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/metric",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/exponential",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/label",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/label",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/problem",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/criterion",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/solution",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/solution",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/solution",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/optimal_solution",
+      "target": "mathematics/solution"
+    },
+    {
+      "source": "mathematics/optimal_solution",
+      "target": "mathematics/criterion"
+    },
+    {
+      "source": "mathematics/optimal_solution",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/optimal_solution",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/graph"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/edge"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/metric"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/weighted_graph",
+      "target": "mathematics/relation"
+    },
+    {
+      "source": "mathematics/minimum_spanning_tree",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/minimum_spanning_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/minimum_spanning_tree",
+      "target": "mathematics/weighted_graph"
+    },
+    {
+      "source": "mathematics/minimum_spanning_tree",
+      "target": "mathematics/edge"
+    },
+    {
+      "source": "mathematics/minimum_spanning_tree",
+      "target": "mathematics/graph"
+    },
+    {
+      "source": "mathematics/reduction",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/reduction",
+      "target": "mathematics/relation"
+    },
+    {
+      "source": "mathematics/reduction",
+      "target": "mathematics/solution"
+    },
+    {
+      "source": "mathematics/base_case",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/base_case",
+      "target": "mathematics/solution"
+    },
+    {
+      "source": "mathematics/base_case",
+      "target": "mathematics/reduction"
+    },
+    {
+      "source": "mathematics/square",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/square_root",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/integer",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/fibonacci",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/fibonacci",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/index",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/index",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/index",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/table",
+      "target": "mathematics/collection"
+    },
+    {
+      "source": "mathematics/table",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/table",
+      "target": "mathematics/index"
+    },
+    {
+      "source": "mathematics/perfect_square",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/perfect_square",
+      "target": "mathematics/square_root"
+    },
+    {
+      "source": "mathematics/natural_number",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/natural_number",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/mathematical_induction",
+      "target": "mathematics/natural_number"
+    },
+    {
+      "source": "mathematics/mathematical_induction",
+      "target": "mathematics/base_case"
+    },
+    {
+      "source": "mathematics/divisor",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/prime_number",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/prime_number",
+      "target": "mathematics/divisor"
+    },
+    {
+      "source": "mathematics/composite_number",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/composite_number",
+      "target": "mathematics/prime_number"
+    },
+    {
+      "source": "mathematics/composite_number",
+      "target": "mathematics/divisor"
+    },
+    {
+      "source": "mathematics/product",
+      "target": "mathematics/operation"
+    },
+    {
+      "source": "mathematics/product",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/factorial",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/factorial",
+      "target": "mathematics/product"
+    },
+    {
+      "source": "mathematics/reordering",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/reordering",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/prime_factorization",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/prime_factorization",
+      "target": "mathematics/product"
+    },
+    {
+      "source": "mathematics/prime_factorization",
+      "target": "mathematics/prime_number"
+    },
+    {
+      "source": "mathematics/prime_factorization",
+      "target": "mathematics/reordering"
+    },
+    {
+      "source": "mathematics/uniqueness",
+      "target": "mathematics/object"
+    },
+    {
       "source": "mathematics/root",
       "target": "mathematics/tree"
     },
@@ -5964,26 +5810,6 @@
     {
       "source": "mathematics/lowest_common_ancestor",
       "target": "mathematics/ancestor"
-    },
-    {
-      "source": "mathematics/minimum_spanning_tree",
-      "target": "mathematics/tree"
-    },
-    {
-      "source": "mathematics/minimum_spanning_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/minimum_spanning_tree",
-      "target": "mathematics/weighted_graph"
-    },
-    {
-      "source": "mathematics/minimum_spanning_tree",
-      "target": "mathematics/edge"
-    },
-    {
-      "source": "mathematics/minimum_spanning_tree",
-      "target": "mathematics/graph"
     },
     {
       "source": "mathematics/subtree",
@@ -6138,16 +5964,220 @@
       "target": "mathematics/node"
     },
     {
-      "source": "mathematics/reduction",
-      "target": "mathematics/problem"
+      "source": "mathematics/distinctness",
+      "target": "mathematics/object"
     },
     {
-      "source": "mathematics/reduction",
+      "source": "mathematics/distinctness",
+      "target": "mathematics/collection"
+    },
+    {
+      "source": "mathematics/distinctness",
+      "target": "mathematics/uniqueness"
+    },
+    {
+      "source": "mathematics/distinctness",
       "target": "mathematics/relation"
     },
     {
-      "source": "mathematics/reduction",
-      "target": "mathematics/solution"
+      "source": "mathematics/distinctness",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/set",
+      "target": "mathematics/collection"
+    },
+    {
+      "source": "mathematics/set",
+      "target": "mathematics/distinctness"
+    },
+    {
+      "source": "mathematics/set",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/intersection",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/intersection",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/union",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/union",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/finite_set",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/finite_set",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/finite_set",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/subset",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/subset",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/function",
+      "target": "mathematics/relation"
+    },
+    {
+      "source": "mathematics/function",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/function",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/function",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/recurrence",
+      "target": "mathematics/sequence"
+    },
+    {
+      "source": "mathematics/recurrence",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/recurrence",
+      "target": "mathematics/fibonacci"
+    },
+    {
+      "source": "mathematics/recurrence",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/hash"
+    },
+    {
+      "source": "mathematics/hash_function",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/polynomial",
+      "target": "mathematics/expression"
+    },
+    {
+      "source": "mathematics/polynomial",
+      "target": "mathematics/operation"
+    },
+    {
+      "source": "mathematics/polynomial",
+      "target": "mathematics/integer"
+    },
+    {
+      "source": "mathematics/polynomial",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/multiset",
+      "target": "mathematics/collection"
+    },
+    {
+      "source": "mathematics/multiset",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/multiset",
+      "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/multiset",
+      "target": "mathematics/distinctness"
+    },
+    {
+      "source": "mathematics/bound",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/bound",
+      "target": "mathematics/expression"
+    },
+    {
+      "source": "mathematics/bound",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/boundary",
+      "target": "mathematics/bound"
+    },
+    {
+      "source": "mathematics/boundary",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/upper_bound",
+      "target": "mathematics/bound"
+    },
+    {
+      "source": "mathematics/upper_bound",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/upper_bound",
+      "target": "mathematics/expression"
+    },
+    {
+      "source": "mathematics/upper_bound",
+      "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/bipartite_graph",
+      "target": "mathematics/graph"
+    },
+    {
+      "source": "mathematics/bipartite_graph",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/bipartite_graph",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/bipartite_graph",
+      "target": "mathematics/edge"
+    },
+    {
+      "source": "mathematics/subgraph",
+      "target": "mathematics/graph"
+    },
+    {
+      "source": "mathematics/subgraph",
+      "target": "mathematics/subset"
+    },
+    {
+      "source": "mathematics/subgraph",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/subgraph",
+      "target": "mathematics/edge"
     },
     {
       "source": "mathematics/subset_sum",
@@ -6164,26 +6194,6 @@
     {
       "source": "mathematics/subset_sum",
       "target": "mathematics/number"
-    },
-    {
-      "source": "mathematics/base_case",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/base_case",
-      "target": "mathematics/solution"
-    },
-    {
-      "source": "mathematics/base_case",
-      "target": "mathematics/reduction"
-    },
-    {
-      "source": "mathematics/mathematical_induction",
-      "target": "mathematics/natural_number"
-    },
-    {
-      "source": "mathematics/mathematical_induction",
-      "target": "mathematics/base_case"
     },
     {
       "source": "mathematics/recursion",
@@ -6374,40 +6384,12 @@
       "target": "mathematics/instruction"
     },
     {
-      "source": "mathematics/table",
-      "target": "mathematics/collection"
-    },
-    {
-      "source": "mathematics/table",
-      "target": "mathematics/item"
-    },
-    {
-      "source": "mathematics/table",
-      "target": "mathematics/index"
-    },
-    {
-      "source": "mathematics/table",
-      "target": "mathematics/computation"
-    },
-    {
-      "source": "mathematics/table",
-      "target": "mathematics/square_root"
-    },
-    {
       "source": "mathematics/lookup_table",
       "target": "mathematics/table"
     },
     {
       "source": "mathematics/lookup_table",
       "target": "mathematics/computation"
-    },
-    {
-      "source": "mathematics/deterministic",
-      "target": "mathematics/computation"
-    },
-    {
-      "source": "mathematics/deterministic",
-      "target": "mathematics/input_data"
     },
     {
       "source": "mathematics/turing_machine",
@@ -6420,22 +6402,6 @@
     {
       "source": "mathematics/turing_machine",
       "target": "mathematics/sequence"
-    },
-    {
-      "source": "mathematics/deterministic_turing_machine",
-      "target": "mathematics/deterministic"
-    },
-    {
-      "source": "mathematics/deterministic_turing_machine",
-      "target": "mathematics/turing_machine"
-    },
-    {
-      "source": "mathematics/deterministic_turing_machine",
-      "target": "mathematics/instruction"
-    },
-    {
-      "source": "mathematics/deterministic_turing_machine",
-      "target": "mathematics/uniqueness"
     },
     {
       "source": "mathematics/complement_problem",
@@ -6708,6 +6674,22 @@
     {
       "source": "mathematics/pure_function",
       "target": "mathematics/number"
+    },
+    {
+      "source": "mathematics/deterministic_turing_machine",
+      "target": "mathematics/determinism"
+    },
+    {
+      "source": "mathematics/deterministic_turing_machine",
+      "target": "mathematics/turing_machine"
+    },
+    {
+      "source": "mathematics/deterministic_turing_machine",
+      "target": "mathematics/instruction"
+    },
+    {
+      "source": "mathematics/deterministic_turing_machine",
+      "target": "mathematics/uniqueness"
     },
     {
       "source": "mathematics/bijection",
@@ -7138,18 +7120,6 @@
       "target": "mathematics/set"
     },
     {
-      "source": "mathematics/delivery_route_problem",
-      "target": "mathematics/optimization"
-    },
-    {
-      "source": "mathematics/delivery_route_problem",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/delivery_route_problem",
-      "target": "mathematics/constraint"
-    },
-    {
       "source": "mathematics/backtracking",
       "target": "mathematics/algorithm"
     },
@@ -7174,22 +7144,6 @@
       "target": "mathematics/depth_first_search"
     },
     {
-      "source": "mathematics/objective_function",
-      "target": "mathematics/function"
-    },
-    {
-      "source": "mathematics/objective_function",
-      "target": "mathematics/optimization"
-    },
-    {
-      "source": "mathematics/objective_function",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/objective_function",
-      "target": "mathematics/delivery_route_problem"
-    },
-    {
       "source": "mathematics/feasible_solution",
       "target": "mathematics/solution"
     },
@@ -7204,34 +7158,6 @@
     {
       "source": "mathematics/feasible_solution",
       "target": "mathematics/optimal_solution"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/optimal_solution"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/problem"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/optimization"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/objective_function"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/constraint"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/feasible_solution"
-    },
-    {
-      "source": "mathematics/mathematical_programming",
-      "target": "mathematics/number"
     },
     {
       "source": "mathematics/off_by_one",
@@ -7679,6 +7605,10 @@
     },
     {
       "source": "mathematics/complexity_theory",
+      "target": "mathematics/boolean_expression"
+    },
+    {
+      "source": "mathematics/complexity_theory",
       "target": "mathematics/efficiency"
     },
     {
@@ -7699,7 +7629,7 @@
     },
     {
       "source": "mathematics/nondeterministic_turing_machine",
-      "target": "mathematics/deterministic"
+      "target": "mathematics/determinism"
     },
     {
       "source": "mathematics/nondeterministic_turing_machine",
@@ -9134,6 +9064,70 @@
       "target": "mathematics/item"
     },
     {
+      "source": "mathematics/delivery_route_problem",
+      "target": "mathematics/optimization"
+    },
+    {
+      "source": "mathematics/delivery_route_problem",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/delivery_route_problem",
+      "target": "mathematics/set"
+    },
+    {
+      "source": "mathematics/delivery_route_problem",
+      "target": "mathematics/constraint"
+    },
+    {
+      "source": "mathematics/delivery_route_problem",
+      "target": "mathematics/window"
+    },
+    {
+      "source": "mathematics/objective_function",
+      "target": "mathematics/function"
+    },
+    {
+      "source": "mathematics/objective_function",
+      "target": "mathematics/optimization"
+    },
+    {
+      "source": "mathematics/objective_function",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/objective_function",
+      "target": "mathematics/delivery_route_problem"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/optimal_solution"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/problem"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/optimization"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/objective_function"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/constraint"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/feasible_solution"
+    },
+    {
+      "source": "mathematics/mathematical_programming",
+      "target": "mathematics/number"
+    },
+    {
       "source": "mathematics/plane",
       "target": "mathematics/object"
     },
@@ -9144,6 +9138,10 @@
     {
       "source": "mathematics/transformation",
       "target": "mathematics/object"
+    },
+    {
+      "source": "mathematics/axis",
+      "target": "mathematics/plane"
     },
     {
       "source": "mathematics/axis",
@@ -11763,7 +11761,19 @@
     },
     {
       "source": "computer_science/sliding_window_technique",
+      "target": "mathematics/boundary"
+    },
+    {
+      "source": "computer_science/sliding_window_technique",
+      "target": "mathematics/computation"
+    },
+    {
+      "source": "computer_science/sliding_window_technique",
       "target": "computer_science/two_pointers_technique"
+    },
+    {
+      "source": "computer_science/sliding_window_technique",
+      "target": "mathematics/item"
     },
     {
       "source": "computer_science/sliding_window_technique",

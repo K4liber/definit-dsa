@@ -16,7 +16,7 @@ class _Performance(Definition):
 How well an {ALGORITHM.key.get_reference()} uses resources (such as time and space) to produce its result.
 Performance is gauged by the {COMPLEXITY.key.get_reference()} of the resource usage, either theoretically (as
 {ASYMPTOTIC_BEHAVIOR.key.get_reference(phrase="asymptotic growth")}) or empirically (as observed behavior on actual
-{INPUT_DATA.key.get_reference(phrase="data")}).
+{INPUT_DATA.key.get_reference(phrase="input data")}).
 
 ---
 
