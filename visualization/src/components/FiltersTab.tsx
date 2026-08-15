@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import type { Raw, DefNode, TreeNode, LearnState } from '../types';
-import { buildCategoryTree, learnStateForNode } from '../lib/graph';
+import { buildDefinitionTree, learnStateForNode } from '../lib/graph';
 import { loadOpenPrefixes, saveOpenPrefixes } from '../lib/storage';
 
 type Match = { id: string; title: string };
 
 type Props = {
-  // Category filter
+  // Definition include/exclude filter
   raw: Raw;
   renderedForTree: import('../types').DefGraph; // filtered graph (after all filters) to compute visible states
   learned: Set<string>;
@@ -59,7 +59,7 @@ const FiltersTab: React.FC<Props> = ({
   onSetShowReady,
   onSetShowLearned,
 }) => {
-  // --- Category tree state ---
+  // --- Definition tree state (grouped by field) ---
   const [openPrefixes, setOpenPrefixes] = useState<Set<string>>(() => loadOpenPrefixes());
 
   const isOpen = useCallback(
@@ -93,13 +93,13 @@ const FiltersTab: React.FC<Props> = ({
   const leafIdsUnder = useCallback(
     (prefix: string) => {
       if (!prefix) return raw.def.nodes.map((n) => n.id);
-      return raw.childrenByPrefix.get(prefix) ?? [];
+      return raw.def.nodes.filter((n) => n.id.startsWith(`${prefix}/`)).map((n) => n.id);
     },
     [raw],
   );
 
   const { root, visibleNodeIds } = useMemo(
-    () => buildCategoryTree(raw, renderedForTree, learned),
+    () => buildDefinitionTree(raw, renderedForTree, learned),
     [raw, renderedForTree, learned],
   );
 
@@ -151,7 +151,7 @@ const FiltersTab: React.FC<Props> = ({
               />
               <span className="treeLabel">{node.name}</span>
               <span className="treeMeta">
-                <span>L{node.groupLevel ?? 0}</span>
+                <span>{childLeafIds.length}</span>
               </span>
             </div>
             {open && node.children.map((c) => renderTreeNode(c))}
@@ -304,8 +304,8 @@ const FiltersTab: React.FC<Props> = ({
         </div>
 
         <div>
-          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Category include/exclude</h4>
-          <div className="categoriesTree" role="region" aria-label="Category include/exclude">{renderTreeNode(root)}</div>
+          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Definitions include/exclude</h4>
+          <div className="categoriesTree" role="region" aria-label="Definitions include/exclude">{renderTreeNode(root)}</div>
         </div>
       </div>
     </div>

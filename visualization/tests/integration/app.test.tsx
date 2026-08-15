@@ -89,7 +89,7 @@ function getBottomPanel(): HTMLElement {
 
 function openFilters() {
   fireEvent.click(screen.getByRole('button', { name: 'Filters' }));
-  return screen.getByRole('region', { name: 'Category include/exclude' });
+  return screen.getByRole('region', { name: 'Definitions include/exclude' });
 }
 
 async function searchAndSelectDefinition(query: string, id: string) {
@@ -107,7 +107,7 @@ async function searchAndSelectDefinition(query: string, id: string) {
 }
 
 function getTreeRowCheckboxByText(text: string): HTMLInputElement {
-  const tree = screen.getByRole('region', { name: 'Category include/exclude' });
+  const tree = screen.getByRole('region', { name: 'Definitions include/exclude' });
   const labels = within(tree).getAllByText(text);
   const label = labels[0];
   const row = label.closest('.treeRow');
@@ -221,27 +221,27 @@ describe('App integration scenarios', () => {
     });
   });
 
-  it('supports including and excluding definitions via category checkboxes', async () => {
+  it('supports including and excluding definitions via tree checkboxes', async () => {
     const { user } = await renderApp();
     const initialCount = graphCount();
 
     openFilters();
-    // 'object' is a root definition (no dependencies), so it is visible by
-    // default and toggling its category removes exactly one node.
-    await user.click(getTreeRowCheckboxByText('object'));
+    // 'observable' is a root definition (no dependencies) with a unique title,
+    // so it is visible by default and toggling it removes exactly one node.
+    await user.click(getTreeRowCheckboxByText('observable'));
 
     await waitFor(() => {
       expect(graphCount()).toBe(initialCount - 1);
     });
 
-    await user.click(getTreeRowCheckboxByText('object'));
+    await user.click(getTreeRowCheckboxByText('observable'));
 
     await waitFor(() => {
       expect(graphCount()).toBe(initialCount);
     });
   });
 
-  it('restores category expand-collapse state from localStorage', async () => {
+  it('restores field expand-collapse state from localStorage', async () => {
     const { user } = await renderApp();
 
     const tree = openFilters();

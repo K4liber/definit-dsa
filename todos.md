@@ -12,11 +12,6 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## TODO
 
-### 5. [FEATURE] Remove categories from definitions
-
-- [x] Update the definitions and python scripts
-- [ ] Update the visualization package to not use categories anymore
-
 ### 2. [FEATURE] Add definition aliases
 
 - [ ] Add aliases to all definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.)
@@ -65,6 +60,11 @@ We could go for 200 most low-level (according to topological sorting) definition
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
+
+### 5. [FEATURE] Remove categories from definitions
+
+- [x] Update the definitions and python scripts
+- [x] Update the visualization package to not use categories anymore
 
 ### 4. Review all definitions
 

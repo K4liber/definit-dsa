@@ -13,7 +13,7 @@ import {
   savePanelCollapsed,
 } from '../../src/lib/storage';
 import {
-  CATEGORIES_OPEN_KEY,
+  OPEN_PREFIXES_KEY,
   LEARNED_STORAGE_KEY,
   VISIBILITY_STORAGE_KEY,
 } from '../../src/lib/constants';
@@ -54,15 +54,15 @@ describe('storage helpers', () => {
     expect(loadPanelCollapsed()).toBe(false);
   });
 
-  it('round-trips open category prefixes', () => {
-    saveOpenPrefixes(new Set(['mathematics', 'computer_science/algorithms']));
+  it('round-trips open field prefixes', () => {
+    saveOpenPrefixes(new Set(['mathematics', 'computer_science']));
 
     expect(Array.from(loadOpenPrefixes()).sort()).toEqual([
-      'computer_science/algorithms',
+      'computer_science',
       'mathematics',
     ]);
 
-    localStorage.setItem(CATEGORIES_OPEN_KEY, '123');
+    localStorage.setItem(OPEN_PREFIXES_KEY, '123');
     expect(Array.from(loadOpenPrefixes())).toEqual([]);
   });
 });

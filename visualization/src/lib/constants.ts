@@ -2,7 +2,7 @@
 export const LEARNED_STORAGE_KEY = 'definit-db.learned';
 export const VISIBILITY_STORAGE_KEY = 'definit-db.ui.includedIds';
 export const PANEL_COLLAPSED_KEY = 'definit-db.ui.bottomPanelCollapsed';
-export const CATEGORIES_OPEN_KEY = 'definit-db.ui.categories.openPrefixes';
+export const OPEN_PREFIXES_KEY = 'definit-db.ui.categories.openPrefixes';
 
 // Learning-state colors
 export const COLOR_NOT_READY = 'rgba(148, 163, 184, 0.18)';

@@ -1,14 +1,12 @@
 export type DefNode = {
   /**
-   * Unique id used throughout the visualization.
+   * Unique id used throughout the visualization, in the `<field>/<name>` form.
    */
   id: string;
 
   title: string;
 
-  category: string;
-
-  /** dependency ids (ids resolve to categories) */
+  /** dependency ids */
   deps: string[];
 
   /**
@@ -35,7 +33,6 @@ export type LearnState = 'not-ready' | 'pre-ready' | 'ready' | 'learned';
 export type Raw = {
   def: DefGraph;
   byId: Map<string, DefNode>;
-  childrenByPrefix: Map<string, string[]>; // prefix -> ids under that prefix
   fields: string[]; // top-level fields (e.g. mathematics, computer_science)
 };
 
@@ -44,15 +41,13 @@ export type UIState = {
 };
 
 export type TreeNode = {
-  id: string; // prefix (group) or leaf id
+  id: string; // field (group) or leaf id
   name: string;
   kind: 'group' | 'leaf';
   depth: number;
   children: TreeNode[];
   // leaf metadata
   leaf?: DefNode;
-  // group metadata
-  groupLevel?: number;
 };
 
 export type BottomTab = 'definition' | 'filters' | 'progress' | null;

@@ -263,7 +263,7 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
 
       nodeSel
         .select('title')
-        .text((d: DefNode) => `${d.title} (level: ${d.level ?? 0})\n${d.category}`);
+        .text((d: DefNode) => `${d.title} (level: ${d.level ?? 0})\n${d.id}`);
 
       nodeSel
         .on('mouseenter', (ev: MouseEvent, d: DefNode) => {

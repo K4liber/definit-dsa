@@ -344,12 +344,12 @@ export function useAppState(): AppState & AppActions {
   const filteredGraphForSelection = useMemo<DefGraph | null>(() => {
     if (!state.raw) return null;
 
-    // Base included set from category filter
+    // Base included set from the definitions include/exclude filter
     let included: Set<string>;
     if (state.includedIds) included = new Set(state.includedIds);
     else included = new Set(state.raw.def.nodes.map((n) => n.id));
 
-    // Search selection filter overrides category filter (study subtree)
+    // Search selection filter overrides definition filter (study subtree)
     if (state.searchSelectedId) {
       included = prerequisiteClosure(state.raw, state.searchSelectedId);
     }
