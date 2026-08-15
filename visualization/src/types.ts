@@ -40,14 +40,12 @@ export type UIState = {
   selectedLeaf?: string; // leaf id
 };
 
-export type TreeNode = {
-  id: string; // field (group) or leaf id
-  name: string;
-  kind: 'group' | 'leaf';
-  depth: number;
-  children: TreeNode[];
-  // leaf metadata
-  leaf?: DefNode;
+export type FieldGroup = {
+  /** Field name, e.g. `mathematics` */
+  field: string;
+
+  /** Definitions in this field, sorted for display */
+  definitions: DefNode[];
 };
 
 export type BottomTab = 'definition' | 'filters' | 'progress' | null;

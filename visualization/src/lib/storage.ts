@@ -2,7 +2,7 @@ import {
   LEARNED_STORAGE_KEY,
   VISIBILITY_STORAGE_KEY,
   PANEL_COLLAPSED_KEY,
-  OPEN_PREFIXES_KEY,
+  OPEN_FIELDS_KEY,
 } from './constants';
 
 export function loadLearnedFromStorage(): Set<string> {
@@ -77,9 +77,9 @@ export function savePanelCollapsed(collapsed: boolean): void {
   }
 }
 
-export function loadOpenPrefixes(): Set<string> {
+export function loadOpenFields(): Set<string> {
   try {
-    const raw = localStorage.getItem(OPEN_PREFIXES_KEY);
+    const raw = localStorage.getItem(OPEN_FIELDS_KEY);
     if (!raw) return new Set();
     const arr = JSON.parse(raw);
     if (!Array.isArray(arr)) return new Set();
@@ -89,9 +89,9 @@ export function loadOpenPrefixes(): Set<string> {
   }
 }
 
-export function saveOpenPrefixes(s: Set<string>): void {
+export function saveOpenFields(s: Set<string>): void {
   try {
-    localStorage.setItem(OPEN_PREFIXES_KEY, JSON.stringify(Array.from(s)));
+    localStorage.setItem(OPEN_FIELDS_KEY, JSON.stringify(Array.from(s)));
   } catch {
     // ignore
   }

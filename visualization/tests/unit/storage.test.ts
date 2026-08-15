@@ -5,15 +5,15 @@ import {
   clearLearnedFromStorage,
   loadIncludedFromStorage,
   loadLearnedFromStorage,
-  loadOpenPrefixes,
+  loadOpenFields,
   loadPanelCollapsed,
   saveIncludedToStorage,
   saveLearnedToStorage,
-  saveOpenPrefixes,
+  saveOpenFields,
   savePanelCollapsed,
 } from '../../src/lib/storage';
 import {
-  OPEN_PREFIXES_KEY,
+  OPEN_FIELDS_KEY,
   LEARNED_STORAGE_KEY,
   VISIBILITY_STORAGE_KEY,
 } from '../../src/lib/constants';
@@ -55,14 +55,14 @@ describe('storage helpers', () => {
   });
 
   it('round-trips open field prefixes', () => {
-    saveOpenPrefixes(new Set(['mathematics', 'computer_science']));
+    saveOpenFields(new Set(['mathematics', 'computer_science']));
 
-    expect(Array.from(loadOpenPrefixes()).sort()).toEqual([
+    expect(Array.from(loadOpenFields()).sort()).toEqual([
       'computer_science',
       'mathematics',
     ]);
 
-    localStorage.setItem(OPEN_PREFIXES_KEY, '123');
-    expect(Array.from(loadOpenPrefixes())).toEqual([]);
+    localStorage.setItem(OPEN_FIELDS_KEY, '123');
+    expect(Array.from(loadOpenFields())).toEqual([]);
   });
 });

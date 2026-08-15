@@ -1,8 +1,9 @@
 // Storage keys
+// !IMPORTANT: Do not change values, as they are used for persistent storage in the browser.
 export const LEARNED_STORAGE_KEY = 'definit-db.learned';
 export const VISIBILITY_STORAGE_KEY = 'definit-db.ui.includedIds';
 export const PANEL_COLLAPSED_KEY = 'definit-db.ui.bottomPanelCollapsed';
-export const OPEN_PREFIXES_KEY = 'definit-db.ui.categories.openPrefixes';
+export const OPEN_FIELDS_KEY = 'definit-db.ui.openFields';
 
 // Learning-state colors
 export const COLOR_NOT_READY = 'rgba(148, 163, 184, 0.18)';

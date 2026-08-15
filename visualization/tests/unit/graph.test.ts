@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import defs from '../../../docs/defs.json';
 import type { DefGraph } from '../../src/types';
 import {
-  buildDefinitionTree,
+  buildFieldGroups,
   buildRaw,
   computeStats,
   computeVisibleSet,
@@ -171,15 +171,18 @@ describe('graph helpers', () => {
     expect(selectNextReady(raw, rendered, new Set(['math/root_a', 'math/root_b']))).toBe('math/mid');
   });
 
-  it('groups definitions by field and sorts leaves by state, level, and title', () => {
+  it('groups definitions by field and sorts them by state, level, and title', () => {
     const raw = buildRaw(makeTreeGraph());
     const rendered = renderGraph(raw, null);
-    const { root } = buildDefinitionTree(raw, rendered, new Set(['math/root_a', 'math/analysis_learned']));
+    const { groups } = buildFieldGroups(raw, rendered, new Set(['math/root_a', 'math/analysis_learned']));
 
-    expect(root.children.map((child) => child.id)).toEqual(['cs', 'math']);
+    expect(groups.map((group) => group.field)).toEqual(['cs', 'math']);
 
-    const mathematics = root.children.find((child) => child.id === 'math');
-    expect(mathematics?.children.map((child) => child.id)).toEqual([
+    const computerScience = groups.find((group) => group.field === 'cs');
+    expect(computerScience?.definitions.map((def) => def.id)).toEqual(['cs/algo']);
+
+    const mathematics = groups.find((group) => group.field === 'math');
+    expect(mathematics?.definitions.map((def) => def.id)).toEqual([
       'math/analysis_ready_a',
       'math/root_b',
       'math/analysis_ready_z',
@@ -189,9 +192,6 @@ describe('graph helpers', () => {
       'math/analysis_preready',
       'math/analysis_notready',
     ]);
-
-    const computerScience = root.children.find((child) => child.id === 'cs');
-    expect(computerScience?.children.map((child) => child.id)).toEqual(['cs/algo']);
   });
 
   it('computes progress stats for learned definitions, unlocked edges, and completed levels', () => {

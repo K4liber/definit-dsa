@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import type { DefGraph, DefNode, LearnState, Pos, Raw, TreeNode } from '../types';
+import type { DefGraph, DefNode, FieldGroup, LearnState, Pos, Raw } from '../types';
 import { COLOR_NOT_READY, COLOR_PRE_READY, COLOR_READY, COLOR_LEARNED } from './constants';
 
 /* ------------------------------------------------------------------ */
@@ -212,76 +212,48 @@ export function selectNextReady(
 }
 
 /* ------------------------------------------------------------------ */
-/*  Build Definition Tree (grouped by field)                           */
+/*  Field groups (definitions grouped by field)                        */
 /* ------------------------------------------------------------------ */
 
-export function buildDefinitionTree(
+export function buildFieldGroups(
   raw: Raw,
   rendered: DefGraph,
   learned: Set<string>,
-): { root: TreeNode; visibleNodeIds: Set<string> } {
+): { groups: FieldGroup[]; visibleNodeIds: Set<string> } {
   const visibleNodeIds = computeVisibleSet(rendered, learned);
   const renderedById = new Map(rendered.nodes.map((n) => [n.id, n] as const));
 
-  const root: TreeNode = { id: '', name: '', kind: 'group', depth: 0, children: [] };
-
-  const groupByField = new Map<string, TreeNode>();
-  for (const field of raw.fields) {
-    const group: TreeNode = { id: field, name: field, kind: 'group', depth: 1, children: [] };
-    groupByField.set(field, group);
-    root.children.push(group);
-  }
+  const definitionsByField = new Map<string, DefNode[]>(raw.fields.map((field) => [field, []]));
 
   for (const leaf of raw.def.nodes) {
     const field = fieldOfId(leaf.id);
-    const parent = groupByField.get(field);
-    if (!parent) continue;
+    const group = definitionsByField.get(field);
+    if (!group) continue;
 
     const rawLeaf = raw.byId.get(leaf.id) ?? leaf;
-    const leafNode: TreeNode = {
-      id: leaf.id,
-      name: leaf.id.split('/').at(-1) ?? leaf.id,
-      kind: 'leaf',
-      depth: 2,
-      children: [],
-      // Prefer the dynamically computed level from the rendered graph.
-      leaf: { ...rawLeaf, level: renderedById.get(leaf.id)?.level ?? rawLeaf.level ?? 0 },
-    };
-    parent.children.push(leafNode);
+    // Prefer the dynamically computed level from the rendered graph.
+    group.push({ ...rawLeaf, level: renderedById.get(leaf.id)?.level ?? rawLeaf.level ?? 0 });
   }
 
-  const stateForCat = (leaf: DefNode): LearnState => {
+  const stateOf = (leaf: DefNode): LearnState => {
     const base = learnStateForNode(leaf, learned);
     return base === 'not-ready' && visibleNodeIds.has(leaf.id) ? 'pre-ready' : base;
   };
 
-  const sortChildren = (n: TreeNode) => {
-    for (const c of n.children) sortChildren(c);
-
-    n.children.sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind === 'group' ? -1 : 1;
-
-      if (a.kind === 'group' && b.kind === 'group') {
-        return a.name.localeCompare(b.name);
-      }
-
-      const la = a.leaf!;
-      const lb = b.leaf!;
-      const sa = stateForCat(la);
-      const sb = stateForCat(lb);
-      const ra = learnStateRank(sa);
-      const rb = learnStateRank(sb);
+  const groups: FieldGroup[] = raw.fields.map((field) => ({
+    field,
+    definitions: (definitionsByField.get(field) ?? []).sort((a, b) => {
+      const ra = learnStateRank(stateOf(a));
+      const rb = learnStateRank(stateOf(b));
       if (ra !== rb) return ra - rb;
-      const da = la.level ?? 0;
-      const db = lb.level ?? 0;
+      const da = a.level ?? 0;
+      const db = b.level ?? 0;
       if (da !== db) return da - db;
-      return (la.title ?? la.id).localeCompare(lb.title ?? lb.id);
-    });
-  };
+      return (a.title ?? a.id).localeCompare(b.title ?? b.id);
+    }),
+  }));
 
-  sortChildren(root);
-
-  return { root, visibleNodeIds };
+  return { groups, visibleNodeIds };
 }
 
 /* ------------------------------------------------------------------ */
