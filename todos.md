@@ -14,7 +14,7 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ### 5. [FEATURE] Remove categories from definitions
 
-- [ ] Update the definitions and python scripts
+- [x] Update the definitions and python scripts
 - [ ] Update the visualization package to not use categories anymore
 
 ### 2. [FEATURE] Add definition aliases

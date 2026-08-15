@@ -7,7 +7,6 @@ from pathlib import Path
 
 from definit.db.md import DatabaseMd
 from definit.definition.definition import Definition
-from definit.definition.definition import DefinitionKey
 from definit.definition.field import Field
 
 from definit_db.data.field import FieldName
@@ -63,21 +62,7 @@ def serialize() -> Path:
     all_definitions: list[Definition] = []
 
     for field in _FIELDS:
-        field_index = get_field_index(field=field)
-
-        for definition in field_index:
-            # Extract sub_categories from module path
-            sub_categories = tuple(
-                definition.__module__.removeprefix("src.")
-                .removeprefix(_MODULE_FIELD)
-                .removeprefix(f".{field}.definitions.")
-                .split(".")
-            )[:-1]  # Exclude the last part which is the definition module itself
-            fixed_definition = Definition(
-                key=DefinitionKey(name=definition.key.name, field=definition.key.field, sub_categories=sub_categories),
-                content=definition.content,
-            )
-            all_definitions.append(fixed_definition)
+        all_definitions.extend(get_field_index(field=field))
 
     all_definitions = topological_sort(definitions=all_definitions)
 
