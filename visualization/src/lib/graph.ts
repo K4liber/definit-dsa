@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import type { DefGraph, DefNode, LearnState, Pos, Raw, TreeNode } from '../types';
+import type { DefGraph, DefNode, FieldGroup, LearnState, Pos, Raw } from '../types';
 import { COLOR_NOT_READY, COLOR_PRE_READY, COLOR_READY, COLOR_LEARNED } from './constants';
 
 /* ------------------------------------------------------------------ */
@@ -14,12 +14,8 @@ export function normalizeId(s: string): string {
     .replace(/[^a-z0-9_\-\/]/g, '');
 }
 
-export function splitCategory(category: string): string[] {
-  return category.split('/').filter(Boolean);
-}
-
-export function groupIdForPath(parts: string[], depth: number): string {
-  return parts.slice(0, depth).join('/');
+export function fieldOfId(id: string): string {
+  return id.split('/')[0] ?? '';
 }
 
 function hash01(s: string): number {
@@ -116,68 +112,6 @@ export function computeLevels(nodes: DefNode[]): void {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Group-level computation (category DAG)                             */
-/* ------------------------------------------------------------------ */
-
-export function computeGroupLevels(raw: Raw): {
-  depsByGroup: Map<string, Set<string>>;
-  levelByGroup: Map<string, number>;
-} {
-  const groups = new Set<string>(raw.childrenByPrefix.keys());
-  const depsByGroup = new Map<string, Set<string>>();
-  for (const g of groups) depsByGroup.set(g, new Set());
-
-  const groupOfLeafAtDepth = (leafCategory: string, depth: number) => {
-    const parts = splitCategory(leafCategory);
-    if (depth > parts.length - 1) return null;
-    return groupIdForPath(parts, depth);
-  };
-
-  for (const n of raw.def.nodes) {
-    const srcParts = splitCategory(n.category);
-
-    for (const depId of n.deps ?? []) {
-      const depCategory = raw.byId.get(depId)?.category;
-      if (!depCategory) continue;
-
-      const depParts = splitCategory(depCategory);
-      const maxDepth = Math.min(srcParts.length - 1, depParts.length - 1);
-
-      for (let d = 1; d <= maxDepth; d++) {
-        const a = groupOfLeafAtDepth(n.category, d);
-        const b = groupOfLeafAtDepth(depCategory, d);
-        if (!a || !b || a === b) continue;
-        depsByGroup.get(a)?.add(b);
-      }
-    }
-  }
-
-  const levelByGroup = new Map<string, number>();
-  const visiting = new Set<string>();
-  const visited = new Set<string>();
-
-  const dfs = (g: string): number => {
-    if (levelByGroup.has(g)) return levelByGroup.get(g)!;
-    if (visited.has(g)) return levelByGroup.get(g) ?? 0;
-    if (visiting.has(g)) return 0;
-
-    visiting.add(g);
-    let lvl = 0;
-    for (const dep of depsByGroup.get(g) ?? []) {
-      lvl = Math.max(lvl, dfs(dep) + 1);
-    }
-    visiting.delete(g);
-    visited.add(g);
-    levelByGroup.set(g, lvl);
-    return lvl;
-  };
-
-  for (const g of groups) dfs(g);
-
-  return { depsByGroup, levelByGroup };
-}
-
-/* ------------------------------------------------------------------ */
 /*  Build Raw from DefGraph                                            */
 /* ------------------------------------------------------------------ */
 
@@ -186,27 +120,12 @@ export function buildRaw(def: DefGraph): Raw {
 
   const fieldsSet = new Set<string>();
   for (const n of def.nodes) {
-    const [field] = splitCategory(n.category);
+    const field = fieldOfId(n.id);
     if (field) fieldsSet.add(field);
   }
   const fields = Array.from(fieldsSet).sort();
 
-  const childrenByPrefix = new Map<string, string[]>();
-  for (const n of def.nodes) {
-    const parts = splitCategory(n.category);
-    for (let d = 1; d <= parts.length - 1; d++) {
-      const prefix = groupIdForPath(parts, d);
-      const arr = childrenByPrefix.get(prefix) ?? [];
-      arr.push(n.id);
-      childrenByPrefix.set(prefix, arr);
-    }
-  }
-
-  for (const [k, arr] of childrenByPrefix) {
-    childrenByPrefix.set(k, Array.from(new Set(arr)).sort());
-  }
-
-  return { def, byId, childrenByPrefix, fields };
+  return { def, byId, fields };
 }
 
 /* ------------------------------------------------------------------ */
@@ -248,29 +167,21 @@ export function recomputeIncludedSetFromReady(
   raw: Raw,
   learned: Set<string>,
 ): Set<string> | null {
-  const readyParentPrefixes = new Set<string>();
+  const readyFields = new Set<string>();
 
   for (const n of raw.def.nodes) {
-    if (learnStateForNode(n, learned) !== 'ready') continue;
-    const parts = splitCategory(n.category);
-    const parentDepth = Math.max(1, parts.length - 1);
-    const parent = groupIdForPath(parts, parentDepth);
-    if (parent) readyParentPrefixes.add(parent);
+    if (learnStateForNode(n, learned) === 'ready') readyFields.add(fieldOfId(n.id));
   }
 
-  if (!readyParentPrefixes.size) return null;
+  if (!readyFields.size) return null;
+  // If every field already has a ready definition, there is nothing to focus on.
+  if (raw.fields.every((field) => readyFields.has(field))) return null;
 
   const included = new Set<string>();
 
   for (const n of raw.def.nodes) {
     if (learnStateForNode(n, learned) === 'learned') included.add(n.id);
-  }
-
-  for (const leaf of raw.def.nodes) {
-    const parts = splitCategory(leaf.category);
-    const parentDepth = Math.max(1, parts.length - 1);
-    const parent = groupIdForPath(parts, parentDepth);
-    if (parent && readyParentPrefixes.has(parent)) included.add(leaf.id);
+    else if (readyFields.has(fieldOfId(n.id))) included.add(n.id);
   }
 
   return included;
@@ -285,25 +196,15 @@ export function selectNextReady(
   rendered: DefGraph,
   learned: Set<string>,
 ): string | null {
+  void raw; // kept for API stability
   computeLevels(rendered.nodes);
   const ready = rendered.nodes.filter((n) => learnStateForNode(n, learned) === 'ready');
   if (!ready.length) return null;
-
-  const { levelByGroup } = computeGroupLevels(raw);
-  const parentGroupLevel = (category: string) => {
-    const parts = splitCategory(category);
-    const parentDepth = Math.max(1, parts.length - 1);
-    const parent = groupIdForPath(parts, parentDepth);
-    return parent ? (levelByGroup.get(parent) ?? 0) : 0;
-  };
 
   ready.sort((a, b) => {
     const la = a.level ?? 0;
     const lb = b.level ?? 0;
     if (la !== lb) return la - lb;
-    const ga = parentGroupLevel(a.category);
-    const gb = parentGroupLevel(b.category);
-    if (ga !== gb) return ga - gb;
     return a.id.localeCompare(b.id);
   });
 
@@ -311,87 +212,48 @@ export function selectNextReady(
 }
 
 /* ------------------------------------------------------------------ */
-/*  Build Category Tree                                               */
+/*  Field groups (definitions grouped by field)                        */
 /* ------------------------------------------------------------------ */
 
-export function buildCategoryTree(
+export function buildFieldGroups(
   raw: Raw,
   rendered: DefGraph,
   learned: Set<string>,
-): { root: TreeNode; visibleNodeIds: Set<string> } {
+): { groups: FieldGroup[]; visibleNodeIds: Set<string> } {
   const visibleNodeIds = computeVisibleSet(rendered, learned);
-  const { levelByGroup } = computeGroupLevels(raw);
+  const renderedById = new Map(rendered.nodes.map((n) => [n.id, n] as const));
 
-  const root: TreeNode = { id: '', name: '', kind: 'group', depth: 0, children: [], groupLevel: 0 };
+  const definitionsByField = new Map<string, DefNode[]>(raw.fields.map((field) => [field, []]));
 
   for (const leaf of raw.def.nodes) {
-    const parts = splitCategory(leaf.category);
-    let cur = root;
-    for (let i = 0; i < parts.length - 1; i++) {
-      const prefix = parts.slice(0, i + 1).join('/');
-      let child = cur.children.find((c) => c.kind === 'group' && c.id === prefix);
-      if (!child) {
-        child = {
-          id: prefix,
-          name: parts[i],
-          kind: 'group',
-          depth: i + 1,
-          children: [],
-          groupLevel: levelByGroup.get(prefix) ?? 0,
-        };
-        cur.children.push(child);
-      } else {
-        child.groupLevel = levelByGroup.get(prefix) ?? child.groupLevel ?? 0;
-      }
-      cur = child;
-    }
+    const field = fieldOfId(leaf.id);
+    const group = definitionsByField.get(field);
+    if (!group) continue;
 
-    const leafNode: TreeNode = {
-      id: leaf.id,
-      name: parts.at(-1) ?? leaf.id,
-      kind: 'leaf',
-      depth: parts.length,
-      children: [],
-      leaf: raw.byId.get(leaf.id) ?? leaf,
-    };
-    cur.children.push(leafNode);
+    const rawLeaf = raw.byId.get(leaf.id) ?? leaf;
+    // Prefer the dynamically computed level from the rendered graph.
+    group.push({ ...rawLeaf, level: renderedById.get(leaf.id)?.level ?? rawLeaf.level ?? 0 });
   }
 
-  const stateForCat = (leaf: DefNode): LearnState => {
+  const stateOf = (leaf: DefNode): LearnState => {
     const base = learnStateForNode(leaf, learned);
     return base === 'not-ready' && visibleNodeIds.has(leaf.id) ? 'pre-ready' : base;
   };
 
-  const sortChildren = (n: TreeNode) => {
-    for (const c of n.children) sortChildren(c);
-
-    n.children.sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind === 'group' ? -1 : 1;
-
-      if (a.kind === 'group' && b.kind === 'group') {
-        const la = a.groupLevel ?? 0;
-        const lb = b.groupLevel ?? 0;
-        if (la !== lb) return la - lb;
-        return a.name.localeCompare(b.name);
-      }
-
-      const la = a.leaf!;
-      const lb = b.leaf!;
-      const sa = stateForCat(la);
-      const sb = stateForCat(lb);
-      const ra = learnStateRank(sa);
-      const rb = learnStateRank(sb);
+  const groups: FieldGroup[] = raw.fields.map((field) => ({
+    field,
+    definitions: (definitionsByField.get(field) ?? []).sort((a, b) => {
+      const ra = learnStateRank(stateOf(a));
+      const rb = learnStateRank(stateOf(b));
       if (ra !== rb) return ra - rb;
-      const da = la.level ?? 0;
-      const db = lb.level ?? 0;
+      const da = a.level ?? 0;
+      const db = b.level ?? 0;
       if (da !== db) return da - db;
-      return (la.title ?? la.id).localeCompare(lb.title ?? lb.id);
-    });
-  };
+      return (a.title ?? a.id).localeCompare(b.title ?? b.id);
+    }),
+  }));
 
-  sortChildren(root);
-
-  return { root, visibleNodeIds };
+  return { groups, visibleNodeIds };
 }
 
 /* ------------------------------------------------------------------ */
@@ -597,9 +459,6 @@ export function renderMdToHtml(
     const field = id.split('/')[0];
     const idSuffix = id.split('/').at(-1);
     if (field && idSuffix) addNormalizedCandidate(`${field}/${normalizeId(idSuffix)}`, id);
-
-    const categorySuffix = node?.category.split('/').at(-1);
-    if (field && categorySuffix) addNormalizedCandidate(`${field}/${normalizeId(categorySuffix)}`, id);
   }
 
   const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;

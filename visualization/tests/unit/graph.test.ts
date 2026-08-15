@@ -3,10 +3,9 @@ import { describe, expect, it } from 'vitest';
 import defs from '../../../docs/defs.json';
 import type { DefGraph } from '../../src/types';
 import {
-  buildCategoryTree,
+  buildFieldGroups,
   buildRaw,
   computeStats,
-  computeGroupLevels,
   computeVisibleSet,
   effectiveState,
   normalizeId,
@@ -22,35 +21,30 @@ function makeGraph(): DefGraph {
       {
         id: 'math/root_a',
         title: 'root_a',
-        category: 'mathematics/fundamental/root_a',
         deps: [],
         content: '',
       },
       {
         id: 'math/root_b',
         title: 'root_b',
-        category: 'mathematics/fundamental/root_b',
         deps: [],
         content: '',
       },
       {
         id: 'math/mid',
         title: 'mid',
-        category: 'mathematics/analysis/mid',
         deps: ['math/root_a'],
         content: '',
       },
       {
         id: 'math/target',
         title: 'target',
-        category: 'mathematics/analysis/target',
         deps: ['math/mid'],
         content: '',
       },
       {
         id: 'cs/compound',
         title: 'compound',
-        category: 'computer_science/algorithms/compound',
         deps: ['math/root_a', 'math/root_b'],
         content: '',
       },
@@ -70,63 +64,54 @@ function makeTreeGraph(): DefGraph {
       {
         id: 'math/root_a',
         title: 'root_a',
-        category: 'mathematics/fundamental/root_a',
         deps: [],
         content: '',
       },
       {
         id: 'math/root_b',
         title: 'root_b',
-        category: 'mathematics/fundamental/root_b',
         deps: [],
         content: '',
       },
       {
         id: 'math/mid',
         title: 'mid',
-        category: 'mathematics/fundamental/mid',
         deps: ['math/root_a'],
         content: '',
       },
       {
         id: 'math/analysis_ready_a',
         title: 'alpha ready',
-        category: 'mathematics/analysis/alpha_ready',
         deps: [],
         content: '',
       },
       {
         id: 'math/analysis_ready_z',
         title: 'zeta ready',
-        category: 'mathematics/analysis/zeta_ready',
         deps: [],
         content: '',
       },
       {
         id: 'math/analysis_learned',
         title: 'learned leaf',
-        category: 'mathematics/analysis/learned_leaf',
         deps: [],
         content: '',
       },
       {
         id: 'math/analysis_preready',
         title: 'pre ready leaf',
-        category: 'mathematics/analysis/pre_ready_leaf',
         deps: ['math/root_a', 'math/root_b'],
         content: '',
       },
       {
         id: 'math/analysis_notready',
         title: 'not ready leaf',
-        category: 'mathematics/analysis/not_ready_leaf',
         deps: ['math/mid'],
         content: '',
       },
       {
         id: 'cs/algo',
         title: 'algo',
-        category: 'computer_science/algorithms/algo',
         deps: ['math/root_a'],
         content: '',
       },
@@ -186,35 +171,24 @@ describe('graph helpers', () => {
     expect(selectNextReady(raw, rendered, new Set(['math/root_a', 'math/root_b']))).toBe('math/mid');
   });
 
-  it('computes group levels from cross-group dependencies', () => {
-    const raw = buildRaw(makeTreeGraph());
-    const { levelByGroup } = computeGroupLevels(raw);
-
-    expect(levelByGroup.get('mathematics')).toBe(0);
-    expect(levelByGroup.get('mathematics/fundamental')).toBe(0);
-    expect(levelByGroup.get('mathematics/analysis')).toBe(1);
-    expect(levelByGroup.get('computer_science')).toBe(1);
-    expect(levelByGroup.get('computer_science/algorithms')).toBe(1);
-  });
-
-  it('sorts category groups by computed group level and leaves by state, level, and title', () => {
+  it('groups definitions by field and sorts them by state, level, and title', () => {
     const raw = buildRaw(makeTreeGraph());
     const rendered = renderGraph(raw, null);
-    const { root } = buildCategoryTree(raw, rendered, new Set(['math/root_a', 'math/analysis_learned']));
+    const { groups } = buildFieldGroups(raw, rendered, new Set(['math/root_a', 'math/analysis_learned']));
 
-    expect(root.children.map((child) => child.id)).toEqual(['mathematics', 'computer_science']);
+    expect(groups.map((group) => group.field)).toEqual(['cs', 'math']);
 
-    const mathematics = root.children.find((child) => child.id === 'mathematics');
-    expect(mathematics?.children.map((child) => child.id)).toEqual([
-      'mathematics/fundamental',
-      'mathematics/analysis',
-    ]);
+    const computerScience = groups.find((group) => group.field === 'cs');
+    expect(computerScience?.definitions.map((def) => def.id)).toEqual(['cs/algo']);
 
-    const analysis = mathematics?.children.find((child) => child.id === 'mathematics/analysis');
-    expect(analysis?.children.map((child) => child.id)).toEqual([
+    const mathematics = groups.find((group) => group.field === 'math');
+    expect(mathematics?.definitions.map((def) => def.id)).toEqual([
       'math/analysis_ready_a',
+      'math/root_b',
       'math/analysis_ready_z',
+      'math/mid',
       'math/analysis_learned',
+      'math/root_a',
       'math/analysis_preready',
       'math/analysis_notready',
     ]);

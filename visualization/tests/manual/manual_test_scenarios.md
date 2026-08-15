@@ -1,12 +1,12 @@
 ## Manual test scenarios
 
-### #1 **Category folder checkbox toggles all nested definitions**
+### #1 **Field folder checkbox toggles all nested definitions**
 
 **Importance**: Critical
 
 **Manual test scenario**
 
-In the Filters tab, uncheck a category folder and verify that all definitions under that folder disappear from the rendered graph. Check the same folder again and verify that all of its definitions return.
+In the Filters tab, uncheck a field folder (e.g. `mathematics`) and verify that all definitions under that folder disappear from the rendered graph. Check the same folder again and verify that all of its definitions return.
 
 ### #2 **Node colors match the four learning states**
 

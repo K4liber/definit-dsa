@@ -38,7 +38,7 @@ const App = () => {
     [state.selectLeaf],
   );
 
-  const handleCategorySelect = useCallback(
+  const handleDefinitionSelect = useCallback(
     (id: string) => {
       state.selectLeaf(id);
       state.setActiveTab('definition');
@@ -171,7 +171,7 @@ const App = () => {
             raw={state.raw}
             rendered={state.rendered}
             includedIds={state.includedIds}
-            onSelectLeaf={handleCategorySelect}
+            onSelectLeaf={handleDefinitionSelect}
             onSetIncluded={state.setIncluded}
             onSetIncludedMany={state.setIncludedMany}
             searchQuery={state.searchQuery}

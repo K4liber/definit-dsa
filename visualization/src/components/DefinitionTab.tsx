@@ -50,7 +50,7 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
         className="path"
         style={{ display: 'block' }}
       >
-        {node.category}
+        {node.id}
       </div>
       <div
         ref={bodyRef}

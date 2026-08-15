@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
-import type { Raw, DefNode, TreeNode, LearnState } from '../types';
-import { buildCategoryTree, learnStateForNode } from '../lib/graph';
-import { loadOpenPrefixes, saveOpenPrefixes } from '../lib/storage';
+import type { Raw, DefNode, FieldGroup, LearnState } from '../types';
+import { buildFieldGroups, learnStateForNode } from '../lib/graph';
+import { loadOpenFields, saveOpenFields } from '../lib/storage';
 
 type Match = { id: string; title: string };
 
 type Props = {
-  // Category filter
+  // Definition include/exclude filter
   raw: Raw;
   renderedForTree: import('../types').DefGraph; // filtered graph (after all filters) to compute visible states
   learned: Set<string>;
@@ -59,8 +59,8 @@ const FiltersTab: React.FC<Props> = ({
   onSetShowReady,
   onSetShowLearned,
 }) => {
-  // --- Category tree state ---
-  const [openPrefixes, setOpenPrefixes] = useState<Set<string>>(() => loadOpenPrefixes());
+  // --- Definition tree state (grouped by field) ---
+  const [openPrefixes, setOpenPrefixes] = useState<Set<string>>(() => loadOpenFields());
 
   const isOpen = useCallback(
     (prefix: string) => {
@@ -77,7 +77,7 @@ const FiltersTab: React.FC<Props> = ({
       const next = new Set(prev);
       if (next.has(prefix)) next.delete(prefix);
       else next.add(prefix);
-      saveOpenPrefixes(next);
+      saveOpenFields(next);
       return next;
     });
   }, []);
@@ -90,16 +90,8 @@ const FiltersTab: React.FC<Props> = ({
     [includedIds],
   );
 
-  const leafIdsUnder = useCallback(
-    (prefix: string) => {
-      if (!prefix) return raw.def.nodes.map((n) => n.id);
-      return raw.childrenByPrefix.get(prefix) ?? [];
-    },
-    [raw],
-  );
-
-  const { root, visibleNodeIds } = useMemo(
-    () => buildCategoryTree(raw, renderedForTree, learned),
+  const { groups, visibleNodeIds } = useMemo(
+    () => buildFieldGroups(raw, renderedForTree, learned),
     [raw, renderedForTree, learned],
   );
 
@@ -111,89 +103,78 @@ const FiltersTab: React.FC<Props> = ({
     [learned, visibleNodeIds],
   );
 
-  const renderTreeNode = useCallback(
-    (node: TreeNode): React.ReactNode => {
-      if (node.id === '') {
-        // Root – render children only
-        return node.children.map((c) => renderTreeNode(c));
-      }
-
-      const open = node.kind === 'group' ? isOpen(node.id) : true;
-
-      if (node.kind === 'group') {
-        const childLeafIds = leafIdsUnder(node.id);
-        const allInc = childLeafIds.length ? childLeafIds.every(isIncluded) : true;
-        const anyInc = childLeafIds.some(isIncluded);
-
-        return (
-          <div key={node.id}>
-            <div
-              className="treeRow hasChildren clickable"
-              style={{ '--indent': Math.max(0, node.depth - 1) } as React.CSSProperties}
-              onClick={(ev) => {
-                const t = ev.target as HTMLElement;
-                if (t.tagName === 'INPUT') return;
-                toggleOpen(node.id);
-              }}
-            >
-              <span className="treeIndent" />
-              <span className={`treeChevron ${open ? 'open' : ''}`}>▶</span>
-              <input
-                type="checkbox"
-                className="treeCheckbox"
-                checked={allInc}
-                ref={(el) => {
-                  if (el) el.indeterminate = anyInc && !allInc;
-                }}
-                onChange={(ev) => {
-                  onSetIncludedMany(childLeafIds, ev.target.checked);
-                }}
-              />
-              <span className="treeLabel">{node.name}</span>
-              <span className="treeMeta">
-                <span>L{node.groupLevel ?? 0}</span>
-              </span>
-            </div>
-            {open && node.children.map((c) => renderTreeNode(c))}
-          </div>
-        );
-      }
-
-      // Leaf
-      const leaf = node.leaf!;
-      const st = stateForCat(leaf);
+  const renderGroup = useCallback(
+    (group: FieldGroup): React.ReactNode => {
+      const open = isOpen(group.field);
+      const definitionIds = group.definitions.map((d) => d.id);
+      const allInc = definitionIds.length ? definitionIds.every(isIncluded) : true;
+      const anyInc = definitionIds.some(isIncluded);
 
       return (
-        <div key={node.id}>
+        <div key={group.field}>
           <div
-            className="treeRow clickable"
-            style={{ '--indent': Math.max(0, node.depth - 1) } as React.CSSProperties}
+            className="treeRow hasChildren clickable"
             onClick={(ev) => {
               const t = ev.target as HTMLElement;
               if (t.tagName === 'INPUT') return;
-              onSelectLeaf(leaf.id);
+              toggleOpen(group.field);
             }}
           >
             <span className="treeIndent" />
-            <span className="treeChevron" />
+            <span className={`treeChevron ${open ? 'open' : ''}`}>▶</span>
             <input
               type="checkbox"
               className="treeCheckbox"
-              checked={isIncluded(leaf.id)}
+              checked={allInc}
+              ref={(el) => {
+                if (el) el.indeterminate = anyInc && !allInc;
+              }}
               onChange={(ev) => {
-                onSetIncluded(leaf.id, ev.target.checked);
+                onSetIncludedMany(definitionIds, ev.target.checked);
               }}
             />
-            <span className="treeLabel">{leaf.title}</span>
+            <span className="treeLabel">{group.field}</span>
             <span className="treeMeta">
-              <span className={`stateDot ${st}`} />
-              <span>L{leaf.level ?? 0}</span>
+              <span>{group.definitions.length}</span>
             </span>
           </div>
+          {open &&
+            group.definitions.map((def) => {
+              const st = stateForCat(def);
+
+              return (
+                <div
+                  key={def.id}
+                  className="treeRow clickable"
+                  style={{ '--indent': 1 } as React.CSSProperties}
+                  onClick={(ev) => {
+                    const t = ev.target as HTMLElement;
+                    if (t.tagName === 'INPUT') return;
+                    onSelectLeaf(def.id);
+                  }}
+                >
+                  <span className="treeIndent" />
+                  <span className="treeChevron" />
+                  <input
+                    type="checkbox"
+                    className="treeCheckbox"
+                    checked={isIncluded(def.id)}
+                    onChange={(ev) => {
+                      onSetIncluded(def.id, ev.target.checked);
+                    }}
+                  />
+                  <span className="treeLabel">{def.title}</span>
+                  <span className="treeMeta">
+                    <span className={`stateDot ${st}`} />
+                    <span>L{def.level ?? 0}</span>
+                  </span>
+                </div>
+              );
+            })}
         </div>
       );
     },
-    [isOpen, isIncluded, leafIdsUnder, onSelectLeaf, onSetIncluded, onSetIncludedMany, stateForCat, toggleOpen],
+    [isOpen, isIncluded, onSelectLeaf, onSetIncluded, onSetIncludedMany, stateForCat, toggleOpen],
   );
 
   // Hide search results list after selecting an item; reopen on typing/focus.
@@ -304,8 +285,8 @@ const FiltersTab: React.FC<Props> = ({
         </div>
 
         <div>
-          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Category include/exclude</h4>
-          <div className="categoriesTree" role="region" aria-label="Category include/exclude">{renderTreeNode(root)}</div>
+          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Definitions include/exclude</h4>
+          <div className="categoriesTree" role="region" aria-label="Definitions include/exclude">{groups.map(renderGroup)}</div>
         </div>
       </div>
     </div>

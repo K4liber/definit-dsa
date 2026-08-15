@@ -34,13 +34,13 @@ describe('gen-data script', () => {
 
     await writeFile(
       indexPath,
-      ['- [object](mathematics/fundamental/object)', '- [set](mathematics/fundamental/set)'].join('\n'),
+      ['- [object](mathematics/object)', '- [set](mathematics/set)'].join('\n'),
       'utf8',
     );
-    await writeDefinition(defsRoot, 'mathematics/fundamental/object', '# object\n\nAn object.\n');
+    await writeDefinition(defsRoot, 'mathematics/object', '# object\n\nAn object.\n');
     await writeDefinition(
       defsRoot,
-      'mathematics/fundamental/set',
+      'mathematics/set',
       '# set\n\nA [set](mathematics/set) is a collection of [object](mathematics/object).\n',
     );
 
@@ -60,11 +60,11 @@ describe('gen-data script', () => {
 
     await writeFile(
       indexPath,
-      ['- [alpha](mathematics/fundamental/alpha)', '- [beta](mathematics/fundamental/beta)'].join('\n'),
+      ['- [alpha](mathematics/alpha)', '- [beta](mathematics/beta)'].join('\n'),
       'utf8',
     );
-    await writeDefinition(defsRoot, 'mathematics/fundamental/alpha', '# alpha\n\nSee [beta](mathematics/beta).\n');
-    await writeDefinition(defsRoot, 'mathematics/fundamental/beta', '# beta\n\nSee [alpha](mathematics/alpha).\n');
+    await writeDefinition(defsRoot, 'mathematics/alpha', '# alpha\n\nSee [beta](mathematics/beta).\n');
+    await writeDefinition(defsRoot, 'mathematics/beta', '# beta\n\nSee [alpha](mathematics/alpha).\n');
 
     await expect(generateData({ indexPath, defsRoot, outPath })).rejects.toThrow(/Cycle detected/i);
   });

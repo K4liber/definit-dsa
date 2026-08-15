@@ -8,16 +8,8 @@ const indexPath = path.resolve(repoRoot, '../src/definit_db/data_md/index.md');
 const defsRoot = path.resolve(repoRoot, '../src/definit_db/data_md/definitions');
 const outPath = path.resolve(repoRoot, './public/defs.json');
 
-export function normalizeId(s) {
-  return s
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, '_')
-    .replace(/[^a-z0-9_\-]/g, '');
-}
-
 export async function parseIndex(md, defsRootPath = defsRoot) {
-  // lines like: - [object](mathematics/fundamental/object)
+  // lines like: - [object](mathematics/object)
   const items = [];
   const re = /^-\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 
@@ -25,15 +17,10 @@ export async function parseIndex(md, defsRootPath = defsRoot) {
     const m = re.exec(line.trim());
     if (!m) continue;
     const title = m[1];
-    const category = m[2].replace(/\.md$/i, '');
+    // The link path is the definition id in the `<field>/<name>` form.
+    const id = m[2].replace(/\.md$/i, '');
 
-    // Field is the first path segment
-    const field = category.split('/')[0];
-
-    // ID has a <field>/<normalized_title> form
-    const id = `${field}/${normalizeId(title)}`;
-
-    const contentFilePath = path.resolve(defsRootPath, `${category}.md`);
+    const contentFilePath = path.resolve(defsRootPath, `${id}.md`);
     const content = await readIfExists(contentFilePath);
 
     if (!content) {
@@ -41,7 +28,7 @@ export async function parseIndex(md, defsRootPath = defsRoot) {
       throw new Error(`Definition file not found: ${contentFilePath}`);
     }
 
-    items.push({ id, title, category, content });
+    items.push({ id, title, content });
   }
   return items;
 }
@@ -54,7 +41,7 @@ export async function readIfExists(p) {
   }
 }
 
-export function normalizeHrefToIndexRelPath(href, idByCategory) {
+export function normalizeHrefToId(href, knownIds) {
   const clean = String(href ?? '').trim();
   if (!clean) return null;
   if (clean.startsWith('#')) return null;
@@ -69,76 +56,34 @@ export function normalizeHrefToIndexRelPath(href, idByCategory) {
   const p = noHash.replace(/^\.\//, '').replace(/\.md$/i, '');
   if (!p.includes('/')) return null;
 
-  // Exact match
-  if (idByCategory.has(p)) return p;
-
-  // Shorthand: "field/definition" where index uses deeper paths like
-  // "field/<subtree>/definition".
-  // Resolve by looking for an index category that ends with "/definition" *within the same field*.
-  const parts = p.split('/');
-  const field = parts[0];
-  const last = parts.at(-1);
-  if (!field || !last) return null;
-
-  const suffix = `/${last}`;
-
-  const matches = [];
-  for (const rel of idByCategory.keys()) {
-    if (rel.startsWith(`${field}/`) && rel.endsWith(suffix)) matches.push(rel);
-  }
-
-  if (matches.length === 1) return matches[0];
-
-  return null; // ambiguous or not found
+  // Exact match against known definition ids
+  return knownIds.has(p) ? p : null;
 }
 
-export function extractDeps(md, ctx, idByCategory, stats) {
-  // Heuristic: dependencies are written inside definitions content.
-  // Pattern: [label](some/path) - we take label as a candidate dependency id
-  //
-  // Notes:
-  // - We try hard to ignore self-references and non-dependency links.
+export function extractDeps(md, ctx, knownIds, stats) {
+  // Dependencies are definition references written inside the content:
+  // [label](field/name) where the href is exactly a known definition id.
+  // Self-references and non-definition links are ignored.
 
   const deps = new Set();
 
-  const isSelf = (candidateId, href) => {
-    if (!candidateId) return false;
-    if (candidateId === ctx.id) return true;
-
-    if (href) {
-      const clean = String(href).trim();
-      if (!clean) return false;
-      if (clean === ctx.category || clean === `${ctx.category}.md`) return true;
-      if (clean === `./${ctx.category}` || clean === `./${ctx.category}.md`) return true;
-      if (clean.endsWith(`#${ctx.id}`) || clean === `#${ctx.id}`) return true;
-    }
-
-    return false;
-  };
-
   const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
   for (const m of md.matchAll(linkRe)) {
-    const label = m[1];
     const href = (m[2] ?? '').trim();
 
-    const rel = normalizeHrefToIndexRelPath(href, idByCategory);
+    const rel = normalizeHrefToId(href, knownIds);
     if (rel) {
-      const depId = idByCategory.get(rel);
-      if (depId && !isSelf(depId, href)) deps.add(depId);
+      if (rel !== ctx.id) deps.add(rel);
       continue;
     }
 
-    // Track unresolved/ambiguous href-based refs (useful to tune parsing).
+    // Track unresolved href-based refs (useful to tune parsing).
     if (href && href.includes('/') && !href.startsWith('#') && !/^[a-z]+:\/\//i.test(href)) {
       stats.unresolvedHref++;
     }
-
-    // Fallback: label-based (not unique across fields)
-    const labelId = normalizeId(label);
-    if (labelId && !isSelf(labelId, href)) deps.add(labelId);
   }
 
-  return [...deps].filter(Boolean);
+  return [...deps];
 }
 
 export function computeLevels(nodes) {
@@ -158,7 +103,7 @@ export function computeLevels(nodes) {
   function formatNode(id) {
     const n = byId.get(id);
     if (!n) return id;
-    return `${n.id} (${n.category})`;
+    return n.id;
   }
 
   function dfs(id) {
@@ -217,11 +162,11 @@ export async function generateData({
   const nodes = [];
   const stats = { unresolvedHref: 0 };
 
-  // map category -> id for dependency resolution
-  const idByCategory = new Map(items.map((it) => [it.category.replace(/\.md$/i, ''), it.id]));
+  // known definition ids for dependency resolution
+  const knownIds = new Set(items.map((it) => it.id));
 
   for (const it of items) {
-    const deps = extractDeps(it.content, it, idByCategory, stats);
+    const deps = extractDeps(it.content, it, knownIds, stats);
     nodes.push({ ...it, deps, level: 0, content: it.content });
   }
 
