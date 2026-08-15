@@ -100,11 +100,11 @@ wheels = [
 
 [[package]]
 name = "definit"
-version = "0.7.0"
+version = "0.7.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e8/bc/d33bae1e9d327a88a904004491b5cda664def615b89a24a33d3b451cdb10/definit-0.7.0.tar.gz", hash = "sha256:f01f2545d50b0866124f553c579ccab52825b1f518e87ba26803187a138a781b", size = 13279, upload-time = "2026-08-15T05:32:29.116Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/43/5e/72113210f4f07c863d775df5f7bd6f52ceae7bc0e170c1a4d4d32521ee78/definit-0.7.2.tar.gz", hash = "sha256:365a1ea42bc2d86a191b3494197f193cd337a0ca96360a4a7d3252af3ebc8882", size = 13265, upload-time = "2026-08-15T11:01:30.692Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/be/c072536549153cba2d7a6d088ffe0ce3fb63cc9a19c117d9606ad233cb70/definit-0.7.0-py3-none-any.whl", hash = "sha256:45d0c1a20fc8757ed8b7a16ead749cb3068167661b51b224f15c6fb18d2f2458", size = 10339, upload-time = "2026-08-15T05:32:27.649Z" },
+    { url = "https://files.pythonhosted.org/packages/54/a6/791079f89b7325a48a3170eedba88cf72d97a4a1f0af7c507069de6511bc/definit-0.7.2-py3-none-any.whl", hash = "sha256:a6476ce18c9998e839236b526787939afe09d008ecc6a1e518974adfff84b457", size = 10306, upload-time = "2026-08-15T11:01:28.923Z" },
 ]
 
 [[package]]
@@ -125,7 +125,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "definit", specifier = "==0.7.0" },
+    { name = "definit", specifier = "==0.7.2" },
     { name = "import-linter", marker = "extra == 'dev'", specifier = ">=2.9" },
     { name = "matplotlib", marker = "extra == 'dev'" },
     { name = "pytest", marker = "extra == 'dev'" },
