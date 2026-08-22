@@ -23,5 +23,6 @@ ADJACENT = _Adjacent(
     key=DefinitionKey(
         name="adjacent",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("neighboring",),
 )

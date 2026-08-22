@@ -10,11 +10,12 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## IN PROGRESS
 
-## TODO
-
 ### 2. [FEATURE] Add definition aliases
 
-- [ ] Add aliases to all definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.)
+- [x] Create a aliases_index.md listing all definitions. Each line should be "- [ ] <definition name>" where checkbox indicates if we created aliases for that definition or not. The list should be sorted alphabetically.
+- [ ] Use the aliases_index.md to track the current progress of adding aliases. Take next 10 definitions from the list that are not checked and propose aliases for them. Propose aliases for definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.) Ask [HUMAN] to review and approve the proposed aliases. Once approved, add the aliases to the definitions and mark them as done in the aliases_index.md.
+
+## TODO
 
 ### 12. [FEATURE] Add a new group
 

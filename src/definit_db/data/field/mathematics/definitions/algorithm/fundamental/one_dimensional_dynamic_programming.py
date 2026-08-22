@@ -52,5 +52,6 @@ ONE_DIMENSIONAL_DYNAMIC_PROGRAMMING = _OneDimensionalDynamicProgramming(
     key=DefinitionKey(
         name="1D Dynamic Programming",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("1D DP", "one-dimensional DP", "linear DP"),
 )

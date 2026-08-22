@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _AmortizedTime(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A method of analyzing the {TIME_COMPLEXITY.key.get_reference("time complexity")} 
@@ -32,4 +29,7 @@ cost of "2" per operation, even though one operation was much more expensive tha
 """
 
 
-AMORTIZED_TIME = _AmortizedTime(DefinitionKey(name="amortized time", field=FieldName.MATHEMATICS))
+AMORTIZED_TIME = _AmortizedTime(
+    DefinitionKey(name="amortized time", field=FieldName.MATHEMATICS),
+    aliases=("amortized complexity",),
+)
