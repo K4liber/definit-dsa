@@ -32,5 +32,6 @@ GREEDY_ALGORITHM = _GreedyAlgorithm(
     key=DefinitionKey(
         name="greedy_algorithm",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("greedy", "greedy technique"),
 )
