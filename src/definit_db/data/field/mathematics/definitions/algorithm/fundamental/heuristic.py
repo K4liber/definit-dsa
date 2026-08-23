@@ -27,4 +27,7 @@ without examining every number, rather than guaranteeing the largest.
 """
 
 
-HEURISTIC = _Heuristic(DefinitionKey(name="heuristic", field=FieldName.MATHEMATICS))
+HEURISTIC = _Heuristic(
+    DefinitionKey(name="heuristic", field=FieldName.MATHEMATICS),
+    aliases=("heuristic function",),
+)

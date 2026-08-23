@@ -27,5 +27,6 @@ IN_DEGREE = _InDegree(
     key=DefinitionKey(
         name="in-degree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("indegree",),
 )

@@ -30,5 +30,6 @@ INDEPENDENCE = _Independence(
     key=DefinitionKey(
         name="independence",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("statistical independence", "independent events"),
 )

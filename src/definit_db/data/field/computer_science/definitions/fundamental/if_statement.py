@@ -30,5 +30,6 @@ IF_STATEMENT = _IfStatement(
     key=DefinitionKey(
         name="if-statement",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("if statement", "conditional statement"),
 )
