@@ -21,5 +21,6 @@ BOOLEAN_EXPRESSION = _BooleanExpression(
     key=DefinitionKey(
         name="boolean expression",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("logical expression",),
 )

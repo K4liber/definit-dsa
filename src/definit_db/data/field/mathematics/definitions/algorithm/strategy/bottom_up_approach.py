@@ -33,5 +33,6 @@ BOTTOM_UP_APPROACH = _BottomUpApproach(
     key=DefinitionKey(
         name="bottom_up_approach",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("bottom-up",),
 )
