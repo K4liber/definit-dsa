@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.integer import IN
 
 
 class _ArithmeticRightShift(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
@@ -33,5 +30,6 @@ result is exactly -76 // 4. A logical shift on the same bits would instead produ
 
 
 ARITHMETIC_RIGHT_SHIFT = _ArithmeticRightShift(
-    DefinitionKey(name="arithmetic right shift", field=FieldName.COMPUTER_SCIENCE)
+    DefinitionKey(name="arithmetic right shift", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("signed right shift", "SAR"),
 )

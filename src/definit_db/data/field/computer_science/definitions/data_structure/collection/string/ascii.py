@@ -27,5 +27,6 @@ ASCII = _Ascii(
     key=DefinitionKey(
         name="ascii",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("American Standard Code for Information Interchange",),
 )

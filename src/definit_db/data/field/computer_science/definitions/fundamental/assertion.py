@@ -32,5 +32,6 @@ ASSERTION = _Assertion(
     key=DefinitionKey(
         name="assert",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("assertion",),
 )

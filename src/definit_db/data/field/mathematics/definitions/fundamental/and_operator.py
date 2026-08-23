@@ -27,5 +27,6 @@ AND_OPERATOR = _AndOperator(
     key=DefinitionKey(
         name="AND",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("logical AND", "conjunction"),
 )
