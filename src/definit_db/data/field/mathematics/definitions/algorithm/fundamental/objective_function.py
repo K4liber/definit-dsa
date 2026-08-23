@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _ObjectiveFunction(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {FUNCTION.key.get_reference()} that represents the goal or objective 

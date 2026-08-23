@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.problem.recursion import RECU
 
 
 class _StackOverflow(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 stack overflow occurs when a {PROGRAM.key.get_reference()} attempts to use more 

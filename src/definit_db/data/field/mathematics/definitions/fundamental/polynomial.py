@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 
 
 class _Polynomial(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A mathematical {EXPRESSION.key.get_reference()} consisting of variables and coefficients, 

@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _OffByOne(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A common error in {ALGORITHM.key.get_reference("algorithms")} where a 

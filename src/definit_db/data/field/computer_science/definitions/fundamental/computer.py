@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _Computer(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A device that can execute {INSTRUCTION.key.get_reference(phrase="instructions")}

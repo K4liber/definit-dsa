@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 
 
 class _Core(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An independent processing unit within a {PROCESSOR.key.get_reference()} 

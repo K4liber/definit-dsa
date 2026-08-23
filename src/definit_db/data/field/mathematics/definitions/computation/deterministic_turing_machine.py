@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.uniqueness import
 
 
 class _DeterministicTuringMachine(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {DETERMINISM.key.get_reference("deterministic")} {TURING_MACHINE.key.get_reference("Turing machine")} where each

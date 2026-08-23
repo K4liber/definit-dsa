@@ -23,9 +23,6 @@ from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUB
 
 
 class _CoNPClass(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {COMPLEXITY.key.get_reference("complexity")} class in

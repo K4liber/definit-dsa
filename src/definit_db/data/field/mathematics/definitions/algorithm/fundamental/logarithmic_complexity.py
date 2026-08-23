@@ -13,9 +13,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem_space import 
 
 
 class _LogarithmicComplexity(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {TIME_COMPLEXITY.key.get_reference("time complexity")} classification where 

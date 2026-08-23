@@ -8,9 +8,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _BinaryFractions(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A way to represent fractional {NUMBER.key.get_reference("numbers")} 

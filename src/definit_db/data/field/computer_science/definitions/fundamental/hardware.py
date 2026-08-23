@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 
 
 class _Hardware(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 hardware refers to the physical, tangible components of a {COMPUTER.key.get_reference()} —

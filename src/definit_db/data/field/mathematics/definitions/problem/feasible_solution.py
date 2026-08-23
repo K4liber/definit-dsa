@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.problem.solution import SOLUT
 
 
 class _FeasibleSolution(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {SOLUTION.key.get_reference()} to a {PROBLEM.key.get_reference()} 

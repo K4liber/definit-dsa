@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 
 
 class _WeightedGraph(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {GRAPH.key.get_reference()} in which each {EDGE.key.get_reference()} 

@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUB
 
 
 class _Constraint(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {CRITERION.key.get_reference("condition")} or restriction that must be satisfied 

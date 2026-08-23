@@ -17,9 +17,6 @@ from definit_db.data.field.mathematics.definitions.problem.subset_sum import SUB
 
 
 class _NPCompleteClass(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A class of {PROBLEM.key.get_reference("problems")} that are both in 

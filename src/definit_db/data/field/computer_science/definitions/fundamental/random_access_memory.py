@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 
 
 class _RandomAccessMemory(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A type of {COMPUTER_MEMORY.key.get_reference()} that allows {DATA.key.get_reference()} 

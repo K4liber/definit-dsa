@@ -8,9 +8,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _TuringMachine(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A mathematical model of {COMPUTATION.key.get_reference()} that defines an

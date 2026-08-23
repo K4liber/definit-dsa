@@ -14,9 +14,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.table import TABL
 
 
 class _Cache(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A high-speed {COMPUTER_MEMORY.key.get_reference()} {STORAGE.key.get_reference(phrase="storage")} layer that temporarily 

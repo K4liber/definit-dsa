@@ -6,9 +6,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _LastInFirstOut(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An ordering principle for a {SEQUENCE.key.get_reference()} where the most recently added element is the first one to 

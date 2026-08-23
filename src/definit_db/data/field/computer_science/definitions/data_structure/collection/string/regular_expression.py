@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 
 
 class _RegularExpression(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {SEQUENCE.key.get_reference(phrase="sequence")} of 

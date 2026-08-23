@@ -11,9 +11,6 @@ from definit_db.data.field.computer_science.definitions.fundamental.program impo
 
 
 class _HeapMemory(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A region of {COMPUTER_MEMORY.key.get_reference()} used for dynamic 

@@ -7,9 +7,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.input_data import
 
 
 class _Determinism(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 Determinism is the property of a {FUNCTION.key.get_reference()} or process whereby its output is fully 

@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.integer import IN
 
 
 class _LogicalRightShift(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 

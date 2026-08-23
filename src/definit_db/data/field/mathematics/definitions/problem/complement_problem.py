@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _ComplementProblem(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The complement problem of a decision {PROBLEM.key.get_reference()} is obtained by swapping its "yes" and 

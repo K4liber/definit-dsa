@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.problem.solution import SOLUT
 
 
 class _ProblemSpace(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The {SET.key.get_reference()} of all possible candidates for 

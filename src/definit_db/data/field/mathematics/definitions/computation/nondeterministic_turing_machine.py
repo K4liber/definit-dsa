@@ -13,9 +13,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _NondeterministicTuringMachine(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {TURING_MACHINE.key.get_reference("Turing machine")} where each
