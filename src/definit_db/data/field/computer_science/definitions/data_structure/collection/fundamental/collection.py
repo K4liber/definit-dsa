@@ -29,5 +29,6 @@ COLLECTION = _Collection(
     key=DefinitionKey(
         name="collection",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("container",),
 )

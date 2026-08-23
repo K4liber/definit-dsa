@@ -31,5 +31,6 @@ CODE = _Code(
     key=DefinitionKey(
         name="code",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("source code",),
 )

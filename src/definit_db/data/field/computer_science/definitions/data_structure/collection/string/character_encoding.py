@@ -28,5 +28,6 @@ CHARACTER_ENCODING = _CharacterEncoding(
     key=DefinitionKey(
         name="character_encoding",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("charset",),
 )

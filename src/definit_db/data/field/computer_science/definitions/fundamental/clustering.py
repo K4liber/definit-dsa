@@ -37,5 +37,6 @@ CLUSTERING = _Clustering(
     key=DefinitionKey(
         name="clustering",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("cluster analysis",),
 )
