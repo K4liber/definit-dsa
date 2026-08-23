@@ -40,5 +40,6 @@ DISTRIBUTION = _Distribution(
     key=DefinitionKey(
         name="distribution",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("probability distribution",),
 )

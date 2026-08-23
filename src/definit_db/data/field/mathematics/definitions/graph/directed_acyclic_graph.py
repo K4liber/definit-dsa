@@ -28,5 +28,6 @@ DIRECTED_ACYCLIC_GRAPH = _DirectedAcyclicGraph(
     key=DefinitionKey(
         name="directed_acyclic_graph",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("DAG",),
 )

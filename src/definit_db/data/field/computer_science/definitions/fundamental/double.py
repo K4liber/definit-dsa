@@ -30,5 +30,6 @@ DOUBLE = _Double(
     key=DefinitionKey(
         name="Double",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("double precision", "double-precision float"),
 )

@@ -27,5 +27,6 @@ DIRECTED_GRAPH = _DirectedGraph(
     key=DefinitionKey(
         name="directed_graph",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("digraph",),
 )
