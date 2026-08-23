@@ -24,5 +24,6 @@ BIT = _Bit(
     key=DefinitionKey(
         name="bit",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("binary digit",),
 )

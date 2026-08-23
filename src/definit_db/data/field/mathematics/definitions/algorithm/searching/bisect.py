@@ -32,5 +32,6 @@ BISECT = _Bisect(
     key=DefinitionKey(
         name="bisect",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("binary insertion",),
 )

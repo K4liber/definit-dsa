@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.and_operator impo
 
 
 class _BitwiseOperation(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An {OPERATION.key.get_reference()} that acts on individual {BIT.key.get_reference("bits")} 
@@ -28,4 +25,7 @@ each output bit is 1 only where both corresponding input bits are 1.
 """
 
 
-BITWISE_OPERATION = _BitwiseOperation(DefinitionKey(name="bitwise operation", field=FieldName.COMPUTER_SCIENCE))
+BITWISE_OPERATION = _BitwiseOperation(
+    DefinitionKey(name="bitwise operation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("bitwise operator",),
+)

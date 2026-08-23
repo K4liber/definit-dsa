@@ -29,5 +29,6 @@ BIPARTITE_GRAPH = _BipartiteGraph(
     key=DefinitionKey(
         name="bipartite_graph",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("bigraph",),
 )

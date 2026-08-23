@@ -28,5 +28,6 @@ BITMASK = _Bitmask(
     key=DefinitionKey(
         name="bitmask",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("bit mask",),
 )
