@@ -57,4 +57,7 @@ satisfying the Co-NP definition.
 """
 
 
-CO_NP_CLASS = _CoNPClass(DefinitionKey(name="Co-NP class", field=FieldName.MATHEMATICS))
+CO_NP_CLASS = _CoNPClass(
+    DefinitionKey(name="Co-NP class", field=FieldName.MATHEMATICS),
+    aliases=("co-NP",),
+)

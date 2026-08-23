@@ -25,5 +25,6 @@ CYCLE = _Cycle(
     key=DefinitionKey(
         name="cycle",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("circuit", "closed path"),
 )
