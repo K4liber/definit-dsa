@@ -77,5 +77,6 @@ DIJKSTRAS_ALGORITHM = _DijkstrasAlgorithm(
     key=DefinitionKey(
         name="dijkstras_algorithm",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Dijkstra's algorithm",),
 )

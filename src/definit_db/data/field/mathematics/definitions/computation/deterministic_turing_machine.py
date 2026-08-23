@@ -25,5 +25,6 @@ and always halts when it reads "1", is deterministic: for every (state, symbol) 
 
 
 DETERMINISTIC_TURING_MACHINE = _DeterministicTuringMachine(
-    DefinitionKey(name="deterministic Turing machine", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="deterministic Turing machine", field=FieldName.MATHEMATICS),
+    aliases=("DTM",),
 )

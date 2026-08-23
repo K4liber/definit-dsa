@@ -34,4 +34,7 @@ Visit order: A, B, D, E, C
 """
 
 
-DEPTH_FIRST_SEARCH = _DepthFirstSearch(DefinitionKey(name="depth-first search", field=FieldName.MATHEMATICS))
+DEPTH_FIRST_SEARCH = _DepthFirstSearch(
+    DefinitionKey(name="depth-first search", field=FieldName.MATHEMATICS),
+    aliases=("DFS", "depth first search"),
+)

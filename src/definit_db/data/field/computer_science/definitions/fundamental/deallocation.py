@@ -25,4 +25,7 @@ that are no longer needed gradually exhausts the available memory.
 """
 
 
-DEALLOCATION = _Deallocation(DefinitionKey(name="deallocation", field=FieldName.COMPUTER_SCIENCE))
+DEALLOCATION = _Deallocation(
+    DefinitionKey(name="deallocation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("memory deallocation", "freeing"),
+)
