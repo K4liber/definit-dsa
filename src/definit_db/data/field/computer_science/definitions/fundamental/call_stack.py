@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out
 
 
 class _CallStack(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A region of {STACK_MEMORY.key.get_reference()} that tracks active 
@@ -29,4 +26,7 @@ most recently called function is always the first to return, which is exactly th
 """
 
 
-CALL_STACK = _CallStack(DefinitionKey(name="call stack", field=FieldName.COMPUTER_SCIENCE))
+CALL_STACK = _CallStack(
+    DefinitionKey(name="call stack", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("execution stack", "runtime stack"),
+)

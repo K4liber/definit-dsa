@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.information impor
 
 
 class _Character(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {PRIMITIVE_DATA_TYPE.key.get_reference(phrase="primitive data type")} that represents 
@@ -29,5 +26,6 @@ CHARACTER = _Character(
     key=DefinitionKey(
         name="character",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("char",),
 )

@@ -27,5 +27,6 @@ CARTESIAN_PLANE = _CartesianPlane(
     key=DefinitionKey(
         name="Cartesian plane",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("xy-plane", "coordinate plane"),
 )
