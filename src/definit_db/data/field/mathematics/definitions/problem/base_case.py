@@ -24,5 +24,6 @@ BASE_CASE = _BaseCase(
     key=DefinitionKey(
         name="base_case",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("base condition", "base step"),
 )

@@ -117,5 +117,6 @@ BELLMAN_FORD_ALGORITHM = _BellmanFordAlgorithm(
     key=DefinitionKey(
         name="bellman_ford_algorithm",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Bellman-Ford",),
 )

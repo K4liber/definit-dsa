@@ -29,5 +29,6 @@ BEST_CASE = _BestCase(
     key=DefinitionKey(
         name="best case",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("best-case complexity",),
 )

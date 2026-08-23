@@ -28,5 +28,6 @@ AUXILIARY_SPACE = _AuxiliarySpace(
     key=DefinitionKey(
         name="auxiliary space",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("extra space",),
 )

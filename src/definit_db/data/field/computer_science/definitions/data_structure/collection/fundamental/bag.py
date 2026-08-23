@@ -38,5 +38,6 @@ BAG = _Bag(
     key=DefinitionKey(
         name="bag",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("multiset",),
 )

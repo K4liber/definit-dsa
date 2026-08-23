@@ -39,5 +39,6 @@ AVL_TREE = _AVLTree(
     key=DefinitionKey(
         name="avl_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Adelson-Velsky and Landis tree",),
 )
