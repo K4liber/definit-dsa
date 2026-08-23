@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 
 
 class _Concurrency(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The ability of a {PROGRAM.key.get_reference()} to execute multiple tasks or 
@@ -33,4 +30,7 @@ instruction streams, so each makes progress and the application stays responsive
 """
 
 
-CONCURRENCY = _Concurrency(DefinitionKey(name="concurrency", field=FieldName.COMPUTER_SCIENCE))
+CONCURRENCY = _Concurrency(
+    DefinitionKey(name="concurrency", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("concurrent computing",),
+)
