@@ -14,9 +14,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _BestConceivableRuntime(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 best conceivable runtime (BCR) is the theoretical best {TIME_COMPLEXITY.key.get_reference("time complexity")} 
@@ -37,5 +34,6 @@ for this problem is therefore "n" steps, and no algorithm can solve it correctly
 
 
 BEST_CONCEIVABLE_RUNTIME = _BestConceivableRuntime(
-    DefinitionKey(name="best conceivable runtime", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="best conceivable runtime", field=FieldName.MATHEMATICS),
+    aliases=("BCR",),
 )

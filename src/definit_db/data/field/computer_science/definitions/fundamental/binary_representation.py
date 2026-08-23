@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _BinaryRepresentation(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A way of expressing {INFORMATION.key.get_reference()} using only two symbols, 
@@ -27,5 +24,6 @@ The number 13 has the binary representation 1101: reading the bits from left to 
 
 
 BINARY_REPRESENTATION = _BinaryRepresentation(
-    DefinitionKey(name="binary representation", field=FieldName.COMPUTER_SCIENCE)
+    DefinitionKey(name="binary representation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("base-2 representation",),
 )

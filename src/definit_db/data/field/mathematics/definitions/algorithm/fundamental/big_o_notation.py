@@ -53,5 +53,6 @@ BIG_O_NOTATION = _BigONotation(
     key=DefinitionKey(
         name="big_o_notation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Big O",),
 )

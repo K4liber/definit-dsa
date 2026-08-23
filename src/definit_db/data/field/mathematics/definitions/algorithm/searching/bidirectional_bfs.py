@@ -39,5 +39,6 @@ BIDIRECTIONAL_BFS = _BidirectionalBFS(
     key=DefinitionKey(
         name="bidirectional BFS",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("bidirectional breadth-first search",),
 )
