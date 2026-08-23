@@ -31,5 +31,6 @@ HEAD_INSERTION = _HeadInsertion(
     key=DefinitionKey(
         name="head insertion",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("prepending", "prepend"),
 )

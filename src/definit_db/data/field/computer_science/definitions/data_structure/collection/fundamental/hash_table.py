@@ -34,7 +34,8 @@ position, making lookup very fast on average.
 
 HASH_TABLE = _HashTable(
     key=DefinitionKey(
-        name="hash_table",
+        name="hash table",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("hash map", "hashmap"),
 )
