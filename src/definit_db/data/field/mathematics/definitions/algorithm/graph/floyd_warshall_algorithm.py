@@ -97,5 +97,6 @@ D: (A: 2, B: 5, C: 7, D: 0)
 
 
 FLOYD_WARSHALL_ALGORITHM = _FloydWarshallAlgorithm(
-    DefinitionKey(name="Floyd-Warshall algorithm", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="Floyd-Warshall algorithm", field=FieldName.MATHEMATICS),
+    aliases=("Floyd-Warshall", "Floyd Warshall"),
 )

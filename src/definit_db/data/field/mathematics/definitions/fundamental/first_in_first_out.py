@@ -18,4 +18,7 @@ first one served.
 """
 
 
-FIRST_IN_FIRST_OUT = _FirstInFirstOut(DefinitionKey(name="first in first out", field=FieldName.MATHEMATICS))
+FIRST_IN_FIRST_OUT = _FirstInFirstOut(
+    DefinitionKey(name="first in first out", field=FieldName.MATHEMATICS),
+    aliases=("FIFO", "first-in-first-out"),
+)

@@ -46,5 +46,6 @@ FIBONACCI = _Fibonacci(
     key=DefinitionKey(
         name="fibonacci",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Fibonacci sequence",),
 )

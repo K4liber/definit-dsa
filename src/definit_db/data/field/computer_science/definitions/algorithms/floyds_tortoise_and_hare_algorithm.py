@@ -41,5 +41,6 @@ FLOYDS_TORTOISE_AND_HARE_ALGORITHM = _FloydsTortoiseAndHareAlgorithm(
     key=DefinitionKey(
         name="Floyd's Tortoise and Hare algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("Floyd's cycle detection", "tortoise and hare"),
 )
