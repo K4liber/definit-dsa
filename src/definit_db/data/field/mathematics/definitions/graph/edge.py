@@ -24,5 +24,6 @@ EDGE = _Edge(
     key=DefinitionKey(
         name="edge",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("link", "arc"),
 )

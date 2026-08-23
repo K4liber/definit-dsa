@@ -36,5 +36,6 @@ DYNAMIC_PROGRAMMING = _DynamicProgramming(
     key=DefinitionKey(
         name="dynamic_programming",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("DP",),
 )

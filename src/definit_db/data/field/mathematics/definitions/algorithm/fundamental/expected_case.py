@@ -32,5 +32,6 @@ EXPECTED_CASE = _ExpectedCase(
     key=DefinitionKey(
         name="expected case",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("average case",),
 )

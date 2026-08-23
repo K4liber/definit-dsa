@@ -34,5 +34,6 @@ EDGE_CASE = _EdgeCase(
     key=DefinitionKey(
         name="edge case",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("corner case", "boundary case"),
 )
