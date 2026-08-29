@@ -44,5 +44,6 @@ POLYNOMIAL_REDUCTION = _PolynomialReduction(
     key=DefinitionKey(
         name="polynomial reduction",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["Karp reduction"],
 )

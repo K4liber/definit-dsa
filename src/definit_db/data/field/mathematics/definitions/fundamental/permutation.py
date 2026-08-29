@@ -25,5 +25,6 @@ PERMUTATION = _Permutation(
     key=DefinitionKey(
         name="permutation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["arrangement"],
 )

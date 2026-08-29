@@ -27,5 +27,6 @@ OPTIMAL_SOLUTION = _OptimalSolution(
     key=DefinitionKey(
         name="optimal_solution",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["best solution"],
 )

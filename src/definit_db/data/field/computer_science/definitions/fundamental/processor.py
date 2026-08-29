@@ -33,4 +33,7 @@ back — repeating this cycle millions of times per second to run an entire prog
 """
 
 
-PROCESSOR = _Processor(DefinitionKey(name="processor", field=FieldName.COMPUTER_SCIENCE))
+PROCESSOR = _Processor(
+    DefinitionKey(name="processor", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["CPU"],
+)

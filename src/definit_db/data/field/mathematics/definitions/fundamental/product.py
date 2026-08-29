@@ -23,5 +23,6 @@ PRODUCT = _Product(
     key=DefinitionKey(
         name="product",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["multiplication"],
 )

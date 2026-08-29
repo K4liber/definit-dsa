@@ -37,7 +37,7 @@ Pass 2 — sort by tens digit:  [21, 35, 42, 53, 74]  ✓
 
 RADIX_SORT = _RadixSort(
     key=DefinitionKey(
-        name="radix_sort",
+        name="radix sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
 )

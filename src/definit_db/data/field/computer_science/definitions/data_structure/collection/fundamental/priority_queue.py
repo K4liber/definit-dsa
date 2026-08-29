@@ -37,5 +37,6 @@ PRIORITY_QUEUE = _PriorityQueue(
     key=DefinitionKey(
         name="priority_queue",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["PQ", "heap"],
 )

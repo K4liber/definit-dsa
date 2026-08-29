@@ -25,5 +25,6 @@ PRIME_NUMBER = _PrimeNumber(
     key=DefinitionKey(
         name="prime number",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["prime"],
 )

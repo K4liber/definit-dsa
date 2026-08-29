@@ -50,4 +50,7 @@ No matter what the input is, the {ALGORITHM.key.get_reference()} finishes in pol
 """
 
 
-P_CLASS = _PClass(DefinitionKey(name="P class", field=FieldName.MATHEMATICS))
+P_CLASS = _PClass(
+    DefinitionKey(name="P class", field=FieldName.MATHEMATICS),
+    aliases=["P", "complexity class P"],
+)

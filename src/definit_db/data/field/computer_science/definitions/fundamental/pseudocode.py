@@ -32,5 +32,6 @@ PSEUDOCODE = _Pseudocode(
     key=DefinitionKey(
         name="pseudocode",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["pseudo-code"],
 )

@@ -38,5 +38,6 @@ RABIN_KARP_ALGORITHM = _RabinKarpAlgorithm(
     key=DefinitionKey(
         name="rabin_karp_algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["Rabin-Karp", "Karp-Rabin"],
 )

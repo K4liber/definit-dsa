@@ -28,5 +28,6 @@ PERFECT_SQUARE = _PerfectSquare(
     key=DefinitionKey(
         name="perfect square",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["square number"],
 )

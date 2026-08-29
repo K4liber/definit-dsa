@@ -37,5 +37,6 @@ QUEUE = _Queue(
     key=DefinitionKey(
         name="queue",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["FIFO queue"],
 )

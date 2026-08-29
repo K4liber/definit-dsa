@@ -31,5 +31,6 @@ PROGRAMMING_MODEL = _ProgrammingModel(
     key=DefinitionKey(
         name="programming model",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["computational model"],
 )

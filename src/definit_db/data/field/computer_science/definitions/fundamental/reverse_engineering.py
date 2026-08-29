@@ -34,5 +34,6 @@ REVERSE_ENGINEERING = _ReverseEngineering(
     key=DefinitionKey(
         name="reverse engineering",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["back engineering"],
 )

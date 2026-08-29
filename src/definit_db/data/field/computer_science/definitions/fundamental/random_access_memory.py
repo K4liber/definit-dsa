@@ -31,4 +31,7 @@ This constant-time access is what lets programs index into {ARRAY.key.get_refere
 """
 
 
-RANDOM_ACCESS_MEMORY = _RandomAccessMemory(DefinitionKey(name="random access memory", field=FieldName.COMPUTER_SCIENCE))
+RANDOM_ACCESS_MEMORY = _RandomAccessMemory(
+    DefinitionKey(name="random access memory", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["RAM"],
+)

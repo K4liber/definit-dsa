@@ -26,5 +26,6 @@ REDUCTION = _Reduction(
     key=DefinitionKey(
         name="reduction",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["problem reduction"],
 )

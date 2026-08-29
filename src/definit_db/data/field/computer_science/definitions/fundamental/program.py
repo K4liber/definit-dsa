@@ -24,4 +24,7 @@ different programs.
 """
 
 
-PROGRAM = _Program(DefinitionKey(name="program", field=FieldName.COMPUTER_SCIENCE))
+PROGRAM = _Program(
+    DefinitionKey(name="program", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["computer program"],
+)

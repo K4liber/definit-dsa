@@ -31,4 +31,7 @@ processor — true parallel execution, not just overlapping progress.
 """
 
 
-PARALLELISM = _Parallelism(DefinitionKey(name="parallelism", field=FieldName.COMPUTER_SCIENCE))
+PARALLELISM = _Parallelism(
+    DefinitionKey(name="parallelism", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["parallel computing"],
+)

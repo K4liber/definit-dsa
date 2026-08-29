@@ -57,7 +57,8 @@ same on every path, and the tree satisfies all five properties.
 
 RED_BLACK_TREE = _RedBlackTree(
     key=DefinitionKey(
-        name="red_black_tree",
+        name="red black tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["RB tree"],
 )

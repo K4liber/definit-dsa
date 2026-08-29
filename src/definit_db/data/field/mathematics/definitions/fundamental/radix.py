@@ -27,5 +27,6 @@ RADIX = _Radix(
     key=DefinitionKey(
         name="radix",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["base"],
 )

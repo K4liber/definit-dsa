@@ -29,5 +29,6 @@ PRE_ORDER_TRAVERSAL = _PreOrderTraversal(
     key=DefinitionKey(
         name="pre-order traversal",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["preorder traversal"],
 )

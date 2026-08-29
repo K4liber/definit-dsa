@@ -32,5 +32,6 @@ RANDOMNESS = _Randomness(
     key=DefinitionKey(
         name="randomness",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["random behavior"],
 )

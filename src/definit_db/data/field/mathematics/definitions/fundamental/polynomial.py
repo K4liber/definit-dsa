@@ -31,4 +31,7 @@ which is not a non-negative {INTEGER.key.get_reference("integer")}.
 """
 
 
-POLYNOMIAL = _Polynomial(DefinitionKey(name="polynomial", field=FieldName.MATHEMATICS))
+POLYNOMIAL = _Polynomial(
+    DefinitionKey(name="polynomial", field=FieldName.MATHEMATICS),
+    aliases=["polynomial function"],
+)

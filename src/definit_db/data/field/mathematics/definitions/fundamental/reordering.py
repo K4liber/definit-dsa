@@ -23,5 +23,6 @@ REORDERING = _Reordering(
     key=DefinitionKey(
         name="reordering",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["permutation", "rearrangement"],
 )

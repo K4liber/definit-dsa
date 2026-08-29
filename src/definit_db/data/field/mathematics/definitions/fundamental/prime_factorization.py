@@ -32,5 +32,6 @@ PRIME_FACTORIZATION = _PrimeFactorization(
     key=DefinitionKey(
         name="prime factorization",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["prime decomposition"],
 )

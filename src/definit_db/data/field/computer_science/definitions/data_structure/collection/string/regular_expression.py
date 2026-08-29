@@ -27,4 +27,7 @@ letters from start to end, such as `hello` but not `Hello123`.
 """
 
 
-REGULAR_EXPRESSION = _RegularExpression(DefinitionKey(name="regular expression", field=FieldName.COMPUTER_SCIENCE))
+REGULAR_EXPRESSION = _RegularExpression(
+    DefinitionKey(name="regular expression", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["regex"],
+)

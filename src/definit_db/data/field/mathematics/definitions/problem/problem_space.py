@@ -27,4 +27,7 @@ must be examined. Inspecting each one shows that "2" and "4" are the valid
 """
 
 
-PROBLEM_SPACE = _ProblemSpace(DefinitionKey(name="problem space", field=FieldName.MATHEMATICS))
+PROBLEM_SPACE = _ProblemSpace(
+    DefinitionKey(name="problem space", field=FieldName.MATHEMATICS),
+    aliases=["search space"],
+)

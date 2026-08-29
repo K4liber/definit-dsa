@@ -46,5 +46,6 @@ PRECOMPUTATION = _Precomputation(
     key=DefinitionKey(
         name="precomputation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["precalculation"],
 )

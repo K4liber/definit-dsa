@@ -26,5 +26,6 @@ POINTER = _Pointer(
     key=DefinitionKey(
         name="pointer",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["reference"],
 )
