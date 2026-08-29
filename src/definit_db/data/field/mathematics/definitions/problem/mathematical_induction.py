@@ -32,5 +32,6 @@ MATHEMATICAL_INDUCTION = _MathematicalInduction(
     key=DefinitionKey(
         name="mathematical induction",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["proof by induction", "induction"],
 )

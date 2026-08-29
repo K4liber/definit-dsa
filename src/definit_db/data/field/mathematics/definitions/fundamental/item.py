@@ -24,5 +24,6 @@ ITEM = _Item(
     key=DefinitionKey(
         name="item",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["element"],
 )

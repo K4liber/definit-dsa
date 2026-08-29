@@ -65,4 +65,7 @@ to be verifiable in polynomial time.
 """
 
 
-NP_HARD_CLASS = _NPHardClass(DefinitionKey(name="NP-Hard class", field=FieldName.MATHEMATICS))
+NP_HARD_CLASS = _NPHardClass(
+    DefinitionKey(name="NP-Hard class", field=FieldName.MATHEMATICS),
+    aliases=["NP-Hard"],
+)

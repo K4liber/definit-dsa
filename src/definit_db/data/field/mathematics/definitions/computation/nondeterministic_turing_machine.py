@@ -40,5 +40,6 @@ accepts the input if any of the explored paths accepts.
 
 
 NONDETERMINISTIC_TURING_MACHINE = _NondeterministicTuringMachine(
-    DefinitionKey(name="nondeterministic Turing machine", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="nondeterministic Turing machine", field=FieldName.MATHEMATICS),
+    aliases=["NDTM", "NTM"],
 )

@@ -28,5 +28,6 @@ INTEGER = _Integer(
     key=DefinitionKey(
         name="integer",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["int"],
 )

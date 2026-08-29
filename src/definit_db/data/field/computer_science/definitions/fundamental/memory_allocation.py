@@ -28,4 +28,7 @@ the memory is available for later use.
 """
 
 
-MEMORY_ALLOCATION = _MemoryAllocation(DefinitionKey(name="memory allocation", field=FieldName.COMPUTER_SCIENCE))
+MEMORY_ALLOCATION = _MemoryAllocation(
+    DefinitionKey(name="memory allocation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["allocating memory"],
+)

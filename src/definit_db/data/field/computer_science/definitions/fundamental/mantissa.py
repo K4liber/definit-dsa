@@ -27,5 +27,6 @@ MANTISSA = _Mantissa(
     key=DefinitionKey(
         name="mantissa",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["significand"],
 )

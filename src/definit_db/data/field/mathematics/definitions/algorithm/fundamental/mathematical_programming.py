@@ -32,5 +32,6 @@ is a case of mathematical programming: the profit formula is the
 
 
 MATHEMATICAL_PROGRAMMING = _MathematicalProgramming(
-    DefinitionKey(name="mathematical programming", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="mathematical programming", field=FieldName.MATHEMATICS),
+    aliases=["mathematical optimization"],
 )

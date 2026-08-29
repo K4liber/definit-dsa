@@ -42,5 +42,6 @@ KAHNS_ALGORITHM = _KahnsAlgorithm(
     key=DefinitionKey(
         name="Kahn's Algorithm",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["Kahn's topological sort"],
 )

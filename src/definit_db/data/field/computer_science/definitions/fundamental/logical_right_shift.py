@@ -27,4 +27,7 @@ zeros enter from the left, and the original sign bit is treated as ordinary data
 """
 
 
-LOGICAL_RIGHT_SHIFT = _LogicalRightShift(DefinitionKey(name="logical right shift", field=FieldName.COMPUTER_SCIENCE))
+LOGICAL_RIGHT_SHIFT = _LogicalRightShift(
+    DefinitionKey(name="logical right shift", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["unsigned right shift", "zero-fill right shift"],
+)

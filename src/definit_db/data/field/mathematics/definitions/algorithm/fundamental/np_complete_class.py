@@ -45,4 +45,7 @@ the definition of NP-Complete class.
 """
 
 
-NP_COMPLETE_CLASS = _NPCompleteClass(DefinitionKey(name="NP-Complete class", field=FieldName.MATHEMATICS))
+NP_COMPLETE_CLASS = _NPCompleteClass(
+    DefinitionKey(name="NP-Complete class", field=FieldName.MATHEMATICS),
+    aliases=["NP-Complete", "NP-C"],
+)

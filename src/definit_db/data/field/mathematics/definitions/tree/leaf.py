@@ -24,5 +24,6 @@ LEAF = _Leaf(
     key=DefinitionKey(
         name="leaf",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["leaf node", "terminal node"],
 )

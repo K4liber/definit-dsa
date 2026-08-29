@@ -27,5 +27,6 @@ MEDIAN = _Median(
     key=DefinitionKey(
         name="median",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["middle value"],
 )

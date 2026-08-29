@@ -23,5 +23,6 @@ LOOKUP_TABLE = _LookupTable(
     key=DefinitionKey(
         name="lookup table",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["LUT"],
 )

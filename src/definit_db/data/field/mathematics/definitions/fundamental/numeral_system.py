@@ -30,5 +30,6 @@ NUMERAL_SYSTEM = _NumeralSystem(
     key=DefinitionKey(
         name="numeral system",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["number system"],
 )

@@ -30,5 +30,6 @@ MAX_HEAP = _MaxHeap(
     key=DefinitionKey(
         name="max-heap",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["maximum heap"],
 )

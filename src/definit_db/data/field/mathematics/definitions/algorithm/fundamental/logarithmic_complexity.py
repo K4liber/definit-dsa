@@ -58,5 +58,6 @@ Doubling the {INPUT_DATA.key.get_reference("input")} to n = 2 048 adds just one 
 
 
 LOGARITHMIC_COMPLEXITY = _LogarithmicComplexity(
-    DefinitionKey(name="logarithmic complexity", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="logarithmic complexity", field=FieldName.MATHEMATICS),
+    aliases=["logarithmic time", "O(log n)"],
 )

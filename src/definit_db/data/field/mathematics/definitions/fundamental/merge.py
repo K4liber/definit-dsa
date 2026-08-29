@@ -24,5 +24,6 @@ MERGE = _Merge(
     key=DefinitionKey(
         name="merge",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["merging"],
 )

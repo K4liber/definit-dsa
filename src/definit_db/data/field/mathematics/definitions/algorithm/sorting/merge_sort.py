@@ -60,5 +60,6 @@ MERGE_SORT = _MergeSort(
     key=DefinitionKey(
         name="merge_sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["mergesort"],
 )

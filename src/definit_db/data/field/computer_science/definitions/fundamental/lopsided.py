@@ -28,5 +28,6 @@ LOPSIDED = _Lopsided(
     key=DefinitionKey(
         name="lopsided",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["skewed", "unbalanced"],
 )

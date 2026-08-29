@@ -30,5 +30,6 @@ MIN_HEAP = _MinHeap(
     key=DefinitionKey(
         name="min-heap",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["minimum heap"],
 )

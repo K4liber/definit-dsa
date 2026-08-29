@@ -29,5 +29,6 @@ NOT_OPERATOR = _NotOperator(
     key=DefinitionKey(
         name="NOT",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["logical NOT", "negation"],
 )

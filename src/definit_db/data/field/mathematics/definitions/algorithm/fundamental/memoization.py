@@ -39,5 +39,6 @@ MEMOIZATION = _Memoization(
     key=DefinitionKey(
         name="memoization",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["memoisation", "caching"],
 )

@@ -29,5 +29,6 @@ MULTISET = _Multiset(
     key=DefinitionKey(
         name="multiset",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["bag"],
 )

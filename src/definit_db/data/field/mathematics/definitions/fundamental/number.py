@@ -20,5 +20,6 @@ NUMBER = _Number(
     key=DefinitionKey(
         name="number",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["numeric value"],
 )

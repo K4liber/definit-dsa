@@ -18,4 +18,7 @@ added most recently is the first one taken off.
 """
 
 
-LAST_IN_FIRST_OUT = _LastInFirstOut(DefinitionKey(name="last in first out", field=FieldName.MATHEMATICS))
+LAST_IN_FIRST_OUT = _LastInFirstOut(
+    DefinitionKey(name="last in first out", field=FieldName.MATHEMATICS),
+    aliases=["LIFO"],
+)

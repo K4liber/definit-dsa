@@ -37,5 +37,6 @@ IN_PLACE_ALGORITHM = _InPlaceAlgorithm(
     key=DefinitionKey(
         name="in-place algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["in-place"],
 )

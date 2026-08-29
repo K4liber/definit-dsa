@@ -23,5 +23,6 @@ LOGICAL_OPERATOR = _LogicalOperator(
     key=DefinitionKey(
         name="Logical operator",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["boolean operator"],
 )

@@ -21,4 +21,4 @@ the function processes it to produce the output 4.
 """
 
 
-INPUT_DATA = _InputData(DefinitionKey(name="input data", field=FieldName.MATHEMATICS))
+INPUT_DATA = _InputData(DefinitionKey(name="input data", field=FieldName.MATHEMATICS), aliases=["input"])

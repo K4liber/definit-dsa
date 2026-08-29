@@ -26,5 +26,6 @@ INTERVAL = _Interval(
     key=DefinitionKey(
         name="interval",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["range"],
 )

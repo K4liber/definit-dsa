@@ -57,4 +57,7 @@ subset-sum is in NP class.
 """
 
 
-NP_CLASS = _NPClass(DefinitionKey(name="NP class", field=FieldName.MATHEMATICS))
+NP_CLASS = _NPClass(
+    DefinitionKey(name="NP class", field=FieldName.MATHEMATICS),
+    aliases=["NP", "complexity class NP"],
+)

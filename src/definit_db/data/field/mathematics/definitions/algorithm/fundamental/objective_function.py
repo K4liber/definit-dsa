@@ -25,4 +25,7 @@ shortest route among all valid routes.
 """
 
 
-OBJECTIVE_FUNCTION = _ObjectiveFunction(DefinitionKey(name="objective function", field=FieldName.MATHEMATICS))
+OBJECTIVE_FUNCTION = _ObjectiveFunction(
+    DefinitionKey(name="objective function", field=FieldName.MATHEMATICS),
+    aliases=["cost function"],
+)

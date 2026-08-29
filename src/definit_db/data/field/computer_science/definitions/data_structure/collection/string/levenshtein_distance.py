@@ -27,5 +27,6 @@ LEVENSHTEIN_DISTANCE = _LevenshteinDistance(
     key=DefinitionKey(
         name="Levenshtein distance",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["edit distance"],
 )

@@ -53,5 +53,6 @@ MULTIDIMENSIONAL_DYNAMIC_PROGRAMMING = _MultidimensionalDynamicProgramming(
     key=DefinitionKey(
         name="Multidimensional Dynamic Programming",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["multidimensional DP"],
 )

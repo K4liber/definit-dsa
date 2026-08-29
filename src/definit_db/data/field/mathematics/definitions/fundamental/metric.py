@@ -25,5 +25,6 @@ METRIC = _Metric(
     key=DefinitionKey(
         name="metric",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["performance measure", "measure"],
 )

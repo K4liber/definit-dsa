@@ -23,5 +23,6 @@ LABEL = _Label(
     key=DefinitionKey(
         name="label",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["tag"],
 )

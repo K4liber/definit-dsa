@@ -26,5 +26,6 @@ IRRATIONAL = _Irrational(
     key=DefinitionKey(
         name="irrational",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["irrational number"],
 )

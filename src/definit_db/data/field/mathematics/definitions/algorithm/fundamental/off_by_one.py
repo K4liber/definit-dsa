@@ -29,4 +29,7 @@ lies outside the valid range of "0" to "4", causing an off-by-one error.
 """
 
 
-OFF_BY_ONE = _OffByOne(DefinitionKey(name="off-by-one", field=FieldName.MATHEMATICS))
+OFF_BY_ONE = _OffByOne(
+    DefinitionKey(name="off-by-one", field=FieldName.MATHEMATICS),
+    aliases=["off-by-one error"],
+)

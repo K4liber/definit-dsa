@@ -26,5 +26,6 @@ MAJORITY_ELEMENT = _MajorityElement(
     key=DefinitionKey(
         name="majority element",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["majority item"],
 )

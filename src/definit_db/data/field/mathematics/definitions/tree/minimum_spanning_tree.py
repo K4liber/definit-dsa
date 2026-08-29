@@ -31,5 +31,6 @@ MINIMUM_SPANNING_TREE = _MinimumSpanningTree(
     key=DefinitionKey(
         name="minimum_spanning_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["MST"],
 )
