@@ -41,6 +41,23 @@ export async function readIfExists(p) {
   }
 }
 
+export function extractAliases(content) {
+  // The serialized heading carries aliases as "# name (alias1, alias2)".
+  // Names never contain parentheses; alias lists may nest them (e.g. "O(log n)").
+  const firstLine = String(content ?? '')
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .find((l) => l.length > 0) ?? '';
+
+  const m = /^#\s+(.+?)\s*\((.+)\)\s*$/.exec(firstLine);
+  if (!m) return [];
+
+  return m[2]
+    .split(',')
+    .map((a) => a.trim())
+    .filter(Boolean);
+}
+
 export function normalizeHrefToId(href, knownIds) {
   const clean = String(href ?? '').trim();
   if (!clean) return null;
@@ -167,7 +184,8 @@ export async function generateData({
 
   for (const it of items) {
     const deps = extractDeps(it.content, it, knownIds, stats);
-    nodes.push({ ...it, deps, level: 0, content: it.content });
+    const aliases = extractAliases(it.content);
+    nodes.push({ ...it, aliases, deps, level: 0, content: it.content });
   }
 
   // Validate deps and detect cycles (also assigns temporary levels on nodes).

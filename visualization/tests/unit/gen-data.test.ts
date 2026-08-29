@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { generateData } from '../../scripts/gen-data.mjs';
+import { extractAliases, generateData } from '../../scripts/gen-data.mjs';
 import type { DefGraph } from '../../src/types';
 
 const tempDirs: string[] = [];
@@ -51,7 +51,19 @@ describe('gen-data script', () => {
     expect(saved.nodes.map((node) => node.id)).toEqual(['mathematics/object', 'mathematics/set']);
     expect(saved.edges).toEqual([{ source: 'mathematics/set', target: 'mathematics/object' }]);
   });
-
+  it('extracts aliases from the serialized heading', () => {
+    expect(extractAliases('# trie\n\nA tree.')).toEqual([]);
+    expect(extractAliases('# trie (prefix tree, digital tree)\n\nA tree.')).toEqual([
+      'prefix tree',
+      'digital tree',
+    ]);
+    expect(extractAliases('# logarithmic complexity (logarithmic time, O(log n))\n\nDesc.')).toEqual([
+      'logarithmic time',
+      'O(log n)',
+    ]);
+    expect(extractAliases('# pi (π)\n\nDesc.')).toEqual(['π']);
+    expect(extractAliases('(no leading heading)\n\nDesc.')).toEqual([]);
+  });
   it('throws on cyclic dependencies in generated data', async () => {
     const root = await makeTempDir();
     const defsRoot = join(root, 'definitions');

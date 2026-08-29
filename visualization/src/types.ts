@@ -6,6 +6,9 @@ export type DefNode = {
 
   title: string;
 
+  /** Common alternative names, extracted from the serialized heading. */
+  aliases?: string[];
+
   /** dependency ids */
   deps: string[];
 
