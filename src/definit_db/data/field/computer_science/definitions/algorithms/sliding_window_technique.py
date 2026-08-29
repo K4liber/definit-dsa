@@ -50,5 +50,6 @@ SLIDING_WINDOW_TECHNIQUE = _SlidingWindowTechnique(
     key=DefinitionKey(
         name="sliding window technique",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["sliding window"],
 )

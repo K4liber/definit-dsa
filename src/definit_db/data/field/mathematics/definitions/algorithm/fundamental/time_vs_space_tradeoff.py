@@ -49,5 +49,6 @@ TIME_VS_SPACE_TRADE_OFF = _TimeVsSpaceTradeOff(
     key=DefinitionKey(
         name="time vs space trade-off",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["space-time trade-off"],
 )

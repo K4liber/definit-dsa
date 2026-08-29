@@ -26,4 +26,10 @@ discarded carry, confirming the result is 0.
 """
 
 
-TWOS_COMPLEMENT = _TwosComplement(DefinitionKey(name="two's complement", field=FieldName.COMPUTER_SCIENCE))
+TWOS_COMPLEMENT = _TwosComplement(
+    key=DefinitionKey(
+        name="two's complement",
+        field=FieldName.COMPUTER_SCIENCE,
+    ),
+    aliases=["2's complement"],
+)

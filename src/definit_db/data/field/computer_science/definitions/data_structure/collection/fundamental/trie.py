@@ -33,5 +33,6 @@ TRIE = _Trie(
     key=DefinitionKey(
         name="trie",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["prefix tree", "digital tree"],
 )

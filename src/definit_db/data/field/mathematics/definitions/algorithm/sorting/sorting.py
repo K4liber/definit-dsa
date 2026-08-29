@@ -33,5 +33,6 @@ SORTING = _Sorting(
     key=DefinitionKey(
         name="sorting",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["ordering", "sort"],
 )

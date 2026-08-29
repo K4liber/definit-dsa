@@ -41,5 +41,6 @@ STACK = _Stack(
     key=DefinitionKey(
         name="stack",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["LIFO stack"],
 )

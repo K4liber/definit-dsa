@@ -51,5 +51,6 @@ TWO_POINTERS_TECHNIQUE = _TwoPointersTechnique(
     key=DefinitionKey(
         name="two pointers technique",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["two-pointer technique"],
 )

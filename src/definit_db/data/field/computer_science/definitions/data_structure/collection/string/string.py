@@ -30,5 +30,6 @@ STRING = _String(
     key=DefinitionKey(
         name="string",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["character string"],
 )

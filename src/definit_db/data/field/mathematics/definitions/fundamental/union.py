@@ -24,5 +24,6 @@ UNION = _Union(
     key=DefinitionKey(
         name="union",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["set union"],
 )

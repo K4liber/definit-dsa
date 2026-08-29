@@ -28,5 +28,6 @@ VERTEX_COLORING = _VertexColoring(
     key=DefinitionKey(
         name="vertex_coloring",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["graph coloring"],
 )

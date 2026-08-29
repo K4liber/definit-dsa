@@ -24,5 +24,6 @@ TRANSFORMATION = _Transformation(
     key=DefinitionKey(
         name="transformation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["transform"],
 )

@@ -26,4 +26,10 @@ instruction, and changes the tape from "0" to "1".
 """
 
 
-TURING_MACHINE = _TuringMachine(DefinitionKey(name="Turing machine", field=FieldName.MATHEMATICS))
+TURING_MACHINE = _TuringMachine(
+    key=DefinitionKey(
+        name="Turing machine",
+        field=FieldName.MATHEMATICS,
+    ),
+    aliases=["TM"],
+)

@@ -41,5 +41,6 @@ SIEVE_OF_ERATOSTHENES = _SieveOfEratosthenes(
     key=DefinitionKey(
         name="Sieve of Eratosthenes",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["sieve", "prime sieve"],
 )

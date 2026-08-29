@@ -26,5 +26,6 @@ VECTOR = _Vector(
     key=DefinitionKey(
         name="vector",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["Euclidean vector"],
 )

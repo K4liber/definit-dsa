@@ -34,5 +34,6 @@ TOPOLOGICAL_SORT = _TopologicalSort(
     key=DefinitionKey(
         name="topological_sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["topological ordering", "topsort"],
 )
