@@ -26,5 +26,6 @@ TRANSPOSING = _Transposing(
     key=DefinitionKey(
         name="transposing",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["matrix transposition"],
 )

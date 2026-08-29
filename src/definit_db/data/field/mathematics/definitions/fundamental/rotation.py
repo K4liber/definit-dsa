@@ -25,5 +25,6 @@ ROTATION = _Rotation(
     key=DefinitionKey(
         name="rotation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["circular shift"],
 )

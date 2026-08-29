@@ -65,5 +65,6 @@ BUCKET_SORT = _BucketSort(
     key=DefinitionKey(
         name="bucket_sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("bin sort",),
 )

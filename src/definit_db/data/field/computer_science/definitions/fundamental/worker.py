@@ -35,5 +35,6 @@ WORKER = _Worker(
     key=DefinitionKey(
         name="worker",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["worker thread"],
 )

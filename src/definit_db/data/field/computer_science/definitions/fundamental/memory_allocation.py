@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _MemoryAllocation(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The {OPERATION.key.get_reference()} of assigning a block of 
@@ -31,4 +28,7 @@ the memory is available for later use.
 """
 
 
-MEMORY_ALLOCATION = _MemoryAllocation(DefinitionKey(name="memory allocation", field=FieldName.COMPUTER_SCIENCE))
+MEMORY_ALLOCATION = _MemoryAllocation(
+    DefinitionKey(name="memory allocation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["allocating memory"],
+)

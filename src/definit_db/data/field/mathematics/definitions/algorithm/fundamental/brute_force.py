@@ -39,5 +39,6 @@ BRUTE_FORCE = _BruteForce(
     key=DefinitionKey(
         name="brute_force",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("brute-force search", "exhaustive search"),
 )

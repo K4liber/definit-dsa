@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.integer import IN
 
 
 class _LogicalRightShift(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {BITWISE_OPERATION.key.get_reference("bitwise operation")} 
@@ -30,4 +27,7 @@ zeros enter from the left, and the original sign bit is treated as ordinary data
 """
 
 
-LOGICAL_RIGHT_SHIFT = _LogicalRightShift(DefinitionKey(name="logical right shift", field=FieldName.COMPUTER_SCIENCE))
+LOGICAL_RIGHT_SHIFT = _LogicalRightShift(
+    DefinitionKey(name="logical right shift", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["unsigned right shift", "zero-fill right shift"],
+)

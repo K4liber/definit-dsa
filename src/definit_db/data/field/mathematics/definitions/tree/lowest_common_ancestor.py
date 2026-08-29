@@ -27,5 +27,6 @@ LOWEST_COMMON_ANCESTOR = _LowestCommonAncestor(
     key=DefinitionKey(
         name="lowest common ancestor",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["LCA"],
 )

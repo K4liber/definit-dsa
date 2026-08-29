@@ -15,9 +15,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _RealWorldPerformance(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The real-world {PERFORMANCE.key.get_reference()} of an {ALGORITHM.key.get_reference()} refers to its actual execution 

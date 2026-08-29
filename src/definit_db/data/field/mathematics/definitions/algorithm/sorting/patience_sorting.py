@@ -60,5 +60,6 @@ PATIENCE_SORTING = _PatienceSorting(
     key=DefinitionKey(
         name="Patience sorting",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["patience sort"],
 )

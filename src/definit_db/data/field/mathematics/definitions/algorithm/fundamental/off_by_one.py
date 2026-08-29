@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _OffByOne(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A common error in {ALGORITHM.key.get_reference("algorithms")} where a 
@@ -32,4 +29,7 @@ lies outside the valid range of "0" to "4", causing an off-by-one error.
 """
 
 
-OFF_BY_ONE = _OffByOne(DefinitionKey(name="off-by-one", field=FieldName.MATHEMATICS))
+OFF_BY_ONE = _OffByOne(
+    DefinitionKey(name="off-by-one", field=FieldName.MATHEMATICS),
+    aliases=["off-by-one error"],
+)

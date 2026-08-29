@@ -16,9 +16,6 @@ from definit_db.data.field.mathematics.definitions.problem.optimal_solution impo
 
 
 class _AStarAlgorithm(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {GREEDY_ALGORITHM.key.get_reference("greedy")} 
@@ -82,4 +79,7 @@ so the heuristic steers the search and improves {EFFICIENCY.key.get_reference("e
 """
 
 
-A_STAR_ALGORITHM = _AStarAlgorithm(DefinitionKey(name="A-star algorithm", field=FieldName.MATHEMATICS))
+A_STAR_ALGORITHM = _AStarAlgorithm(
+    DefinitionKey(name="A-star algorithm", field=FieldName.MATHEMATICS),
+    aliases=("A*", "A-star"),
+)

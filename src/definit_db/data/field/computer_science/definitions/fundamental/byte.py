@@ -30,5 +30,6 @@ BYTE = _Byte(
     key=DefinitionKey(
         name="byte",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("octet",),
 )

@@ -24,5 +24,6 @@ PLANE = _Plane(
     key=DefinitionKey(
         name="plane",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["flat surface"],
 )

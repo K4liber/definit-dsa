@@ -20,5 +20,6 @@ TRADE_OFF = _TradeOff(
     key=DefinitionKey(
         name="trade-off",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["tradeoff"],
 )

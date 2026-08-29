@@ -56,5 +56,6 @@ QUICK_SORT = _QuickSort(
     key=DefinitionKey(
         name="quick_sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["quicksort", "partition-exchange sort"],
 )

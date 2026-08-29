@@ -27,5 +27,6 @@ GRAPH_DISTANCE = _GraphDistance(
     key=DefinitionKey(
         name="graph_distance",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("shortest path distance", "geodesic distance"),
 )

@@ -31,5 +31,6 @@ INPUT_OUTPUT = _InputOutput(
     key=DefinitionKey(
         name="input output",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["I/O", "input/output"],
 )

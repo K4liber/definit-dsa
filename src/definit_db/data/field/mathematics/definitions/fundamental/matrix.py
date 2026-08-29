@@ -28,5 +28,6 @@ MATRIX = _Matrix(
     key=DefinitionKey(
         name="matrix",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["grid", "2D array"],
 )

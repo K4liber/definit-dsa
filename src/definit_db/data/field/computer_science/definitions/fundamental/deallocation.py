@@ -10,9 +10,6 @@ from definit_db.data.field.computer_science.definitions.fundamental.program impo
 
 
 class _Deallocation(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The {OPERATION.key.get_reference()} of releasing a block of 
@@ -28,4 +25,7 @@ that are no longer needed gradually exhausts the available memory.
 """
 
 
-DEALLOCATION = _Deallocation(DefinitionKey(name="deallocation", field=FieldName.COMPUTER_SCIENCE))
+DEALLOCATION = _Deallocation(
+    DefinitionKey(name="deallocation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("memory deallocation", "freeing"),
+)

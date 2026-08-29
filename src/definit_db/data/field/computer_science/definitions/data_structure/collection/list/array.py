@@ -27,5 +27,6 @@ ARRAY = _Array(
     key=DefinitionKey(
         name="array",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("vector",),
 )

@@ -13,9 +13,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.last_in_first_out
 
 
 class _StackMemory(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A region of {COMPUTER_MEMORY.key.get_reference()} used for static 

@@ -33,5 +33,6 @@ TOP_DOWN_APPROACH = _TopDownApproach(
     key=DefinitionKey(
         name="top_down_approach",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["top-down"],
 )

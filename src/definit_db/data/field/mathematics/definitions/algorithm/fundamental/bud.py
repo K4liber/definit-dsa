@@ -19,9 +19,6 @@ from definit_db.data.field.mathematics.definitions.problem.overlapping_subproble
 
 
 class _Bud(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 BUD is an {OPTIMIZATION.key.get_reference()} framework for improving 
@@ -49,4 +46,7 @@ and lowers the {TIME_COMPLEXITY.key.get_reference()} of the routine.
 """
 
 
-BUD = _Bud(DefinitionKey(name="BUD", field=FieldName.MATHEMATICS))
+BUD = _Bud(
+    DefinitionKey(name="BUD", field=FieldName.MATHEMATICS),
+    aliases=("bottlenecks, unnecessary work, duplicated work",),
+)

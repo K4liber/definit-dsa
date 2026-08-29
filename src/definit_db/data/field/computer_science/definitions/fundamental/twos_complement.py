@@ -9,9 +9,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _TwosComplement(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {BINARY_REPRESENTATION.key.get_reference("binary representation")} method used to 
@@ -29,4 +26,10 @@ discarded carry, confirming the result is 0.
 """
 
 
-TWOS_COMPLEMENT = _TwosComplement(DefinitionKey(name="two's complement", field=FieldName.COMPUTER_SCIENCE))
+TWOS_COMPLEMENT = _TwosComplement(
+    key=DefinitionKey(
+        name="two's complement",
+        field=FieldName.COMPUTER_SCIENCE,
+    ),
+    aliases=["2's complement"],
+)

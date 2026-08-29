@@ -36,7 +36,8 @@ Extract 1 → [] ; sorted: [1, 2, 3, 4]  ✓
 
 HEAP_SORT = _HeapSort(
     key=DefinitionKey(
-        name="heap_sort",
+        name="heap sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("heapsort",),
 )

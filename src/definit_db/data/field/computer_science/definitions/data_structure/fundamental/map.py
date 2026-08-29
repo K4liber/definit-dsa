@@ -28,5 +28,6 @@ MAP = _Map(
     key=DefinitionKey(
         name="map",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["mapping"],
 )

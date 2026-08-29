@@ -22,5 +22,6 @@ NODE = _Node(
     key=DefinitionKey(
         name="node",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["vertex"],
 )

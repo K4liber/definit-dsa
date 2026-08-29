@@ -39,5 +39,6 @@ BAYES_THEOREM = _BayesTheorem(
     key=DefinitionKey(
         name="Bayes theorem",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("Bayes' theorem", "Bayes rule"),
 )

@@ -26,5 +26,6 @@ SQUARE_ROOT = _SquareRoot(
     key=DefinitionKey(
         name="square root",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["sqrt"],
 )

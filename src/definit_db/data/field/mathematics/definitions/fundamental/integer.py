@@ -25,5 +25,6 @@ INTEGER = _Integer(
     key=DefinitionKey(
         name="integer",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["whole number"],
 )

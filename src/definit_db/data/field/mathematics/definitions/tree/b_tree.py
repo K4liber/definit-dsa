@@ -34,5 +34,6 @@ B_TREE = _BTree(
     key=DefinitionKey(
         name="b_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("B-tree",),
 )

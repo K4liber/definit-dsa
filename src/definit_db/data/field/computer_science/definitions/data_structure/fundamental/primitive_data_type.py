@@ -26,5 +26,6 @@ PRIMITIVE_DATA_TYPE = _PrimitiveDataType(
     key=DefinitionKey(
         name="primitive_data_type",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["primitive type"],
 )

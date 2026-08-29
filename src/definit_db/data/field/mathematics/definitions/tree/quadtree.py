@@ -34,5 +34,6 @@ QUADTREE = _Quadtree(
     key=DefinitionKey(
         name="quadtree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["quad-tree", "Q-tree"],
 )

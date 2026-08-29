@@ -28,5 +28,6 @@ IN_ORDER_TRAVERSAL = _InOrderTraversal(
     key=DefinitionKey(
         name="in-order traversal",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["inorder traversal", "symmetric traversal"],
 )

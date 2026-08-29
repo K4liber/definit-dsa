@@ -31,5 +31,6 @@ UTF = _Utf(
     key=DefinitionKey(
         name="utf",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["Unicode Transformation Format"],
 )

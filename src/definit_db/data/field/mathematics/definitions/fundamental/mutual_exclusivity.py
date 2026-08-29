@@ -29,5 +29,6 @@ MUTUAL_EXCLUSIVITY = _MutualExclusivity(
     key=DefinitionKey(
         name="mutual exclusivity",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["disjoint events", "mutually exclusive events"],
 )

@@ -27,5 +27,6 @@ DATA_TYPE = _DataType(
     key=DefinitionKey(
         name="data_type",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("type",),
 )

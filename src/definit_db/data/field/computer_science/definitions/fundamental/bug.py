@@ -27,5 +27,6 @@ BUG = _Bug(
     key=DefinitionKey(
         name="bug",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("software defect",),
 )

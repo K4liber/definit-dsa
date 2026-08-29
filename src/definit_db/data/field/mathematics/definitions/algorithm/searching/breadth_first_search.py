@@ -11,9 +11,6 @@ from definit_db.data.field.mathematics.definitions.graph.weighted_graph import W
 
 
 class _BreadthFirstSearch(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An {ALGORITHM.key.get_reference()} for traversing or searching 
@@ -42,4 +39,7 @@ Visit order: A, B, C, D, E
 """
 
 
-BREADTH_FIRST_SEARCH = _BreadthFirstSearch(DefinitionKey(name="breadth-first search", field=FieldName.MATHEMATICS))
+BREADTH_FIRST_SEARCH = _BreadthFirstSearch(
+    DefinitionKey(name="breadth-first search", field=FieldName.MATHEMATICS),
+    aliases=("BFS", "breadth first search"),
+)

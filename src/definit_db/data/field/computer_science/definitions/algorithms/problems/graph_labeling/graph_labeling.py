@@ -30,5 +30,6 @@ GRAPH_LABELING = _GraphLabeling(
     key=DefinitionKey(
         name="graph_labeling",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("graph labelling",),
 )

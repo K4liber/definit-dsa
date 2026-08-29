@@ -37,7 +37,7 @@ Result: [1, 2, 3, 4]
 
 SELECTION_SORT = _SelectionSort(
     key=DefinitionKey(
-        name="selection_sort",
+        name="selection sort",
         field=FieldName.MATHEMATICS,
-    )
+    ),
 )

@@ -28,5 +28,6 @@ POST_ORDER_TRAVERSAL = _PostOrderTraversal(
     key=DefinitionKey(
         name="post-order traversal",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["postorder traversal"],
 )

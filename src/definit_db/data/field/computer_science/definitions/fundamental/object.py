@@ -22,5 +22,6 @@ OBJECT = _Object(
     key=DefinitionKey(
         name="object",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["instance"],
 )

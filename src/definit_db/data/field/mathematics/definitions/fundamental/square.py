@@ -25,5 +25,6 @@ SQUARE = _Square(
     key=DefinitionKey(
         name="square",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["squaring"],
 )

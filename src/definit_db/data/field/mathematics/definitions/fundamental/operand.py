@@ -23,5 +23,6 @@ OPERAND = _Operand(
     key=DefinitionKey(
         name="operand",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["argument"],
 )

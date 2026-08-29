@@ -15,9 +15,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.instruction impor
 
 
 class _ComputerMemory(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {HARDWARE.key.get_reference()} component that stores {DATA.key.get_reference()} 

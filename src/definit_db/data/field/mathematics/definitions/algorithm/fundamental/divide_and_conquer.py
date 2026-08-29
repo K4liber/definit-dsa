@@ -70,5 +70,6 @@ DIVIDE_AND_CONQUER = _DivideAndConquer(
     key=DefinitionKey(
         name="divide_and_conquer",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("D&C", "divide-and-conquer"),
 )

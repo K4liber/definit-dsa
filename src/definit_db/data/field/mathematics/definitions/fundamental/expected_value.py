@@ -27,5 +27,6 @@ EXPECTED_VALUE = _ExpectedValue(
     key=DefinitionKey(
         name="expected value",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("expectation", "mean", "EV"),
 )

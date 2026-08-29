@@ -29,5 +29,6 @@ EXTENDED_ASCII = _ExtendedAscii(
     key=DefinitionKey(
         name="extended_ascii",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("high ASCII",),
 )

@@ -27,5 +27,6 @@ OR_OPERATOR = _OrOperator(
     key=DefinitionKey(
         name="OR",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["logical OR", "disjunction"],
 )

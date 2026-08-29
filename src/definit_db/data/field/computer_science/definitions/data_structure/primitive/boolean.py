@@ -29,5 +29,6 @@ BOOLEAN = _Boolean(
     key=DefinitionKey(
         name="boolean",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("bool",),
 )

@@ -24,5 +24,6 @@ NATURAL_NUMBER = _NaturalNumber(
     key=DefinitionKey(
         name="natural number",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["counting number"],
 )

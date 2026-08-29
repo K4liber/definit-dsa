@@ -23,5 +23,6 @@ HASH = _Hash(
     key=DefinitionKey(
         name="hash",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("digest",),
 )

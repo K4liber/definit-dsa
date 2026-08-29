@@ -27,5 +27,6 @@ SCIENTIFIC_NOTATION = _ScientificNotation(
     key=DefinitionKey(
         name="scientific notation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["standard form"],
 )

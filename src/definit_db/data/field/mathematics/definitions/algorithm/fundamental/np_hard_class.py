@@ -17,9 +17,6 @@ from definit_db.data.field.mathematics.definitions.problem.solution import SOLUT
 
 
 class _NPHardClass(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A class of {PROBLEM.key.get_reference("problems")} in {COMPUTATION.key.get_reference("computational")}
@@ -68,4 +65,7 @@ to be verifiable in polynomial time.
 """
 
 
-NP_HARD_CLASS = _NPHardClass(DefinitionKey(name="NP-Hard class", field=FieldName.MATHEMATICS))
+NP_HARD_CLASS = _NPHardClass(
+    DefinitionKey(name="NP-Hard class", field=FieldName.MATHEMATICS),
+    aliases=["NP-Hard"],
+)

@@ -25,5 +25,6 @@ HAMMING_WEIGHT = _HammingWeight(
     key=DefinitionKey(
         name="Hamming weight",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("population count", "popcount", "set bits"),
 )

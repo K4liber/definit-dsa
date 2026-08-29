@@ -30,5 +30,6 @@ SPACE_COMPLEXITY = _SpaceComplexity(
     key=DefinitionKey(
         name="space complexity",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["memory complexity"],
 )

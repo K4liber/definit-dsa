@@ -21,9 +21,6 @@ from definit_db.data.field.mathematics.definitions.problem.solution import SOLUT
 
 
 class _PClass(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {COMPLEXITY.key.get_reference("complexity")} class in computational 
@@ -53,4 +50,7 @@ No matter what the input is, the {ALGORITHM.key.get_reference()} finishes in pol
 """
 
 
-P_CLASS = _PClass(DefinitionKey(name="P class", field=FieldName.MATHEMATICS))
+P_CLASS = _PClass(
+    DefinitionKey(name="P class", field=FieldName.MATHEMATICS),
+    aliases=["P", "complexity class P"],
+)

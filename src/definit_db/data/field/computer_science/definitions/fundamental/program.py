@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.sequence import S
 
 
 class _Program(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {SEQUENCE.key.get_reference()} of {INSTRUCTION.key.get_reference("instructions")} that 
@@ -27,4 +24,7 @@ different programs.
 """
 
 
-PROGRAM = _Program(DefinitionKey(name="program", field=FieldName.COMPUTER_SCIENCE))
+PROGRAM = _Program(
+    DefinitionKey(name="program", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["computer program"],
+)

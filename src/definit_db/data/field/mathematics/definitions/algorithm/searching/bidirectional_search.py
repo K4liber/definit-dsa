@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.graph.path import PATH
 
 
 class _BidirectionalSearch(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An {ALGORITHM.key.get_reference()} for finding a {PATH.key.get_reference()} 

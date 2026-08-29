@@ -30,5 +30,6 @@ LIST = _List(
     key=DefinitionKey(
         name="list",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["sequence"],
 )

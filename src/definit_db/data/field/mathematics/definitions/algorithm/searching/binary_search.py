@@ -36,5 +36,6 @@ BINARY_SEARCH = _BinarySearch(
     key=DefinitionKey(
         name="binary_search",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("half-interval search", "logarithmic search"),
 )

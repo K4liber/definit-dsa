@@ -15,9 +15,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _Processor(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A {HARDWARE.key.get_reference()} component of a {COMPUTER.key.get_reference()} 
@@ -36,4 +33,7 @@ back — repeating this cycle millions of times per second to run an entire prog
 """
 
 
-PROCESSOR = _Processor(DefinitionKey(name="processor", field=FieldName.COMPUTER_SCIENCE))
+PROCESSOR = _Processor(
+    DefinitionKey(name="processor", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["CPU"],
+)

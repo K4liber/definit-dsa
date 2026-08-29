@@ -26,5 +26,6 @@ BINARY_SEARCH_TREE = _BinarySearchTree(
     key=DefinitionKey(
         name="binary_search_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("BST",),
 )

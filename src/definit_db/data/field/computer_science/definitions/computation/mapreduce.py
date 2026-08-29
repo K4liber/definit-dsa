@@ -38,5 +38,6 @@ MAPREDUCE = _MapReduce(
     key=DefinitionKey(
         name="MapReduce",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["map-reduce"],
 )

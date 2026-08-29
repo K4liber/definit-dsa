@@ -27,5 +27,6 @@ XOR = _Xor(
     key=DefinitionKey(
         name="XOR",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["exclusive OR", "exclusive disjunction"],
 )

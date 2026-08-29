@@ -33,5 +33,6 @@ SUBSET_SUM = _SubsetSum(
     key=DefinitionKey(
         name="subset sum",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["subset-sum problem"],
 )

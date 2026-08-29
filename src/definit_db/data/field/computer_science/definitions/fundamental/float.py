@@ -26,5 +26,6 @@ FLOAT = _Float(
     key=DefinitionKey(
         name="Float",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("single precision", "single-precision float"),
 )

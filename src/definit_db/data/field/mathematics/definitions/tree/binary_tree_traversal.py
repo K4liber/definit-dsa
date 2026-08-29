@@ -24,5 +24,6 @@ BINARY_TREE_TRAVERSAL = _BinaryTreeTraversal(
     key=DefinitionKey(
         name="binary tree traversal",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("tree traversal",),
 )

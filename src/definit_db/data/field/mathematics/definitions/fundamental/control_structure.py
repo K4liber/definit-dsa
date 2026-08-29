@@ -23,5 +23,6 @@ CONTROL_STRUCTURE = _ControlStructure(
     key=DefinitionKey(
         name="control structure",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("control flow statement",),
 )

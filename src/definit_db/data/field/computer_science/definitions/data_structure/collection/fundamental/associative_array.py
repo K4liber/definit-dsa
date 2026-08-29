@@ -39,5 +39,6 @@ ASSOCIATIVE_ARRAY = _AssociativeArray(
     key=DefinitionKey(
         name="associative_array",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("dictionary", "map"),
 )

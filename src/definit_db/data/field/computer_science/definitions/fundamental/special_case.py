@@ -35,5 +35,6 @@ SPECIAL_CASE = _SpecialCase(
     key=DefinitionKey(
         name="special case",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["edge case"],
 )

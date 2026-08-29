@@ -31,5 +31,6 @@ OPTIMIZATION = _Optimization(
     key=DefinitionKey(
         name="optimization",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["optimisation"],
 )

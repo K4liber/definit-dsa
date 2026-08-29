@@ -32,5 +32,6 @@ BINOMIAL_COEFFICIENT = _BinomialCoefficient(
     key=DefinitionKey(
         name="binomial coefficient",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("n choose k", "combination"),
 )

@@ -37,5 +37,6 @@ OVER_OPTIMIZATION = _OverOptimization(
     key=DefinitionKey(
         name="over-optimization",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["premature optimization"],
 )

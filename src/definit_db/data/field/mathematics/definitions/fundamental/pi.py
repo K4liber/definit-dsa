@@ -25,5 +25,6 @@ PI = _Pi(
     key=DefinitionKey(
         name="pi",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["π"],
 )

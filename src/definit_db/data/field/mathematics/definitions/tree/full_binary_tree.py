@@ -28,5 +28,6 @@ FULL_BINARY_TREE = _FullBinaryTree(
     key=DefinitionKey(
         name="full binary tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("proper binary tree", "strict binary tree"),
 )

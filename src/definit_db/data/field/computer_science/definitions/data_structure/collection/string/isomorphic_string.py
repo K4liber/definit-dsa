@@ -28,5 +28,6 @@ ISOMORPHIC_STRING = _IsomorphicString(
     key=DefinitionKey(
         name="isomorphic string",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["string isomorphism"],
 )

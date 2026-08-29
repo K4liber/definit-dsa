@@ -29,5 +29,6 @@ PROGRAMMING_LANGUAGE = _ProgrammingLanguage(
     key=DefinitionKey(
         name="programming language",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["coding language"],
 )

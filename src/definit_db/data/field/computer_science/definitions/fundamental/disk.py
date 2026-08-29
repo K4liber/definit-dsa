@@ -30,5 +30,6 @@ DISK = _Disk(
     key=DefinitionKey(
         name="disk",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("hard drive", "hard disk"),
 )

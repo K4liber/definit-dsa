@@ -31,5 +31,6 @@ BIJECTION = _Bijection(
     key=DefinitionKey(
         name="bijection",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("bijective function", "one-to-one correspondence"),
 )

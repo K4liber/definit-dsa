@@ -30,5 +30,6 @@ MACHINE = _Machine(
     key=DefinitionKey(
         name="machine",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["computing machine"],
 )

@@ -27,5 +27,6 @@ DIVISOR = _Divisor(
     key=DefinitionKey(
         name="divisor",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("factor",),
 )

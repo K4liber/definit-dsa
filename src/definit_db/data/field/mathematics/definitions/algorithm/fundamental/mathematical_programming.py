@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.problem.problem import PROBLE
 
 
 class _MathematicalProgramming(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A mathematical approach to finding the 
@@ -35,5 +32,6 @@ is a case of mathematical programming: the profit formula is the
 
 
 MATHEMATICAL_PROGRAMMING = _MathematicalProgramming(
-    DefinitionKey(name="mathematical programming", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="mathematical programming", field=FieldName.MATHEMATICS),
+    aliases=["mathematical optimization"],
 )

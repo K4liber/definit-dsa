@@ -35,5 +35,6 @@ PEAK = _Peak(
     key=DefinitionKey(
         name="peak",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["peak element", "local maximum"],
 )

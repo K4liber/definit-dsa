@@ -23,5 +23,6 @@ STRING_CONCATENATION = _StringConcatenation(
     key=DefinitionKey(
         name="string concatenation",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["concatenation"],
 )

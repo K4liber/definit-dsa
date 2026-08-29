@@ -32,5 +32,6 @@ XOR_SWAP_ALGORITHM = _XorSwapAlgorithm(
     key=DefinitionKey(
         name="XOR swap algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["XOR swap"],
 )

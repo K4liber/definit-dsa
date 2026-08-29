@@ -31,5 +31,6 @@ HEIGHT_BALANCED_BINARY_SEARCH_TREE = _HeightBalancedBinarySearchTree(
     key=DefinitionKey(
         name="height-balanced_binary_search_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("self-balancing BST", "balanced BST"),
 )

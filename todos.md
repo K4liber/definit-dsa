@@ -12,10 +12,6 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## TODO
 
-### 2. [FEATURE] Add definition aliases
-
-- [ ] Add aliases to all definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.)
-
 ### 12. [FEATURE] Add a new group
 
 - [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
@@ -36,7 +32,7 @@ Apply filtering based on URL parameters and query strings. If no parameter is pr
 
 ### 15. [FEATURE] Update "Progress" tab
 
-For sure, we should display a progress bar. To be discussed how to improve it further.
+For sure, we should display a progress bar. It should show stats for the currently filtered definitions (based on new filitering options: groups and definitions). The progress bar should show the percentage of learned definitions out of the total number of filtered definitions. It should be yellow originally, but it should turn green proportionally when the percentage of learned definitions increases.
 
 ### 14. [BUG] Definition content locked into previous scroll
 
@@ -60,6 +56,12 @@ We could go for 200 most low-level (according to topological sorting) definition
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
+
+### 2. [FEATURE] Add definition aliases
+
+- [x] Create a aliases_index.md listing all definitions. Each line should be "- [ ] <definition name>" where checkbox indicates if we created aliases for that definition or not. The list should be sorted alphabetically.
+- [x] Use the aliases_index.md to track the current progress of adding aliases. Take next 10 definitions from the list that are not checked and propose aliases for them. Propose aliases for definitions that have a common name (e.g. "DFS" for "Depth-First Search", "BFS" for "Breadth-First Search", "element" for "item", "grid" for "matrix", etc.) Ask [HUMAN] to review and approve the proposed aliases. Once approved, add the aliases to the definitions and mark them as done in the aliases_index.md. If there are no alias added for a defintion, mark it as well, not all definitions have aliases, but we should try to add them for as many as possible.
+- [x] Add aliases in the UI. Under the Definition tab, under the definition name, we have a key (field/defintion_name) html element. Instead of this element, we should have an element displaying: "field: xxx, aliases: x, y, z ...".
 
 ### 5. [FEATURE] Remove categories from definitions
 

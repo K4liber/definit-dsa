@@ -24,5 +24,6 @@ INTERSECTION = _Intersection(
     key=DefinitionKey(
         name="intersection",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["set intersection"],
 )

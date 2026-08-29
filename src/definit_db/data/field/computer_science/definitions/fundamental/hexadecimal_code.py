@@ -27,5 +27,6 @@ HEXADECIMAL_CODE = _HexadecimalCode(
     key=DefinitionKey(
         name="hexadecimal code",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("hex", "hexadecimal", "base-16"),
 )

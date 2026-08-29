@@ -31,5 +31,6 @@ DELIVERY_ROUTE_PROBLEM = _DeliveryRouteProblem(
     key=DefinitionKey(
         name="delivery-route problem",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("vehicle routing problem", "VRP"),
 )

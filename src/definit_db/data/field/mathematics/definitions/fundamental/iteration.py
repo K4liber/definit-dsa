@@ -24,5 +24,6 @@ ITERATION = _Iteration(
     key=DefinitionKey(
         name="iteration",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["pass"],
 )

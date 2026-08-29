@@ -53,5 +53,6 @@ RECURSION = _Recursion(
     key=DefinitionKey(
         name="recursion",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["recursive process"],
 )

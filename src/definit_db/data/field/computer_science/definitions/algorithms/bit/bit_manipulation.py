@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.computation.computation impor
 
 
 class _BitManipulation(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A technique that uses {BITWISE_OPERATION.key.get_reference(phrase="bitwise operations")} 
@@ -34,4 +31,7 @@ a mask `0100` is applied with a bitwise OR: `1010 OR 0100` yields
 """
 
 
-BIT_MANIPULATION = _BitManipulation(DefinitionKey(name="bit manipulation", field=FieldName.COMPUTER_SCIENCE))
+BIT_MANIPULATION = _BitManipulation(
+    DefinitionKey(name="bit manipulation", field=FieldName.COMPUTER_SCIENCE),
+    aliases=("bit twiddling",),
+)

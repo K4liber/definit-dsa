@@ -34,5 +34,6 @@ ABSTRACT_DATA_TYPE = _AbstractDataType(
     key=DefinitionKey(
         name="abstract_data_type",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("ADT",),
 )

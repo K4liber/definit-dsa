@@ -24,5 +24,6 @@ N_ARY_TREE = _NAryTree(
     key=DefinitionKey(
         name="n-ary tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["n-way tree"],
 )

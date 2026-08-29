@@ -55,5 +55,6 @@ BOYER_MOORE_MAJORITY_VOTE = _BoyerMooreMajorityVote(
     key=DefinitionKey(
         name="Boyer-Moore majority vote algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("Boyer-Moore voting algorithm",),
 )

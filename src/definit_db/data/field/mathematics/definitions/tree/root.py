@@ -24,5 +24,6 @@ ROOT = _Root(
     key=DefinitionKey(
         name="root",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["root node"],
 )

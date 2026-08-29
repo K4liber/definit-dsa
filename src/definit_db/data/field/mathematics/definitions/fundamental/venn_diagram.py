@@ -29,5 +29,6 @@ VENN_DIAGRAM = _VennDiagram(
     key=DefinitionKey(
         name="Venn diagram",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["set diagram"],
 )

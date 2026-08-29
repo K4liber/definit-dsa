@@ -33,5 +33,6 @@ HEAP_TREE = _HeapTree(
     key=DefinitionKey(
         name="heap_tree",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("heap",),
 )

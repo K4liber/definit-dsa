@@ -10,9 +10,6 @@ from definit_db.data.field.mathematics.definitions.notations.label import LABEL
 
 
 class _Variable(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A named {COMPUTER_MEMORY.key.get_reference(phrase="memory")} location identified by a {LABEL.key.get_reference()} 

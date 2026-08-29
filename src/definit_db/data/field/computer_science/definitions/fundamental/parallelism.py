@@ -12,9 +12,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.quadrant import Q
 
 
 class _Parallelism(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 A form of {CONCURRENCY.key.get_reference()} where multiple 
@@ -34,4 +31,7 @@ processor — true parallel execution, not just overlapping progress.
 """
 
 
-PARALLELISM = _Parallelism(DefinitionKey(name="parallelism", field=FieldName.COMPUTER_SCIENCE))
+PARALLELISM = _Parallelism(
+    DefinitionKey(name="parallelism", field=FieldName.COMPUTER_SCIENCE),
+    aliases=["parallel computing"],
+)

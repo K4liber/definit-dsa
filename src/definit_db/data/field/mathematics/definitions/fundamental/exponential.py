@@ -22,5 +22,6 @@ EXPONENTIAL = _Exponential(
     key=DefinitionKey(
         name="exponential",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("exponential growth",),
 )

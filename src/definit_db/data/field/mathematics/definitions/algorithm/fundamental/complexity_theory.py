@@ -32,5 +32,6 @@ COMPLEXITY_THEORY = _ComplexityTheory(
     key=DefinitionKey(
         name="complexity theory",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=("computational complexity theory",),
 )

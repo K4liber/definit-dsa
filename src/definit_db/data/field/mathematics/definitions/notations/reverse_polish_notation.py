@@ -26,5 +26,6 @@ REVERSE_POLISH_NOTATION = _ReversePolishNotation(
     key=DefinitionKey(
         name="Reverse Polish notation",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["RPN", "postfix notation"],
 )

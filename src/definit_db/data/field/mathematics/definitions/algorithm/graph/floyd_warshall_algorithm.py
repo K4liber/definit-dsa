@@ -16,9 +16,6 @@ from definit_db.data.field.mathematics.definitions.graph.path import PATH
 
 
 class _FloydWarshallAlgorithm(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 An {ALGORITHM.key.get_reference()} that finds the shortest 
@@ -100,5 +97,6 @@ D: (A: 2, B: 5, C: 7, D: 0)
 
 
 FLOYD_WARSHALL_ALGORITHM = _FloydWarshallAlgorithm(
-    DefinitionKey(name="Floyd-Warshall algorithm", field=FieldName.MATHEMATICS)
+    DefinitionKey(name="Floyd-Warshall algorithm", field=FieldName.MATHEMATICS),
+    aliases=("Floyd-Warshall", "Floyd Warshall"),
 )

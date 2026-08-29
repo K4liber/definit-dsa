@@ -73,5 +73,6 @@ KADANES_ALGORITHM = _KadanesAlgorithm(
     key=DefinitionKey(
         name="Kadane's algorithm",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["maximum subarray algorithm"],
 )

@@ -35,5 +35,6 @@ OPERATING_SYSTEM = _OperatingSystem(
     key=DefinitionKey(
         name="operating system",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["OS"],
 )

@@ -31,5 +31,6 @@ LRU_CACHE = _LruCache(
     key=DefinitionKey(
         name="LRU cache",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=["least recently used cache"],
 )

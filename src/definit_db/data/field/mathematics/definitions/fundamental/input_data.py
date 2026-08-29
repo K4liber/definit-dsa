@@ -8,9 +8,6 @@ from definit_db.data.field.mathematics.definitions.fundamental.number import NUM
 
 
 class _InputData(Definition):
-    def __init__(self, key: DefinitionKey) -> None:
-        super().__init__(key)
-
     def _get_content(self) -> str:
         return f"""
 The {INFORMATION.key.get_reference()} provided to a 
@@ -24,4 +21,4 @@ the function processes it to produce the output 4.
 """
 
 
-INPUT_DATA = _InputData(DefinitionKey(name="input data", field=FieldName.MATHEMATICS))
+INPUT_DATA = _InputData(DefinitionKey(name="input data", field=FieldName.MATHEMATICS), aliases=["input"])

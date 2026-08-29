@@ -33,7 +33,8 @@ Adding "alice" a second time is detected and ignored, keeping each name present 
 
 HASH_SET = _HashSet(
     key=DefinitionKey(
-        name="hash_set",
+        name="hash set",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("hashset", "set"),
 )

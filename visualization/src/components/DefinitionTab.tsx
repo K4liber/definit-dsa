@@ -43,6 +43,12 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
   const isLearned = state === 'learned';
   const html = renderMdToHtml(node.content || '(no content)', node.deps ?? [], renderedNodes);
 
+  const field = node.id.split('/')[0] ?? node.id;
+  const metaParts = [`field: ${field}`];
+  if (node.aliases && node.aliases.length > 0) {
+    metaParts.push(`aliases: ${node.aliases.join(', ')}`);
+  }
+
   return (
     <section className="panelSection viewer" aria-labelledby="definition-title">
       <h3 id="definition-title">{node.title}</h3>
@@ -50,7 +56,7 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
         className="path"
         style={{ display: 'block' }}
       >
-        {node.id}
+        {metaParts.join(', ')}
       </div>
       <div
         ref={bodyRef}

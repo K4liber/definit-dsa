@@ -26,5 +26,6 @@ REFLECTION = _Reflection(
     key=DefinitionKey(
         name="reflection",
         field=FieldName.MATHEMATICS,
-    )
+    ),
+    aliases=["mirroring"],
 )

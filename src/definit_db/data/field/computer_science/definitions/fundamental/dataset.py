@@ -23,5 +23,6 @@ DATASET = _Dataset(
     key=DefinitionKey(
         name="dataset",
         field=FieldName.COMPUTER_SCIENCE,
-    )
+    ),
+    aliases=("data set",),
 )
