@@ -32,7 +32,7 @@ Apply filtering based on URL parameters and query strings. If no parameter is pr
 
 ### 15. [FEATURE] Update "Progress" tab
 
-For sure, we should display a progress bar. To be discussed how to improve it further.
+For sure, we should display a progress bar. It should show stats for the currently filtered definitions (based on new filitering options: groups and definitions). The progress bar should show the percentage of learned definitions out of the total number of filtered definitions. It should be yellow originally, but it should turn green proportionally when the percentage of learned definitions increases.
 
 ### 14. [BUG] Definition content locked into previous scroll
 
