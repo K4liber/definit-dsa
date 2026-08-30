@@ -7,9 +7,11 @@ from pathlib import Path
 
 from definit.db.md import DatabaseMd
 from definit.definition.definition import Definition
+from definit.definition.definition_group import DefinitionGroup
 from definit.definition.field import Field
 
 from definit_db.data.field import FieldName
+from definit_db.data.group import get_groups
 
 _REFERENCE_PATTERN = re.compile(r"\[(?:.*?)\]\((.*?)\)")
 
@@ -66,9 +68,12 @@ def serialize() -> Path:
 
     all_definitions = topological_sort(definitions=all_definitions)
 
+    groups: set[DefinitionGroup] = set(get_groups())
+
     DatabaseMd.serialize(
         definitions=all_definitions,
         db_path=_PATH_DATA_MD,
+        groups=groups,
     )
     return _PATH_DATA_MD
 

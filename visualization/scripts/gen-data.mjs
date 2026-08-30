@@ -6,7 +6,51 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const indexPath = path.resolve(repoRoot, '../src/definit_db/data_md/index.md');
 const defsRoot = path.resolve(repoRoot, '../src/definit_db/data_md/definitions');
+const groupsPath = path.resolve(repoRoot, '../src/definit_db/data_md/groups.md');
 const outPath = path.resolve(repoRoot, './public/defs.json');
+
+export function normalizeGroupName(name) {
+  return String(name ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+}
+
+export function parseGroups(md, knownIds) {
+  // groups.md format written by definit's DatabaseMd.serialize:
+  //   # Definition Groups
+  //   ## Group Name
+  //   - [title](field/name)
+  //   - [title](field/name)
+  const groups = [];
+  let current = null;
+
+  for (const line of md.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    const header = /^##\s+(.+?)\s*$/.exec(trimmed);
+    if (header) {
+      const name = header[1];
+      current = {
+        id: normalizeGroupName(name),
+        name,
+        definitions: [],
+      };
+      groups.push(current);
+      continue;
+    }
+
+    const entry = /^-\s+\[([^\]]+)\]\(([^)]+)\)\s*$/.exec(trimmed);
+    if (entry && current) {
+      const id = entry[2].replace(/\.md$/i, '');
+      if (!knownIds || knownIds.has(id)) {
+        current.definitions.push(id);
+      }
+    }
+  }
+
+  return groups;
+}
 
 export async function parseIndex(md, defsRootPath = defsRoot) {
   // lines like: - [object](mathematics/object)
@@ -171,6 +215,7 @@ export function computeLevels(nodes) {
 export async function generateData({
   indexPath: customIndexPath = indexPath,
   defsRoot: customDefsRoot = defsRoot,
+  groupsPath: customGroupsPath = groupsPath,
   outPath: customOutPath = outPath,
 } = {}) {
   const indexMd = await fs.readFile(customIndexPath, 'utf8');
@@ -196,13 +241,11 @@ export async function generateData({
     for (const dep of n.deps) edges.push({ source: n.id, target: dep });
   }
 
-  const groups = [
-    {
-      id: 'data_structures_and_algorithms',
-      name: 'Data Structures and Algorithms',
-      definitions: items.map((item) => item.id),
-    },
-  ];
+  // Groups come from the md database (groups.md), not hardcoded here.
+  const groupsMd = await readIfExists(customGroupsPath);
+  const groups = groupsMd
+    ? parseGroups(groupsMd, knownIds)
+    : [];
 
   const graph = { nodes, edges, groups };
   await fs.mkdir(path.dirname(customOutPath), { recursive: true });
