@@ -51,6 +51,33 @@ describe('gen-data script', () => {
     expect(saved.nodes.map((node) => node.id)).toEqual(['mathematics/object', 'mathematics/set']);
     expect(saved.edges).toEqual([{ source: 'mathematics/set', target: 'mathematics/object' }]);
   });
+  it('includes the Data Structures and Algorithms group with all definitions', async () => {
+    const root = await makeTempDir();
+    const defsRoot = join(root, 'definitions');
+    const indexPath = join(root, 'index.md');
+    const outPath = join(root, 'out', 'defs.json');
+
+    await writeFile(
+      indexPath,
+      ['- [object](mathematics/object)', '- [set](mathematics/set)'].join('\n'),
+      'utf8',
+    );
+    await writeDefinition(defsRoot, 'mathematics/object', '# object\n\nAn object.\n');
+    await writeDefinition(
+      defsRoot,
+      'mathematics/set',
+      '# set\n\nA [set](mathematics/set) is a collection of [object](mathematics/object).\n',
+    );
+
+    const { graph } = await generateData({ indexPath, defsRoot, outPath });
+    expect(graph.groups).toEqual([
+      {
+        id: 'data_structures_and_algorithms',
+        name: 'Data Structures and Algorithms',
+        definitions: ['mathematics/object', 'mathematics/set'],
+      },
+    ]);
+  });
   it('extracts aliases from the serialized heading', () => {
     expect(extractAliases('# trie\n\nA tree.')).toEqual([]);
     expect(extractAliases('# trie (prefix tree, digital tree)\n\nA tree.')).toEqual([

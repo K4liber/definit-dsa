@@ -196,7 +196,15 @@ export async function generateData({
     for (const dep of n.deps) edges.push({ source: n.id, target: dep });
   }
 
-  const graph = { nodes, edges };
+  const groups = [
+    {
+      id: 'data_structures_and_algorithms',
+      name: 'Data Structures and Algorithms',
+      definitions: items.map((item) => item.id),
+    },
+  ];
+
+  const graph = { nodes, edges, groups };
   await fs.mkdir(path.dirname(customOutPath), { recursive: true });
   await fs.writeFile(customOutPath, JSON.stringify(graph, null, 2), 'utf8');
 
