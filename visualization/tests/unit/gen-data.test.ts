@@ -51,6 +51,65 @@ describe('gen-data script', () => {
     expect(saved.nodes.map((node) => node.id)).toEqual(['mathematics/object', 'mathematics/set']);
     expect(saved.edges).toEqual([{ source: 'mathematics/set', target: 'mathematics/object' }]);
   });
+  it('includes groups parsed from the md database groups.md', async () => {
+    const root = await makeTempDir();
+    const defsRoot = join(root, 'definitions');
+    const indexPath = join(root, 'index.md');
+    const groupsPath = join(root, 'groups.md');
+    const outPath = join(root, 'out', 'defs.json');
+
+    await writeFile(
+      indexPath,
+      ['- [object](mathematics/object)', '- [set](mathematics/set)'].join('\n'),
+      'utf8',
+    );
+    await writeDefinition(defsRoot, 'mathematics/object', '# object\n\nAn object.\n');
+    await writeDefinition(
+      defsRoot,
+      'mathematics/set',
+      '# set\n\nA [set](mathematics/set) is a collection of [object](mathematics/object).\n',
+    );
+    await writeFile(
+      groupsPath,
+      [
+        '# Definition Groups',
+        '',
+        '## Data Structures and Algorithms',
+        '',
+        '- [object](mathematics/object)',
+        '- [set](mathematics/set)',
+        '- [ghost](mathematics/ghost)',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+
+    const { graph } = await generateData({ indexPath, defsRoot, groupsPath, outPath });
+    expect(graph.groups).toEqual([
+      {
+        id: 'data_structures_and_algorithms',
+        name: 'Data Structures and Algorithms',
+        definitions: ['mathematics/object', 'mathematics/set'],
+      },
+    ]);
+  });
+  it('produces no groups when groups.md is missing', async () => {
+    const root = await makeTempDir();
+    const defsRoot = join(root, 'definitions');
+    const indexPath = join(root, 'index.md');
+    const groupsPath = join(root, 'groups.md');
+    const outPath = join(root, 'out', 'defs.json');
+
+    await writeFile(
+      indexPath,
+      ['- [object](mathematics/object)'].join('\n'),
+      'utf8',
+    );
+    await writeDefinition(defsRoot, 'mathematics/object', '# object\n\nAn object.\n');
+
+    const { graph } = await generateData({ indexPath, defsRoot, groupsPath, outPath });
+    expect(graph.groups).toEqual([]);
+  });
   it('extracts aliases from the serialized heading', () => {
     expect(extractAliases('# trie\n\nA tree.')).toEqual([]);
     expect(extractAliases('# trie (prefix tree, digital tree)\n\nA tree.')).toEqual([

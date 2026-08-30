@@ -12,19 +12,27 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## TODO
 
-### 12. [FEATURE] Add a new group
-
-- [ ] "Data Structures and Algorithms" as a initial group with all the so far created definitions in it.
-
 ### 13. [FEATURE, depends on: 12] Simplify filtering
 
-Filtering should have only 3 options:
-- "Include descendants" (boolean, default: true)
-- "Definitions" (list of definitions, default: "ready to learn" definitions)
-- "Groups" (list of groups, default: none)
+We should create a two different types of filtering:
+- [ ] Track filtering. This is going to filter the definitions that we want to learn in the current "track".
+- [ ] Visualization filtering. This is going to filter the definitions that we want to visualize in the graph. It should filter on top of the track filtering, so that we can visualize only a subset of the definitions that we want to learn in the current track.
 
+"Track" filtering should have only 3 options:
+- [ ] "Include descendants" (boolean, default: true)
+- [ ] "Groups" (list of groups, default: "Data Structures and Algorithms" group)
+- [ ] "Definitions" (list of definitions, default: empty list)
+
+"Visualization" filtering should just have 4 checkboxes as we already have:
+- [ ] Show learned definitions
+- [ ] Show ready-to-learn definitions
+- [ ] Show pre-ready definitions
+- [ ] Show not-ready definitions
+
+At the end we make sure that we did:
 - [ ] Update the visualization package to use the new filtering options.
 - [ ] Add a button "Reset filters" to reset the filters to the default values.
+- [ ] "Search definition by id/title" should be a multiple select input and the search should take into account the aliases.
 
 ### 9. [FEATURE, depends on: 13] Introduce React Router
 
@@ -56,6 +64,10 @@ We could go for 200 most low-level (according to topological sorting) definition
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
+
+### 12. [FEATURE] Add a new group
+
+- [x] Create a "Data Structures and Algorithms" definition group with all the so far created definitions in it. Generate the json database with this new group included.
 
 ### 2. [FEATURE] Add definition aliases
 

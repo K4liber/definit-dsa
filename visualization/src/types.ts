@@ -22,9 +22,16 @@ export type DefNode = {
   content: string;
 };
 
+export type DefGroup = {
+  id: string;
+  name: string;
+  definitions: string[];
+};
+
 export type DefGraph = {
   nodes: DefNode[];
   edges: Array<{ source: string; target: string }>; // source -> target (source depends on target)
+  groups?: DefGroup[];
 };
 
 // --- UI / visualization internal types ---
