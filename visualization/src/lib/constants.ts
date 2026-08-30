@@ -1,7 +1,7 @@
 // Storage keys
 // !IMPORTANT: Do not change values, as they are used for persistent storage in the browser.
 export const LEARNED_STORAGE_KEY = 'definit-db.learned';
-export const VISIBILITY_STORAGE_KEY = 'definit-db.ui.includedIds';
+export const FILTERS_STORAGE_KEY = 'definit-db.ui.filters';
 export const PANEL_COLLAPSED_KEY = 'definit-db.ui.bottomPanelCollapsed';
 export const OPEN_FIELDS_KEY = 'definit-db.ui.openFields';
 

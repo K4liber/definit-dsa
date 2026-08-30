@@ -12,28 +12,6 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## TODO
 
-### 13. [FEATURE, depends on: 12] Simplify filtering
-
-We should create a two different types of filtering:
-- [ ] Track filtering. This is going to filter the definitions that we want to learn in the current "track".
-- [ ] Visualization filtering. This is going to filter the definitions that we want to visualize in the graph. It should filter on top of the track filtering, so that we can visualize only a subset of the definitions that we want to learn in the current track.
-
-"Track" filtering should have only 3 options:
-- [ ] "Include descendants" (boolean, default: true)
-- [ ] "Groups" (list of groups, default: "Data Structures and Algorithms" group)
-- [ ] "Definitions" (list of definitions, default: empty list)
-
-"Visualization" filtering should just have 4 checkboxes as we already have:
-- [ ] Show learned definitions
-- [ ] Show ready-to-learn definitions
-- [ ] Show pre-ready definitions
-- [ ] Show not-ready definitions
-
-At the end we make sure that we did:
-- [ ] Update the visualization package to use the new filtering options.
-- [ ] Add a button "Reset filters" to reset the filters to the default values.
-- [ ] "Search definition by id/title" should be a multiple select input and the search should take into account the aliases.
-
 ### 9. [FEATURE, depends on: 13] Introduce React Router
 
 Apply filtering based on URL parameters and query strings. If no parameter is provided, use the default values. This will allow sharing links to specific filtered views. The filtering should be stored in the browser storage so that the user can return to the same filtered view after closing the browser. The "Reset filters" button should reset the filters to the default values, update the URL accordingly and clear the browser storage.
@@ -64,6 +42,28 @@ We could go for 200 most low-level (according to topological sorting) definition
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
+
+### 13. [FEATURE, depends on: 12] Simplify filtering
+
+We created two different types of filtering:
+- [x] Track filtering. This is going to filter the definitions that we want to learn in the current "track".
+- [x] Visualization filtering. This is going to filter the definitions that we want to visualize in the graph. It filters on top of the track filtering, so that we can visualize only a subset of the definitions that we want to learn in the current track.
+
+"Track" filtering has only 3 options:
+- [x] "Include descendants" (boolean, default: true)
+- [x] "Groups" (list of groups, default: "Data Structures and Algorithms" group)
+- [x] "Definitions" (list of definitions, default: empty list)
+
+"Visualization" filtering has 4 checkboxes:
+- [x] Show learned definitions
+- [x] Show ready-to-learn definitions
+- [x] Show pre-ready definitions
+- [x] Show not-ready definitions
+
+At the end we made sure that we did:
+- [x] Update the visualization package to use the new filtering options.
+- [x] Add a button "Reset filters" to reset the filters to the default values.
+- [x] "Search definition by id/title" is a multiple select input and the search takes into account the aliases.
 
 ### 12. [FEATURE] Add a new group
 

@@ -505,6 +505,28 @@ export function renderMdToHtml(
 /*  Search filtering helpers                                           */
 /* ------------------------------------------------------------------ */;
 
+/** Case/diacritics-insensitive search key for a definition's title and aliases. */
+function normalizedSearchKeys(n: DefNode): string[] {
+  const keys = [normalizeId(n.title ?? ''), normalizeId(n.id)];
+  for (const alias of n.aliases ?? []) {
+    const k = normalizeId(alias);
+    if (k && !keys.includes(k)) keys.push(k);
+  }
+  return keys.filter(Boolean);
+}
+
+export function nodeMatchesQuery(n: DefNode, query: string): boolean {
+  const q = normalizeId(query);
+  if (!q) return false;
+  return normalizedSearchKeys(n).some((key) => key.includes(q));
+}
+
+/** "title (alias1, alias2)" for search result rows, or just the title. */
+export function nodeSearchLabel(n: DefNode): string {
+  if (n.aliases?.length) return `${n.title} (${n.aliases.join(', ')})`;
+  return n.title;
+}
+
 function walkGraph(raw: Raw, startId: string): Set<string> {
   const out = new Set<string>();
   const stack: string[] = [startId];
@@ -528,9 +550,97 @@ function walkGraph(raw: Raw, startId: string): Set<string> {
   return out;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Track filtering                                                    */
+/* ------------------------------------------------------------------ */
+
 /** All prerequisites needed before `id` can be learned (including `id` itself). */
 export function prerequisiteClosure(raw: Raw, id: string): Set<string> {
   return walkGraph(raw, id);
+}
+
+/**
+ * All definitions that (transitively) depend on any id in `startIds`,
+ * including the starting ids themselves.
+ */
+export function dependentsClosure(raw: Raw, startIds: Iterable<string>): Set<string> {
+  const out = new Set<string>();
+  const stack: string[] = [];
+
+  // Reverse adjacency: prerequisite -> definitions that depend on it.
+  const dependentsById = new Map<string, string[]>();
+  for (const n of raw.def.nodes) {
+    for (const depId of n.deps ?? []) {
+      if (!raw.byId.has(depId)) continue;
+      const arr = dependentsById.get(depId) ?? [];
+      arr.push(n.id);
+      dependentsById.set(depId, arr);
+    }
+  }
+
+  for (const id of startIds) stack.push(id);
+
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (out.has(id)) continue;
+    if (!raw.byId.has(id)) continue;
+    out.add(id);
+    for (const nxt of dependentsById.get(id) ?? []) stack.push(nxt);
+  }
+
+  return out;
+}
+
+export type TrackFilters = {
+  /** Include all definitions that depend on the selected ones. */
+  includeDescendants: boolean;
+  /** Ids of groups whose definitions form the track. */
+  groupIds: string[];
+  /** Extra individual definition ids added to the track. */
+  definitionIds: string[];
+};
+
+/**
+ * Compute the set of definition ids that belong to the current learning track:
+ * the union of the selected groups' definitions plus the explicitly selected
+ * definitions, optionally expanded with all their (transitive) descendants.
+ * Prerequisites that are outside the track are NOT included; `renderGraph`
+ * recomputes levels so such gaps do not break the layout.
+ */
+export function computeTrackSet(raw: Raw, filters: TrackFilters): Set<string> {
+  const selected = new Set<string>();
+
+  const groupsById = new Map((raw.def.groups ?? []).map((g) => [g.id, g] as const));
+  for (const groupId of filters.groupIds) {
+    const group = groupsById.get(groupId);
+    if (!group) continue;
+    for (const id of group.definitions) selected.add(id);
+  }
+
+  for (const id of filters.definitionIds) {
+    if (raw.byId.has(id)) selected.add(id);
+  }
+
+  if (!filters.includeDescendants || selected.size === 0) return selected;
+
+  return dependentsClosure(raw, selected);
+}
+
+/** True when `filters` equals the given default track filters. */
+export function isDefaultTrackFilters(filters: TrackFilters, defaults: TrackFilters): boolean {
+  return (
+    filters.includeDescendants === defaults.includeDescendants &&
+    setEquals(filters.groupIds, defaults.groupIds) &&
+    setEquals(filters.definitionIds, defaults.definitionIds)
+  );
+}
+
+function setEquals(a: Iterable<string>, b: Iterable<string>): boolean {
+  const sa = a instanceof Set ? (a as Set<string>) : new Set(a);
+  const sb = b instanceof Set ? (b as Set<string>) : new Set(b);
+  if (sa.size !== sb.size) return false;
+  for (const x of sa) if (!sb.has(x)) return false;
+  return true;
 }
 
 /** Intersection helper that handles nulls. */

@@ -191,6 +191,81 @@ svg {
 /*  Search dropdown                */
 /* ============================== */
 
+.searchMatches {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 320px;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(36, 49, 79, 0.95);
+  background: rgba(11, 15, 25, 0.96);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  padding: 6px;
+  z-index: 50;
+}
+
+.searchMatch {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.searchMatch:hover {
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.searchMatch input {
+  margin-top: 3px;
+}
+
+.searchBox input {
+  width: 100%;
+}
+
+/* ============================== */
+/*  Selected definition chips      */
+/* ============================== */
+
+.selectedDefinitions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.selectedDefinitionChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #e6edf3;
+  background: rgba(30, 58, 138, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 999px;
+  max-width: 100%;
+}
+
+.chipRemove {
+  border: none;
+  background: transparent;
+  color: #a9b4c0;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.chipRemove:hover {
+  color: #f87171;
+}
+
 .searchBox {
   position: relative;
   flex: 1 1 auto;
@@ -554,10 +629,12 @@ input[type="text"] {
     transform: scale(1);
     opacity: 0.9;
   }
+
   50% {
     transform: scale(1.9);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
     opacity: 0.9;

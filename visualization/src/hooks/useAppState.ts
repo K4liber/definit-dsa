@@ -4,19 +4,28 @@ import type { DefGraph, DefNode, Raw, LearnState } from '../types';
 import type { BottomTab } from '../types';
 import {
   buildRaw,
+  computeTrackSet,
   renderGraph,
-  recomputeIncludedSetFromReady,
   selectNextReady,
-  normalizeId,
-  prerequisiteClosure,
+  nodeMatchesQuery,
 } from '../lib/graph';
+import {
+  DEFAULT_FILTERS,
+  DEFAULT_TRACK_FILTERS,
+  DEFAULT_VISUALIZATION_FILTERS,
+  cloneFilters,
+  trackEquals,
+  type PersistedFilters,
+  type TrackFilters,
+  type VisualizationFilters,
+} from '../lib/filters';
 import {
   loadLearnedFromStorage,
   saveLearnedToStorage,
   clearLearnedFromStorage,
-  loadIncludedFromStorage,
-  saveIncludedToStorage,
-  clearIncludedFromStorage,
+  loadFiltersFromStorage,
+  saveFiltersToStorage,
+  clearFiltersFromStorage,
   loadPanelCollapsed,
   savePanelCollapsed,
 } from '../lib/storage';
@@ -29,22 +38,14 @@ type ReducerState = {
   // Graph data
   raw: Raw | null;
   learned: Set<string>;
-  includedIds: Set<string> | null;
   selectedLeafId: string | null;
   // Bottom panel state
   panelCollapsed: boolean;
   activeTab: BottomTab;
-  // Search / selected definition filter
+  // Search
   searchQuery: string;
-  searchSelectedId: string | null;
-  // Include the full prerequisite closure of the selected definition,
-  // bypassing the node-state filters.
-  includeDescendants: boolean;
-  // State filters (positive)
-  showNotReady: boolean;
-  showPreReady: boolean;
-  showReady: boolean;
-  showLearned: boolean;
+  // Filters (persisted)
+  filters: PersistedFilters;
   // Modal states
   infoOpen: boolean;
   resetConfirmOpen: boolean;
@@ -54,17 +55,11 @@ function initialReducerState(): ReducerState {
   return {
     raw: null,
     learned: loadLearnedFromStorage(),
-    includedIds: loadIncludedFromStorage(),
     selectedLeafId: null,
     panelCollapsed: loadPanelCollapsed(),
     activeTab: 'definition',
     searchQuery: '',
-    searchSelectedId: null,
-    includeDescendants: true,
-    showNotReady: false,
-    showPreReady: true,
-    showReady: true,
-    showLearned: true,
+    filters: cloneFilters(DEFAULT_FILTERS),
     infoOpen: false,
     resetConfirmOpen: false,
   };
@@ -79,24 +74,18 @@ const enum A {
   INIT_COMPLETE = 'INIT_COMPLETE',
   MARK_LEARNED = 'MARK_LEARNED',
   AUTO_SELECT_NEXT = 'AUTO_SELECT_NEXT',
-  RECOMPUTE_INCLUDED = 'RECOMPUTE_INCLUDED',
   RESET_PROGRESS = 'RESET_PROGRESS',
-  SET_INCLUDED = 'SET_INCLUDED',
-  SET_INCLUDED_MANY = 'SET_INCLUDED_MANY',
   SELECT_LEAF = 'SELECT_LEAF',
   CLEAR_SELECTION = 'CLEAR_SELECTION',
   SET_PANEL_COLLAPSED = 'SET_PANEL_COLLAPSED',
   SET_ACTIVE_TAB = 'SET_ACTIVE_TAB',
   SET_SEARCH_QUERY = 'SET_SEARCH_QUERY',
-  SET_SEARCH_SELECTED = 'SET_SEARCH_SELECTED',
-  SET_INCLUDE_DESCENDANTS = 'SET_INCLUDE_DESCENDANTS',
+  SET_TRACK_FILTERS = 'SET_TRACK_FILTERS',
+  SET_VISUALIZATION_FILTERS = 'SET_VISUALIZATION_FILTERS',
+  RESET_FILTERS = 'RESET_FILTERS',
   SET_INFO_OPEN = 'SET_INFO_OPEN',
   SET_RESET_CONFIRM_OPEN = 'SET_RESET_CONFIRM_OPEN',
   FOCUS_MODE = 'FOCUS_MODE',
-  SET_SHOW_NOT_READY = 'SET_SHOW_NOT_READY',
-  SET_SHOW_PRE_READY = 'SET_SHOW_PRE_READY',
-  SET_SHOW_READY = 'SET_SHOW_READY',
-  SET_SHOW_LEARNED = 'SET_SHOW_LEARNED',
 }
 
 /* ------------------------------------------------------------------ */
@@ -105,27 +94,21 @@ const enum A {
 
 type Action =
   | { type: A.DATA_LOADED; raw: Raw }
-  | { type: A.INIT_COMPLETE; selectedLeafId: string | null; includedIds: Set<string> | null; showInfo: boolean }
+  | { type: A.INIT_COMPLETE; selectedLeafId: string | null; showInfo: boolean }
   | { type: A.MARK_LEARNED; id: string }
   | { type: A.AUTO_SELECT_NEXT; selectedLeafId: string | null }
-  | { type: A.RECOMPUTE_INCLUDED; includedIds: Set<string> | null }
   | { type: A.RESET_PROGRESS }
-  | { type: A.SET_INCLUDED; id: string; include: boolean }
-  | { type: A.SET_INCLUDED_MANY; ids: string[]; include: boolean }
   | { type: A.SELECT_LEAF; id: string }
   | { type: A.CLEAR_SELECTION }
   | { type: A.SET_PANEL_COLLAPSED; collapsed: boolean }
   | { type: A.SET_ACTIVE_TAB; tab: BottomTab }
   | { type: A.SET_SEARCH_QUERY; query: string }
-  | { type: A.SET_SEARCH_SELECTED; id: string | null }
-  | { type: A.SET_INCLUDE_DESCENDANTS; value: boolean }
+  | { type: A.SET_TRACK_FILTERS; track: TrackFilters }
+  | { type: A.SET_VISUALIZATION_FILTERS; visualization: VisualizationFilters }
+  | { type: A.RESET_FILTERS }
   | { type: A.SET_INFO_OPEN; open: boolean }
   | { type: A.SET_RESET_CONFIRM_OPEN; open: boolean }
-  | { type: A.FOCUS_MODE; selectedLeafId: string | null }
-  | { type: A.SET_SHOW_NOT_READY; value: boolean }
-  | { type: A.SET_SHOW_PRE_READY; value: boolean }
-  | { type: A.SET_SHOW_READY; value: boolean }
-  | { type: A.SET_SHOW_LEARNED; value: boolean };
+  | { type: A.FOCUS_MODE; selectedLeafId: string | null };
 
 /* ------------------------------------------------------------------ */
 /*  Reducer                                                            */
@@ -133,14 +116,19 @@ type Action =
 
 function reducer(state: ReducerState, action: Action): ReducerState {
   switch (action.type) {
-    case A.DATA_LOADED:
-      return { ...state, raw: action.raw };
+    case A.DATA_LOADED: {
+      // Load persisted filters only once the known groups/definitions are
+      // available, so stale ids can be sanitized away.
+      const groupIds = new Set((action.raw.def.groups ?? []).map((g) => g.id));
+      const nodeIds = new Set(action.raw.def.nodes.map((n) => n.id));
+      const filters = loadFiltersFromStorage(groupIds, nodeIds);
+      return { ...state, raw: action.raw, filters };
+    }
 
     case A.INIT_COMPLETE:
       return {
         ...state,
         selectedLeafId: action.selectedLeafId,
-        includedIds: action.includedIds ?? state.includedIds,
         infoOpen: action.showInfo || state.infoOpen,
         activeTab: action.selectedLeafId ? 'definition' : state.activeTab,
         panelCollapsed: state.panelCollapsed,
@@ -160,45 +148,17 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         activeTab: action.selectedLeafId ? 'definition' : state.activeTab,
       };
 
-    case A.RECOMPUTE_INCLUDED:
-      if (action.includedIds) {
-        saveIncludedToStorage(action.includedIds);
-      } else {
-        clearIncludedFromStorage();
-      }
-      return { ...state, includedIds: action.includedIds };
-
     case A.RESET_PROGRESS:
       clearLearnedFromStorage();
       saveLearnedToStorage(new Set());
-      clearIncludedFromStorage();
+      clearFiltersFromStorage();
       return {
         ...state,
         learned: new Set(),
-        includedIds: null,
+        filters: cloneFilters(DEFAULT_FILTERS),
         selectedLeafId: null,
         resetConfirmOpen: false,
       };
-
-    case A.SET_INCLUDED: {
-      const allIds = state.raw?.def.nodes.map((n) => n.id) ?? [];
-      const next = new Set(state.includedIds ?? allIds);
-      if (action.include) next.add(action.id);
-      else next.delete(action.id);
-      saveIncludedToStorage(next);
-      return { ...state, includedIds: next };
-    }
-
-    case A.SET_INCLUDED_MANY: {
-      const allIds = state.raw?.def.nodes.map((n) => n.id) ?? [];
-      const next = new Set(state.includedIds ?? allIds);
-      for (const id of action.ids) {
-        if (action.include) next.add(id);
-        else next.delete(id);
-      }
-      saveIncludedToStorage(next);
-      return { ...state, includedIds: next };
-    }
 
     case A.SELECT_LEAF:
       savePanelCollapsed(false);
@@ -220,18 +180,31 @@ function reducer(state: ReducerState, action: Action): ReducerState {
       return { ...state, activeTab: action.tab };
 
     case A.SET_SEARCH_QUERY:
-      // Typing clears selection; selection is only set via the dropdown.
-      return { ...state, searchQuery: action.query, searchSelectedId: null };
+      return { ...state, searchQuery: action.query };
 
-    case A.SET_SEARCH_SELECTED:
-      return {
-        ...state,
-        searchSelectedId: action.id,
-        searchQuery: action.id ?? '',
+    case A.SET_TRACK_FILTERS: {
+      const filters: PersistedFilters = {
+        track: action.track,
+        visualization: state.filters.visualization,
       };
+      saveFiltersToStorage(filters);
+      return { ...state, filters };
+    }
 
-    case A.SET_INCLUDE_DESCENDANTS:
-      return { ...state, includeDescendants: action.value };
+    case A.SET_VISUALIZATION_FILTERS: {
+      const filters: PersistedFilters = {
+        track: state.filters.track,
+        visualization: action.visualization,
+      };
+      saveFiltersToStorage(filters);
+      return { ...state, filters };
+    }
+
+    case A.RESET_FILTERS: {
+      const filters = cloneFilters(DEFAULT_FILTERS);
+      saveFiltersToStorage(filters);
+      return { ...state, filters, searchQuery: '' };
+    }
 
     case A.SET_INFO_OPEN:
       return { ...state, infoOpen: action.open };
@@ -246,18 +219,6 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         // Do not change activeTab / panelCollapsed; focus must not affect panel visibility
       };
 
-    case A.SET_SHOW_NOT_READY:
-      return { ...state, showNotReady: action.value };
-
-    case A.SET_SHOW_PRE_READY:
-      return { ...state, showPreReady: action.value };
-
-    case A.SET_SHOW_READY:
-      return { ...state, showReady: action.value };
-
-    case A.SET_SHOW_LEARNED:
-      return { ...state, showLearned: action.value };
-
     default:
       return state;
   }
@@ -270,20 +231,17 @@ function reducer(state: ReducerState, action: Action): ReducerState {
 export type AppState = {
   raw: Raw | null;
   rendered: DefGraph | null;
+  /** Graph restricted to the current track (before visualization filters). */
+  trackGraph: DefGraph | null;
   learned: Set<string>;
-  includedIds: Set<string> | null;
   selectedLeafId: string | null;
   selectedNode: DefNode | null;
   panelCollapsed: boolean;
   activeTab: BottomTab;
   searchQuery: string;
-  searchSelectedId: string | null;
   searchMatches: DefNode[];
-  includeDescendants: boolean;
-  showNotReady: boolean;
-  showPreReady: boolean;
-  showReady: boolean;
-  showLearned: boolean;
+  filters: PersistedFilters;
+  filtersAreDefault: boolean;
   infoOpen: boolean;
   resetConfirmOpen: boolean;
 };
@@ -291,24 +249,19 @@ export type AppState = {
 export type AppActions = {
   markLearned: (id: string) => void;
   resetProgress: () => void;
-  setIncluded: (id: string, include: boolean) => void;
-  setIncludedMany: (ids: string[], include: boolean) => void;
   selectLeaf: (id: string) => void;
   clearSelection: () => void;
   setPanelCollapsed: (collapsed: boolean) => void;
   setActiveTab: (tab: BottomTab) => void;
   setSearchQuery: (q: string) => void;
-  setSearchSelectedId: (id: string | null) => void;
-  setIncludeDescendants: (v: boolean) => void;
+  setTrackFilters: (track: TrackFilters) => void;
+  setVisualizationFilters: (visualization: VisualizationFilters) => void;
+  resetFilters: () => void;
   setInfoOpen: (open: boolean) => void;
   setResetConfirmOpen: (open: boolean) => void;
   focusMode: () => void;
   overviewMode: () => void;
   getNextReadyId: () => string | null;
-  setShowNotReady: (v: boolean) => void;
-  setShowPreReady: (v: boolean) => void;
-  setShowReady: (v: boolean) => void;
-  setShowLearned: (v: boolean) => void;
 };
 
 /* ------------------------------------------------------------------ */
@@ -324,98 +277,68 @@ export function useAppState(): AppState & AppActions {
     dispatch({ type: A.DATA_LOADED, raw });
   }, []);
 
-  // ── Derive search matches for dropdown ───────────────────────────
+  // ── Derive search matches for dropdown (id/title/aliases) ────────
   const searchMatches = useMemo<DefNode[]>(() => {
     if (!state.raw) return [];
-    const q = normalizeId(state.searchQuery);
-    if (!q) return [];
+    if (!state.searchQuery.trim()) return [];
 
-    const matches = state.raw.def.nodes.filter((n) => {
-      const id = normalizeId(n.id);
-      const title = normalizeId(n.title ?? '');
-      return id.includes(q) || title.includes(q);
-    });
-
+    const matches = state.raw.def.nodes.filter((n) => nodeMatchesQuery(n, state.searchQuery));
     matches.sort((a, b) => a.id.localeCompare(b.id));
     return matches.slice(0, 80);
   }, [state.raw, state.searchQuery]);
 
-  // ── Derive filtered graph for selection ───────────────────────────
-  const filteredGraphForSelection = useMemo<DefGraph | null>(() => {
+  // ── Track graph: groups + definitions (+ descendants) ────────────
+  const trackGraph = useMemo<DefGraph | null>(() => {
     if (!state.raw) return null;
+    const trackSet = computeTrackSet(state.raw, state.filters.track);
+    if (trackSet.size === 0) return { nodes: [], edges: [] };
+    return renderGraph(state.raw, trackSet);
+  }, [state.raw, state.filters.track]);
 
-    // Base included set from the definitions include/exclude filter
-    let included: Set<string>;
-    if (state.includedIds) included = new Set(state.includedIds);
-    else included = new Set(state.raw.def.nodes.map((n) => n.id));
+  // ── Final rendered graph: visualization filters on top of track ──
+  const rendered = useMemo<DefGraph | null>(() => {
+    if (!state.raw || !trackGraph) return null;
+    if (trackGraph.nodes.length === 0) return trackGraph;
 
-    // Search selection filter overrides definition filter (study subtree)
-    if (state.searchSelectedId) {
-      included = prerequisiteClosure(state.raw, state.searchSelectedId);
-    }
+    const learned = state.learned;
+    const v = state.filters.visualization;
 
-    // Apply state filters
-    const preGraph = renderGraph(state.raw, included);
-
+    const byId = new Map(trackGraph.nodes.map((n) => [n.id, n] as const));
     const preReadySet = new Set<string>();
-    const byId = new Map(preGraph.nodes.map((n) => [n.id, n] as const));
-    for (const e of preGraph.edges) {
-      const prereq = byId.get(e.target);
-      if (!prereq) continue;
-      if (!state.learned.has(prereq.id)) continue;
+    for (const e of trackGraph.edges) {
+      if (!learned.has(e.target)) continue;
       const dep = byId.get(e.source);
-      if (!dep) continue;
+      if (!dep || learned.has(dep.id)) continue;
       const deps = dep.deps ?? [];
-      const isReady = deps.every((d) => state.learned.has(d));
-      if (!state.learned.has(dep.id) && !isReady) preReadySet.add(dep.id);
+      if (!deps.every((d) => learned.has(d))) preReadySet.add(dep.id);
     }
 
     const stateOf = (n: DefNode): LearnState => {
-      if (state.learned.has(n.id)) return 'learned';
+      if (learned.has(n.id)) return 'learned';
       const deps = n.deps ?? [];
-      if (deps.every((d) => state.learned.has(d))) return 'ready';
+      if (deps.every((d) => learned.has(d))) return 'ready';
       return preReadySet.has(n.id) ? 'pre-ready' : 'not-ready';
     };
 
-    const keep = new Set<string>();
-    if (state.searchSelectedId && state.includeDescendants) {
-      // Keep the entire prerequisite closure of the selected definition,
-      // ignoring the node-state filters so no descendants are hidden.
-      for (const n of preGraph.nodes) keep.add(n.id);
-    } else {
-      for (const n of preGraph.nodes) {
-        const st = stateOf(n);
-        if (st === 'learned' && state.showLearned) keep.add(n.id);
-        else if (st === 'ready' && state.showReady) keep.add(n.id);
-        else if (st === 'pre-ready' && state.showPreReady) keep.add(n.id);
-        else if (st === 'not-ready' && state.showNotReady) keep.add(n.id);
-      }
-    }
+    const keep = trackGraph.nodes.filter((n) => {
+      const st = stateOf(n);
+      if (st === 'learned') return v.showLearned;
+      if (st === 'ready') return v.showReady;
+      if (st === 'pre-ready') return v.showPreReady;
+      return v.showNotReady;
+    });
 
-    // Ensure searched node stays visible if present
-    if (state.searchSelectedId) keep.add(state.searchSelectedId);
-
-    return renderGraph(state.raw, keep);
-  }, [
-    state.raw,
-    state.includedIds,
-    state.searchSelectedId,
-    state.includeDescendants,
-    state.learned,
-    state.showNotReady,
-    state.showPreReady,
-    state.showReady,
-    state.showLearned,
-  ]);
-
-  // Use the filtered graph as the rendered graph
-  const rendered = filteredGraphForSelection;
+    if (keep.length === trackGraph.nodes.length) return trackGraph;
+    return renderGraph(state.raw, new Set(keep.map((n) => n.id)));
+  }, [trackGraph, state.learned, state.filters.visualization, state.raw]);
 
   // ── Derive selected node ─────────────────────────────────────────
   const selectedNode = useMemo<DefNode | null>(() => {
-    if (!rendered || !state.selectedLeafId) return null;
-    return rendered.nodes.find((n) => n.id === state.selectedLeafId) ?? null;
-  }, [rendered, state.selectedLeafId]);
+    if (!state.selectedLeafId || !state.raw) return null;
+    // Look up in the full database so the definition content stays available
+    // even when the node is filtered out of the current visualization.
+    return state.raw.byId.get(state.selectedLeafId) ?? null;
+  }, [state.raw, state.selectedLeafId]);
 
   // ── One-time initialization after data + graph are ready ─────────
   const initDone = useRef(false);
@@ -423,28 +346,16 @@ export function useAppState(): AppState & AppActions {
     if (!state.raw || !rendered || initDone.current) return;
     initDone.current = true;
 
-    // Bootstrap included set if nothing was stored.
-    // NOTE: This is an optional "focus" filter. If the user is actively filtering
-    // via Search selection, we must NOT apply the focus bootstrap; otherwise we
-    // may hide prerequisites and collapse levels (e.g. level 0 on deep nodes).
-    let includedIds: Set<string> | null = null;
-    const shouldBootstrapFocusIncluded = state.includedIds === null && !state.searchSelectedId;
-    if (shouldBootstrapFocusIncluded) {
-      includedIds = recomputeIncludedSetFromReady(state.raw, state.learned);
-    }
-
-    // Determine first definition to show.
-    // IMPORTANT: use the same currently-filtered graph that the UI renders,
-    // so computed levels / ready set are consistent.
+    // Determine first definition to show from the CURRENTLY FILTERED graph,
+    // so computed levels / ready set are consistent with the UI.
     const nextId = selectNextReady(state.raw, rendered, state.learned);
 
     dispatch({
       type: A.INIT_COMPLETE,
       selectedLeafId: nextId,
-      includedIds,
       showInfo: state.learned.size === 0,
     });
-  }, [state.raw, rendered, state.includedIds, state.learned, state.searchSelectedId]);
+  }, [state.raw, rendered, state.learned]);
 
   // ── Auto-select next ready after marking learned ─────────────────────
   const pendingMarkId = useRef<string | null>(null);
@@ -455,12 +366,18 @@ export function useAppState(): AppState & AppActions {
     if (!state.learned.has(pendingMarkId.current)) return;
     pendingMarkId.current = null;
 
-    // Do NOT recompute included set here; includedIds are a user filter.
-
     // Select next ready within the CURRENTLY FILTERED graph
     const nextId = selectNextReady(state.raw, rendered, state.learned);
     dispatch({ type: A.AUTO_SELECT_NEXT, selectedLeafId: nextId });
   }, [state.raw, rendered, state.learned]);
+
+  // ── Filters are at their default values? ─────────────────────────
+  const filtersAreDefault = useMemo(
+    () =>
+      trackEquals(state.filters.track, DEFAULT_TRACK_FILTERS) &&
+      JSON.stringify(state.filters.visualization) === JSON.stringify(DEFAULT_VISUALIZATION_FILTERS),
+    [state.filters],
+  );
 
   // ── Action creators ──────────────────────────────────────────────
 
@@ -471,14 +388,6 @@ export function useAppState(): AppState & AppActions {
 
   const resetProgress = useCallback(() => {
     dispatch({ type: A.RESET_PROGRESS });
-  }, []);
-
-  const setIncluded = useCallback((id: string, include: boolean) => {
-    dispatch({ type: A.SET_INCLUDED, id, include });
-  }, []);
-
-  const setIncludedMany = useCallback((ids: string[], include: boolean) => {
-    dispatch({ type: A.SET_INCLUDED_MANY, ids, include });
   }, []);
 
   const selectLeaf = useCallback((id: string) => {
@@ -501,12 +410,16 @@ export function useAppState(): AppState & AppActions {
     dispatch({ type: A.SET_SEARCH_QUERY, query });
   }, []);
 
-  const setSearchSelectedId = useCallback((id: string | null) => {
-    dispatch({ type: A.SET_SEARCH_SELECTED, id });
+  const setTrackFilters = useCallback((track: TrackFilters) => {
+    dispatch({ type: A.SET_TRACK_FILTERS, track });
   }, []);
 
-  const setIncludeDescendants = useCallback((v: boolean) => {
-    dispatch({ type: A.SET_INCLUDE_DESCENDANTS, value: v });
+  const setVisualizationFilters = useCallback((visualization: VisualizationFilters) => {
+    dispatch({ type: A.SET_VISUALIZATION_FILTERS, visualization });
+  }, []);
+
+  const resetFilters = useCallback(() => {
+    dispatch({ type: A.RESET_FILTERS });
   }, []);
 
   const setInfoOpen = useCallback((open: boolean) => {
@@ -535,56 +448,31 @@ export function useAppState(): AppState & AppActions {
     return selectNextReady(state.raw, rendered, state.learned);
   }, [state.raw, rendered, state.learned]);
 
-  const setShowNotReady = useCallback((v: boolean) => {
-    dispatch({ type: A.SET_SHOW_NOT_READY, value: v });
-  }, []);
-
-  const setShowPreReady = useCallback((v: boolean) => {
-    dispatch({ type: A.SET_SHOW_PRE_READY, value: v });
-  }, []);
-
-  const setShowReady = useCallback((v: boolean) => {
-    dispatch({ type: A.SET_SHOW_READY, value: v });
-  }, []);
-
-  const setShowLearned = useCallback((v: boolean) => {
-    dispatch({ type: A.SET_SHOW_LEARNED, value: v });
-  }, []);
-
   return {
     raw: state.raw,
     rendered,
+    trackGraph,
     learned: state.learned,
-    includedIds: state.includedIds,
     selectedLeafId: state.selectedLeafId,
     selectedNode,
     panelCollapsed: state.panelCollapsed,
     activeTab: state.activeTab,
     searchQuery: state.searchQuery,
-    searchSelectedId: state.searchSelectedId,
     searchMatches,
-    includeDescendants: state.includeDescendants,
-    showNotReady: state.showNotReady,
-    showPreReady: state.showPreReady,
-    showReady: state.showReady,
-    showLearned: state.showLearned,
+    filters: state.filters,
+    filtersAreDefault,
     infoOpen: state.infoOpen,
     resetConfirmOpen: state.resetConfirmOpen,
     markLearned,
     resetProgress,
-    setIncluded,
-    setIncludedMany,
     selectLeaf,
     clearSelection,
     setPanelCollapsed,
     setActiveTab,
     setSearchQuery,
-    setSearchSelectedId,
-    setIncludeDescendants,
-    setShowNotReady,
-    setShowPreReady,
-    setShowReady,
-    setShowLearned,
+    setTrackFilters,
+    setVisualizationFilters,
+    resetFilters,
     setInfoOpen,
     setResetConfirmOpen,
     focusMode,

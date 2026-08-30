@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
+import { buildRaw, dependentsClosure } from '../../src/lib/graph';
 import type { DefGraph } from '../../src/types';
 
 const defsPath = fileURLToPath(new URL('../../../docs/defs.json', import.meta.url));
@@ -52,23 +52,24 @@ test('persists bottom panel collapse state across reloads', async ({ page }) => 
   await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeVisible();
 });
 
-test('filters the graph to the selected definition prerequisites from search', async ({ page }) => {
-  const selectedId = 'mathematics/fibonacci';
-  const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
+test('adds a definition to the track and expands it with its descendants', async ({ page }) => {
+  const selectedId = 'mathematics/observable'; // root definition
+  const expectedNodeCount = dependentsClosure(buildRaw(defs), [selectedId]).size;
 
   await gotoApp(page);
   await page.evaluate(() => localStorage.clear()); // initial clear
   await closeInfoModalIfVisible(page);
 
   await page.getByRole('button', { name: 'Filters' }).click();
-  await page.getByLabel('Show not-ready nodes').check();
+  await page.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }).uncheck();
+  // descendants are mostly not-ready, which are hidden by default
+  await page.getByRole('checkbox', { name: 'Show not-ready definitions' }).check();
 
   const searchInput = page.getByLabel('Search definition');
-  await searchInput.fill('fibonacci');
+  await searchInput.fill('observable');
   await expect(page.getByRole('listbox', { name: 'Definition matches' })).toBeVisible();
   await page.getByText(selectedId, { exact: true }).click();
 
-  await expect(page.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeVisible();
   await expect
     .poll(async () => page.evaluate(() => document.querySelectorAll('g.node').length))
     .toBe(expectedNodeCount);

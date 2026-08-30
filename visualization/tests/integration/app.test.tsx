@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-li
 import userEvent from '@testing-library/user-event';
 import defs from '../../../docs/defs.json';
 import App from '../../src/App';
-import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
+import { buildRaw, dependentsClosure } from '../../src/lib/graph';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('../../src/components/GraphCanvas', () => {
@@ -89,10 +89,10 @@ function getBottomPanel(): HTMLElement {
 
 function openFilters() {
   fireEvent.click(screen.getByRole('button', { name: 'Filters' }));
-  return screen.getByRole('region', { name: 'Definitions include/exclude' });
+  return screen.getByRole('region', { name: 'Track filtering' });
 }
 
-async function searchAndSelectDefinition(query: string, id: string) {
+async function searchAndToggleDefinition(query: string, id: string) {
   const searchInput = screen.getByLabelText('Search definition');
   fireEvent.change(searchInput, { target: { value: query } });
 
@@ -106,15 +106,13 @@ async function searchAndSelectDefinition(query: string, id: string) {
   fireEvent.click(checkbox);
 }
 
-function getTreeRowCheckboxByText(text: string): HTMLInputElement {
-  const tree = screen.getByRole('region', { name: 'Definitions include/exclude' });
-  const labels = within(tree).getAllByText(text);
-  const label = labels[0];
-  const row = label.closest('.treeRow');
-  if (!row) throw new Error(`Tree row not found for ${text}`);
-  const checkbox = row.querySelector('input[type="checkbox"]');
-  if (!(checkbox instanceof HTMLInputElement)) throw new Error(`Checkbox not found for ${text}`);
-  return checkbox;
+function getGraphNodeButtonByTitle(title: string): HTMLButtonElement | null {
+  const graph = screen.getByRole('img', { name: 'Definitions graph' });
+  return (
+    within(graph)
+      .queryAllByRole('button')
+      .find((button): button is HTMLButtonElement => button.textContent === title) ?? null
+  );
 }
 
 describe('App integration scenarios', () => {
@@ -144,19 +142,22 @@ describe('App integration scenarios', () => {
     expect(getBottomPanel()).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('filters the graph to the selected definition prerequisites from search', async () => {
-    const selectedId = 'mathematics/fibonacci';
-    const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
+  it('adds a definition to the track and expands it with its descendants', async () => {
+    const selectedId = 'mathematics/observable'; // root definition
+    const expectedCount = dependentsClosure(buildRaw(defs), [selectedId]).size;
     await renderApp();
 
     openFilters();
-    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
-    await searchAndSelectDefinition('fibonacci', selectedId);
+    // Remove the default group so only the searched definition (plus its
+    // descendants) defines the track, and show not-ready nodes so all
+    // descendants are visible.
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }));
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+
+    await searchAndToggleDefinition('observable', selectedId);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeInTheDocument();
-      expect(graphCount()).toBe(expectedNodeCount);
-      expect(getSelectedGraphNodeButton()).toHaveTextContent('fibonacci');
+      expect(graphCount()).toBe(expectedCount);
     });
   });
 
@@ -191,86 +192,125 @@ describe('App integration scenarios', () => {
     await renderApp();
 
     openFilters();
-    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
-    await searchAndSelectDefinition('fibonacci', 'mathematics/fibonacci');
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+    // Select the fibonacci node (clicking a node opens the Definition tab).
+    fireEvent.click(getGraphNodeButtonByTitle('fibonacci')!);
 
-    fireEvent.click(within(screen.getByRole('region', { name: 'Definition content' })).getAllByText('sequence')[0]);
+    const depLink = (await screen.findAllByText('sequence', { selector: 'span.dep' }))[0];
+    fireEvent.click(depLink);
 
-    await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
-      expect(getSelectedGraphNodeButton()).toHaveTextContent('sequence');
-    });
-  });
+    await waitFor(
+      () => {
+        expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
+        expect(getSelectedGraphNodeButton()).toHaveTextContent('sequence');
+      },
+      { timeout: 5000 },
+    );
+  }, 20000);
 
   it('updates rendered graph when node state filters change', async () => {
     await renderApp();
     const initialCount = graphCount();
 
     openFilters();
-    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
 
     await waitFor(() => {
       expect(graphCount()).toBeGreaterThan(initialCount);
     });
 
     const afterNotReady = graphCount();
-    fireEvent.click(screen.getByLabelText('Show ready-to-learn nodes'));
+    fireEvent.click(screen.getByLabelText('Show ready-to-learn definitions'));
 
     await waitFor(() => {
       expect(graphCount()).toBeLessThan(afterNotReady);
     });
   });
 
-  it('supports including and excluding definitions via tree checkboxes', async () => {
+  it('excludes learned definitions from the graph when unchecking show learned', async () => {
     const { user } = await renderApp();
-    const initialCount = graphCount();
+    const markedTitle = getSelectedGraphNodeButton()?.textContent ?? '';
+    expect(markedTitle).not.toBe('');
+
+    await user.click(screen.getByRole('button', { name: /Mark .* as learned/ }));
+    // The learned node disappears from the graph only after "Show learned" is off.
+    expect(getGraphNodeButtonByTitle(markedTitle)).not.toBeNull();
 
     openFilters();
-    // 'observable' is a root definition (no dependencies) with a unique title,
-    // so it is visible by default and toggling it removes exactly one node.
-    await user.click(getTreeRowCheckboxByText('observable'));
+    fireEvent.click(screen.getByLabelText('Show learned definitions'));
 
     await waitFor(() => {
-      expect(graphCount()).toBe(initialCount - 1);
-    });
-
-    await user.click(getTreeRowCheckboxByText('observable'));
-
-    await waitFor(() => {
-      expect(graphCount()).toBe(initialCount);
+      expect(getGraphNodeButtonByTitle(markedTitle)).toBeNull();
     });
   });
 
-  it('restores field expand-collapse state from localStorage', async () => {
-    const { user } = await renderApp();
-
-    const tree = openFilters();
-    expect(within(tree).getByText('criterion')).toBeInTheDocument();
-
-    await user.click(within(tree).getByText('mathematics'));
-
-    await waitFor(() => {
-      expect(within(tree).queryByText('criterion')).not.toBeInTheDocument();
-    });
-
-    cleanup();
-    await renderApp();
-    const secondTree = openFilters();
-
-    expect(within(secondTree).queryByText('criterion')).not.toBeInTheDocument();
-  });
-
-  it('disables learning for a not-ready definition selected from search', async () => {
+  it('finds definitions by alias in the search input', async () => {
     await renderApp();
 
     openFilters();
-    fireEvent.click(screen.getByLabelText('Show not-ready nodes'));
-    await searchAndSelectDefinition('fibonacci', 'mathematics/fibonacci');
+    const searchInput = screen.getByLabelText('Search definition');
+    fireEvent.change(searchInput, { target: { value: 'dfs' } });
+
+    const matches = await screen.findByRole('listbox', { name: 'Definition matches' });
+    expect(within(matches).getByText('mathematics/depth_first_search')).toBeInTheDocument();
+  });
+
+  it('resets filters to the default values', async () => {
+    await renderApp();
+
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show learned definitions'));
+    fireEvent.click(screen.getByLabelText('Show ready-to-learn definitions'));
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }));
+    fireEvent.click(screen.getByLabelText('Include descendants'));
+
+    const stored = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? '{}');
+    expect(stored.track.groupIds).toEqual([]);
+    expect(stored.track.includeDescendants).toBe(false);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset filters' }));
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: /Mark .* as learned/ })).toBeDisabled();
+      expect((screen.getByLabelText('Show learned definitions') as HTMLInputElement).checked).toBe(true);
+      expect(
+        (
+          screen.getByRole('checkbox', {
+            name: 'Group Data Structures and Algorithms',
+          }) as HTMLInputElement
+        ).checked,
+      ).toBe(true);
+      expect((screen.getByLabelText('Include descendants') as HTMLInputElement).checked).toBe(true);
+
+      const reset = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? '{}');
+      expect(reset.track.groupIds).toEqual(['data_structures_and_algorithms']);
+      expect(reset.track.includeDescendants).toBe(true);
+      expect(reset.visualization).toEqual({
+        showLearned: true,
+        showReady: true,
+        showPreReady: true,
+        showNotReady: false,
+      });
     });
   });
+
+  it('disables learning for a not-ready definition selected via dependency link', async () => {
+    await renderApp();
+
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+    // Select the fibonacci node (clicking a node opens the Definition tab).
+    fireEvent.click(getGraphNodeButtonByTitle('fibonacci')!);
+
+    await waitFor(
+      () => {
+        expect(screen.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /Mark .* as learned/ })).toBeDisabled();
+      },
+      { timeout: 5000 },
+    );
+  }, 20000);
 
   it('resets learned progress after confirmation', async () => {
     const { user } = await renderApp();

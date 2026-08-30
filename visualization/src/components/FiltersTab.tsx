@@ -1,208 +1,140 @@
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
-import type { Raw, DefNode, FieldGroup, LearnState } from '../types';
-import { buildFieldGroups, learnStateForNode } from '../lib/graph';
-import { loadOpenFields, saveOpenFields } from '../lib/storage';
-
-type Match = { id: string; title: string };
+import type { Raw, DefNode, DefGroup } from '../types';
+import { nodeSearchLabel } from '../lib/graph';
+import type { TrackFilters, VisualizationFilters } from '../lib/filters';
 
 type Props = {
-  // Definition include/exclude filter
+  // Track filtering
   raw: Raw;
-  renderedForTree: import('../types').DefGraph; // filtered graph (after all filters) to compute visible states
-  learned: Set<string>;
-  includedIds: Set<string> | null;
-  onSelectLeaf: (id: string) => void;
-  onSetIncluded: (id: string, include: boolean) => void;
-  onSetIncludedMany: (ids: string[], include: boolean) => void;
+  trackFilters: TrackFilters;
+  onSetTrackFilters: (track: TrackFilters) => void;
 
-  // Search / selected definition filter
+  // Visualization filtering
+  visualizationFilters: VisualizationFilters;
+  onSetVisualizationFilters: (visualization: VisualizationFilters) => void;
+
+  // Reset
+  onResetFilters: () => void;
+
+  // Search (definition multi-select within the track)
   searchQuery: string;
-  searchSelectedId: string | null;
-  matches: Match[];
+  matches: DefNode[];
   onSearchChange: (q: string) => void;
-  onSelectMatch: (id: string | null) => void;
-  includeDescendants: boolean;
-  onSetIncludeDescendants: (v: boolean) => void;
-
-  // Node state filters
-  showNotReady: boolean;
-  showPreReady: boolean;
-  showReady: boolean;
-  showLearned: boolean;
-  onSetShowNotReady: (v: boolean) => void;
-  onSetShowPreReady: (v: boolean) => void;
-  onSetShowReady: (v: boolean) => void;
-  onSetShowLearned: (v: boolean) => void;
 };
 
 const FiltersTab: React.FC<Props> = ({
   raw,
-  renderedForTree,
-  learned,
-  includedIds,
-  onSelectLeaf,
-  onSetIncluded,
-  onSetIncludedMany,
+  trackFilters,
+  onSetTrackFilters,
+  visualizationFilters,
+  onSetVisualizationFilters,
+  onResetFilters,
   searchQuery,
-  searchSelectedId,
   matches,
   onSearchChange,
-  onSelectMatch,
-  includeDescendants,
-  onSetIncludeDescendants,
-  showNotReady,
-  showPreReady,
-  showReady,
-  showLearned,
-  onSetShowNotReady,
-  onSetShowPreReady,
-  onSetShowReady,
-  onSetShowLearned,
 }) => {
-  // --- Definition tree state (grouped by field) ---
-  const [openPrefixes, setOpenPrefixes] = useState<Set<string>>(() => loadOpenFields());
+  // ── Groups ────────────────────────────────────────────────────────
+  const groups = useMemo<DefGroup[]>(
+    () => [...(raw.def.groups ?? [])].sort((a, b) => a.name.localeCompare(b.name)),
+    [raw],
+  );
 
-  const isOpen = useCallback(
-    (prefix: string) => {
-      if (!prefix) return true;
-      // We store "collapsed" prefixes. Open by default.
-      return !openPrefixes.has(prefix);
+  const selectedGroupIds = useMemo(() => new Set(trackFilters.groupIds), [trackFilters.groupIds]);
+
+  const toggleGroup = useCallback(
+    (groupId: string, checked: boolean) => {
+      const next = new Set(trackFilters.groupIds);
+      if (checked) next.add(groupId);
+      else next.delete(groupId);
+      onSetTrackFilters({ ...trackFilters, groupIds: Array.from(next).sort() });
     },
-    [openPrefixes],
+    [trackFilters, onSetTrackFilters],
   );
 
-  const toggleOpen = useCallback((prefix: string) => {
-    if (!prefix) return;
-    setOpenPrefixes((prev) => {
-      const next = new Set(prev);
-      if (next.has(prefix)) next.delete(prefix);
-      else next.add(prefix);
-      saveOpenFields(next);
-      return next;
-    });
-  }, []);
+  // ── Definitions multi-select ──────────────────────────────────────
+  const selectedDefinitionIds = useMemo(
+    () => new Set(trackFilters.definitionIds),
+    [trackFilters.definitionIds],
+  );
 
-  const isIncluded = useCallback(
-    (id: string) => {
-      if (!includedIds) return true;
-      return includedIds.has(id);
+  const toggleDefinition = useCallback(
+    (id: string, checked: boolean) => {
+      const next = new Set(trackFilters.definitionIds);
+      if (checked) next.add(id);
+      else next.delete(id);
+      onSetTrackFilters({ ...trackFilters, definitionIds: Array.from(next).sort() });
     },
-    [includedIds],
+    [trackFilters, onSetTrackFilters],
   );
 
-  const { groups, visibleNodeIds } = useMemo(
-    () => buildFieldGroups(raw, renderedForTree, learned),
-    [raw, renderedForTree, learned],
-  );
-
-  const stateForCat = useCallback(
-    (leaf: DefNode): LearnState => {
-      const base = learnStateForNode(leaf, learned);
-      return base === 'not-ready' && visibleNodeIds.has(leaf.id) ? 'pre-ready' : base;
-    },
-    [learned, visibleNodeIds],
-  );
-
-  const renderGroup = useCallback(
-    (group: FieldGroup): React.ReactNode => {
-      const open = isOpen(group.field);
-      const definitionIds = group.definitions.map((d) => d.id);
-      const allInc = definitionIds.length ? definitionIds.every(isIncluded) : true;
-      const anyInc = definitionIds.some(isIncluded);
-
-      return (
-        <div key={group.field}>
-          <div
-            className="treeRow hasChildren clickable"
-            onClick={(ev) => {
-              const t = ev.target as HTMLElement;
-              if (t.tagName === 'INPUT') return;
-              toggleOpen(group.field);
-            }}
-          >
-            <span className="treeIndent" />
-            <span className={`treeChevron ${open ? 'open' : ''}`}>▶</span>
-            <input
-              type="checkbox"
-              className="treeCheckbox"
-              checked={allInc}
-              ref={(el) => {
-                if (el) el.indeterminate = anyInc && !allInc;
-              }}
-              onChange={(ev) => {
-                onSetIncludedMany(definitionIds, ev.target.checked);
-              }}
-            />
-            <span className="treeLabel">{group.field}</span>
-            <span className="treeMeta">
-              <span>{group.definitions.length}</span>
-            </span>
-          </div>
-          {open &&
-            group.definitions.map((def) => {
-              const st = stateForCat(def);
-
-              return (
-                <div
-                  key={def.id}
-                  className="treeRow clickable"
-                  style={{ '--indent': 1 } as React.CSSProperties}
-                  onClick={(ev) => {
-                    const t = ev.target as HTMLElement;
-                    if (t.tagName === 'INPUT') return;
-                    onSelectLeaf(def.id);
-                  }}
-                >
-                  <span className="treeIndent" />
-                  <span className="treeChevron" />
-                  <input
-                    type="checkbox"
-                    className="treeCheckbox"
-                    checked={isIncluded(def.id)}
-                    onChange={(ev) => {
-                      onSetIncluded(def.id, ev.target.checked);
-                    }}
-                  />
-                  <span className="treeLabel">{def.title}</span>
-                  <span className="treeMeta">
-                    <span className={`stateDot ${st}`} />
-                    <span>L{def.level ?? 0}</span>
-                  </span>
-                </div>
-              );
-            })}
-        </div>
-      );
-    },
-    [isOpen, isIncluded, onSelectLeaf, onSetIncluded, onSetIncludedMany, stateForCat, toggleOpen],
-  );
-
-  // Hide search results list after selecting an item; reopen on typing/focus.
+  // ── Search dropdown (search by id, title and aliases) ─────────────
   const [searchOpen, setSearchOpen] = useState(false);
-  const lastSelectedRef = useRef<string | null>(null);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (searchSelectedId && searchSelectedId !== lastSelectedRef.current) {
-      lastSelectedRef.current = searchSelectedId;
-      setSearchOpen(false);
+    if (!searchOpen) return;
+    const onDocClick = (ev: MouseEvent) => {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(ev.target as Node)) {
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [searchOpen]);
+
+  // Number of directly selected definitions (groups + explicit ids, no descendants).
+  const trackSize = useMemo(() => {
+    const direct = new Set<string>();
+    const groupsById = new Map(groups.map((g) => [g.id, g] as const));
+    for (const groupId of trackFilters.groupIds) {
+      for (const id of groupsById.get(groupId)?.definitions ?? []) direct.add(id);
     }
-    if (!searchSelectedId) {
-      lastSelectedRef.current = null;
-    }
-  }, [searchSelectedId]);
+    for (const id of trackFilters.definitionIds) direct.add(id);
+    return direct.size;
+  }, [groups, trackFilters.groupIds, trackFilters.definitionIds]);
 
   return (
     <div className="panelSection">
       <h3>Filters</h3>
 
       <div style={{ display: 'grid', gap: 12 }}>
-        <div>
-          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Selected definition</h4>
-          <div className="searchBox" role="combobox" aria-expanded={matches.length > 0}>
+        {/* ── Track filtering ─────────────────────────────────────── */}
+        <section aria-label="Track filtering">
+          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>
+            Track ({trackSize} definitions selected)
+          </h4>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+            <input
+              type="checkbox"
+              aria-label="Include descendants"
+              checked={trackFilters.includeDescendants}
+              onChange={(e) =>
+                onSetTrackFilters({ ...trackFilters, includeDescendants: e.target.checked })
+              }
+            />
+            Include descendants
+          </label>
+
+          <h5 style={{ margin: '8px 0 4px 0', fontSize: 11, color: '#a9b4c0' }}>Groups</h5>
+          {groups.map((group) => (
+            <label key={group.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <input
+                type="checkbox"
+                aria-label={`Group ${group.name}`}
+                checked={selectedGroupIds.has(group.id)}
+                onChange={(e) => toggleGroup(group.id, e.target.checked)}
+              />
+              {group.name} ({group.definitions.length})
+            </label>
+          ))}
+
+          <h5 style={{ margin: '8px 0 4px 0', fontSize: 11, color: '#a9b4c0' }}>Definitions</h5>
+          <div className="searchBox" ref={searchBoxRef} role="combobox" aria-expanded={searchOpen}>
             <input
               type="text"
               aria-label="Search definition"
-              placeholder="Search node by id/title..."
+              placeholder="Search definition by id/title/alias..."
               value={searchQuery}
               onChange={(e) => {
                 onSearchChange(e.target.value);
@@ -216,20 +148,19 @@ const FiltersTab: React.FC<Props> = ({
             {searchOpen && matches.length > 0 && (
               <div className="searchMatches" role="listbox" aria-label="Definition matches">
                 {matches.map((m) => {
-                  const checked = m.id === searchSelectedId;
+                  const checked = selectedDefinitionIds.has(m.id);
                   return (
                     <label key={m.id} className="searchMatch">
                       <input
                         type="checkbox"
                         checked={checked}
                         onChange={(ev) => {
-                          onSelectMatch(ev.target.checked ? m.id : null);
-                          setSearchOpen(false);
+                          toggleDefinition(m.id, ev.target.checked);
                         }}
                       />
                       <span className="searchItemText">
                         <span className="searchItemId">{m.id}</span>
-                        <span className="searchItemTitle">{m.title}</span>
+                        <span className="searchItemTitle">{nodeSearchLabel(m)}</span>
                       </span>
                     </label>
                   );
@@ -237,56 +168,91 @@ const FiltersTab: React.FC<Props> = ({
               </div>
             )}
           </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
+
+          {trackFilters.definitionIds.length > 0 && (
+            <div className="selectedDefinitions" role="list" aria-label="Selected definitions">
+              {trackFilters.definitionIds.map((id) => {
+                const node = raw.byId.get(id);
+                const label = node ? nodeSearchLabel(node) : id;
+                return (
+                  <span key={id} className="selectedDefinitionChip" role="listitem">
+                    {label}
+                    <button
+                      type="button"
+                      className="chipRemove"
+                      aria-label={`Remove ${id} from track`}
+                      onClick={() => toggleDefinition(id, false)}
+                    >
+                      ×
+                    </button>
+                  </span>
+                );
+              })}
+            </div>
+          )}
+        </section>
+
+        {/* ── Visualization filtering ──────────────────────────────── */}
+        <section aria-label="Visualization filtering">
+          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Visualization</h4>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <input
               type="checkbox"
-              checked={includeDescendants}
-              onChange={(e) => onSetIncludeDescendants(e.target.checked)}
+              aria-label="Show learned definitions"
+              checked={visualizationFilters.showLearned}
+              onChange={(e) =>
+                onSetVisualizationFilters({ ...visualizationFilters, showLearned: e.target.checked })
+              }
             />
-            Include all descendants
+            Show learned definitions
           </label>
-        </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <input
+              type="checkbox"
+              aria-label="Show ready-to-learn definitions"
+              checked={visualizationFilters.showReady}
+              onChange={(e) =>
+                onSetVisualizationFilters({ ...visualizationFilters, showReady: e.target.checked })
+              }
+            />
+            Show ready-to-learn definitions
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <input
+              type="checkbox"
+              aria-label="Show pre-ready definitions"
+              checked={visualizationFilters.showPreReady}
+              onChange={(e) =>
+                onSetVisualizationFilters({
+                  ...visualizationFilters,
+                  showPreReady: e.target.checked,
+                })
+              }
+            />
+            Show pre-ready definitions
+          </label>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <input
+              type="checkbox"
+              aria-label="Show not-ready definitions"
+              checked={visualizationFilters.showNotReady}
+              onChange={(e) =>
+                onSetVisualizationFilters({
+                  ...visualizationFilters,
+                  showNotReady: e.target.checked,
+                })
+              }
+            />
+            Show not-ready definitions
+          </label>
+        </section>
 
+        {/* ── Reset ────────────────────────────────────────────────── */}
         <div>
-          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Node states</h4>
-
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input
-              type="checkbox"
-              checked={showLearned}
-              onChange={(e) => onSetShowLearned(e.target.checked)}
-            />
-            Show learned nodes
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input
-              type="checkbox"
-              checked={showReady}
-              onChange={(e) => onSetShowReady(e.target.checked)}
-            />
-            Show ready-to-learn nodes
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input
-              type="checkbox"
-              checked={showPreReady}
-              onChange={(e) => onSetShowPreReady(e.target.checked)}
-            />
-            Show pre-ready nodes
-          </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <input
-              type="checkbox"
-              checked={showNotReady}
-              onChange={(e) => onSetShowNotReady(e.target.checked)}
-            />
-            Show not-ready nodes
-          </label>
-        </div>
-
-        <div>
-          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Definitions include/exclude</h4>
-          <div className="categoriesTree" role="region" aria-label="Definitions include/exclude">{groups.map(renderGroup)}</div>
+          <button type="button" className="btn" aria-label="Reset filters" onClick={onResetFilters}>
+            Reset filters
+          </button>
         </div>
       </div>
     </div>
