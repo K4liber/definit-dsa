@@ -40,6 +40,31 @@ Start the app:
 
 Open the URL printed by Vite (typically `http://localhost:5173`).
 
+## Filter URL parameters
+
+The app uses React Router. All filtering options are reflected in the URL query
+string, so a specific filtered view can be shared as a link. Only values that
+differ from the defaults are included; an absent parameter means "use the
+default".
+
+| Parameter  | Meaning                                   | Values         | Default |
+| ---------- | ----------------------------------------- | -------------- | ------- |
+| `ref`      | Include references                        | `1`/`0`        | `0`     |
+| `groups`   | Selected group ids                        | comma-separated | default group |
+| `defs`     | Extra definition ids in the track         | comma-separated | (empty) |
+| `learned`  | Show learned definitions                  | `1`/`0`        | `1`     |
+| `ready`    | Show ready-to-learn definitions           | `1`/`0`        | `1`     |
+| `preready` | Show pre-ready definitions                | `1`/`0`        | `1`     |
+| `notready` | Show not-ready definitions                | `1`/`0`        | `0`     |
+
+Example: [https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fdirected_acyclic_graph&notready=1](https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fdirected_acyclic_graph&notready=1).
+
+On load, URL parameters take precedence over filters persisted in browser
+storage; the resolved view is then persisted, so it survives closing the
+browser. Every filter change updates the URL (without adding history entries).
+The "Reset filters" button restores the defaults, removes the query string and
+clears the stored filters.
+
 ## Build + preview
 
 - `npm run build`
