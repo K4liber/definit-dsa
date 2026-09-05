@@ -17,6 +17,10 @@ async function gotoApp(page: Page): Promise<void> {
 
 async function closeInfoModalIfVisible(page: Page): Promise<void> {
   const dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Info' }) });
+  // The modal opens after the app initializes (only when nothing is learned),
+  // which can happen slightly after the graph becomes visible — give it a
+  // moment to appear before deciding it will not show.
+  await dialog.waitFor({ state: 'visible', timeout: 2000 }).catch(() => undefined);
   if (await dialog.isVisible()) {
     await dialog.getByRole('button', { name: 'Close' }).click();
   }
@@ -97,4 +101,43 @@ test('marks a definition as learned and restores progress from localStorage', as
   await page.reload();
   await page.getByRole('button', { name: 'Progress', exact: true }).click();
   await expect(page.getByText(/^1 out of \d+$/)).toBeVisible();
+});
+
+test('shares a filtered view through URL params and survives a reload', async ({ page }) => {
+  await gotoApp(page);
+  await page.evaluate(() => localStorage.clear()); // initial clear
+  await closeInfoModalIfVisible(page);
+
+  // Change filters through the UI; the URL must follow.
+  await page.getByRole('button', { name: 'Filters' }).click();
+  await page.getByRole('checkbox', { name: 'Include references' }).check();
+  await page.getByRole('checkbox', { name: 'Show not-ready definitions' }).check();
+
+  await expect(page).toHaveURL(/ref=1/);
+  await expect(page).toHaveURL(/notready=1/);
+
+  // The filtered view survives a reload (persisted in browser storage).
+  await page.reload();
+  await closeInfoModalIfVisible(page);
+  await page.getByRole('button', { name: 'Filters' }).click();
+  await expect(page.getByRole('checkbox', { name: 'Include references' })).toBeChecked();
+  await expect(page.getByRole('checkbox', { name: 'Show not-ready definitions' })).toBeChecked();
+
+  // A shared link with only URL params (fresh storage) applies the same view.
+  await page.evaluate(() => localStorage.clear());
+  await page.goto('/?notready=1');
+  // Wait for the app to load before the info modal can appear, then close it.
+  await expect(page.getByRole('img', { name: 'Definitions graph' })).toBeVisible();
+  await closeInfoModalIfVisible(page);
+  await page.getByRole('button', { name: 'Filters' }).click();
+  await expect(page.getByRole('checkbox', { name: 'Show not-ready definitions' })).toBeChecked();
+  await expect(page.getByRole('checkbox', { name: 'Include references' })).not.toBeChecked();
+
+  // "Reset filters" restores defaults, cleans the URL and clears storage.
+  await page.getByRole('button', { name: 'Reset filters' }).click();
+  await expect(page).toHaveURL(/\/definit-dsa\/?(\?[^#]*)?$/); // no filter params
+  await expect(page.getByRole('checkbox', { name: 'Show not-ready definitions' })).not.toBeChecked();
+  await expect(
+    page.evaluate(() => localStorage.getItem('definit-db.ui.filters')),
+  ).resolves.toBeNull();
 });

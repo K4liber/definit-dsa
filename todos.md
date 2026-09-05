@@ -10,11 +10,18 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 ## IN PROGRESS
 
-## TODO
-
 ### 9. [FEATURE, depends on: 13] Introduce React Router
 
-Apply filtering based on URL parameters and query strings. If no parameter is provided, use the default values. This will allow sharing links to specific filtered views. The filtering should be stored in the browser storage so that the user can return to the same filtered view after closing the browser. The "Reset filters" button should reset the filters to the default values, update the URL accordingly and clear the browser storage.
+Apply filtering based on URL parameters and query strings. If no parameter is provided, use the default values. This will allow sharing links to specific filtered views. The filtering should be stored in the browser storage so that the user can return to the same filtered view after closing the browser. The "Reset filters" button should reset the filters to the default values, update the URL accordingly and clear the browser storage. Every time the user changes the filters, the URL should be updated accordingly. All the filtering options should be reflected in the URL parameters and query strings.
+
+- [x] Introduce React Router (`BrowserRouter` in `main.tsx`, query string only, so it works on GitHub Pages without a `404.html` fallback).
+- [x] Encode all filter options as query params, omitting values equal to the defaults (`ref`, `groups`, `defs`, `learned`, `ready`, `preready`, `notready` in `visualization/src/lib/urlParams.ts`).
+- [x] Apply filters from the URL on load; URL params take precedence over stored filters.
+- [x] Persist the active filters to browser storage on every change (and on load), so the view survives closing the browser.
+- [x] Update the URL (via `replace`, no history entries) on every filter change.
+- [x] "Reset filters" restores defaults, clears the query string and clears the stored filters.
+
+## TODO
 
 ### 15. [FEATURE] Update "Progress" tab
 
