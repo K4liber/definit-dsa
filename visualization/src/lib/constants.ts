@@ -12,7 +12,9 @@ export const COLOR_READY = '#fbbf24';
 export const COLOR_LEARNED = '#22c55e';
 
 export const INFO_TEXT =
-  'Welcome to the "Data Structures and Algorithms" course!\n\n' +
-  'This is a great starting point if you are preparing for coding interviews. The tool helps you learn or review key definitions related to data structures and algorithms.\n\n' +
-  'More than 300 terms from mathematics and computer science are organized topologically to create a smooth and logical learning experience.\n\n' +
+  'Welcome to DefinIT learning platform!\n\n' +
+  'The platform helps you to learn or review key definitions related to computer science and mathematics. ' +
+  'Definitions are organized topologically to create a smooth and logical learning experience.\n\n' +
+  'For now, we share with you a single course "Data Structures and Algorithms". ' +
+  'This is a great starting point if you are preparing for coding interviews. \n\n' +
   'Give it a try, take it easy, and have fun! Feedback is always appreciated. Feel free to contact me at janbielecki94@gmail.com.';
