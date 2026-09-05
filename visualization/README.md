@@ -57,7 +57,7 @@ default".
 | `preready` | Show pre-ready definitions                | `1`/`0`        | `1`     |
 | `notready` | Show not-ready definitions                | `1`/`0`        | `0`     |
 
-Example: `?ref=1&notready=1&defs=mathematics/fibonacci`.
+Example: [https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fdirected_acyclic_graph&notready=1](https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fdirected_acyclic_graph&notready=1).
 
 On load, URL parameters take precedence over filters persisted in browser
 storage; the resolved view is then persisted, so it survives closing the
