@@ -52,8 +52,8 @@ test('persists bottom panel collapse state across reloads', async ({ page }) => 
   await expect(page.locator('.bottomPanel[aria-label="Bottom panel"]')).toBeVisible();
 });
 
-test('filters the graph to the selected definition prerequisites from search', async ({ page }) => {
-  const selectedId = 'mathematics/fibonacci';
+test('adds a definition to the track and expands it with its references', async ({ page }) => {
+  const selectedId = 'mathematics/fibonacci'; // references: sequence, ...
   const expectedNodeCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
 
   await gotoApp(page);
@@ -61,14 +61,17 @@ test('filters the graph to the selected definition prerequisites from search', a
   await closeInfoModalIfVisible(page);
 
   await page.getByRole('button', { name: 'Filters' }).click();
-  await page.getByLabel('Show not-ready nodes').check();
+  await page.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }).uncheck();
+  // pull in the referenced (more basic) definitions the user should learn first
+  await page.getByRole('checkbox', { name: 'Include references' }).check();
+  // with nothing learned, the track is mostly not-ready, which is hidden by default
+  await page.getByRole('checkbox', { name: 'Show not-ready definitions' }).check();
 
   const searchInput = page.getByLabel('Search definition');
   await searchInput.fill('fibonacci');
   await expect(page.getByRole('listbox', { name: 'Definition matches' })).toBeVisible();
   await page.getByText(selectedId, { exact: true }).click();
 
-  await expect(page.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeVisible();
   await expect
     .poll(async () => page.evaluate(() => document.querySelectorAll('g.node').length))
     .toBe(expectedNodeCount);

@@ -1,7 +1,13 @@
 import type { BottomTab, Raw, DefGraph, DefNode } from '../types';
+import type { TrackFilters, VisualizationFilters } from '../lib/filters';
 import DefinitionTab from './DefinitionTab';
 import FiltersTab from './FiltersTab';
 import ProgressTab from './ProgressTab';
+
+/** Visible nodes sorted by definition level (low-level first), then id. */
+function sortVisibleNodes(nodes: DefNode[]): DefNode[] {
+  return [...nodes].sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.id.localeCompare(b.id));
+}
 
 type Props = {
   expanded: boolean;
@@ -15,25 +21,16 @@ type Props = {
   // Filters tab
   raw: Raw | null;
   rendered: DefGraph | null;
-  includedIds: Set<string> | null;
-  onSelectLeaf: (id: string) => void;
-  onSetIncluded: (id: string, include: boolean) => void;
-  onSetIncludedMany: (ids: string[], include: boolean) => void;
+  trackGraph: DefGraph | null;
+  trackFilters: TrackFilters;
+  visualizationFilters: VisualizationFilters;
+  onSetTrackFilters: (track: TrackFilters) => void;
+  onSetVisualizationFilters: (visualization: VisualizationFilters) => void;
+  onResetFilters: () => void;
   searchQuery: string;
-  searchSelectedId: string | null;
-  searchMatches: Array<{ id: string; title: string }>;
+  searchMatches: DefNode[];
   onSearchChange: (q: string) => void;
-  onSelectMatch: (id: string | null) => void;
-  includeDescendants: boolean;
-  onSetIncludeDescendants: (v: boolean) => void;
-  showNotReady: boolean;
-  showPreReady: boolean;
-  showReady: boolean;
-  showLearned: boolean;
-  onSetShowNotReady: (v: boolean) => void;
-  onSetShowPreReady: (v: boolean) => void;
-  onSetShowReady: (v: boolean) => void;
-  onSetShowLearned: (v: boolean) => void;
+  onSelectDefinition: (id: string) => void;
 };
 
 const BottomPanel: React.FC<Props> = ({
@@ -46,25 +43,16 @@ const BottomPanel: React.FC<Props> = ({
   onDepClick,
   raw,
   rendered,
-  includedIds,
-  onSelectLeaf,
-  onSetIncluded,
-  onSetIncludedMany,
+  trackGraph,
+  trackFilters,
+  visualizationFilters,
+  onSetTrackFilters,
+  onSetVisualizationFilters,
+  onResetFilters,
   searchQuery,
-  searchSelectedId,
   searchMatches,
   onSearchChange,
-  onSelectMatch,
-  includeDescendants,
-  onSetIncludeDescendants,
-  showNotReady,
-  showPreReady,
-  showReady,
-  showLearned,
-  onSetShowNotReady,
-  onSetShowPreReady,
-  onSetShowReady,
-  onSetShowLearned,
+  onSelectDefinition,
 }) => {
   return (
     <div
@@ -92,34 +80,23 @@ const BottomPanel: React.FC<Props> = ({
           {activeTab === 'filters' && raw && rendered ? (
             <FiltersTab
               raw={raw}
-              renderedForTree={rendered}
-              learned={learned}
-              includedIds={includedIds}
-              onSelectLeaf={onSelectLeaf}
-              onSetIncluded={onSetIncluded}
-              onSetIncludedMany={onSetIncludedMany}
+              trackFilters={trackFilters}
+              onSetTrackFilters={onSetTrackFilters}
+              visualizationFilters={visualizationFilters}
+              onSetVisualizationFilters={onSetVisualizationFilters}
+              visibleNodes={sortVisibleNodes(rendered?.nodes ?? [])}
+              onResetFilters={onResetFilters}
               searchQuery={searchQuery}
-              searchSelectedId={searchSelectedId}
               matches={searchMatches}
               onSearchChange={onSearchChange}
-              onSelectMatch={onSelectMatch}
-              includeDescendants={includeDescendants}
-              onSetIncludeDescendants={onSetIncludeDescendants}
-              showNotReady={showNotReady}
-              showPreReady={showPreReady}
-              showReady={showReady}
-              showLearned={showLearned}
-              onSetShowNotReady={onSetShowNotReady}
-              onSetShowPreReady={onSetShowPreReady}
-              onSetShowReady={onSetShowReady}
-              onSetShowLearned={onSetShowLearned}
+              onSelectDefinition={onSelectDefinition}
             />
           ) : null}
         </div>
 
         <div className={`tabPage ${activeTab === 'progress' ? 'active' : ''}`} role="tabpanel">
           {activeTab === 'progress' && raw && rendered ? (
-            <ProgressTab rendered={rendered} learned={learned} />
+            <ProgressTab trackGraph={trackGraph ?? rendered} learned={learned} />
           ) : null}
         </div>
       </div>

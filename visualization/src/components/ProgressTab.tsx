@@ -2,12 +2,13 @@ import type { DefGraph } from '../types';
 import { computeStats } from '../lib/graph';
 
 type Props = {
-  rendered: DefGraph;
+  /** Track graph (before visualization filters) — stats reflect the whole track. */
+  trackGraph: DefGraph;
   learned: Set<string>;
 };
 
-const ProgressTab: React.FC<Props> = ({ rendered, learned }) => {
-  const stats = computeStats(rendered, learned);
+const ProgressTab: React.FC<Props> = ({ trackGraph, learned }) => {
+  const stats = computeStats(trackGraph, learned);
 
   return (
     <div className="panelSection">

@@ -38,20 +38,6 @@ const App = () => {
     [state.selectLeaf],
   );
 
-  const handleDefinitionSelect = useCallback(
-    (id: string) => {
-      state.selectLeaf(id);
-      state.setActiveTab('definition');
-      if (state.panelCollapsed) {
-        state.setPanelCollapsed(false);
-      }
-      requestAnimationFrame(() => {
-        graphRef.current?.focusRingOfNode(id);
-      });
-    },
-    [state.selectLeaf, state.setActiveTab, state.panelCollapsed, state.setPanelCollapsed],
-  );
-
   const handleFocus = useCallback(() => {
     state.focusMode();
 
@@ -170,28 +156,16 @@ const App = () => {
             onDepClick={handleDepClick}
             raw={state.raw}
             rendered={state.rendered}
-            includedIds={state.includedIds}
-            onSelectLeaf={handleDefinitionSelect}
-            onSetIncluded={state.setIncluded}
-            onSetIncludedMany={state.setIncludedMany}
+            trackGraph={state.trackGraph}
+            trackFilters={state.filters.track}
+            visualizationFilters={state.filters.visualization}
+            onSetTrackFilters={state.setTrackFilters}
+            onSetVisualizationFilters={state.setVisualizationFilters}
+            onResetFilters={state.resetFilters}
             searchQuery={state.searchQuery}
-            searchSelectedId={state.searchSelectedId}
             searchMatches={state.searchMatches}
             onSearchChange={state.setSearchQuery}
-            onSelectMatch={(id) => {
-              state.setSearchSelectedId(id);
-              if (id) state.selectLeaf(id);
-            }}
-            includeDescendants={state.includeDescendants}
-            onSetIncludeDescendants={state.setIncludeDescendants}
-            showNotReady={state.showNotReady}
-            showPreReady={state.showPreReady}
-            showReady={state.showReady}
-            showLearned={state.showLearned}
-            onSetShowNotReady={state.setShowNotReady}
-            onSetShowPreReady={state.setShowPreReady}
-            onSetShowReady={state.setShowReady}
-            onSetShowLearned={state.setShowLearned}
+            onSelectDefinition={handleNodeClick}
           />
         </div>
 

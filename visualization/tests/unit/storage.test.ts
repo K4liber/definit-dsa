@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  clearIncludedFromStorage,
+  clearFiltersFromStorage,
   clearLearnedFromStorage,
-  loadIncludedFromStorage,
+  loadFiltersFromStorage,
   loadLearnedFromStorage,
   loadOpenFields,
   loadPanelCollapsed,
-  saveIncludedToStorage,
+  saveFiltersToStorage,
   saveLearnedToStorage,
   saveOpenFields,
   savePanelCollapsed,
@@ -15,8 +15,12 @@ import {
 import {
   OPEN_FIELDS_KEY,
   LEARNED_STORAGE_KEY,
-  VISIBILITY_STORAGE_KEY,
+  FILTERS_STORAGE_KEY,
 } from '../../src/lib/constants';
+import { DEFAULT_FILTERS, cloneFilters } from '../../src/lib/filters';
+
+const KNOWN_GROUPS = new Set(['data_structures_and_algorithms', 'extra_group']);
+const KNOWN_NODES = new Set(['mathematics/fibonacci', 'computer_science/array']);
 
 describe('storage helpers', () => {
   it('round-trips learned ids through localStorage', () => {
@@ -34,16 +38,47 @@ describe('storage helpers', () => {
     expect(Array.from(loadLearnedFromStorage())).toEqual([]);
   });
 
-  it('round-trips included ids and treats malformed payloads as null', () => {
-    saveIncludedToStorage(new Set(['x', 'y']));
-    expect(Array.from(loadIncludedFromStorage() ?? []).sort()).toEqual(['x', 'y']);
+  it('round-trips filters and sanitizes unknown ids from malformed payloads', () => {
+    const filters = cloneFilters(DEFAULT_FILTERS);
+    filters.track.groupIds = ['data_structures_and_algorithms'];
+    filters.track.definitionIds = ['mathematics/fibonacci'];
+    filters.visualization.showNotReady = true;
 
-    localStorage.setItem(VISIBILITY_STORAGE_KEY, '"nope"');
-    expect(loadIncludedFromStorage()).toBeNull();
+    saveFiltersToStorage(filters);
+    expect(loadFiltersFromStorage(KNOWN_GROUPS, KNOWN_NODES)).toEqual(filters);
 
-    saveIncludedToStorage(new Set(['x', 'y']));
-    clearIncludedFromStorage();
-    expect(loadIncludedFromStorage()).toBeNull();
+    // Unknown group/definition ids are dropped, unknown flags ignored.
+    localStorage.setItem(
+      FILTERS_STORAGE_KEY,
+      JSON.stringify({
+        track: {
+          includeReferences: 'nope',
+          groupIds: ['extra_group', 'ghost_group'],
+          definitionIds: ['computer_science/array', 'ghost/id'],
+        },
+        visualization: { showLearned: false, somethingElse: 1 },
+      }),
+    );
+
+    expect(loadFiltersFromStorage(KNOWN_GROUPS, KNOWN_NODES)).toEqual({
+      track: {
+        includeReferences: false,
+        groupIds: ['extra_group'],
+        definitionIds: ['computer_science/array'],
+      },
+      visualization: {
+        showLearned: false,
+        showReady: true,
+        showPreReady: true,
+        showNotReady: false,
+      },
+    });
+
+    localStorage.setItem(FILTERS_STORAGE_KEY, '"nope"');
+    expect(loadFiltersFromStorage(KNOWN_GROUPS, KNOWN_NODES)).toEqual(DEFAULT_FILTERS);
+
+    clearFiltersFromStorage();
+    expect(loadFiltersFromStorage(KNOWN_GROUPS, KNOWN_NODES)).toEqual(DEFAULT_FILTERS);
   });
 
   it('persists panel collapsed state as a boolean flag', () => {

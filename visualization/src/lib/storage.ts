@@ -1,9 +1,15 @@
 import {
   LEARNED_STORAGE_KEY,
-  VISIBILITY_STORAGE_KEY,
+  FILTERS_STORAGE_KEY,
   PANEL_COLLAPSED_KEY,
   OPEN_FIELDS_KEY,
 } from './constants';
+import {
+  DEFAULT_FILTERS,
+  cloneFilters,
+  sanitizePersistedFilters,
+  type PersistedFilters,
+} from './filters';
 
 export function loadLearnedFromStorage(): Set<string> {
   try {
@@ -33,29 +39,30 @@ export function clearLearnedFromStorage(): void {
   }
 }
 
-export function loadIncludedFromStorage(): Set<string> | null {
+export function loadFiltersFromStorage(
+  knownGroupIds: Set<string>,
+  knownNodeIds: Set<string>,
+): PersistedFilters {
   try {
-    const raw = localStorage.getItem(VISIBILITY_STORAGE_KEY);
-    if (!raw) return null;
-    const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) return null;
-    return new Set<string>(arr.filter((x) => typeof x === 'string'));
+    const raw = localStorage.getItem(FILTERS_STORAGE_KEY);
+    if (!raw) return cloneFilters(DEFAULT_FILTERS);
+    return sanitizePersistedFilters(JSON.parse(raw), knownGroupIds, knownNodeIds);
   } catch {
-    return null;
+    return cloneFilters(DEFAULT_FILTERS);
   }
 }
 
-export function saveIncludedToStorage(set: Set<string>): void {
+export function saveFiltersToStorage(filters: PersistedFilters): void {
   try {
-    localStorage.setItem(VISIBILITY_STORAGE_KEY, JSON.stringify(Array.from(set)));
+    localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(filters));
   } catch {
     // ignore
   }
 }
 
-export function clearIncludedFromStorage(): void {
+export function clearFiltersFromStorage(): void {
   try {
-    localStorage.removeItem(VISIBILITY_STORAGE_KEY);
+    localStorage.removeItem(FILTERS_STORAGE_KEY);
   } catch {
     // ignore
   }

@@ -6,10 +6,14 @@ import {
   buildFieldGroups,
   buildRaw,
   computeStats,
+  computeTrackSet,
   computeVisibleSet,
   effectiveState,
+  isDefaultTrackFilters,
+  nodeMatchesQuery,
   normalizeId,
   prerequisiteClosure,
+  referencesClosure,
   renderMdToHtml,
   renderGraph,
   selectNextReady,
@@ -54,6 +58,13 @@ function makeGraph(): DefGraph {
       { source: 'math/target', target: 'math/mid' },
       { source: 'cs/compound', target: 'math/root_a' },
       { source: 'cs/compound', target: 'math/root_b' },
+    ],
+    groups: [
+      {
+        id: 'group_math',
+        name: 'Mathematics',
+        definitions: ['math/root_a', 'math/root_b', 'math/mid', 'math/target'],
+      },
     ],
   };
 }
@@ -161,6 +172,108 @@ describe('graph helpers', () => {
       'math/root_a',
       'math/target',
     ]);
+  });
+
+  it('computes the references closure (all definitions the seeds reference)', () => {
+    const raw = buildRaw(makeGraph());
+
+    expect(Array.from(referencesClosure(raw, ['math/root_a'])).sort()).toEqual(['math/root_a']);
+    expect(Array.from(referencesClosure(raw, ['math/target'])).sort()).toEqual([
+      'math/mid',
+      'math/root_a',
+      'math/target',
+    ]);
+  });
+
+  it('computes the track set from groups, extra definitions and references', () => {
+    const raw = buildRaw(makeGraph());
+
+    // Group only, no references: exactly the group members.
+    expect(
+      Array.from(
+        computeTrackSet(raw, {
+          includeReferences: false,
+          groupIds: ['group_math'],
+          definitionIds: [],
+        }),
+      ).sort(),
+    ).toEqual(['math/mid', 'math/root_a', 'math/root_b', 'math/target']);
+
+    // Extra definition pulls in that node itself, no more.
+    expect(
+      Array.from(
+        computeTrackSet(raw, {
+          includeReferences: false,
+          groupIds: [],
+          definitionIds: ['cs/compound'],
+        }),
+      ).sort(),
+    ).toEqual(['cs/compound']);
+
+    // With references: everything the seed references is included —
+    // the basic definitions to learn first.
+    expect(
+      Array.from(
+        computeTrackSet(raw, {
+          includeReferences: true,
+          groupIds: [],
+          definitionIds: ['cs/compound'],
+        }),
+      ).sort(),
+    ).toEqual(['cs/compound', 'math/root_a', 'math/root_b']);
+
+    // math/target references math/mid which references math/root_a: the whole chain.
+    expect(
+      Array.from(
+        computeTrackSet(raw, {
+          includeReferences: true,
+          groupIds: [],
+          definitionIds: ['math/target'],
+        }),
+      ).sort(),
+    ).toEqual(['math/mid', 'math/root_a', 'math/target']);
+
+    // Unknown group and definition ids are ignored.
+    expect(
+      Array.from(
+        computeTrackSet(raw, {
+          includeReferences: false,
+          groupIds: ['ghost'],
+          definitionIds: ['ghost/id'],
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it('detects default track filters', () => {
+    const defaults = { includeReferences: true, groupIds: ['group_math'], definitionIds: [] };
+
+    expect(isDefaultTrackFilters(defaults, defaults)).toBe(true);
+    expect(
+      isDefaultTrackFilters({ ...defaults, includeReferences: false }, defaults),
+    ).toBe(false);
+    expect(isDefaultTrackFilters({ ...defaults, definitionIds: ['cs/compound'] }, defaults)).toBe(
+      false,
+    );
+    // Order-insensitive comparison of the id lists.
+    expect(isDefaultTrackFilters({ ...defaults, groupIds: ['group_math'] }, defaults)).toBe(true);
+  });
+
+  it('matches search queries against id, title and aliases', () => {
+    const node = {
+      id: 'cs/depth_first_search',
+      title: 'depth_first_search',
+      aliases: ['DFS', 'depth first search'],
+      deps: [],
+      content: '',
+    };
+
+    expect(nodeMatchesQuery(node, 'depth')).toBe(true);
+    expect(nodeMatchesQuery(node, 'cs/depth')).toBe(true);
+    expect(nodeMatchesQuery(node, 'dfs')).toBe(true);
+    expect(nodeMatchesQuery(node, 'depth first')).toBe(true);
+    expect(nodeMatchesQuery(node, 'breadth')).toBe(false);
+    expect(nodeMatchesQuery(node, '')).toBe(false);
   });
 
   it('selects the next ready definition using rendered levels and stable ordering', () => {

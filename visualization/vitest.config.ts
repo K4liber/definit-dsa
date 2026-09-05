@@ -11,5 +11,6 @@ export default defineConfig({
     globals: true,
     clearMocks: true,
     testTimeout: 10000,
+    exclude: ['**/node_modules/**', '**/dist/**', 'tests/e2e/**'],
   },
 });

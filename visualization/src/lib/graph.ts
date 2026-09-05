@@ -505,9 +505,31 @@ export function renderMdToHtml(
 /*  Search filtering helpers                                           */
 /* ------------------------------------------------------------------ */;
 
-function walkGraph(raw: Raw, startId: string): Set<string> {
+/** Case/diacritics-insensitive search key for a definition's title and aliases. */
+function normalizedSearchKeys(n: DefNode): string[] {
+  const keys = [normalizeId(n.title ?? ''), normalizeId(n.id)];
+  for (const alias of n.aliases ?? []) {
+    const k = normalizeId(alias);
+    if (k && !keys.includes(k)) keys.push(k);
+  }
+  return keys.filter(Boolean);
+}
+
+export function nodeMatchesQuery(n: DefNode, query: string): boolean {
+  const q = normalizeId(query);
+  if (!q) return false;
+  return normalizedSearchKeys(n).some((key) => key.includes(q));
+}
+
+/** "title (alias1, alias2)" for search result rows, or just the title. */
+export function nodeSearchLabel(n: DefNode): string {
+  if (n.aliases?.length) return `${n.title} (${n.aliases.join(', ')})`;
+  return n.title;
+}
+
+function walkGraph(raw: Raw, startIds: Iterable<string>): Set<string> {
   const out = new Set<string>();
-  const stack: string[] = [startId];
+  const stack: string[] = [];
 
   // Build adjacency
   const nextById = new Map<string, string[]>();
@@ -516,6 +538,8 @@ function walkGraph(raw: Raw, startId: string): Set<string> {
   for (const n of raw.def.nodes) {
     nextById.set(n.id, (n.deps ?? []).filter((d) => raw.byId.has(d)));
   }
+
+  for (const id of startIds) stack.push(id);
 
   while (stack.length) {
     const id = stack.pop()!;
@@ -528,9 +552,75 @@ function walkGraph(raw: Raw, startId: string): Set<string> {
   return out;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Track filtering                                                    */
+/* ------------------------------------------------------------------ */
+
 /** All prerequisites needed before `id` can be learned (including `id` itself). */
 export function prerequisiteClosure(raw: Raw, id: string): Set<string> {
-  return walkGraph(raw, id);
+  return walkGraph(raw, [id]);
+}
+
+/**
+ * All definitions referenced (transitively) by any id in `startIds`,
+ * including the starting ids themselves. These are the lower-level,
+ * more basic definitions that should be learned first.
+ */
+export function referencesClosure(raw: Raw, startIds: Iterable<string>): Set<string> {
+  return walkGraph(raw, startIds);
+}
+
+export type TrackFilters = {
+  /** Include all definitions referenced by the selected ones. */
+  includeReferences: boolean;
+  /** Ids of groups whose definitions form the track. */
+  groupIds: string[];
+  /** Extra individual definition ids added to the track. */
+  definitionIds: string[];
+};
+
+/**
+ * Compute the set of definition ids that belong to the current learning track:
+ * the union of the selected groups' definitions plus the explicitly selected
+ * definitions, optionally expanded with everything they (transitively)
+ * reference — the basic definitions one should learn first. Definitions
+ * outside the track are NOT pulled in; `renderGraph` recomputes levels so
+ * such gaps do not break the layout.
+ */
+export function computeTrackSet(raw: Raw, filters: TrackFilters): Set<string> {
+  const selected = new Set<string>();
+
+  const groupsById = new Map((raw.def.groups ?? []).map((g) => [g.id, g] as const));
+  for (const groupId of filters.groupIds) {
+    const group = groupsById.get(groupId);
+    if (!group) continue;
+    for (const id of group.definitions) selected.add(id);
+  }
+
+  for (const id of filters.definitionIds) {
+    if (raw.byId.has(id)) selected.add(id);
+  }
+
+  if (!filters.includeReferences || selected.size === 0) return selected;
+
+  return referencesClosure(raw, selected);
+}
+
+/** True when `filters` equals the given default track filters. */
+export function isDefaultTrackFilters(filters: TrackFilters, defaults: TrackFilters): boolean {
+  return (
+    filters.includeReferences === defaults.includeReferences &&
+    setEquals(filters.groupIds, defaults.groupIds) &&
+    setEquals(filters.definitionIds, defaults.definitionIds)
+  );
+}
+
+function setEquals(a: Iterable<string>, b: Iterable<string>): boolean {
+  const sa = a instanceof Set ? (a as Set<string>) : new Set(a);
+  const sb = b instanceof Set ? (b as Set<string>) : new Set(b);
+  if (sa.size !== sb.size) return false;
+  for (const x of sa) if (!sb.has(x)) return false;
+  return true;
 }
 
 /** Intersection helper that handles nulls. */
