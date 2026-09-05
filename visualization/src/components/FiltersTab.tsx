@@ -205,7 +205,7 @@ const FiltersTab: React.FC<Props> = ({
           <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Visualization</h4>
 
           <p className="filterNote">
-            These checkboxes only reduce the number of nodes shown on the graph, so you can
+            These checkboxes only reduce the number of definitions shown on the visualization, so you can
             focus on the most relevant definitions at the moment. They do not affect your
             progress statistics or the learning track.
           </p>
