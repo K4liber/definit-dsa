@@ -8,12 +8,12 @@ import {
   computeStats,
   computeTrackSet,
   computeVisibleSet,
-  dependentsClosure,
   effectiveState,
   isDefaultTrackFilters,
   nodeMatchesQuery,
   normalizeId,
   prerequisiteClosure,
+  referencesClosure,
   renderMdToHtml,
   renderGraph,
   selectNextReady,
@@ -174,25 +174,25 @@ describe('graph helpers', () => {
     ]);
   });
 
-  it('computes the dependents closure (all definitions depending on the seeds)', () => {
+  it('computes the references closure (all definitions the seeds reference)', () => {
     const raw = buildRaw(makeGraph());
 
-    expect(Array.from(dependentsClosure(raw, ['math/root_a'])).sort()).toEqual([
-      'cs/compound',
+    expect(Array.from(referencesClosure(raw, ['math/root_a'])).sort()).toEqual(['math/root_a']);
+    expect(Array.from(referencesClosure(raw, ['math/target'])).sort()).toEqual([
       'math/mid',
       'math/root_a',
       'math/target',
     ]);
   });
 
-  it('computes the track set from groups, extra definitions and descendants', () => {
+  it('computes the track set from groups, extra definitions and references', () => {
     const raw = buildRaw(makeGraph());
 
-    // Group only, no descendants: exactly the group members.
+    // Group only, no references: exactly the group members.
     expect(
       Array.from(
         computeTrackSet(raw, {
-          includeDescendants: false,
+          includeReferences: false,
           groupIds: ['group_math'],
           definitionIds: [],
         }),
@@ -203,42 +203,41 @@ describe('graph helpers', () => {
     expect(
       Array.from(
         computeTrackSet(raw, {
-          includeDescendants: false,
+          includeReferences: false,
           groupIds: [],
           definitionIds: ['cs/compound'],
         }),
       ).sort(),
     ).toEqual(['cs/compound']);
 
-    // With descendants: everything depending on the seed is included.
-    // Prerequisites outside the track stay out (math/root_a, math/root_b);
-    // renderGraph recomputes levels so the gap does not break the layout.
+    // With references: everything the seed references is included —
+    // the basic definitions to learn first.
     expect(
       Array.from(
         computeTrackSet(raw, {
-          includeDescendants: true,
+          includeReferences: true,
           groupIds: [],
           definitionIds: ['cs/compound'],
         }),
       ).sort(),
-    ).toEqual(['cs/compound']);
+    ).toEqual(['cs/compound', 'math/root_a', 'math/root_b']);
 
-    // math/mid depends on math/root_a; seeding root_a pulls the whole subtree.
+    // math/target references math/mid which references math/root_a: the whole chain.
     expect(
       Array.from(
         computeTrackSet(raw, {
-          includeDescendants: true,
+          includeReferences: true,
           groupIds: [],
-          definitionIds: ['math/root_a'],
+          definitionIds: ['math/target'],
         }),
       ).sort(),
-    ).toEqual(['cs/compound', 'math/mid', 'math/root_a', 'math/target']);
+    ).toEqual(['math/mid', 'math/root_a', 'math/target']);
 
     // Unknown group and definition ids are ignored.
     expect(
       Array.from(
         computeTrackSet(raw, {
-          includeDescendants: false,
+          includeReferences: false,
           groupIds: ['ghost'],
           definitionIds: ['ghost/id'],
         }),
@@ -247,11 +246,11 @@ describe('graph helpers', () => {
   });
 
   it('detects default track filters', () => {
-    const defaults = { includeDescendants: true, groupIds: ['group_math'], definitionIds: [] };
+    const defaults = { includeReferences: true, groupIds: ['group_math'], definitionIds: [] };
 
     expect(isDefaultTrackFilters(defaults, defaults)).toBe(true);
     expect(
-      isDefaultTrackFilters({ ...defaults, includeDescendants: false }, defaults),
+      isDefaultTrackFilters({ ...defaults, includeReferences: false }, defaults),
     ).toBe(false);
     expect(isDefaultTrackFilters({ ...defaults, definitionIds: ['cs/compound'] }, defaults)).toBe(
       false,

@@ -20,7 +20,7 @@ export type PersistedFilters = {
 export const DEFAULT_GROUP_ID = 'data_structures_and_algorithms';
 
 export const DEFAULT_TRACK_FILTERS: TrackFilters = {
-    includeDescendants: true,
+    includeReferences: false,
     groupIds: [DEFAULT_GROUP_ID],
     definitionIds: [],
 };
@@ -40,7 +40,7 @@ export const DEFAULT_FILTERS: PersistedFilters = {
 export function cloneFilters(f: PersistedFilters): PersistedFilters {
     return {
         track: {
-            includeDescendants: f.track.includeDescendants,
+            includeReferences: f.track.includeReferences,
             groupIds: [...f.track.groupIds],
             definitionIds: [...f.track.definitionIds],
         },
@@ -50,7 +50,7 @@ export function cloneFilters(f: PersistedFilters): PersistedFilters {
 
 export function trackEquals(a: TrackFilters, b: TrackFilters): boolean {
     return (
-        a.includeDescendants === b.includeDescendants &&
+        a.includeReferences === b.includeReferences &&
         a.groupIds.length === b.groupIds.length &&
         a.definitionIds.length === b.definitionIds.length &&
         a.groupIds.every((id) => b.groupIds.includes(id)) &&
@@ -74,15 +74,15 @@ export function sanitizePersistedFilters(
 
     const p = persisted as {
         track?: {
-            includeDescendants?: unknown;
+            includeReferences?: unknown;
             groupIds?: unknown;
             definitionIds?: unknown;
         };
         visualization?: Record<string, unknown>;
     };
 
-    if (typeof p.track?.includeDescendants === 'boolean') {
-        out.track.includeDescendants = p.track.includeDescendants;
+    if (typeof p.track?.includeReferences === 'boolean') {
+        out.track.includeReferences = p.track.includeReferences;
     }
 
     if (Array.isArray(p.track?.groupIds)) {

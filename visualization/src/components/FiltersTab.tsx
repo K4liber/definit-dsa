@@ -13,6 +13,9 @@ type Props = {
   visualizationFilters: VisualizationFilters;
   onSetVisualizationFilters: (visualization: VisualizationFilters) => void;
 
+  // Filtering results: nodes currently visible on the graph
+  visibleNodes: DefNode[];
+
   // Reset
   onResetFilters: () => void;
 
@@ -20,6 +23,9 @@ type Props = {
   searchQuery: string;
   matches: DefNode[];
   onSearchChange: (q: string) => void;
+
+  // Filtering results: select a visible definition (same as clicking its node)
+  onSelectDefinition: (id: string) => void;
 };
 
 const FiltersTab: React.FC<Props> = ({
@@ -28,10 +34,12 @@ const FiltersTab: React.FC<Props> = ({
   onSetTrackFilters,
   visualizationFilters,
   onSetVisualizationFilters,
+  visibleNodes,
   onResetFilters,
   searchQuery,
   matches,
   onSearchChange,
+  onSelectDefinition,
 }) => {
   // ── Groups ────────────────────────────────────────────────────────
   const groups = useMemo<DefGroup[]>(
@@ -82,7 +90,7 @@ const FiltersTab: React.FC<Props> = ({
     return () => document.removeEventListener('mousedown', onDocClick);
   }, [searchOpen]);
 
-  // Number of directly selected definitions (groups + explicit ids, no descendants).
+  // Number of directly selected definitions (groups + explicit ids, no references).
   const trackSize = useMemo(() => {
     const direct = new Set<string>();
     const groupsById = new Map(groups.map((g) => [g.id, g] as const));
@@ -107,13 +115,13 @@ const FiltersTab: React.FC<Props> = ({
           <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
             <input
               type="checkbox"
-              aria-label="Include descendants"
-              checked={trackFilters.includeDescendants}
+              aria-label="Include references"
+              checked={trackFilters.includeReferences}
               onChange={(e) =>
-                onSetTrackFilters({ ...trackFilters, includeDescendants: e.target.checked })
+                onSetTrackFilters({ ...trackFilters, includeReferences: e.target.checked })
               }
             />
-            Include descendants
+            Include references
           </label>
 
           <h5 style={{ margin: '8px 0 4px 0', fontSize: 11, color: '#a9b4c0' }}>Groups</h5>
@@ -196,6 +204,12 @@ const FiltersTab: React.FC<Props> = ({
         <section aria-label="Visualization filtering">
           <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>Visualization</h4>
 
+          <p className="filterNote">
+            These checkboxes only reduce the number of nodes shown on the graph, so you can
+            focus on the most relevant definitions at the moment. They do not affect your
+            progress statistics or the learning track.
+          </p>
+
           <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <input
               type="checkbox"
@@ -247,7 +261,35 @@ const FiltersTab: React.FC<Props> = ({
             Show not-ready definitions
           </label>
         </section>
+        {/* ── Filtering results ────────────────────────────────────── */}
+        <section aria-label="Filtering results">
+          <h4 style={{ margin: '0 0 6px 0', fontSize: 12, color: '#a9b4c0' }}>
+            Filtering results ({visibleNodes.length} definitions on the graph)
+          </h4>
 
+          {visibleNodes.length === 0 ? (
+            <p className="filterNote">No definitions match the current filters.</p>
+          ) : (
+            <ul className="filterResults" role="list">
+              {visibleNodes.map((n) => (
+                <li key={n.id}>
+                  <button
+                    type="button"
+                    className="filterResultItem"
+                    aria-label={`Select ${n.id} on the graph`}
+                    onClick={() => onSelectDefinition(n.id)}
+                  >
+                    <span className="filterResultLevel">L{n.level ?? 0}</span>
+                    <span className="searchItemText">
+                      <span className="searchItemId">{n.id}</span>
+                      <span className="searchItemTitle">{nodeSearchLabel(n)}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
         {/* ── Reset ────────────────────────────────────────────────── */}
         <div>
           <button type="button" className="btn" aria-label="Reset filters" onClick={onResetFilters}>

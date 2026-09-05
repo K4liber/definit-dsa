@@ -287,7 +287,7 @@ export function useAppState(): AppState & AppActions {
     return matches.slice(0, 80);
   }, [state.raw, state.searchQuery]);
 
-  // ── Track graph: groups + definitions (+ descendants) ────────────
+  // ── Track graph: groups + definitions (+ references) ────────────
   const trackGraph = useMemo<DefGraph | null>(() => {
     if (!state.raw) return null;
     const trackSet = computeTrackSet(state.raw, state.filters.track);

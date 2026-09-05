@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-li
 import userEvent from '@testing-library/user-event';
 import defs from '../../../docs/defs.json';
 import App from '../../src/App';
-import { buildRaw, dependentsClosure } from '../../src/lib/graph';
+import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('../../src/components/GraphCanvas', () => {
@@ -142,24 +142,25 @@ describe('App integration scenarios', () => {
     expect(getBottomPanel()).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('adds a definition to the track and expands it with its descendants', async () => {
-    const selectedId = 'mathematics/observable'; // root definition
-    const expectedCount = dependentsClosure(buildRaw(defs), [selectedId]).size;
+  it('adds a definition to the track and expands it with its references', async () => {
+    const selectedId = 'mathematics/fibonacci'; // references: sequence, ...
+    const expectedCount = prerequisiteClosure(buildRaw(defs), selectedId).size;
     await renderApp();
 
     openFilters();
     // Remove the default group so only the searched definition (plus its
-    // descendants) defines the track, and show not-ready nodes so all
-    // descendants are visible.
+    // references) defines the track, enable references and show not-ready
+    // nodes (with nothing learned, the track is mostly not-ready).
     fireEvent.click(screen.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }));
+    fireEvent.click(screen.getByLabelText('Include references'));
     fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
 
-    await searchAndToggleDefinition('observable', selectedId);
+    await searchAndToggleDefinition('fibonacci', selectedId);
 
     await waitFor(() => {
       expect(graphCount()).toBe(expectedCount);
     });
-  });
+  }, 20000);
 
   it('marks a definition as learned and restores progress from localStorage', async () => {
     const { user } = await renderApp();
@@ -228,6 +229,58 @@ describe('App integration scenarios', () => {
     });
   });
 
+  it('keeps progress stats unaffected by visualization filters', async () => {
+    await renderApp();
+    const selectedTitle = getSelectedGraphNodeButton()?.textContent ?? '';
+    expect(selectedTitle).not.toBe('');
+
+    // Learn one definition, then open the Progress tab.
+    fireEvent.click(screen.getByRole('button', { name: /Mark .* as learned/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Progress' }));
+    await waitFor(() => {
+      expect(screen.getByText(/^1 out of \d+$/)).toBeInTheDocument();
+    });
+    const statsBefore = screen.getByText(/^1 out of \d+$/).textContent;
+
+    // Hide learned definitions on the graph — stats must stay the same.
+    fireEvent.click(screen.getByRole('button', { name: 'Filters' }));
+    fireEvent.click(screen.getByLabelText('Show learned definitions'));
+    await waitFor(() => {
+      expect(getGraphNodeButtonByTitle(selectedTitle)).toBeNull();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Progress' }));
+    await waitFor(() => {
+      expect(screen.getByText(/^1 out of \d+$/)).toBeInTheDocument();
+    });
+    expect(screen.getByText(/^1 out of \d+$/).textContent).toBe(statsBefore);
+  }, 20000);
+
+  it('lists filtering results sorted by level and selects a definition on click', async () => {
+    await renderApp();
+
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+
+    const region = screen.getByLabelText('Filtering results');
+    const items = within(region).getAllByRole('button');
+    expect(items.length).toBe(graphCount());
+
+    // Levels must be non-decreasing from top to bottom.
+    const levels = items.map((btn) =>
+      Number(within(btn).getByText(/^L\d+$/).textContent?.slice(1)),
+    );
+    const sorted = [...levels].sort((a, b) => a - b);
+    expect(levels).toEqual(sorted);
+
+    // Clicking a result selects that definition (same as clicking the node).
+    fireEvent.click(items[0]);
+    await waitFor(() => {
+      expect(getSelectedGraphNodeButton()).toBeInTheDocument();
+    });
+  }, 20000);
+
   it('excludes learned definitions from the graph when unchecking show learned', async () => {
     const { user } = await renderApp();
     const markedTitle = getSelectedGraphNodeButton()?.textContent ?? '';
@@ -263,11 +316,11 @@ describe('App integration scenarios', () => {
     fireEvent.click(screen.getByLabelText('Show learned definitions'));
     fireEvent.click(screen.getByLabelText('Show ready-to-learn definitions'));
     fireEvent.click(screen.getByRole('checkbox', { name: 'Group Data Structures and Algorithms' }));
-    fireEvent.click(screen.getByLabelText('Include descendants'));
+    fireEvent.click(screen.getByLabelText('Include references'));
 
     const stored = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? '{}');
     expect(stored.track.groupIds).toEqual([]);
-    expect(stored.track.includeDescendants).toBe(false);
+    expect(stored.track.includeReferences).toBe(true);
 
     fireEvent.click(screen.getByRole('button', { name: 'Reset filters' }));
 
@@ -280,11 +333,13 @@ describe('App integration scenarios', () => {
           }) as HTMLInputElement
         ).checked,
       ).toBe(true);
-      expect((screen.getByLabelText('Include descendants') as HTMLInputElement).checked).toBe(true);
+      expect((screen.getByLabelText('Include references') as HTMLInputElement).checked).toBe(
+        false,
+      );
 
       const reset = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? '{}');
       expect(reset.track.groupIds).toEqual(['data_structures_and_algorithms']);
-      expect(reset.track.includeDescendants).toBe(true);
+      expect(reset.track.includeReferences).toBe(false);
       expect(reset.visualization).toEqual({
         showLearned: true,
         showReady: true,

@@ -4,6 +4,11 @@ import DefinitionTab from './DefinitionTab';
 import FiltersTab from './FiltersTab';
 import ProgressTab from './ProgressTab';
 
+/** Visible nodes sorted by definition level (low-level first), then id. */
+function sortVisibleNodes(nodes: DefNode[]): DefNode[] {
+  return [...nodes].sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.id.localeCompare(b.id));
+}
+
 type Props = {
   expanded: boolean;
   activeTab: BottomTab;
@@ -16,6 +21,7 @@ type Props = {
   // Filters tab
   raw: Raw | null;
   rendered: DefGraph | null;
+  trackGraph: DefGraph | null;
   trackFilters: TrackFilters;
   visualizationFilters: VisualizationFilters;
   onSetTrackFilters: (track: TrackFilters) => void;
@@ -24,6 +30,7 @@ type Props = {
   searchQuery: string;
   searchMatches: DefNode[];
   onSearchChange: (q: string) => void;
+  onSelectDefinition: (id: string) => void;
 };
 
 const BottomPanel: React.FC<Props> = ({
@@ -36,6 +43,7 @@ const BottomPanel: React.FC<Props> = ({
   onDepClick,
   raw,
   rendered,
+  trackGraph,
   trackFilters,
   visualizationFilters,
   onSetTrackFilters,
@@ -44,6 +52,7 @@ const BottomPanel: React.FC<Props> = ({
   searchQuery,
   searchMatches,
   onSearchChange,
+  onSelectDefinition,
 }) => {
   return (
     <div
@@ -75,17 +84,19 @@ const BottomPanel: React.FC<Props> = ({
               onSetTrackFilters={onSetTrackFilters}
               visualizationFilters={visualizationFilters}
               onSetVisualizationFilters={onSetVisualizationFilters}
+              visibleNodes={sortVisibleNodes(rendered?.nodes ?? [])}
               onResetFilters={onResetFilters}
               searchQuery={searchQuery}
               matches={searchMatches}
               onSearchChange={onSearchChange}
+              onSelectDefinition={onSelectDefinition}
             />
           ) : null}
         </div>
 
         <div className={`tabPage ${activeTab === 'progress' ? 'active' : ''}`} role="tabpanel">
           {activeTab === 'progress' && raw && rendered ? (
-            <ProgressTab rendered={rendered} learned={learned} />
+            <ProgressTab trackGraph={trackGraph ?? rendered} learned={learned} />
           ) : null}
         </div>
       </div>

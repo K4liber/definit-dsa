@@ -50,7 +50,7 @@ We created two different types of filtering:
 - [x] Visualization filtering. This is going to filter the definitions that we want to visualize in the graph. It filters on top of the track filtering, so that we can visualize only a subset of the definitions that we want to learn in the current track.
 
 "Track" filtering has only 3 options:
-- [x] "Include descendants" (boolean, default: true)
+- [x] "Include references" (boolean, default: false) — include the definitions referenced by the track definitions (the more basic, low-level definitions to learn first), transitively
 - [x] "Groups" (list of groups, default: "Data Structures and Algorithms" group)
 - [x] "Definitions" (list of definitions, default: empty list)
 

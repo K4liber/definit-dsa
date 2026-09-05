@@ -156,6 +156,7 @@ const App = () => {
             onDepClick={handleDepClick}
             raw={state.raw}
             rendered={state.rendered}
+            trackGraph={state.trackGraph}
             trackFilters={state.filters.track}
             visualizationFilters={state.filters.visualization}
             onSetTrackFilters={state.setTrackFilters}
@@ -164,6 +165,7 @@ const App = () => {
             searchQuery={state.searchQuery}
             searchMatches={state.searchMatches}
             onSearchChange={state.setSearchQuery}
+            onSelectDefinition={handleNodeClick}
           />
         </div>
 

@@ -52,7 +52,7 @@ describe('storage helpers', () => {
       FILTERS_STORAGE_KEY,
       JSON.stringify({
         track: {
-          includeDescendants: 'nope',
+          includeReferences: 'nope',
           groupIds: ['extra_group', 'ghost_group'],
           definitionIds: ['computer_science/array', 'ghost/id'],
         },
@@ -62,7 +62,7 @@ describe('storage helpers', () => {
 
     expect(loadFiltersFromStorage(KNOWN_GROUPS, KNOWN_NODES)).toEqual({
       track: {
-        includeDescendants: true,
+        includeReferences: false,
         groupIds: ['extra_group'],
         definitionIds: ['computer_science/array'],
       },

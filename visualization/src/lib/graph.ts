@@ -527,9 +527,9 @@ export function nodeSearchLabel(n: DefNode): string {
   return n.title;
 }
 
-function walkGraph(raw: Raw, startId: string): Set<string> {
+function walkGraph(raw: Raw, startIds: Iterable<string>): Set<string> {
   const out = new Set<string>();
-  const stack: string[] = [startId];
+  const stack: string[] = [];
 
   // Build adjacency
   const nextById = new Map<string, string[]>();
@@ -538,6 +538,8 @@ function walkGraph(raw: Raw, startId: string): Set<string> {
   for (const n of raw.def.nodes) {
     nextById.set(n.id, (n.deps ?? []).filter((d) => raw.byId.has(d)));
   }
+
+  for (const id of startIds) stack.push(id);
 
   while (stack.length) {
     const id = stack.pop()!;
@@ -556,44 +558,21 @@ function walkGraph(raw: Raw, startId: string): Set<string> {
 
 /** All prerequisites needed before `id` can be learned (including `id` itself). */
 export function prerequisiteClosure(raw: Raw, id: string): Set<string> {
-  return walkGraph(raw, id);
+  return walkGraph(raw, [id]);
 }
 
 /**
- * All definitions that (transitively) depend on any id in `startIds`,
- * including the starting ids themselves.
+ * All definitions referenced (transitively) by any id in `startIds`,
+ * including the starting ids themselves. These are the lower-level,
+ * more basic definitions that should be learned first.
  */
-export function dependentsClosure(raw: Raw, startIds: Iterable<string>): Set<string> {
-  const out = new Set<string>();
-  const stack: string[] = [];
-
-  // Reverse adjacency: prerequisite -> definitions that depend on it.
-  const dependentsById = new Map<string, string[]>();
-  for (const n of raw.def.nodes) {
-    for (const depId of n.deps ?? []) {
-      if (!raw.byId.has(depId)) continue;
-      const arr = dependentsById.get(depId) ?? [];
-      arr.push(n.id);
-      dependentsById.set(depId, arr);
-    }
-  }
-
-  for (const id of startIds) stack.push(id);
-
-  while (stack.length) {
-    const id = stack.pop()!;
-    if (out.has(id)) continue;
-    if (!raw.byId.has(id)) continue;
-    out.add(id);
-    for (const nxt of dependentsById.get(id) ?? []) stack.push(nxt);
-  }
-
-  return out;
+export function referencesClosure(raw: Raw, startIds: Iterable<string>): Set<string> {
+  return walkGraph(raw, startIds);
 }
 
 export type TrackFilters = {
-  /** Include all definitions that depend on the selected ones. */
-  includeDescendants: boolean;
+  /** Include all definitions referenced by the selected ones. */
+  includeReferences: boolean;
   /** Ids of groups whose definitions form the track. */
   groupIds: string[];
   /** Extra individual definition ids added to the track. */
@@ -603,9 +582,10 @@ export type TrackFilters = {
 /**
  * Compute the set of definition ids that belong to the current learning track:
  * the union of the selected groups' definitions plus the explicitly selected
- * definitions, optionally expanded with all their (transitive) descendants.
- * Prerequisites that are outside the track are NOT included; `renderGraph`
- * recomputes levels so such gaps do not break the layout.
+ * definitions, optionally expanded with everything they (transitively)
+ * reference — the basic definitions one should learn first. Definitions
+ * outside the track are NOT pulled in; `renderGraph` recomputes levels so
+ * such gaps do not break the layout.
  */
 export function computeTrackSet(raw: Raw, filters: TrackFilters): Set<string> {
   const selected = new Set<string>();
@@ -621,15 +601,15 @@ export function computeTrackSet(raw: Raw, filters: TrackFilters): Set<string> {
     if (raw.byId.has(id)) selected.add(id);
   }
 
-  if (!filters.includeDescendants || selected.size === 0) return selected;
+  if (!filters.includeReferences || selected.size === 0) return selected;
 
-  return dependentsClosure(raw, selected);
+  return referencesClosure(raw, selected);
 }
 
 /** True when `filters` equals the given default track filters. */
 export function isDefaultTrackFilters(filters: TrackFilters, defaults: TrackFilters): boolean {
   return (
-    filters.includeDescendants === defaults.includeDescendants &&
+    filters.includeReferences === defaults.includeReferences &&
     setEquals(filters.groupIds, defaults.groupIds) &&
     setEquals(filters.definitionIds, defaults.definitionIds)
   );
