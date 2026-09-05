@@ -112,7 +112,7 @@ const FiltersTab: React.FC<Props> = ({
             Track ({trackSize} definitions selected)
           </h4>
 
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+          <label className="filterCheck">
             <input
               type="checkbox"
               aria-label="Include references"
@@ -126,7 +126,7 @@ const FiltersTab: React.FC<Props> = ({
 
           <h5 style={{ margin: '8px 0 4px 0', fontSize: 11, color: '#a9b4c0' }}>Groups</h5>
           {groups.map((group) => (
-            <label key={group.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <label key={group.id} className="filterCheck">
               <input
                 type="checkbox"
                 aria-label={`Group ${group.name}`}
@@ -210,7 +210,7 @@ const FiltersTab: React.FC<Props> = ({
             progress statistics or the learning track.
           </p>
 
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <label className="filterCheck">
             <input
               type="checkbox"
               aria-label="Show learned definitions"
@@ -221,7 +221,7 @@ const FiltersTab: React.FC<Props> = ({
             />
             Show learned definitions
           </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <label className="filterCheck">
             <input
               type="checkbox"
               aria-label="Show ready-to-learn definitions"
@@ -232,7 +232,7 @@ const FiltersTab: React.FC<Props> = ({
             />
             Show ready-to-learn definitions
           </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <label className="filterCheck">
             <input
               type="checkbox"
               aria-label="Show pre-ready definitions"
@@ -246,7 +246,7 @@ const FiltersTab: React.FC<Props> = ({
             />
             Show pre-ready definitions
           </label>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <label className="filterCheck">
             <input
               type="checkbox"
               aria-label="Show not-ready definitions"
