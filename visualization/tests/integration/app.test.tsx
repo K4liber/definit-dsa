@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 import defs from '../../../docs/defs.json';
 import App from '../../src/App';
 import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
@@ -46,9 +47,23 @@ vi.mock('../../src/components/GraphCanvas', () => {
   };
 });
 
-async function renderApp() {
+// MemoryRouter keeps its own internal location; window.location does not
+// change. This probe records the router's search string for assertions.
+let currentRouterSearch = '';
+function LocationProbe() {
+  const location = useLocation();
+  currentRouterSearch = location.search;
+  return null;
+}
+
+async function renderApp(initialEntries?: string[]) {
   const user = userEvent.setup();
-  render(<App />);
+  render(
+    <MemoryRouter initialEntries={initialEntries ?? ['/']}>
+      <LocationProbe />
+      <App />
+    </MemoryRouter>,
+  );
   await screen.findByRole('img', { name: 'Definitions graph' });
   await closeInfoModal(user);
 
@@ -337,15 +352,9 @@ describe('App integration scenarios', () => {
         false,
       );
 
-      const reset = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? '{}');
-      expect(reset.track.groupIds).toEqual(['data_structures_and_algorithms']);
-      expect(reset.track.includeReferences).toBe(false);
-      expect(reset.visualization).toEqual({
-        showLearned: true,
-        showReady: true,
-        showPreReady: true,
-        showNotReady: false,
-      });
+      const reset = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? 'null');
+      // "Reset filters" clears the persisted filters entirely (task 9 spec).
+      expect(reset).toBeNull();
     });
   });
 
@@ -386,5 +395,95 @@ describe('App integration scenarios', () => {
       expect(JSON.parse(localStorage.getItem('definit-db.learned') ?? '[]')).toHaveLength(0);
       expect(screen.getByRole('button', { name: 'Reset progress' })).toBeDisabled();
     });
+  });
+});
+
+describe('URL filter sync (React Router)', () => {
+  it('applies filters from URL params on load and persists them to storage', async () => {
+    const query = '?ref=1&notready=1';
+    await renderApp([`/${query}`]);
+
+    openFilters();
+    expect((screen.getByLabelText('Include references') as HTMLInputElement).checked).toBe(true);
+    expect(
+      (screen.getByLabelText('Show not-ready definitions') as HTMLInputElement).checked,
+    ).toBe(true);
+
+    const stored = JSON.parse(localStorage.getItem('definit-db.ui.filters') ?? 'null');
+    expect(stored).not.toBeNull();
+    expect(stored.track.includeReferences).toBe(true);
+  });
+
+  it('updates the URL when filters change', async () => {
+    await renderApp();
+    openFilters();
+
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+
+    await waitFor(() => {
+      expect(currentRouterSearch).toContain('notready=1');
+    });
+  });
+
+  it('updates the URL when a definition is added to the track', async () => {
+    await renderApp();
+    openFilters();
+
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('mathematics/fibonacci');
+      expect(currentRouterSearch).toContain('defs=');
+    });
+  });
+
+  it('resets the URL and clears storage when "Reset filters" is clicked', async () => {
+    await renderApp(['/?notready=1']);
+    openFilters();
+
+    fireEvent.click(screen.getByLabelText('Show learned definitions'));
+    await waitFor(() => {
+      expect(currentRouterSearch).toContain('learned=0');
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset filters' }));
+
+    await waitFor(() => {
+      expect(currentRouterSearch).toBe('');
+      expect(localStorage.getItem('definit-db.ui.filters')).toBeNull();
+      expect(
+        (screen.getByLabelText('Show not-ready definitions') as HTMLInputElement).checked,
+      ).toBe(false);
+    });
+  });
+
+  it('restores filters from storage when no URL params are present', async () => {
+    localStorage.setItem(
+      'definit-db.ui.filters',
+      JSON.stringify({
+        track: {
+          includeReferences: true,
+          groupIds: ['data_structures_and_algorithms'],
+          definitionIds: [],
+        },
+        visualization: {
+          showLearned: true,
+          showReady: true,
+          showPreReady: true,
+          showNotReady: true,
+        },
+      }),
+    );
+
+    await renderApp();
+    openFilters();
+
+    expect((screen.getByLabelText('Include references') as HTMLInputElement).checked).toBe(true);
+    expect(
+      (screen.getByLabelText('Show not-ready definitions') as HTMLInputElement).checked,
+    ).toBe(true);
+    // No URL params → storage wins, and the URL is synced to that view.
+    expect(currentRouterSearch).toContain('ref=1');
+    expect(currentRouterSearch).toContain('notready=1');
   });
 });

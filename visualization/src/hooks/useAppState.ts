@@ -1,4 +1,5 @@
 import { useReducer, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import defs from '../../../docs/defs.json';
 import type { DefGraph, DefNode, Raw, LearnState } from '../types';
 import type { BottomTab } from '../types';
@@ -15,10 +16,12 @@ import {
   DEFAULT_VISUALIZATION_FILTERS,
   cloneFilters,
   trackEquals,
+  sanitizePersistedFilters,
   type PersistedFilters,
   type TrackFilters,
   type VisualizationFilters,
 } from '../lib/filters';
+import { filtersFromSearchParams, filtersToSearchParams } from '../lib/urlParams';
 import {
   loadLearnedFromStorage,
   saveLearnedToStorage,
@@ -93,7 +96,7 @@ const enum A {
 /* ------------------------------------------------------------------ */
 
 type Action =
-  | { type: A.DATA_LOADED; raw: Raw }
+  | { type: A.DATA_LOADED; raw: Raw; filters: PersistedFilters }
   | { type: A.INIT_COMPLETE; selectedLeafId: string | null; showInfo: boolean }
   | { type: A.MARK_LEARNED; id: string }
   | { type: A.AUTO_SELECT_NEXT; selectedLeafId: string | null }
@@ -116,14 +119,10 @@ type Action =
 
 function reducer(state: ReducerState, action: Action): ReducerState {
   switch (action.type) {
-    case A.DATA_LOADED: {
-      // Load persisted filters only once the known groups/definitions are
-      // available, so stale ids can be sanitized away.
-      const groupIds = new Set((action.raw.def.groups ?? []).map((g) => g.id));
-      const nodeIds = new Set(action.raw.def.nodes.map((n) => n.id));
-      const filters = loadFiltersFromStorage(groupIds, nodeIds);
-      return { ...state, raw: action.raw, filters };
-    }
+    case A.DATA_LOADED:
+      // Filters were resolved by the caller (URL params take precedence over
+      // persisted storage) and are already sanitized against known ids.
+      return { ...state, raw: action.raw, filters: action.filters };
 
     case A.INIT_COMPLETE:
       return {
@@ -159,7 +158,6 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         selectedLeafId: null,
         resetConfirmOpen: false,
       };
-
     case A.SELECT_LEAF:
       savePanelCollapsed(false);
       return {
@@ -201,9 +199,10 @@ function reducer(state: ReducerState, action: Action): ReducerState {
     }
 
     case A.RESET_FILTERS: {
-      const filters = cloneFilters(DEFAULT_FILTERS);
-      saveFiltersToStorage(filters);
-      return { ...state, filters, searchQuery: '' };
+      // Storage is cleared (not overwritten): on the next load, absent
+      // storage falls back to the default filters.
+      clearFiltersFromStorage();
+      return { ...state, filters: cloneFilters(DEFAULT_FILTERS), searchQuery: '' };
     }
 
     case A.SET_INFO_OPEN:
@@ -270,11 +269,35 @@ export type AppActions = {
 
 export function useAppState(): AppState & AppActions {
   const [state, dispatch] = useReducer(reducer, undefined, initialReducerState);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // ── Load bundled data on mount ───────────────────────────────────
   useEffect(() => {
     const raw = buildRaw(defs as DefGraph);
-    dispatch({ type: A.DATA_LOADED, raw });
+
+    // Resolve the initial filters: URL params win (shared-link support) and
+    // are persisted so the user returns to the same view later; otherwise
+    // fall back to persisted storage, and finally to the defaults.
+    const groupIds = new Set((raw.def.groups ?? []).map((g) => g.id));
+    const nodeIds = new Set(raw.def.nodes.map((n) => n.id));
+    const { filters: urlFilters, present } = filtersFromSearchParams(searchParams);
+
+    let filters: PersistedFilters;
+    if (present) {
+      filters = sanitizePersistedFilters(urlFilters, groupIds, nodeIds);
+    } else {
+      filters = loadFiltersFromStorage(groupIds, nodeIds);
+    }
+
+    // Persist the resolved view and keep the URL in sync with it, so the
+    // address bar always reflects the active (non-default) filters and the
+    // link is shareable.
+    saveFiltersToStorage(filters);
+    setSearchParams(filtersToSearchParams(filters), { replace: true });
+
+    dispatch({ type: A.DATA_LOADED, raw, filters });
+    // Initial resolution must run only once; searchParams is read on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ── Derive search matches for dropdown (id/title/aliases) ────────
@@ -388,7 +411,9 @@ export function useAppState(): AppState & AppActions {
 
   const resetProgress = useCallback(() => {
     dispatch({ type: A.RESET_PROGRESS });
-  }, []);
+    // Resetting progress also restores default filters → clean the URL.
+    setSearchParams(filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)), { replace: true });
+  }, [setSearchParams]);
 
   const selectLeaf = useCallback((id: string) => {
     dispatch({ type: A.SELECT_LEAF, id });
@@ -410,17 +435,34 @@ export function useAppState(): AppState & AppActions {
     dispatch({ type: A.SET_SEARCH_QUERY, query });
   }, []);
 
-  const setTrackFilters = useCallback((track: TrackFilters) => {
-    dispatch({ type: A.SET_TRACK_FILTERS, track });
-  }, []);
+  const setTrackFilters = useCallback(
+    (track: TrackFilters) => {
+      const filters: PersistedFilters = {
+        track,
+        visualization: state.filters.visualization,
+      };
+      dispatch({ type: A.SET_TRACK_FILTERS, track });
+      setSearchParams(filtersToSearchParams(filters), { replace: true });
+    },
+    [state.filters.visualization, setSearchParams],
+  );
 
-  const setVisualizationFilters = useCallback((visualization: VisualizationFilters) => {
-    dispatch({ type: A.SET_VISUALIZATION_FILTERS, visualization });
-  }, []);
+  const setVisualizationFilters = useCallback(
+    (visualization: VisualizationFilters) => {
+      const filters: PersistedFilters = {
+        track: state.filters.track,
+        visualization,
+      };
+      dispatch({ type: A.SET_VISUALIZATION_FILTERS, visualization });
+      setSearchParams(filtersToSearchParams(filters), { replace: true });
+    },
+    [state.filters.track, setSearchParams],
+  );
 
   const resetFilters = useCallback(() => {
     dispatch({ type: A.RESET_FILTERS });
-  }, []);
+    setSearchParams(filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)), { replace: true });
+  }, [setSearchParams]);
 
   const setInfoOpen = useCallback((open: boolean) => {
     dispatch({ type: A.SET_INFO_OPEN, open });
