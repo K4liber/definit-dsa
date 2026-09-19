@@ -39,6 +39,18 @@ We could go for 200 most low-level (according to topological sorting) definition
 
 ## DONE
 
+### 16. [FEATURE] Routing for definitions
+
+We should be able to route to a specific definition by its id. The URL should be updated accordingly when the user navigates to a definition. The URL should be updated to the definition id when the user clicks on a definition in the visualization or in the definition list. Whenever we click "go back" in the browser, we should go back to the previous definition if we were viewing a parent definition and clicked on a child definition. It will allow a smooth navigation between definitions and their parents.
+
+- [x] Route the selected definition through the `sel` query param (`visualization/src/lib/urlParams.ts`: `selectedIdFromSearchParams`, `withSelectedDefinition`; helpers preserve other filter params).
+- [x] Clicking a definition in the visualization, a dependency link in the content or an item in the filtering results pushes a history entry (`selectLeaf` → PUSH), so browser back/forward navigates between visited definitions (child ↔ parent).
+- [x] Browser back/forward (POP) applies the URL's selection via the `URL_SELECT` reducer action (reconciliation effect in `useAppState.ts` guarded by `useNavigationType()`).
+- [x] A shared `?sel=<field>/<name>` link opens that definition directly; a lone `sel` param does not override persisted filters, and an unknown id falls back to auto-selection.
+- [x] App-driven jumps (initial auto-select, auto-select next ready after marking learned, Focus mode) and filter changes keep `sel` in sync with `replace` (no history entries); re-clicking the current definition pushes no duplicate entry.
+- [x] "Reset progress" clears `sel` from the URL; "Reset filters" keeps it (only the open definition is routed, filters are reset).
+- [x] Unit tests for the `sel` helpers, integration tests for routing/back/forward/deep links (`tests/integration/app.test.tsx`), e2e tests for real browser back/forward and shared links (`tests/e2e/app.spec.ts`); README documents the `sel` param.
+
 ### 9. [FEATURE, depends on: 13] Introduce React Router
 
 Apply filtering based on URL parameters and query strings. If no parameter is provided, use the default values. This will allow sharing links to specific filtered views. The filtering should be stored in the browser storage so that the user can return to the same filtered view after closing the browser. The "Reset filters" button should reset the filters to the default values, update the URL accordingly and clear the browser storage. Every time the user changes the filters, the URL should be updated accordingly. All the filtering options should be reflected in the URL parameters and query strings.

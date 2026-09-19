@@ -1,7 +1,7 @@
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, useLocation } from 'react-router-dom';
+import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom';
 import defs from '../../../docs/defs.json';
 import App from '../../src/App';
 import { buildRaw, prerequisiteClosure } from '../../src/lib/graph';
@@ -56,11 +56,23 @@ function LocationProbe() {
   return null;
 }
 
+// Expose the router's navigate() so tests can simulate browser back/forward
+// (POP) inside MemoryRouter.
+let routerNavigate: ((delta: number) => void) | null = null;
+function NavigateProbe() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    routerNavigate = (delta: number) => navigate(delta);
+  }, [navigate]);
+  return null;
+}
+
 async function renderApp(initialEntries?: string[]) {
   const user = userEvent.setup();
   render(
     <MemoryRouter initialEntries={initialEntries ?? ['/']}>
       <LocationProbe />
+      <NavigateProbe />
       <App />
     </MemoryRouter>,
   );
@@ -449,13 +461,15 @@ describe('URL filter sync (React Router)', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Reset filters' }));
 
     await waitFor(() => {
-      expect(currentRouterSearch).toBe('');
+      // Filter params are gone; only the routing param of the currently
+      // selected definition (`sel`) may remain in the query string.
+      expect(currentRouterSearch).toMatch(/^\?sel=[^&]+$/);
       expect(localStorage.getItem('definit-db.ui.filters')).toBeNull();
       expect(
         (screen.getByLabelText('Show not-ready definitions') as HTMLInputElement).checked,
       ).toBe(false);
     });
-  });
+  }, 20000);
 
   it('restores filters from storage when no URL params are present', async () => {
     localStorage.setItem(
@@ -485,5 +499,166 @@ describe('URL filter sync (React Router)', () => {
     // No URL params → storage wins, and the URL is synced to that view.
     expect(currentRouterSearch).toContain('ref=1');
     expect(currentRouterSearch).toContain('notready=1');
-  });
+  }, 20000);
+});
+
+describe('Definition routing (sel param)', () => {
+  it('routes to the definition id when a graph node is clicked', async () => {
+    await renderApp();
+
+    fireEvent.click(getGraphNodeButtonByTitle('observable')!);
+
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/observable');
+    });
+    expect(screen.getByRole('heading', { level: 3, name: 'observable' })).toBeInTheDocument();
+  }, 20000);
+
+  it('routes to the definition id when a dependency link is clicked', async () => {
+    await renderApp();
+
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+    fireEvent.click(getGraphNodeButtonByTitle('fibonacci')!);
+
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/fibonacci');
+    });
+
+    const depLink = (await screen.findAllByText('sequence', { selector: 'span.dep' }))[0];
+    fireEvent.click(depLink);
+
+    await waitFor(
+      () => {
+        expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/sequence');
+        expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+  }, 20000);
+
+  it('applies a sel deep link on load and keeps filters from storage', async () => {
+    localStorage.setItem(
+      'definit-db.ui.filters',
+      JSON.stringify({
+        track: {
+          includeReferences: true,
+          groupIds: ['data_structures_and_algorithms'],
+          definitionIds: [],
+        },
+        visualization: {
+          showLearned: true,
+          showReady: true,
+          showPreReady: true,
+          showNotReady: true,
+        },
+      }),
+    );
+
+    await renderApp(['/?sel=mathematics/observable']);
+
+    // The deep-linked definition is shown instead of the auto-selected one.
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { level: 3, name: 'observable' })).toBeInTheDocument();
+    });
+    expect(getSelectedGraphNodeButton()?.textContent).toBe('observable');
+    expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/observable');
+
+    // A lone sel param does not override persisted filters.
+    openFilters();
+    expect((screen.getByLabelText('Include references') as HTMLInputElement).checked).toBe(true);
+  }, 20000);
+
+  it('falls back to auto-selection for an unknown sel id', async () => {
+    await renderApp(['/?sel=nonexistent/definition']);
+
+    // The unknown definition is never shown; the URL is cleaned up to the
+    // actually selected definition.
+    await waitFor(() => {
+      expect(currentRouterSearch).toMatch(/^\?sel=/);
+      expect(decodeURIComponent(currentRouterSearch)).not.toContain('nonexistent');
+    });
+    expect(screen.queryByRole('heading', { level: 3, name: /nonexistent/ })).toBeNull();
+  }, 20000);
+
+  it('goes back and forward between visited definitions', async () => {
+    await renderApp();
+
+    // Parent → child navigation: fibonacci → its dependency sequence.
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+    await searchAndToggleDefinition('fibonacci', 'mathematics/fibonacci');
+    fireEvent.click(getGraphNodeButtonByTitle('fibonacci')!);
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/fibonacci');
+    });
+
+    const depLink = (await screen.findAllByText('sequence', { selector: 'span.dep' }))[0];
+    fireEvent.click(depLink);
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
+    });
+
+    // Browser back → previous (parent) definition.
+    routerNavigate!(-1);
+    await waitFor(
+      () => {
+        expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/fibonacci');
+        expect(screen.getByRole('heading', { level: 3, name: 'fibonacci' })).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+
+    // Browser forward → back to the child definition.
+    routerNavigate!(1);
+    await waitFor(
+      () => {
+        expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/sequence');
+        expect(screen.getByRole('heading', { level: 3, name: 'sequence' })).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+  }, 20000);
+
+  it('does not create a history entry when re-selecting the same definition', async () => {
+    await renderApp();
+
+    fireEvent.click(getGraphNodeButtonByTitle('observable')!);
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/observable');
+    });
+    // Second click on the same node: no additional history entry.
+    fireEvent.click(getGraphNodeButtonByTitle('observable')!);
+
+    // Going back once must land on the initial entry (auto-selected object),
+    // not on a duplicate observable entry.
+    routerNavigate!(-1);
+    await waitFor(
+      () => {
+        expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/object');
+        expect(screen.getByRole('heading', { level: 3, name: 'object' })).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
+  }, 20000);
+
+  it('keeps the sel param when filters change', async () => {
+    await renderApp();
+
+    fireEvent.click(getGraphNodeButtonByTitle('observable')!);
+    await waitFor(() => {
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/observable');
+    });
+
+    openFilters();
+    fireEvent.click(screen.getByLabelText('Show not-ready definitions'));
+
+    await waitFor(() => {
+      expect(currentRouterSearch).toContain('notready=1');
+      expect(decodeURIComponent(currentRouterSearch)).toContain('sel=mathematics/observable');
+    });
+    // The filter change did not add a history entry (replace, not push).
+    expect(currentRouterSearch.indexOf('sel=')).toBeGreaterThan(0);
+  }, 20000);
 });

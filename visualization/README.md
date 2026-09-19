@@ -56,14 +56,27 @@ default".
 | `ready`    | Show ready-to-learn definitions           | `1`/`0`        | `1`     |
 | `preready` | Show pre-ready definitions                | `1`/`0`        | `1`     |
 | `notready` | Show not-ready definitions                | `1`/`0`        | `0`     |
+| `sel`      | Selected (routed) definition id            | `<field>/<name>` | (auto) |
 
 Example: [https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fbubble_sort&notready=1](https://k4liber.github.io/definit-dsa/?ref=1&groups=&defs=mathematics%2Fbubble_sort&notready=1).
 
 On load, URL parameters take precedence over filters persisted in browser
 storage; the resolved view is then persisted, so it survives closing the
 browser. Every filter change updates the URL (without adding history entries).
-The "Reset filters" button restores the defaults, removes the query string and
-clears the stored filters.
+The "Reset filters" button restores the defaults, removes the filter query
+string and clears the stored filters.
+
+## Definition routing (`sel`)
+
+The currently viewed definition is routed through the `sel` query parameter
+(e.g. `?sel=computer_science/array`), which works on GitHub Pages since only
+the query string is used. Clicking a node in the graph, a dependency link in a
+definition or an item in the filtering results pushes a history entry, so
+browser back/forward navigates between visited definitions (e.g. from a child
+definition back to its parent). App-driven jumps (auto-select next ready,
+"Focus" mode) and filter changes only replace the URL, keeping history clean.
+A shared `?sel=...` link opens that definition directly without overriding the
+recipient's persisted filters; an unknown id falls back to auto-selection.
 
 ## Build + preview
 
