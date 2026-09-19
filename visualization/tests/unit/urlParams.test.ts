@@ -5,6 +5,8 @@ import {
     URL_KEYS,
     filtersFromSearchParams,
     filtersToSearchParams,
+    selectedIdFromSearchParams,
+    withSelectedDefinition,
 } from '../../src/lib/urlParams';
 
 function withVisualization(
@@ -108,5 +110,41 @@ describe('filtersFromSearchParams', () => {
         const { filters: decoded, present } = filtersFromSearchParams(encoded);
         expect(present).toBe(true);
         expect(decoded).toEqual(filters);
+    });
+});
+
+describe('selected definition routing param', () => {
+    it('reads the sel param and returns null when absent or blank', () => {
+        expect(selectedIdFromSearchParams(new URLSearchParams())).toBeNull();
+        expect(selectedIdFromSearchParams(new URLSearchParams(`?${URL_KEYS.selectedDefinition}=`))).toBeNull();
+        expect(selectedIdFromSearchParams(new URLSearchParams(`?${URL_KEYS.selectedDefinition}=  `))).toBeNull();
+    });
+
+    it('reads the sel param id', () => {
+        const params = new URLSearchParams(`?${URL_KEYS.selectedDefinition}=mathematics/observable`);
+        expect(selectedIdFromSearchParams(params)).toBe('mathematics/observable');
+    });
+
+    it('sets and removes sel while preserving other params', () => {
+        const base = new URLSearchParams('ref=1&learned=0');
+
+        const withSel = withSelectedDefinition(base, 'computer_science/array');
+        expect(withSel.get(URL_KEYS.selectedDefinition)).toBe('computer_science/array');
+        expect(withSel.get('ref')).toBe('1');
+        expect(withSel.get('learned')).toBe('0');
+        // The input params are not mutated.
+        expect(base.has(URL_KEYS.selectedDefinition)).toBe(false);
+
+        const withoutSel = withSelectedDefinition(withSel, null);
+        expect(withoutSel.has(URL_KEYS.selectedDefinition)).toBe(false);
+        expect(withoutSel.get('ref')).toBe('1');
+    });
+
+    it('does not treat a lone sel param as filter params present', () => {
+        // A shared definition deep link must not override persisted filters.
+        const { present } = filtersFromSearchParams(
+            new URLSearchParams(`?${URL_KEYS.selectedDefinition}=mathematics/observable`),
+        );
+        expect(present).toBe(false);
     });
 });

@@ -16,13 +16,19 @@ async function gotoApp(page: Page): Promise<void> {
 }
 
 async function closeInfoModalIfVisible(page: Page): Promise<void> {
+  // Initialization (INIT_COMPLETE) both decides the info modal and writes the
+  // `sel` routing param. Waiting for that signal avoids probing for the modal
+  // before the app decided whether to show it (it can appear late on slow
+  // machines and would then block every following interaction).
+  await page.waitForURL(/([?&])sel=/, { timeout: 15000 }).catch(() => undefined);
   const dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Info' }) });
   // The modal opens after the app initializes (only when nothing is learned),
   // which can happen slightly after the graph becomes visible — give it a
   // moment to appear before deciding it will not show.
-  await dialog.waitFor({ state: 'visible', timeout: 2000 }).catch(() => undefined);
+  await dialog.waitFor({ state: 'visible', timeout: 3000 }).catch(() => undefined);
   if (await dialog.isVisible()) {
     await dialog.getByRole('button', { name: 'Close' }).click();
+    await dialog.waitFor({ state: 'hidden', timeout: 5000 }).catch(() => undefined);
   }
 }
 
@@ -104,6 +110,7 @@ test('marks a definition as learned and restores progress from localStorage', as
 });
 
 test('shares a filtered view through URL params and survives a reload', async ({ page }) => {
+  test.setTimeout(90000); // multiple reloads; slow machine
   await gotoApp(page);
   await page.evaluate(() => localStorage.clear()); // initial clear
   await closeInfoModalIfVisible(page);
@@ -133,11 +140,57 @@ test('shares a filtered view through URL params and survives a reload', async ({
   await expect(page.getByRole('checkbox', { name: 'Show not-ready definitions' })).toBeChecked();
   await expect(page.getByRole('checkbox', { name: 'Include references' })).not.toBeChecked();
 
-  // "Reset filters" restores defaults, cleans the URL and clears storage.
+  // "Reset filters" restores defaults, cleans filter params from the URL and
+  // clears storage (only the routing param of the selected definition, `sel`,
+  // may remain).
   await page.getByRole('button', { name: 'Reset filters' }).click();
-  await expect(page).toHaveURL(/\/definit-dsa\/?(\?[^#]*)?$/); // no filter params
+  await expect(page).not.toHaveURL(/(ref|groups|defs|learned|ready|preready|notready)=/);
   await expect(page.getByRole('checkbox', { name: 'Show not-ready definitions' })).not.toBeChecked();
   await expect(
     page.evaluate(() => localStorage.getItem('definit-db.ui.filters')),
   ).resolves.toBeNull();
+});
+function nodeCircle(page: Page, title: string) {
+  // The `g.node` bounding box includes offset label text, so its center can
+  // fall on empty SVG space; the circle itself is the reliable click target.
+  return page.locator(`g.node`, { hasText: title }).locator('circle.node-circle');
+}
+
+test('routes to a definition and goes back to the previous one', async ({ page }) => {
+  await gotoApp(page);
+  await page.evaluate(() => localStorage.clear()); // initial clear
+  await closeInfoModalIfVisible(page);
+  // Let the initial camera transition (focus ring, 650ms) settle so node
+  // clicks are not blocked by the moving graph.
+  await page.waitForTimeout(1000);
+
+  // Clicking a node in the visualization routes the URL to that definition.
+  await nodeCircle(page, 'observable').click();
+  await expect(page).toHaveURL(/sel=mathematics%2Fobservable/);
+  await expect(page.getByRole('heading', { level: 3, name: 'observable' })).toBeVisible();
+
+  // Clicking a second node pushes another history entry.
+  await page.waitForTimeout(1000); // camera refocus after selection
+  await nodeCircle(page, 'trade_off').click();
+  await expect(page).toHaveURL(/sel=mathematics%2Ftrade_off/);
+  await expect(page.getByRole('heading', { level: 3, name: 'trade_off' })).toBeVisible();
+
+  // Browser back returns to the previously viewed definition.
+  await page.goBack();
+  await expect(page).toHaveURL(/sel=mathematics%2Fobservable/);
+  await expect(page.getByRole('heading', { level: 3, name: 'observable' })).toBeVisible();
+
+  // Browser forward returns to the next definition again.
+  await page.goForward();
+  await expect(page).toHaveURL(/sel=mathematics%2Ftrade_off/);
+  await expect(page.getByRole('heading', { level: 3, name: 'trade_off' })).toBeVisible();
+});
+
+test('opens a shared definition link directly', async ({ page }) => {
+  await page.goto('/?sel=mathematics%2Fobservable');
+  await expect(page.getByRole('img', { name: 'Definitions graph' })).toBeVisible();
+  await closeInfoModalIfVisible(page);
+
+  await expect(page.getByRole('heading', { level: 3, name: 'observable' })).toBeVisible();
+  await expect(page).toHaveURL(/sel=mathematics%2Fobservable/);
 });

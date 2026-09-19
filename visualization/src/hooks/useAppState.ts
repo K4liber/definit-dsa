@@ -1,5 +1,5 @@
 import { useReducer, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import defs from '../../../docs/defs.json';
 import type { DefGraph, DefNode, Raw, LearnState } from '../types';
 import type { BottomTab } from '../types';
@@ -21,7 +21,12 @@ import {
   type TrackFilters,
   type VisualizationFilters,
 } from '../lib/filters';
-import { filtersFromSearchParams, filtersToSearchParams } from '../lib/urlParams';
+import {
+  filtersFromSearchParams,
+  filtersToSearchParams,
+  selectedIdFromSearchParams,
+  withSelectedDefinition,
+} from '../lib/urlParams';
 import {
   loadLearnedFromStorage,
   saveLearnedToStorage,
@@ -79,6 +84,7 @@ const enum A {
   AUTO_SELECT_NEXT = 'AUTO_SELECT_NEXT',
   RESET_PROGRESS = 'RESET_PROGRESS',
   SELECT_LEAF = 'SELECT_LEAF',
+  URL_SELECT = 'URL_SELECT',
   CLEAR_SELECTION = 'CLEAR_SELECTION',
   SET_PANEL_COLLAPSED = 'SET_PANEL_COLLAPSED',
   SET_ACTIVE_TAB = 'SET_ACTIVE_TAB',
@@ -102,6 +108,7 @@ type Action =
   | { type: A.AUTO_SELECT_NEXT; selectedLeafId: string | null }
   | { type: A.RESET_PROGRESS }
   | { type: A.SELECT_LEAF; id: string }
+  | { type: A.URL_SELECT; id: string | null }
   | { type: A.CLEAR_SELECTION }
   | { type: A.SET_PANEL_COLLAPSED; collapsed: boolean }
   | { type: A.SET_ACTIVE_TAB; tab: BottomTab }
@@ -159,6 +166,21 @@ function reducer(state: ReducerState, action: Action): ReducerState {
         resetConfirmOpen: false,
       };
     case A.SELECT_LEAF:
+      savePanelCollapsed(false);
+      return {
+        ...state,
+        selectedLeafId: action.id,
+        activeTab: 'definition',
+        panelCollapsed: false,
+      };
+
+    case A.URL_SELECT:
+      // Selection driven by the URL (browser back/forward, deep link):
+      // behave exactly like clicking the definition, except that the URL is
+      // not written back (it is already the source of truth here).
+      if (action.id === null) {
+        return { ...state, selectedLeafId: null };
+      }
       savePanelCollapsed(false);
       return {
         ...state,
@@ -289,11 +311,22 @@ export function useAppState(): AppState & AppActions {
       filters = loadFiltersFromStorage(groupIds, nodeIds);
     }
 
+    // Definition deep link (`sel=...`): a shared link to a specific
+    // definition. Filters are NOT taken from the URL in that case (only
+    // `sel` present), so the recipient's persisted view is kept.
+    const urlSelectedId = selectedIdFromSearchParams(searchParams);
+    const initialSelectedLeafId =
+      urlSelectedId && raw.byId.has(urlSelectedId) ? urlSelectedId : null;
+
     // Persist the resolved view and keep the URL in sync with it, so the
     // address bar always reflects the active (non-default) filters and the
-    // link is shareable.
+    // link is shareable. The `sel` param is preserved (valid deep link) so
+    // reloading keeps showing the same definition.
     saveFiltersToStorage(filters);
-    setSearchParams(filtersToSearchParams(filters), { replace: true });
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(filters), initialSelectedLeafId),
+      { replace: true },
+    );
 
     dispatch({ type: A.DATA_LOADED, raw, filters });
     // Initial resolution must run only once; searchParams is read on mount.
@@ -369,16 +402,51 @@ export function useAppState(): AppState & AppActions {
     if (!state.raw || !rendered || initDone.current) return;
     initDone.current = true;
 
-    // Determine first definition to show from the CURRENTLY FILTERED graph,
-    // so computed levels / ready set are consistent with the UI.
-    const nextId = selectNextReady(state.raw, rendered, state.learned);
+    // A valid `sel` deep link overrides the "next ready" auto-selection.
+    const urlSelectedId = selectedIdFromSearchParams(searchParams);
+    const deepLinkId =
+      urlSelectedId && state.raw.byId.has(urlSelectedId) ? urlSelectedId : null;
+
+    const nextId = deepLinkId ?? selectNextReady(state.raw, rendered, state.learned);
 
     dispatch({
       type: A.INIT_COMPLETE,
       selectedLeafId: nextId,
       showInfo: state.learned.size === 0,
     });
-  }, [state.raw, rendered, state.learned]);
+    // Keep the URL pointing at the initial definition (replace, no history
+    // entry) so the invariant "selected definition ⟺ sel param" holds from
+    // the start and back/forward behaves consistently. Params are rebuilt
+    // from the reducer state: the functional form of setSearchParams can
+    // observe a stale snapshot during these init commits.
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(state.filters), nextId),
+      { replace: true },
+    );
+    // Runs once; searchParams is read at init time only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.raw, rendered]);
+
+  // ── Reconcile selection with the URL (browser back/forward) ──────
+  // App-driven selections write `sel` to the URL themselves, so a mismatch
+  // means the URL changed externally: the user pressed browser back/forward
+  // (POP) between visited definitions. Apply the URL's selection then.
+  // Loop-safe: dispatching URL_SELECT re-syncs the state without writing to
+  // the URL, so the effect settles immediately.
+  const location = useLocation();
+  const navigationType = useNavigationType();
+  useEffect(() => {
+    if (!initDone.current) return; // not hydrated yet
+    if (navigationType !== 'POP') return; // app-driven (PUSH/REPLACE)
+
+    const urlSelectedId = selectedIdFromSearchParams(searchParams);
+    const validId = urlSelectedId && state.raw?.byId.has(urlSelectedId) ? urlSelectedId : null;
+    if (validId !== state.selectedLeafId) {
+      dispatch({ type: A.URL_SELECT, id: validId });
+    }
+    // state.selectedLeafId is read for comparison only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location, searchParams]);
 
   // ── Auto-select next ready after marking learned ─────────────────────
   const pendingMarkId = useRef<string | null>(null);
@@ -392,6 +460,14 @@ export function useAppState(): AppState & AppActions {
     // Select next ready within the CURRENTLY FILTERED graph
     const nextId = selectNextReady(state.raw, rendered, state.learned);
     dispatch({ type: A.AUTO_SELECT_NEXT, selectedLeafId: nextId });
+    // App-driven jump (not a user navigation): keep the URL in sync without
+    // adding a history entry. Params are rebuilt from reducer state to avoid
+    // stale snapshots (see the init effect above).
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(state.filters), nextId),
+      { replace: true },
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.raw, rendered, state.learned]);
 
   // ── Filters are at their default values? ─────────────────────────
@@ -411,17 +487,37 @@ export function useAppState(): AppState & AppActions {
 
   const resetProgress = useCallback(() => {
     dispatch({ type: A.RESET_PROGRESS });
-    // Resetting progress also restores default filters → clean the URL.
-    setSearchParams(filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)), { replace: true });
+    // Resetting progress also restores default filters and clears the
+    // selection → clean the URL (no `sel`, no filter params).
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)), null),
+      { replace: true },
+    );
   }, [setSearchParams]);
 
-  const selectLeaf = useCallback((id: string) => {
-    dispatch({ type: A.SELECT_LEAF, id });
-  }, []);
+  const selectLeaf = useCallback(
+    (id: string) => {
+      dispatch({ type: A.SELECT_LEAF, id });
+      // Re-clicking the already-selected definition must not pile up
+      // identical history entries (back would appear to do nothing).
+      if (id === state.selectedLeafId) return;
+      // Route to the definition: push a history entry so browser back/forward
+      // navigates between visited definitions. Filters are preserved.
+      setSearchParams(
+        withSelectedDefinition(filtersToSearchParams(state.filters), id),
+        { replace: false },
+      );
+    },
+    [setSearchParams, state.selectedLeafId, state.filters],
+  );
 
   const clearSelection = useCallback(() => {
     dispatch({ type: A.CLEAR_SELECTION });
-  }, []);
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(state.filters), null),
+      { replace: true },
+    );
+  }, [setSearchParams, state.filters]);
 
   const setPanelCollapsed = useCallback((collapsed: boolean) => {
     dispatch({ type: A.SET_PANEL_COLLAPSED, collapsed });
@@ -442,9 +538,14 @@ export function useAppState(): AppState & AppActions {
         visualization: state.filters.visualization,
       };
       dispatch({ type: A.SET_TRACK_FILTERS, track });
-      setSearchParams(filtersToSearchParams(filters), { replace: true });
+      // Filter changes never add history entries; the current selection
+      // (`sel`) is kept so the URL keeps pointing at the open definition.
+      setSearchParams(
+        withSelectedDefinition(filtersToSearchParams(filters), state.selectedLeafId),
+        { replace: true },
+      );
     },
-    [state.filters.visualization, setSearchParams],
+    [state.filters.visualization, state.selectedLeafId, setSearchParams],
   );
 
   const setVisualizationFilters = useCallback(
@@ -454,15 +555,25 @@ export function useAppState(): AppState & AppActions {
         visualization,
       };
       dispatch({ type: A.SET_VISUALIZATION_FILTERS, visualization });
-      setSearchParams(filtersToSearchParams(filters), { replace: true });
+      // Filter changes never add history entries; `sel` is kept (see above).
+      setSearchParams(
+        withSelectedDefinition(filtersToSearchParams(filters), state.selectedLeafId),
+        { replace: true },
+      );
     },
-    [state.filters.track, setSearchParams],
+    [state.filters.track, state.selectedLeafId, setSearchParams],
   );
 
   const resetFilters = useCallback(() => {
     dispatch({ type: A.RESET_FILTERS });
-    setSearchParams(filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)), { replace: true });
-  }, [setSearchParams]);
+    setSearchParams(
+      withSelectedDefinition(
+        filtersToSearchParams(cloneFilters(DEFAULT_FILTERS)),
+        state.selectedLeafId,
+      ),
+      { replace: true },
+    );
+  }, [setSearchParams, state.selectedLeafId]);
 
   const setInfoOpen = useCallback((open: boolean) => {
     dispatch({ type: A.SET_INFO_OPEN, open });
@@ -479,7 +590,12 @@ export function useAppState(): AppState & AppActions {
     const nextId = selectNextReady(state.raw, rendered, state.learned);
     if (!nextId) return;
     dispatch({ type: A.FOCUS_MODE, selectedLeafId: nextId });
-  }, [state.raw, rendered, state.learned]);
+    // App-driven jump (not a user navigation): replace, no history entry.
+    setSearchParams(
+      withSelectedDefinition(filtersToSearchParams(state.filters), nextId),
+      { replace: true },
+    );
+  }, [state.raw, rendered, state.learned, state.filters, setSearchParams]);
 
   const overviewMode = useCallback(() => {
     // GraphCanvas handles zoom; no state change needed

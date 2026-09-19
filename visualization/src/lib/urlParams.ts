@@ -5,11 +5,15 @@ import {
 } from './filters';
 
 /**
- * URL query-string encoding of the filter state.
+ * URL query-string encoding of the filter state and the selected definition.
  *
  * Only values that differ from the defaults are written, so a default view
  * has a clean URL and shared links stay short. An absent parameter always
  * means "use the default value".
+ *
+ * The selected definition (`sel`) is not a filter: it is the routing target.
+ * It is written on every definition navigation (pushing a history entry) so
+ * browser back/forward moves between definitions.
  */
 
 /** Query-string keys; short but readable since they are user-visible. */
@@ -21,7 +25,17 @@ export const URL_KEYS = {
     showReady: 'ready',
     showPreReady: 'preready',
     showNotReady: 'notready',
+    selectedDefinition: 'sel',
 } as const;
+
+/**
+ * Keys that count as "filter params present" for the URL-over-storage
+ * precedence on load. `sel` is excluded on purpose: a shared definition
+ * deep link must not discard the recipient's persisted filters.
+ */
+const FILTER_URL_KEYS = Object.values(URL_KEYS).filter(
+    (key) => key !== URL_KEYS.selectedDefinition,
+);
 
 /** Serialize filters into query params, omitting values equal to defaults. */
 export function filtersToSearchParams(filters: PersistedFilters): URLSearchParams {
@@ -88,8 +102,35 @@ export function filtersFromSearchParams(params: URLSearchParams): {
     const showNotReady = decodeBool(params.get(URL_KEYS.showNotReady));
     if (showNotReady !== undefined) out.visualization.showNotReady = showNotReady;
 
-    const present = Object.values(URL_KEYS).some((key) => params.has(key));
+    const present = FILTER_URL_KEYS.some((key) => params.has(key));
     return { filters: out, present };
+}
+
+/* ------------------------------------------------------------------ */
+/*  Selected definition (routing)                                     */
+/* ------------------------------------------------------------------ */
+
+/** Read the selected definition id from query params; absent/empty → null. */
+export function selectedIdFromSearchParams(params: URLSearchParams): string | null {
+    const raw = params.get(URL_KEYS.selectedDefinition);
+    return raw && raw.trim().length > 0 ? raw.trim() : null;
+}
+
+/**
+ * Copy `params` with the selected definition id set (or removed when null).
+ * Other params (filters) are preserved untouched.
+ */
+export function withSelectedDefinition(
+    params: URLSearchParams,
+    id: string | null,
+): URLSearchParams {
+    const next = new URLSearchParams(params);
+    if (id === null) {
+        next.delete(URL_KEYS.selectedDefinition);
+    } else {
+        next.set(URL_KEYS.selectedDefinition, id);
+    }
+    return next;
 }
 
 function encodeBool(v: boolean): string {
