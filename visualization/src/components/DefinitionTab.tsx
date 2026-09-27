@@ -12,6 +12,7 @@ type Props = {
 
 const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLearned, onDepClick }) => {
   const bodyRef = useRef<HTMLDivElement>(null);
+  const lastNodeIdRef = useRef<string | null>(null);
 
   // Bind dep click handlers after rendering HTML
   useEffect(() => {
@@ -26,6 +27,20 @@ const DefinitionTab: React.FC<Props> = ({ node, renderedNodes, learned, onMarkLe
       };
     });
   });
+
+  // Reset the scroll position of the definition content whenever the
+  // displayed definition changes. The scroll container is the bottom panel
+  // content (`.bottomPanelContent`), which persists across definition swaps:
+  // without this reset it keeps the previous definition's scroll offset and
+  // the new (usually shorter) content appears scrolled past its end with no
+  // way to scroll back up. Plain assignment (not scrollTo) for jsdom
+  // compatibility in tests.
+  useEffect(() => {
+    if (node?.id === lastNodeIdRef.current) return;
+    lastNodeIdRef.current = node?.id ?? null;
+    const container = bodyRef.current?.closest('.bottomPanelContent');
+    if (container) container.scrollTop = 0;
+  }, [node?.id]);
 
   if (!node) {
     return (

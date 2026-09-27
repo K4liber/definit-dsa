@@ -28,7 +28,7 @@ export const DEFAULT_TRACK_FILTERS: TrackFilters = {
 export const DEFAULT_VISUALIZATION_FILTERS: VisualizationFilters = {
     showLearned: true,
     showReady: true,
-    showPreReady: true,
+    showPreReady: false,
     showNotReady: false,
 };
 

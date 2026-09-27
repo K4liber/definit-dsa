@@ -69,7 +69,7 @@ describe('storage helpers', () => {
       visualization: {
         showLearned: false,
         showReady: true,
-        showPreReady: true,
+        showPreReady: false,
         showNotReady: false,
       },
     });

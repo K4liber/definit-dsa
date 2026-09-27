@@ -16,10 +16,6 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 For sure, we should display a progress bar. It should show stats for the currently filtered definitions (based on new filitering options: groups and definitions). The progress bar should show the percentage of learned definitions out of the total number of filtered definitions. It should be yellow originally, but it should turn green proportionally when the percentage of learned definitions increases.
 
-### 14. [BUG] Definition content locked into previous scroll
-
-When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position.
-
 ### 11. [FEATURE] Handling multiple definition sources/databases
 
 ### 10. [FEATURE] Limit number of nodes on visualization to 200
@@ -38,6 +34,13 @@ We could go for 200 most low-level (according to topological sorting) definition
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
+
+### 14. [BUG] Definition content locked into previous scroll
+
+When marking as learned, the scroll position of the definition content is locked into the previous scroll position. This is a bug and it cannot be scroll up, one need to switch a tab (e.g. to "Filters" and back) to reset the scroll position. The scroll position should be automatically reset to the top of the definition content when marking as learned or doing any action that starts to display a definition content.
+
+- [x] Fix: `DefinitionTab` resets the scroll of the `.bottomPanelContent` scroll container to the top whenever the displayed definition id changes (covers "Mark as learned" auto-select-next, dependency-link navigation, graph node clicks and filtering-result selection).
+- [x] Integration test "resets the definition content scroll position when the displayed definition changes" (`visualization/tests/integration/app.test.tsx`).
 
 ### 17. [BUG] Ready-to-learn is wrongly calculated
 

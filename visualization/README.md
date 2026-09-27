@@ -54,7 +54,7 @@ default".
 | `defs`     | Extra definition ids in the track         | comma-separated | (empty) |
 | `learned`  | Show learned definitions                  | `1`/`0`        | `1`     |
 | `ready`    | Show ready-to-learn definitions           | `1`/`0`        | `1`     |
-| `preready` | Show pre-ready definitions                | `1`/`0`        | `1`     |
+| `preready` | Show pre-ready definitions                | `1`/`0`        | `0`     |
 | `notready` | Show not-ready definitions                | `1`/`0`        | `0`     |
 | `sel`      | Selected (routed) definition id            | `<field>/<name>` | (auto) |
 

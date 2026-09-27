@@ -216,6 +216,45 @@ describe('App integration scenarios', () => {
     });
   });
 
+  it('resets the definition content scroll position when the displayed definition changes', async () => {
+    await renderApp();
+
+    const content = () => document.querySelector('.bottomPanelContent');
+    const heading = () => document.querySelector('#definition-title')?.textContent;
+
+    // The panel starts scrolled to the top.
+    expect(content()?.scrollTop).toBe(0);
+    const firstDef = heading();
+
+    // Simulate the user scrolling down in the definition content.
+    const panel = content();
+    if (!panel) throw new Error('Bottom panel content not found');
+    panel.scrollTop = 400;
+
+    // Marking as learned selects the next ready definition: the scroll must
+    // reset to the top for the newly displayed content.
+    fireEvent.click(screen.getByRole('button', { name: /Mark .* as learned/ }));
+
+    await waitFor(() => {
+      expect(heading()).not.toBe(firstDef);
+    });
+    expect(content()?.scrollTop).toBe(0);
+
+    // Navigating via a dependency link must also reset the scroll.
+    const panel2 = content();
+    if (!panel2) throw new Error('Bottom panel content not found');
+    panel2.scrollTop = 250;
+
+    const depLink = document.querySelector('span.dep[data-dep]');
+    if (depLink) {
+      fireEvent.click(depLink);
+      await waitFor(() => {
+        expect(heading()).toBeTruthy();
+      });
+      expect(content()?.scrollTop).toBe(0);
+    }
+  }, 20000);
+
   it('allows clicking dependency links inside a definition to navigate to that dependency', async () => {
     await renderApp();
 

@@ -39,7 +39,7 @@ describe('filtersToSearchParams', () => {
             visualization: {
                 showLearned: false,
                 showReady: false,
-                showPreReady: false,
+                showPreReady: true,
                 showNotReady: true,
             },
         };
@@ -50,7 +50,7 @@ describe('filtersToSearchParams', () => {
         expect(params.get(URL_KEYS.definitions)).toBe('mathematics/fibonacci,computer_science/array');
         expect(params.get(URL_KEYS.showLearned)).toBe('0');
         expect(params.get(URL_KEYS.showReady)).toBe('0');
-        expect(params.get(URL_KEYS.showPreReady)).toBe('0');
+        expect(params.get(URL_KEYS.showPreReady)).toBe('1');
         expect(params.get(URL_KEYS.showNotReady)).toBe('1');
     });
 });
