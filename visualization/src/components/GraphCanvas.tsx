@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import type { DefGraph, DefNode, LearnState } from '../types';
 import {
   radialLayout,
-  computeLevels,
   learnStateForNode,
   colorForLearnState,
   computeVisibleSet,
@@ -154,7 +153,9 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
 
       graphRef.current = graph;
 
-      computeLevels(graph.nodes);
+      // Levels on the rendered graph are absolute db levels assigned in
+      // `renderGraph`; recomputing them here would collapse hidden
+      // prerequisites and move nodes to wrong rings.
 
       const width = W();
       const height = H();
@@ -263,7 +264,7 @@ const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
 
       nodeSel
         .select('title')
-        .text((d: DefNode) => `${d.title} (level: ${d.level ?? 0})\n${d.id}`);
+        .text((d: DefNode) => `${d.title} (level: ${d.absLevel ?? d.level ?? 0})\n${d.id}`);
 
       nodeSel
         .on('mouseenter', (ev: MouseEvent, d: DefNode) => {

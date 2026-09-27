@@ -116,6 +116,13 @@ export function computeLevels(nodes: DefNode[]): void {
 /* ------------------------------------------------------------------ */
 
 export function buildRaw(def: DefGraph): Raw {
+  // Absolute levels are computed once on the full database graph and stay
+  // stable regardless of any later view filtering. `renderGraph` preserves
+  // them (node spread) while recomputing the view-relative `level` used for
+  // the ring layout.
+  computeLevels(def.nodes);
+  for (const n of def.nodes) n.absLevel = n.level ?? 0;
+
   const byId = new Map(def.nodes.map((n) => [n.id, n] as const));
 
   const fieldsSet = new Set<string>();
@@ -135,27 +142,23 @@ export function buildRaw(def: DefGraph): Raw {
 export function renderGraph(raw: Raw, includedIds: Set<string> | null): DefGraph {
   const isIncluded = (id: string) => (!includedIds ? true : includedIds.has(id));
 
+  // Full-database deps are deliberately preserved on every node: readiness
+  // semantics must never depend on which nodes are currently visible. A
+  // prerequisite hidden by a filter still blocks learning, so `learnStateForNode`
+  // must always see the complete dependency set.
+  //
+  // Ring placement uses the absolute database level (`absLevel`, computed once
+  // in `buildRaw`), so a definition keeps its radial distance from the core
+  // regardless of filtering. Levels are NOT recomputed here.
   const nodes = raw.def.nodes
     .filter((n) => isIncluded(n.id))
-    .map((n) => ({ ...n, level: 0 }));
+    .map((n) => ({ ...n, level: n.absLevel ?? 0 }));
 
   const nodeSet = new Set(nodes.map((n) => n.id));
   const edges = raw.def.edges
     .filter((e) => nodeSet.has(e.source) && nodeSet.has(e.target))
     .map((e) => ({ ...e }));
 
-  const depsByNode = new Map<string, string[]>();
-  for (const e of edges) {
-    const arr = depsByNode.get(e.source) ?? [];
-    arr.push(e.target);
-    depsByNode.set(e.source, arr);
-  }
-  for (const n of nodes) {
-    n.deps = depsByNode.get(n.id) ?? (n.deps ?? []);
-    n.level = 0;
-  }
-
-  computeLevels(nodes);
   return { nodes, edges };
 }
 
@@ -197,7 +200,9 @@ export function selectNextReady(
   learned: Set<string>,
 ): string | null {
   void raw; // kept for API stability
-  computeLevels(rendered.nodes);
+  // Levels on rendered nodes are the absolute db levels (see renderGraph);
+  // do not recompute them here. Full deps are preserved, so readiness is
+  // computed against the complete dependency set.
   const ready = rendered.nodes.filter((n) => learnStateForNode(n, learned) === 'ready');
   if (!ready.length) return null;
 
@@ -246,8 +251,8 @@ export function buildFieldGroups(
       const ra = learnStateRank(stateOf(a));
       const rb = learnStateRank(stateOf(b));
       if (ra !== rb) return ra - rb;
-      const da = a.level ?? 0;
-      const db = b.level ?? 0;
+      const da = a.absLevel ?? a.level ?? 0;
+      const db = b.absLevel ?? b.level ?? 0;
       if (da !== db) return da - db;
       return (a.title ?? a.id).localeCompare(b.title ?? b.id);
     }),
@@ -364,8 +369,6 @@ export function computeStats(
   const totalEdges = rendered.edges.length;
   const unlockedEdges = rendered.edges.reduce((acc, e) => acc + (learned.has(e.target) ? 1 : 0), 0);
 
-  const maxTotalLevel = Math.max(0, ...rendered.nodes.map((n) => n.level ?? 0));
-
   const totalCountByLevel = new Map<number, number>();
   const learnedCountByLevel = new Map<number, number>();
 
@@ -377,10 +380,13 @@ export function computeStats(
     }
   }
 
+  // Levels are absolute (db-wide), so a narrowed track can skip levels.
+  // Count only the levels that actually contain definitions.
   let completedLevels = 0;
-  for (let lvl = 0; lvl <= maxTotalLevel; lvl++) {
-    const total = totalCountByLevel.get(lvl) ?? 0;
+  let totalLevels = 0;
+  for (const [lvl, total] of totalCountByLevel) {
     if (!total) continue;
+    totalLevels++;
     if ((learnedCountByLevel.get(lvl) ?? 0) === total) completedLevels++;
   }
 
@@ -389,7 +395,7 @@ export function computeStats(
     learnedDefs,
     totalEdges,
     unlockedEdges,
-    totalLevels: maxTotalLevel + 1,
+    totalLevels,
     completedLevels,
   };
 }

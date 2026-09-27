@@ -279,7 +279,7 @@ const FiltersTab: React.FC<Props> = ({
                     aria-label={`Select ${n.id} on the graph`}
                     onClick={() => onSelectDefinition(n.id)}
                   >
-                    <span className="filterResultLevel">L{n.level ?? 0}</span>
+                    <span className="filterResultLevel">L{n.absLevel ?? n.level ?? 0}</span>
                     <span className="searchItemText">
                       <span className="searchItemId">{n.id}</span>
                       <span className="searchItemTitle">{nodeSearchLabel(n)}</span>

@@ -39,6 +39,8 @@ We could go for 200 most low-level (according to topological sorting) definition
 
 ## DONE
 
+### 17. [BUG] Ready-to-learn is wrongly calculated
+
 ### 16. [FEATURE] Routing for definitions
 
 We should be able to route to a specific definition by its id. The URL should be updated accordingly when the user navigates to a definition. The URL should be updated to the definition id when the user clicks on a definition in the visualization or in the definition list. Whenever we click "go back" in the browser, we should go back to the previous definition if we were viewing a parent definition and clicked on a child definition. It will allow a smooth navigation between definitions and their parents.

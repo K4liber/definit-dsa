@@ -10,6 +10,7 @@ import {
   computeVisibleSet,
   effectiveState,
   isDefaultTrackFilters,
+  learnStateForNode,
   nodeMatchesQuery,
   normalizeId,
   prerequisiteClosure,
@@ -142,15 +143,42 @@ describe('graph helpers', () => {
     expect(normalizeId('  Fibonacci Number!? / Intro  ')).toBe('fibonacci_number_/_intro');
   });
 
-  it('recomputes levels on the rendered graph after filtering hidden prerequisites', () => {
+  it('preserves full deps and absolute levels on the rendered graph after filtering', () => {
     const raw = buildRaw(makeGraph());
     const rendered = renderGraph(raw, new Set(['math/mid', 'math/target']));
     const byId = new Map(rendered.nodes.map((node) => [node.id, node] as const));
 
+    // Only edges between visible nodes are drawn.
     expect(rendered.edges).toEqual([{ source: 'math/target', target: 'math/mid' }]);
+
+    // A hidden prerequisite still blocks learning: deps are NEVER truncated
+    // to the visible subgraph.
     expect(byId.get('math/mid')?.deps).toEqual(['math/root_a']);
-    expect(byId.get('math/mid')?.level).toBe(0);
-    expect(byId.get('math/target')?.level).toBe(1);
+
+    // Levels stay absolute (db-wide) instead of collapsing onto inner rings.
+    expect(byId.get('math/mid')?.level).toBe(1);
+    expect(byId.get('math/mid')?.absLevel).toBe(1);
+    expect(byId.get('math/target')?.level).toBe(2);
+    expect(byId.get('math/target')?.absLevel).toBe(2);
+  });
+
+  it('keeps a definition not-ready while a hidden prerequisite is unlearned', () => {
+    const raw = buildRaw(makeGraph());
+
+    // math/target depends on math/mid -> math/root_a. Hide the unlearned
+    // root_a from the view entirely.
+    const rendered = renderGraph(raw, new Set(['math/mid', 'math/target']));
+
+    // Even though root_a is invisible, target must not become ready:
+    // its full dependency chain (via mid) still contains unlearned root_a.
+    expect(learnStateForNode(rendered.nodes.find((n) => n.id === 'math/target')!, new Set())).toBe(
+      'not-ready',
+    );
+    // With everything below learned, target becomes ready — deps intact.
+    const learnedAll = new Set(['math/root_a', 'math/mid']);
+    expect(
+      learnStateForNode(rendered.nodes.find((n) => n.id === 'math/target')!, learnedAll),
+    ).toBe('ready');
   });
 
   it('marks partially unlocked nodes as pre-ready through the visible set', () => {

@@ -4,9 +4,11 @@ import DefinitionTab from './DefinitionTab';
 import FiltersTab from './FiltersTab';
 import ProgressTab from './ProgressTab';
 
-/** Visible nodes sorted by definition level (low-level first), then id. */
+/** Visible nodes sorted by absolute level (low-level first), then id. */
 function sortVisibleNodes(nodes: DefNode[]): DefNode[] {
-  return [...nodes].sort((a, b) => (a.level ?? 0) - (b.level ?? 0) || a.id.localeCompare(b.id));
+  return [...nodes].sort(
+    (a, b) => (a.absLevel ?? a.level ?? 0) - (b.absLevel ?? b.level ?? 0) || a.id.localeCompare(b.id),
+  );
 }
 
 type Props = {

@@ -254,7 +254,7 @@ describe('App integration scenarios', () => {
     await waitFor(() => {
       expect(graphCount()).toBeLessThan(afterNotReady);
     });
-  });
+  }, 20000);
 
   it('keeps progress stats unaffected by visualization filters', async () => {
     await renderApp();

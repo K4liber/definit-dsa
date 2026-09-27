@@ -13,10 +13,19 @@ export type DefNode = {
   deps: string[];
 
   /**
-   * Dynamic layout level (computed in the UI on the current projected graph).
-   * Not persisted in defs.json.
+   * Level used for the radial ring layout. Mirrors `absLevel` (assigned in
+   * `renderGraph` from the absolute value); recomputed only by `buildRaw`
+   * on the full database graph. Never reflects a filtered subgraph.
    */
   level?: number;
+
+  /**
+   * Absolute level in the full database graph (longest dependency chain
+   * below the definition). Computed once in `buildRaw`, preserved through
+   * filtering, and used for both display and ring placement. Readiness is
+   * always computed from full `deps`, never from visibility.
+   */
+  absLevel?: number;
 
   /** Preloaded markdown content for viewer */
   content: string;
