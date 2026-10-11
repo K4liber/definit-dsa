@@ -16,6 +16,16 @@ Each item should have a title, a description, and a list of tasks to be complete
 
 For sure, we should display a progress bar. It should show stats for the currently filtered definitions (based on new filitering options: groups and definitions). The progress bar should show the percentage of learned definitions out of the total number of filtered definitions. It should be yellow originally, but it should turn green proportionally when the percentage of learned definitions increases.
 
+### 8. [FEATURE] Create a json serializer compatible with the definit-visualization package
+
+- [ ] Remove the JS-based serializer.
+- [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
+
+### 18. [FEATURE] Analyze all words in the definitions that are not definitions
+
+- [ ] Create a collection of all words that are not definitions. The collection should be insesitive to the case and should not include any punctuation. The collection should be sorted alphabetically and should not contain any duplicates. This will be a "base" collection of words that are not definitions.
+- [ ] Can any of the words in the "base" collection be definitions? If so, we should create a new definition for that word and add it to the database.
+
 ### 11. [FEATURE] Handling multiple definition sources/databases
 
 ### 10. [FEATURE] Limit number of nodes on visualization to 200
@@ -27,11 +37,6 @@ Figure out conditions for limiting the number of nodes displayed.
 We could go for 200 most low-level (according to topological sorting) definitions after filters are applied. Then we could "cut-off" the already-learned definitions.
 
 ### 7. [FEATURE] Asking question instead of "Mark as learned"
-
-### 8. [FEATURE] Create a json serializer compatible with the definit-visualization package
-
-- [ ] Remove the JS-based serializer.
-- [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
 ## DONE
 
