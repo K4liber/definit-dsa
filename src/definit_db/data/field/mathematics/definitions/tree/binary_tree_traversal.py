@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 
 
 class _BinaryTreeTraversal(Definition):
@@ -14,8 +15,8 @@ A procedure for visiting each {NODE.key.get_reference("node")} in a
 
 ---
 
-Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has 
-children "B" and "C". A binary tree traversal that visits a node before its children would report the 
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has
+{CHILD.key.get_reference(phrase="children")} "B" and "C". A binary tree traversal that visits a node before its children would report the
 {NODE.key.get_reference("nodes")} in the order "A", "B", "C", touching each node exactly once.
 """
 

@@ -6,6 +6,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.interval import I
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.balanced_binary_tree import BALANCED_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_search_tree import BINARY_SEARCH_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 
 
@@ -22,8 +23,9 @@ guarantee efficient search operations.
 ---
 
 Storing the {INTERVAL.key.get_reference(phrase="intervals")} [1, 5], [3, 8], [10, 15], and [20, 25] in an interval 
-tree, ordered by start point, could produce a tree whose root is [10, 15] (subtree annotation 25), with [3, 8] 
-(subtree annotation 8) as its left child and [20, 25] (subtree annotation 25) as its right child; [1, 5] 
+tree, ordered by start point, could produce a tree whose root is [10, 15] (subtree annotation 25), with [3, 8]
+(subtree annotation 8) as its left {CHILD.key.get_reference(phrase="child")} and [20, 25] (subtree annotation 25) as its
+right child; [1, 5]
 (subtree annotation 5) is in turn the left child of [3, 8].
 
 A search for an interval overlapping the point 9 starts at the root [10, 15]: 9 does not fall inside [10, 15], so 

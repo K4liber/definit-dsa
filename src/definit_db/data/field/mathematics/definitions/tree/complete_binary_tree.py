@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 
 
 class _CompleteBinaryTree(Definition):
@@ -17,7 +18,7 @@ the last level h.
 ---
 
 Take a {BINARY_TREE.key.get_reference(phrase="binary tree")} where {NODE.key.get_reference(phrase="node")} 
-"A" has children "B" and "C", "B" has children "D" and "E", and "C" has a single child "F". The first two 
+"A" has {CHILD.key.get_reference(phrase="children")} "B" and "C", "B" has children "D" and "E", and "C" has a single child "F". The first two 
 levels are completely filled, and the last level is filled left to right ("D", "E", "F") with no gap before 
 "F". Because every {NODE.key.get_reference(phrase="node")} sits as far left as possible, this is a complete 
 binary tree.

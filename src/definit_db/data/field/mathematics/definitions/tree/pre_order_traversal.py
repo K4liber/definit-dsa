@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal import BINARY_TREE_TRAVERSAL
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 
 
@@ -18,7 +19,7 @@ and then the right subtree.
 
 ---
 
-Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left child 
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left {CHILD.key.get_reference("child")} 
 "B" and right child "C". A pre-order traversal visits the node itself first ("A"), then the left 
 {SUBTREE.key.get_reference("subtree")} ("B"), and finally the right subtree ("C"), reporting the 
 {NODE.key.get_reference("nodes")} in the order "A", "B", "C".

@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.item import ITEM
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.height_balanced_binary_search_tree import (
     HEIGHT_BALANCED_BINARY_SEARCH_TREE,
 )
@@ -30,7 +31,7 @@ inserting "3", the {NODE.key.get_reference(phrase="node")} "1" would have a left
 {SUBTREE.key.get_reference(phrase="subtree")} of height 0 and a right subtree of height 2 - a difference of 
 two, violating the balance rule. The tree rebalances by performing a 
 {TREE_ROTATION.key.get_reference(phrase="rotation")} so that "2" becomes the 
-{ROOT.key.get_reference(phrase="root")} with "1" and "3" as its children, restoring the height difference to at 
+{ROOT.key.get_reference(phrase="root")} with "1" and "3" as its {CHILD.key.get_reference(phrase="children")}, restoring the height difference to at 
 most one.
 """
 

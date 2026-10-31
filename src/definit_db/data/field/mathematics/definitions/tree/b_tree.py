@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.fundamental.partitioning import PARTITIONING
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
@@ -15,7 +16,7 @@ class _BTree(Definition):
 A self-balancing {TREE.key.get_reference(phrase="tree")} data structure 
 in which each 
 {NODE.key.get_reference(phrase="node")} can hold multiple keys, kept in sorted order, 
-and have multiple children. 
+and have multiple {CHILD.key.get_reference(phrase="children")}.
 The keys of a node {PARTITIONING.key.get_reference(phrase="partition")} 
 the values stored in its child 
 {SUBTREE.key.get_reference(phrase="subtrees")}, so that every key in a given subtree falls within the range marked 

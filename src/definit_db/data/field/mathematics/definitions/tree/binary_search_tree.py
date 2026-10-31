@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 
 
 class _BinarySearchTree(Definition):
@@ -15,7 +16,7 @@ in its right subtree is larger. This ordering lets a search for a key proceed by
 
 ---
 
-Consider a binary search tree whose root {NODE.key.get_reference(phrase="node")} holds the key "8", with left child 
+Consider a binary search tree whose root {NODE.key.get_reference(phrase="node")} holds the key "8", with left {CHILD.key.get_reference(phrase="child")} 
 "3" and right child "10". To find "3", start at the root: since "3" < "8", move to the left child and find it. Every 
 key in the left subtree ("3") is smaller than "8", and every key in the right subtree ("10") is larger, satisfying 
 the ordering property.

@@ -10,6 +10,7 @@ from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.graph.path import PATH
 from definit_db.data.field.mathematics.definitions.tree.balanced_binary_tree import BALANCED_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_search_tree import BINARY_SEARCH_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.root import ROOT
 
 
@@ -27,7 +28,7 @@ tree's height stays low:
 
 2. The {ROOT.key.get_reference(phrase="root")} node is always black.
 
-3. Every empty child position (where a node has no left or right child) is treated as black.
+3. Every empty {CHILD.key.get_reference(phrase="child")} position (where a node has no left or right child) is treated as black.
 
 4. If a node is red, both of its children are black.
 
