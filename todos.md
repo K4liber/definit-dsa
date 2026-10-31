@@ -21,11 +21,6 @@ For sure, we should display a progress bar. It should show stats for the current
 - [ ] Remove the JS-based serializer.
 - [ ] Create a Python-based serializer that outputs a JSON file compatible with the definit-visualization package.
 
-### 18. [FEATURE] Analyze all words in the definitions that are not definitions
-
-- [ ] Create a collection of all words that are not definitions. It should be in a form of a script that takes the database as an input. The collection should be insesitive to the case and should not include any punctuation. Maybe there is some API available to convert words to their base form. The collection should be sorted alphabetically and should not contain any duplicates. This will be a "base" collection of words that are not definitions. We should also count the number of occurrences of each word in the definitions and create a list of the most common words that are not definitions.
-- [ ] Can any of the words in the "base" collection be definitions? If so, we should create a new definition for that word and add it to the database.
-
 ### 11. [FEATURE] Handling multiple definition sources/databases
 
 ### 10. [FEATURE] Limit number of nodes on visualization to 200
@@ -39,6 +34,13 @@ We could go for 200 most low-level (according to topological sorting) definition
 ### 7. [FEATURE] Asking question instead of "Mark as learned"
 
 ## DONE
+
+### 18. [FEATURE] Analyze all words in the definitions that are not definitions
+
+- [x] Create a collection of all words that are not definitions. It should be in a form of a script that takes the database as an input. The collection should be insesitive to the case and should not include any punctuation. Maybe there is some API available to convert words to their base form. The collection should be sorted alphabetically and should not contain any duplicates. This will be a "base" collection of words that are not definitions. We should also count the number of occurrences of each word in the definitions and create a list of the most common words that are not definitions.
+- [x] Can any of the words in the "base" collection be definitions? If so, we should create a new definition for that word and add it to the database.
+
+Implementation: `src/definit_db/analyze_words.py` (`cd src && uv run python -m definit_db.analyze_words --output ../docs/word_analysis.md`). Lemmatization is offline (plural-only heuristics + irregular plural forms), no external API. Words matching any definition name or alias are excluded. The analysis identified `parent` (21 occurrences in 11 definitions) and `child` (103 occurrences in 28 definitions) as missing tree-family definitions — added `mathematics/definitions/tree/parent.py` and `child.py`, registered in the field index and counted in `test/test_index.py`.
 
 ### 14. [BUG] Definition content locked into previous scroll
 

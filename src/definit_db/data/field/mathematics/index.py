@@ -255,6 +255,7 @@ from definit_db.data.field.mathematics.definitions.tree.binary_heap import BINAR
 from definit_db.data.field.mathematics.definitions.tree.binary_search_tree import BINARY_SEARCH_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal import BINARY_TREE_TRAVERSAL
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.complete_binary_tree import COMPLETE_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.descendant import DESCENDANT
 from definit_db.data.field.mathematics.definitions.tree.full_binary_tree import FULL_BINARY_TREE
@@ -270,6 +271,7 @@ from definit_db.data.field.mathematics.definitions.tree.max_heap import MAX_HEAP
 from definit_db.data.field.mathematics.definitions.tree.min_heap import MIN_HEAP
 from definit_db.data.field.mathematics.definitions.tree.minimum_spanning_tree import MINIMUM_SPANNING_TREE
 from definit_db.data.field.mathematics.definitions.tree.n_ary_tree import N_ARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.parent import PARENT
 from definit_db.data.field.mathematics.definitions.tree.perfect_binary_tree import PERFECT_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.post_order_traversal import POST_ORDER_TRAVERSAL
 from definit_db.data.field.mathematics.definitions.tree.pre_order_traversal import PRE_ORDER_TRAVERSAL
@@ -403,6 +405,8 @@ field_index: list[Definition] = [
     WEIGHTED_GRAPH,
     ANCESTOR,
     DESCENDANT,
+    PARENT,
+    CHILD,
     AVL_TREE,
     B_TREE,
     BALANCED_BINARY_TREE,
