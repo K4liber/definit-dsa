@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.ancestor import ANCESTOR
+from definit_db.data.field.mathematics.definitions.tree.parent import PARENT
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 
 
@@ -17,7 +18,7 @@ from the root and closest to the two given nodes.
 
 ---
 
-In a {TREE.key.get_reference(phrase="tree")} where "A" is the parent of "B" and "C", and "B" is the parent of "D" 
+In a {TREE.key.get_reference(phrase="tree")} where "A" is the {PARENT.key.get_reference(phrase="parent")} of "B" and "C", and "B" is the parent of "D" 
 and "E", the lowest common {ANCESTOR.key.get_reference(phrase="ancestor")} of {NODE.key.get_reference(phrase="nodes")} 
 "D" and "E" is "B", while the lowest common ancestor of "D" and "C" is "A".
 """

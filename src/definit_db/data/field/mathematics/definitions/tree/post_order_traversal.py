@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree_traversal import BINARY_TREE_TRAVERSAL
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 
 
@@ -17,7 +18,7 @@ A {BINARY_TREE_TRAVERSAL.key.get_reference("binary tree traversal")} of a
 
 ---
 
-Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left child 
+Take a {BINARY_TREE.key.get_reference("binary tree")} where {NODE.key.get_reference("node")} "A" has left {CHILD.key.get_reference("child")} 
 "B" and right child "C". A post-order traversal visits the left {SUBTREE.key.get_reference("subtree")} first ("B"), 
 then the right subtree ("C"), and finally the node itself ("A"), reporting the 
 {NODE.key.get_reference("nodes")} in the order "B", "C", "A".

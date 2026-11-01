@@ -7,6 +7,7 @@ from definit_db.data.field.mathematics.definitions.fundamental.operation import 
 from definit_db.data.field.mathematics.definitions.fundamental.sequence import SEQUENCE
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 
 
@@ -21,7 +22,7 @@ moves a {NODE.key.get_reference(phrase="node")} down and brings its child up, pr
 ---
 
 Consider a {BINARY_TREE.key.get_reference(phrase="binary tree")} where {NODE.key.get_reference(phrase="node")} "A" 
-has a right child "B". A left rotation at "A" makes "B" the new parent: "B" takes the place of "A", and "A" becomes 
+has a right {CHILD.key.get_reference(phrase="child")} "B". A left rotation at "A" makes "B" the new parent: "B" takes the place of "A", and "A" becomes 
 the left child of "B". The in-order traversal remains unchanged — any {SUBTREE.key.get_reference(phrase="subtree")} 
 that was between "A" and "B" stays between them after the rotation.
 """

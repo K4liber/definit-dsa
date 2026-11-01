@@ -5,6 +5,7 @@ from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.balanced_binary_tree import BALANCED_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.binary_search_tree import BINARY_SEARCH_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.subtree import SUBTREE
 
 
@@ -19,7 +20,7 @@ that satisfies the {BALANCED_BINARY_TREE.key.get_reference(phrase="balanced bina
 ---
 
 Consider a {BINARY_SEARCH_TREE.key.get_reference(phrase="binary search tree")} whose root 
-{NODE.key.get_reference(phrase="node")} holds "8", with left child "3" and right child "10". The search ordering 
+{NODE.key.get_reference(phrase="node")} holds "8", with left {CHILD.key.get_reference(phrase="child")} "3" and right child "10". The search ordering 
 holds ("3" < "8" < "10"), and the left and right {SUBTREE.key.get_reference(phrase="subtrees")} of every node 
 differ in height by at most one (here both have height 0), so the 
 {BALANCED_BINARY_TREE.key.get_reference(phrase="balance")} property is met. It is therefore a height-balanced 

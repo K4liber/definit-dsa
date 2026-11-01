@@ -4,6 +4,7 @@ from definit.definition.definition_key import DefinitionKey
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
 from definit_db.data.field.mathematics.definitions.tree.binary_tree import BINARY_TREE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.full_binary_tree import FULL_BINARY_TREE
 from definit_db.data.field.mathematics.definitions.tree.leaf import LEAF
 
@@ -20,7 +21,7 @@ and all leaves are at the same depth.
 
 ---
 
-Take {NODE.key.get_reference("node")} "A" with children "B" and "C", where "B" has children "D" and "E" 
+Take {NODE.key.get_reference("node")} "A" with {CHILD.key.get_reference("children")} "B" and "C", where "B" has children "D" and "E" 
 and "C" has children "F" and "G". Every internal node has exactly two children, and the 
 {LEAF.key.get_reference("leaves")} "D", "E", "F", "G" all sit at the same depth, so this 
 {FULL_BINARY_TREE.key.get_reference("full")} binary tree is also perfect.

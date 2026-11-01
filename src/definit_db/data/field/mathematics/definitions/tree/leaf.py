@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 
 
@@ -10,7 +11,7 @@ class _Leaf(Definition):
     def _get_content(self) -> str:
         return f"""
 A {NODE.key.get_reference(phrase="node")} in a {TREE.key.get_reference(phrase="tree")} that does not have 
-any children (descendants).
+any {CHILD.key.get_reference(phrase="children")} (descendants).
 
 ---
 

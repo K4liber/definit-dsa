@@ -3,6 +3,7 @@ from definit.definition.definition_key import DefinitionKey
 
 from definit_db.data.field import FieldName
 from definit_db.data.field.mathematics.definitions.graph.node import NODE
+from definit_db.data.field.mathematics.definitions.tree.child import CHILD
 from definit_db.data.field.mathematics.definitions.tree.tree import TREE
 
 
@@ -10,7 +11,7 @@ class _NAryTree(Definition):
     def _get_content(self) -> str:
         return f"""
 A {TREE.key.get_reference("tree")} in which each 
-{NODE.key.get_reference("node")} has no more than n children.
+{NODE.key.get_reference("node")} has no more than n {CHILD.key.get_reference("children")}.
 
 ---
 

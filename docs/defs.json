@@ -358,110 +358,6 @@
       "level": 9
     },
     {
-      "id": "mathematics/n_ary_tree",
-      "title": "n_ary_tree",
-      "content": "# n-ary tree (n-way tree)\n\n\nA [tree](mathematics/tree) in which each \n[node](mathematics/node) has no more than n children.\n\n---\n\nFix n = 3 and build a [tree](mathematics/tree) where no [node](mathematics/node) \nmay have more than three children: \"A\" has children \"B\", \"C\", \"D\", and \"B\" has a single child \"E\". \nEvery node stays within the limit of three children, so this is an n-ary tree with n = 3.\n\n",
-      "aliases": [
-        "n-way tree"
-      ],
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node"
-      ],
-      "level": 10
-    },
-    {
-      "id": "mathematics/binary_tree",
-      "title": "binary_tree",
-      "content": "# binary_tree\n\n\nA [tree](mathematics/tree) in which each [node](mathematics/node) has at most \ntwo children, referred to as the left child and the right child.\n\nA binary tree is a special case of an [n-ary tree](mathematics/n_ary_tree) where n = 2.\n\n---\n\nArrange [nodes](mathematics/node) as a [tree](mathematics/tree): \"A\" has \nleft child \"B\" and right child \"C\", and \"B\" has a left child \"D\" but no right child. Since no node holds \nmore than two children, this is a binary tree.\n\n",
-      "aliases": [],
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/n_ary_tree"
-      ],
-      "level": 11
-    },
-    {
-      "id": "mathematics/binary_search_tree",
-      "title": "binary_search_tree",
-      "content": "# binary_search_tree (BST)\n\n\nA [binary_tree](mathematics/binary_tree) in which the [nodes](mathematics/node) are \nkept in sorted order: for every node, every key in its left subtree is smaller than the node's key, and every key \nin its right subtree is larger. This ordering lets a search for a key proceed by repeatedly moving left or right.\n\n---\n\nConsider a binary search tree whose root [node](mathematics/node) holds the key \"8\", with left child \n\"3\" and right child \"10\". To find \"3\", start at the root: since \"3\" < \"8\", move to the left child and find it. Every \nkey in the left subtree (\"3\") is smaller than \"8\", and every key in the right subtree (\"10\") is larger, satisfying \nthe ordering property.\n\n",
-      "aliases": [
-        "BST"
-      ],
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/binary_tree_traversal",
-      "title": "binary_tree_traversal",
-      "content": "# binary tree traversal (tree traversal)\n\n\nA procedure for visiting each [node](mathematics/node) in a\n[binary tree](mathematics/binary_tree) in a specified order.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\". A binary tree traversal that visits a node before its children would report the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\", touching each node exactly once.\n\n",
-      "aliases": [
-        "tree traversal"
-      ],
-      "deps": [
-        "mathematics/node",
-        "mathematics/binary_tree"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/complete_binary_tree",
-      "title": "complete_binary_tree",
-      "content": "# complete_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) in which every level, except possibly the last, is \ncompletely filled, and all [nodes](mathematics/node) are as far left as possible. In a complete \nbinary tree, all nodes at the last level are filled from left to right. It can have between 1 and 2^h nodes at \nthe last level h.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", \"B\" has children \"D\" and \"E\", and \"C\" has a single child \"F\". The first two \nlevels are completely filled, and the last level is filled left to right (\"D\", \"E\", \"F\") with no gap before \n\"F\". Because every [node](mathematics/node) sits as far left as possible, this is a complete \nbinary tree.\n\n",
-      "aliases": [],
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/leaf",
-      "title": "leaf",
-      "content": "# leaf (leaf node, terminal node)\n\n\nA [node](mathematics/node) in a [tree](mathematics/tree) that does not have \nany children (descendants).\n\n---\n\nPicture a small [tree](mathematics/tree) where [node](mathematics/node) \"A\" \nbranches to \"B\" and \"C\". Since \"B\" and \"C\" have no children of their own, each of them is a leaf, while \"A\" \nis not.\n\n",
-      "aliases": [
-        "leaf node",
-        "terminal node"
-      ],
-      "deps": [
-        "mathematics/node",
-        "mathematics/tree"
-      ],
-      "level": 10
-    },
-    {
-      "id": "mathematics/full_binary_tree",
-      "title": "full_binary_tree",
-      "content": "# full binary tree (proper binary tree, strict binary tree)\n\n\nA [binary tree](mathematics/binary_tree) \nin which every [node](mathematics/node) has either 0 or 2 children.\n\nEquivalently, every internal (non-[leaf](mathematics/leaf)) node has exactly two children.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\", and \"B\" has children \"D\" and \"E\". The [nodes](mathematics/node) \"C\", \"D\", \nand \"E\" have no children, so they are [leaves](mathematics/leaf). Every node holds either 0 or 2 \nchildren, so this is a full binary tree.\n\n",
-      "aliases": [
-        "proper binary tree",
-        "strict binary tree"
-      ],
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/node",
-        "mathematics/leaf"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/perfect_binary_tree",
-      "title": "perfect_binary_tree",
-      "content": "# perfect binary tree\n\n\nA [binary tree](mathematics/binary_tree) in which every internal \n(non-[leaf](mathematics/leaf)) [node](mathematics/node) has exactly two children \nand all [leaf](mathematics/leaf) nodes are at the same depth.\n\nEquivalently, a perfect binary tree is [full](mathematics/full_binary_tree) \nand all leaves are at the same depth.\n\n---\n\nTake [node](mathematics/node) \"A\" with children \"B\" and \"C\", where \"B\" has children \"D\" and \"E\" \nand \"C\" has children \"F\" and \"G\". Every internal node has exactly two children, and the \n[leaves](mathematics/leaf) \"D\", \"E\", \"F\", \"G\" all sit at the same depth, so this \n[full](mathematics/full_binary_tree) binary tree is also perfect.\n\n",
-      "aliases": [],
-      "deps": [
-        "mathematics/binary_tree",
-        "mathematics/leaf",
-        "mathematics/node",
-        "mathematics/full_binary_tree"
-      ],
-      "level": 13
-    },
-    {
       "id": "mathematics/merge",
       "title": "merge",
       "content": "# merge (merging)\n\n\nMerge is an [operation](mathematics/operation) that combines two [sequences](mathematics/sequence) into a \nsingle sequence by interleaving their elements while preserving the order of each input sequence.\n\n---\n\nMerge the [sequences](mathematics/sequence) (\"1\", \"3\") and (\"2\", \"4\") into the single sequence \n(\"1\", \"2\", \"3\", \"4\"). The result interleaves the inputs while keeping each input's internal order: \"1\" still \nprecedes \"3\", and \"2\" still precedes \"4\".\n\n",
@@ -885,72 +781,220 @@
       "level": 10
     },
     {
-      "id": "mathematics/ancestor",
-      "title": "ancestor",
-      "content": "# ancestor\n\n\nIn a [tree](mathematics/tree), an ancestor of a [node](mathematics/node) is any \nnode on the [path](mathematics/path) from the [root](mathematics/root) to that node. \nDepending on convention, the node itself may also be considered its own ancestor.\n\n---\n\nIn a [tree](mathematics/tree) where [root](mathematics/root) \"A\" is the parent of \"B\", \nand \"B\" is the parent of \"D\", the ancestors of [node](mathematics/node) \"D\" are \"B\" and \"A\", since \nboth lie on the [path](mathematics/path) from the root to \"D\".\n\n",
-      "aliases": [],
+      "id": "mathematics/parent",
+      "title": "parent",
+      "content": "# parent (parent node)\n\n\nIn a [tree](mathematics/tree), the parent of a [node](mathematics/node) is the \n[unique](mathematics/uniqueness) node that lies directly above it: the single node from which it \ncan be reached by following exactly one [edge](mathematics/edge) upward toward the \n[root](mathematics/root). Each node has at most one parent, and only the root has none.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" branches to \"B\" and \"C\", and \"B\" branches to \"D\", the \nparent of \"D\" is \"B\", the parent of \"B\" is \"A\", and the parent of \"C\" is also \"A\". \n\n",
+      "aliases": [
+        "parent node"
+      ],
       "deps": [
         "mathematics/tree",
         "mathematics/node",
-        "mathematics/path",
+        "mathematics/uniqueness",
+        "mathematics/edge",
         "mathematics/root"
       ],
       "level": 11
     },
     {
-      "id": "mathematics/descendant",
-      "title": "descendant",
-      "content": "# descendant\n\n\nIn a [tree](mathematics/tree), a descendant of a [node](mathematics/node) is any \nnode that can be reached by repeatedly moving from that node to one of its children. Equivalently, a node is a \ndescendant of another node exactly when that other node is its [ancestor](mathematics/ancestor).\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the descendants of [node](mathematics/node) \"A\" are \"B\", \"C\", \"D\", and \"E\", while the \ndescendants of \"B\" are \"D\" and \"E\".\n\n",
+      "id": "mathematics/ancestor",
+      "title": "ancestor",
+      "content": "# ancestor\n\n\nIn a [tree](mathematics/tree), an ancestor of a [node](mathematics/node) is any \nnode on the [path](mathematics/path) from the [root](mathematics/root) to that node. \nDepending on convention, the node itself may also be considered its own ancestor.\n\n---\n\nIn a [tree](mathematics/tree) where [root](mathematics/root) \"A\" is the\n[parent](mathematics/parent) of \"B\",\nand \"B\" is the parent of \"D\", the ancestors of [node](mathematics/node) \"D\" are \"B\" and \"A\", since\nboth lie on the [path](mathematics/path) from the root to \"D\".\n\n",
       "aliases": [],
       "deps": [
         "mathematics/tree",
         "mathematics/node",
-        "mathematics/ancestor"
+        "mathematics/path",
+        "mathematics/root",
+        "mathematics/parent"
       ],
       "level": 12
     },
     {
+      "id": "mathematics/child",
+      "title": "child",
+      "content": "# child (child node)\n\n\nIn a [tree](mathematics/tree), a child of a [node](mathematics/node) is a node \nthat lies directly below it: a node whose [parent](mathematics/parent) is that node. A node can \nhave zero or more children, and every node except the root is a child of exactly one node.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" branches to \"B\" and \"C\", and \"B\" branches to \"D\", the \nchildren of \"A\" are \"B\" and \"C\", the children of \"B\" consist of the single node \"D\", and \"C\" has no children.\n\n",
+      "aliases": [
+        "child node"
+      ],
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/parent"
+      ],
+      "level": 12
+    },
+    {
+      "id": "mathematics/descendant",
+      "title": "descendant",
+      "content": "# descendant\n\n\nIn a [tree](mathematics/tree), a descendant of a [node](mathematics/node) is any \nnode that can be reached by repeatedly moving from that node to one of its [children](mathematics/child). Equivalently, a node is a \ndescendant of another node exactly when that other node is its [ancestor](mathematics/ancestor).\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the [parent](mathematics/parent) of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the descendants of [node](mathematics/node) \"A\" are \"B\", \"C\", \"D\", and \"E\", while the \ndescendants of \"B\" are \"D\" and \"E\".\n\n",
+      "aliases": [],
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/child",
+        "mathematics/ancestor",
+        "mathematics/parent"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/n_ary_tree",
+      "title": "n_ary_tree",
+      "content": "# n-ary tree (n-way tree)\n\n\nA [tree](mathematics/tree) in which each \n[node](mathematics/node) has no more than n [children](mathematics/child).\n\n---\n\nFix n = 3 and build a [tree](mathematics/tree) where no [node](mathematics/node) \nmay have more than three children: \"A\" has children \"B\", \"C\", \"D\", and \"B\" has a single child \"E\". \nEvery node stays within the limit of three children, so this is an n-ary tree with n = 3.\n\n",
+      "aliases": [
+        "n-way tree"
+      ],
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/child"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/binary_tree",
+      "title": "binary_tree",
+      "content": "# binary_tree\n\n\nA [tree](mathematics/tree) in which each [node](mathematics/node) has at most \ntwo [children](mathematics/child), referred to as the left child and the right child.\n\nA binary tree is a special case of an [n-ary tree](mathematics/n_ary_tree) where n = 2.\n\n---\n\nArrange [nodes](mathematics/node) as a [tree](mathematics/tree): \"A\" has \nleft child \"B\" and right child \"C\", and \"B\" has a left child \"D\" but no right child. Since no node holds \nmore than two children, this is a binary tree.\n\n",
+      "aliases": [],
+      "deps": [
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/child",
+        "mathematics/n_ary_tree"
+      ],
+      "level": 14
+    },
+    {
+      "id": "mathematics/binary_search_tree",
+      "title": "binary_search_tree",
+      "content": "# binary_search_tree (BST)\n\n\nA [binary_tree](mathematics/binary_tree) in which the [nodes](mathematics/node) are \nkept in sorted order: for every node, every key in its left subtree is smaller than the node's key, and every key \nin its right subtree is larger. This ordering lets a search for a key proceed by repeatedly moving left or right.\n\n---\n\nConsider a binary search tree whose root [node](mathematics/node) holds the key \"8\", with left [child](mathematics/child) \n\"3\" and right child \"10\". To find \"3\", start at the root: since \"3\" < \"8\", move to the left child and find it. Every \nkey in the left subtree (\"3\") is smaller than \"8\", and every key in the right subtree (\"10\") is larger, satisfying \nthe ordering property.\n\n",
+      "aliases": [
+        "BST"
+      ],
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/child"
+      ],
+      "level": 15
+    },
+    {
+      "id": "mathematics/binary_tree_traversal",
+      "title": "binary_tree_traversal",
+      "content": "# binary tree traversal (tree traversal)\n\n\nA procedure for visiting each [node](mathematics/node) in a\n[binary tree](mathematics/binary_tree) in a specified order.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has\n[children](mathematics/child) \"B\" and \"C\". A binary tree traversal that visits a node before its children would report the\n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\", touching each node exactly once.\n\n",
+      "aliases": [
+        "tree traversal"
+      ],
+      "deps": [
+        "mathematics/node",
+        "mathematics/binary_tree",
+        "mathematics/child"
+      ],
+      "level": 15
+    },
+    {
+      "id": "mathematics/complete_binary_tree",
+      "title": "complete_binary_tree",
+      "content": "# complete_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) in which every level, except possibly the last, is \ncompletely filled, and all [nodes](mathematics/node) are as far left as possible. In a complete \nbinary tree, all nodes at the last level are filled from left to right. It can have between 1 and 2^h nodes at \nthe last level h.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has [children](mathematics/child) \"B\" and \"C\", \"B\" has children \"D\" and \"E\", and \"C\" has a single child \"F\". The first two \nlevels are completely filled, and the last level is filled left to right (\"D\", \"E\", \"F\") with no gap before \n\"F\". Because every [node](mathematics/node) sits as far left as possible, this is a complete \nbinary tree.\n\n",
+      "aliases": [],
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/child"
+      ],
+      "level": 15
+    },
+    {
+      "id": "mathematics/leaf",
+      "title": "leaf",
+      "content": "# leaf (leaf node, terminal node)\n\n\nA [node](mathematics/node) in a [tree](mathematics/tree) that does not have \nany [children](mathematics/child) (descendants).\n\n---\n\nPicture a small [tree](mathematics/tree) where [node](mathematics/node) \"A\" \nbranches to \"B\" and \"C\". Since \"B\" and \"C\" have no children of their own, each of them is a leaf, while \"A\" \nis not.\n\n",
+      "aliases": [
+        "leaf node",
+        "terminal node"
+      ],
+      "deps": [
+        "mathematics/node",
+        "mathematics/tree",
+        "mathematics/child"
+      ],
+      "level": 13
+    },
+    {
+      "id": "mathematics/full_binary_tree",
+      "title": "full_binary_tree",
+      "content": "# full binary tree (proper binary tree, strict binary tree)\n\n\nA [binary tree](mathematics/binary_tree) \nin which every [node](mathematics/node) has either 0 or 2 [children](mathematics/child).\n\nEquivalently, every internal (non-[leaf](mathematics/leaf)) node has exactly two children.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has \nchildren \"B\" and \"C\", and \"B\" has children \"D\" and \"E\". The [nodes](mathematics/node) \"C\", \"D\", \nand \"E\" have no children, so they are [leaves](mathematics/leaf). Every node holds either 0 or 2 \nchildren, so this is a full binary tree.\n\n",
+      "aliases": [
+        "proper binary tree",
+        "strict binary tree"
+      ],
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/node",
+        "mathematics/child",
+        "mathematics/leaf"
+      ],
+      "level": 15
+    },
+    {
+      "id": "mathematics/perfect_binary_tree",
+      "title": "perfect_binary_tree",
+      "content": "# perfect binary tree\n\n\nA [binary tree](mathematics/binary_tree) in which every internal \n(non-[leaf](mathematics/leaf)) [node](mathematics/node) has exactly two children \nand all [leaf](mathematics/leaf) nodes are at the same depth.\n\nEquivalently, a perfect binary tree is [full](mathematics/full_binary_tree) \nand all leaves are at the same depth.\n\n---\n\nTake [node](mathematics/node) \"A\" with [children](mathematics/child) \"B\" and \"C\", where \"B\" has children \"D\" and \"E\" \nand \"C\" has children \"F\" and \"G\". Every internal node has exactly two children, and the \n[leaves](mathematics/leaf) \"D\", \"E\", \"F\", \"G\" all sit at the same depth, so this \n[full](mathematics/full_binary_tree) binary tree is also perfect.\n\n",
+      "aliases": [],
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/leaf",
+        "mathematics/node",
+        "mathematics/full_binary_tree",
+        "mathematics/child"
+      ],
+      "level": 16
+    },
+    {
       "id": "mathematics/lowest_common_ancestor",
       "title": "lowest_common_ancestor",
-      "content": "# lowest common ancestor (LCA)\n\n\nThe lowest common ancestor of two [nodes](mathematics/node) in a \n[tree](mathematics/tree) is the deepest node that is an \n[ancestor](mathematics/ancestor) of both nodes. Equivalently, it is the common ancestor farthest \nfrom the root and closest to the two given nodes.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the lowest common [ancestor](mathematics/ancestor) of [nodes](mathematics/node) \n\"D\" and \"E\" is \"B\", while the lowest common ancestor of \"D\" and \"C\" is \"A\".\n\n",
+      "content": "# lowest common ancestor (LCA)\n\n\nThe lowest common ancestor of two [nodes](mathematics/node) in a \n[tree](mathematics/tree) is the deepest node that is an \n[ancestor](mathematics/ancestor) of both nodes. Equivalently, it is the common ancestor farthest \nfrom the root and closest to the two given nodes.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the [parent](mathematics/parent) of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the lowest common [ancestor](mathematics/ancestor) of [nodes](mathematics/node) \n\"D\" and \"E\" is \"B\", while the lowest common ancestor of \"D\" and \"C\" is \"A\".\n\n",
       "aliases": [
         "LCA"
       ],
       "deps": [
         "mathematics/node",
         "mathematics/tree",
-        "mathematics/ancestor"
-      ],
-      "level": 12
-    },
-    {
-      "id": "mathematics/subtree",
-      "title": "subtree",
-      "content": "# subtree\n\n\nA [tree](mathematics/tree) formed from a [node](mathematics/node) and all its \n[descendants](mathematics/descendant) in a tree.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the parent of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the subtree rooted at [node](mathematics/node) \"B\" consists of \"B\" together with its \n[descendants](mathematics/descendant) \"D\" and \"E\".\n\n",
-      "aliases": [],
-      "deps": [
-        "mathematics/tree",
-        "mathematics/node",
-        "mathematics/descendant"
+        "mathematics/ancestor",
+        "mathematics/parent"
       ],
       "level": 13
     },
     {
-      "id": "mathematics/balanced_binary_tree",
-      "title": "balanced_binary_tree",
-      "content": "# balanced_binary_tree\n\n\nA type of [binary tree](mathematics/binary_tree) in which the depth of the two \n[subtrees](mathematics/subtree) of every [node](mathematics/node) never differs \nby more than one. This means that for any given node in the tree, the height of its left and right subtrees can \ndiffer by at most one.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has children \"B\" and \"C\", and \"B\" has a single child \"D\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D) has height 1 and the right subtree (C) has height 0; \nthe difference is 1, so the tree is a balanced binary tree.\n\n",
+      "id": "mathematics/subtree",
+      "title": "subtree",
+      "content": "# subtree\n\n\nA [tree](mathematics/tree) formed from a [node](mathematics/node) and all its \n[descendants](mathematics/descendant) in a tree.\n\n---\n\nIn a [tree](mathematics/tree) where \"A\" is the [parent](mathematics/parent) of \"B\" and \"C\", and \"B\" is the parent of \"D\" \nand \"E\", the subtree rooted at [node](mathematics/node) \"B\" consists of \"B\" together with its \n[descendants](mathematics/descendant) \"D\" and \"E\".\n\n",
       "aliases": [],
       "deps": [
-        "mathematics/binary_tree",
-        "mathematics/subtree",
-        "mathematics/node"
+        "mathematics/tree",
+        "mathematics/node",
+        "mathematics/descendant",
+        "mathematics/parent"
       ],
       "level": 14
     },
     {
+      "id": "mathematics/balanced_binary_tree",
+      "title": "balanced_binary_tree",
+      "content": "# balanced_binary_tree\n\n\nA type of [binary tree](mathematics/binary_tree) in which the depth of the two \n[subtrees](mathematics/subtree) of every [node](mathematics/node) never differs \nby more than one. This means that for any given node in the tree, the height of its left and right subtrees can \ndiffer by at most one.\n\n---\n\nBuild a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \n\"A\" has [children](mathematics/child) \"B\" and \"C\", and \"B\" has a single child \"D\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D) has height 1 and the right subtree (C) has height 0; \nthe difference is 1, so the tree is a balanced binary tree.\n\n",
+      "aliases": [],
+      "deps": [
+        "mathematics/binary_tree",
+        "mathematics/subtree",
+        "mathematics/node",
+        "mathematics/child"
+      ],
+      "level": 15
+    },
+    {
       "id": "mathematics/height_balanced_binary_search_tree",
       "title": "height_balanced_binary_search_tree",
-      "content": "# height-balanced_binary_search_tree (self-balancing BST, balanced BST)\n\n\nA height-balanced binary search tree is a [binary search tree](mathematics/binary_search_tree) \nthat satisfies the [balanced binary tree](mathematics/balanced_binary_tree) property: for every \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one.\n\n---\n\nConsider a [binary search tree](mathematics/binary_search_tree) whose root \n[node](mathematics/node) holds \"8\", with left child \"3\" and right child \"10\". The search ordering \nholds (\"3\" < \"8\" < \"10\"), and the left and right [subtrees](mathematics/subtree) of every node \ndiffer in height by at most one (here both have height 0), so the \n[balance](mathematics/balanced_binary_tree) property is met. It is therefore a height-balanced \nbinary search tree.\n\n",
+      "content": "# height-balanced_binary_search_tree (self-balancing BST, balanced BST)\n\n\nA height-balanced binary search tree is a [binary search tree](mathematics/binary_search_tree) \nthat satisfies the [balanced binary tree](mathematics/balanced_binary_tree) property: for every \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one.\n\n---\n\nConsider a [binary search tree](mathematics/binary_search_tree) whose root \n[node](mathematics/node) holds \"8\", with left [child](mathematics/child) \"3\" and right child \"10\". The search ordering \nholds (\"3\" < \"8\" < \"10\"), and the left and right [subtrees](mathematics/subtree) of every node \ndiffer in height by at most one (here both have height 0), so the \n[balance](mathematics/balanced_binary_tree) property is met. It is therefore a height-balanced \nbinary search tree.\n\n",
       "aliases": [
         "self-balancing BST",
         "balanced BST"
@@ -959,14 +1003,15 @@
         "mathematics/binary_search_tree",
         "mathematics/balanced_binary_tree",
         "mathematics/node",
-        "mathematics/subtree"
+        "mathematics/subtree",
+        "mathematics/child"
       ],
-      "level": 15
+      "level": 16
     },
     {
       "id": "mathematics/in_order_traversal",
       "title": "in_order_traversal",
-      "content": "# in-order traversal (inorder traversal, symmetric traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left \n[subtree](mathematics/subtree) is visited first, then the node itself, and then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". An in-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the node itself (\"A\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"A\", \"C\".\n\n",
+      "content": "# in-order traversal (inorder traversal, symmetric traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left \n[subtree](mathematics/subtree) is visited first, then the node itself, and then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left [child](mathematics/child) \n\"B\" and right child \"C\". An in-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the node itself (\"A\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"A\", \"C\".\n\n",
       "aliases": [
         "inorder traversal",
         "symmetric traversal"
@@ -975,14 +1020,15 @@
         "mathematics/binary_tree_traversal",
         "mathematics/binary_tree",
         "mathematics/node",
-        "mathematics/subtree"
+        "mathematics/subtree",
+        "mathematics/child"
       ],
-      "level": 14
+      "level": 16
     },
     {
       "id": "mathematics/pre_order_traversal",
       "title": "pre_order_traversal",
-      "content": "# pre-order traversal (preorder traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), \nthe node itself is visited first, then the left [subtree](mathematics/subtree), \nand then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A pre-order traversal visits the node itself first (\"A\"), then the left \n[subtree](mathematics/subtree) (\"B\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\".\n\n",
+      "content": "# pre-order traversal (preorder traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), \nthe node itself is visited first, then the left [subtree](mathematics/subtree), \nand then the right subtree.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left [child](mathematics/child) \n\"B\" and right child \"C\". A pre-order traversal visits the node itself first (\"A\"), then the left \n[subtree](mathematics/subtree) (\"B\"), and finally the right subtree (\"C\"), reporting the \n[nodes](mathematics/node) in the order \"A\", \"B\", \"C\".\n\n",
       "aliases": [
         "preorder traversal"
       ],
@@ -990,14 +1036,15 @@
         "mathematics/binary_tree_traversal",
         "mathematics/binary_tree",
         "mathematics/node",
-        "mathematics/subtree"
+        "mathematics/subtree",
+        "mathematics/child"
       ],
-      "level": 14
+      "level": 16
     },
     {
       "id": "mathematics/post_order_traversal",
       "title": "post_order_traversal",
-      "content": "# post-order traversal (postorder traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left\n[subtree](mathematics/subtree) is visited first, then the right subtree, and then the node itself.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left child \n\"B\" and right child \"C\". A post-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the right subtree (\"C\"), and finally the node itself (\"A\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"C\", \"A\".\n\n",
+      "content": "# post-order traversal (postorder traversal)\n\n\nA [binary tree traversal](mathematics/binary_tree_traversal) of a\n[binary tree](mathematics/binary_tree) where, for each [node](mathematics/node), the left\n[subtree](mathematics/subtree) is visited first, then the right subtree, and then the node itself.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" has left [child](mathematics/child) \n\"B\" and right child \"C\". A post-order traversal visits the left [subtree](mathematics/subtree) first (\"B\"), \nthen the right subtree (\"C\"), and finally the node itself (\"A\"), reporting the \n[nodes](mathematics/node) in the order \"B\", \"C\", \"A\".\n\n",
       "aliases": [
         "postorder traversal"
       ],
@@ -1005,14 +1052,15 @@
         "mathematics/binary_tree_traversal",
         "mathematics/binary_tree",
         "mathematics/node",
-        "mathematics/subtree"
+        "mathematics/subtree",
+        "mathematics/child"
       ],
-      "level": 14
+      "level": 16
     },
     {
       "id": "mathematics/tree_rotation",
       "title": "tree_rotation",
-      "content": "# tree_rotation\n\n\nAn [operation](mathematics/operation) on a [binary tree](mathematics/binary_tree) \nthat changes the structure without disturbing the order of the [nodes](mathematics/node). A rotation \nmoves a [node](mathematics/node) down and brings its child up, preserving the in-order \n[sequence](mathematics/sequence) of [elements](mathematics/item).\n\n---\n\nConsider a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas a right child \"B\". A left rotation at \"A\" makes \"B\" the new parent: \"B\" takes the place of \"A\", and \"A\" becomes \nthe left child of \"B\". The in-order traversal remains unchanged — any [subtree](mathematics/subtree) \nthat was between \"A\" and \"B\" stays between them after the rotation.\n\n",
+      "content": "# tree_rotation\n\n\nAn [operation](mathematics/operation) on a [binary tree](mathematics/binary_tree) \nthat changes the structure without disturbing the order of the [nodes](mathematics/node). A rotation \nmoves a [node](mathematics/node) down and brings its child up, preserving the in-order \n[sequence](mathematics/sequence) of [elements](mathematics/item).\n\n---\n\nConsider a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas a right [child](mathematics/child) \"B\". A left rotation at \"A\" makes \"B\" the new parent: \"B\" takes the place of \"A\", and \"A\" becomes \nthe left child of \"B\". The in-order traversal remains unchanged — any [subtree](mathematics/subtree) \nthat was between \"A\" and \"B\" stays between them after the rotation.\n\n",
       "aliases": [],
       "deps": [
         "mathematics/operation",
@@ -1020,14 +1068,15 @@
         "mathematics/node",
         "mathematics/sequence",
         "mathematics/item",
+        "mathematics/child",
         "mathematics/subtree"
       ],
-      "level": 14
+      "level": 15
     },
     {
       "id": "mathematics/avl_tree",
       "title": "avl_tree",
-      "content": "# avl_tree (Adelson-Velsky and Landis tree)\n\n\nA [height-balanced binary search tree](mathematics/height_balanced_binary_search_tree) that keeps \nitself balanced automatically: after every insertion or deletion it restores the invariant that, for any \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one. When a node violates this invariant, the \ntree performs a [rotation](mathematics/tree_rotation) to restore balance. It was the first such \nself-balancing structure to be invented, named after its inventors \nGeorgy Adelson-Velsky and Evgenii Landis.\n\n---\n\nInsert the [elements](mathematics/item) \"1\", \"2\", and \"3\" in order into an AVL tree. After \ninserting \"3\", the [node](mathematics/node) \"1\" would have a left \n[subtree](mathematics/subtree) of height 0 and a right subtree of height 2 - a difference of \ntwo, violating the balance rule. The tree rebalances by performing a \n[rotation](mathematics/tree_rotation) so that \"2\" becomes the \n[root](mathematics/root) with \"1\" and \"3\" as its children, restoring the height difference to at \nmost one.\n\n",
+      "content": "# avl_tree (Adelson-Velsky and Landis tree)\n\n\nA [height-balanced binary search tree](mathematics/height_balanced_binary_search_tree) that keeps \nitself balanced automatically: after every insertion or deletion it restores the invariant that, for any \n[node](mathematics/node), the heights of the left and right \n[subtrees](mathematics/subtree) differ by at most one. When a node violates this invariant, the \ntree performs a [rotation](mathematics/tree_rotation) to restore balance. It was the first such \nself-balancing structure to be invented, named after its inventors \nGeorgy Adelson-Velsky and Evgenii Landis.\n\n---\n\nInsert the [elements](mathematics/item) \"1\", \"2\", and \"3\" in order into an AVL tree. After \ninserting \"3\", the [node](mathematics/node) \"1\" would have a left \n[subtree](mathematics/subtree) of height 0 and a right subtree of height 2 - a difference of \ntwo, violating the balance rule. The tree rebalances by performing a \n[rotation](mathematics/tree_rotation) so that \"2\" becomes the \n[root](mathematics/root) with \"1\" and \"3\" as its [children](mathematics/child), restoring the height difference to at \nmost one.\n\n",
       "aliases": [
         "Adelson-Velsky and Landis tree"
       ],
@@ -1037,22 +1086,24 @@
         "mathematics/subtree",
         "mathematics/tree_rotation",
         "mathematics/item",
-        "mathematics/root"
+        "mathematics/root",
+        "mathematics/child"
       ],
-      "level": 16
+      "level": 17
     },
     {
       "id": "mathematics/unbalanced_binary_tree",
       "title": "unbalanced_binary_tree",
-      "content": "# unbalanced_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) that does not satisfy the \n[balanced binary tree](mathematics/balanced_binary_tree) property. In an unbalanced binary tree, \nthe depth of the two [subtrees](mathematics/subtree) of at least one \n[node](mathematics/node) differs by more than one.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas left child \"B\" and right child \"C\". On the left side the [nodes](mathematics/node) form a \nchain: \"B\" has left child \"D\", and \"D\" has left child \"E\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D, E) has height 2 while the right subtree (C) has height 0 — \na difference of two — so the [balance](mathematics/balanced_binary_tree) property fails and the \ntree is unbalanced.\n\n",
+      "content": "# unbalanced_binary_tree\n\n\nA [binary tree](mathematics/binary_tree) that does not satisfy the \n[balanced binary tree](mathematics/balanced_binary_tree) property. In an unbalanced binary tree, \nthe depth of the two [subtrees](mathematics/subtree) of at least one \n[node](mathematics/node) differs by more than one.\n\n---\n\nTake a [binary tree](mathematics/binary_tree) where [node](mathematics/node) \"A\" \nhas left [child](mathematics/child) \"B\" and right child \"C\". On the left side the [nodes](mathematics/node) form a \nchain: \"B\" has left child \"D\", and \"D\" has left child \"E\". At \"A\" the left \n[subtree](mathematics/subtree) (B, D, E) has height 2 while the right subtree (C) has height 0 — \na difference of two — so the [balance](mathematics/balanced_binary_tree) property fails and the \ntree is unbalanced.\n\n",
       "aliases": [],
       "deps": [
         "mathematics/binary_tree",
         "mathematics/balanced_binary_tree",
         "mathematics/subtree",
-        "mathematics/node"
+        "mathematics/node",
+        "mathematics/child"
       ],
-      "level": 15
+      "level": 16
     },
     {
       "id": "mathematics/distinctness",
@@ -2778,21 +2829,22 @@
     {
       "id": "mathematics/interval_tree",
       "title": "interval_tree",
-      "content": "# interval_tree\n\n\nA type of [binary search tree](mathematics/binary_search_tree) that stores \n[intervals](mathematics/interval) as its keys, ordered by each interval's start point. Each \n[node](mathematics/node) is additionally annotated with the largest end point found anywhere in its \nsubtree, which lets a search skip over subtrees that cannot possibly contain an overlap. The \n[tree](mathematics/tree) is kept [balanced](mathematics/balanced_binary_tree) to \nguarantee efficient search operations.\n\n---\n\nStoring the [intervals](mathematics/interval) [1, 5], [3, 8], [10, 15], and [20, 25] in an interval \ntree, ordered by start point, could produce a tree whose root is [10, 15] (subtree annotation 25), with [3, 8] \n(subtree annotation 8) as its left child and [20, 25] (subtree annotation 25) as its right child; [1, 5] \n(subtree annotation 5) is in turn the left child of [3, 8].\n\nA search for an interval overlapping the point 9 starts at the root [10, 15]: 9 does not fall inside [10, 15], so \nthe search must pick a child to continue into. Since the left child's annotation (8) is less than 9, no interval \nanywhere in the left subtree — [3, 8] or [1, 5] — can possibly reach as far as 9, so that whole subtree is skipped \nwithout being visited. The search continues into the right child [20, 25], which also does not contain 9 and has \nno children left to check, so it correctly concludes that no stored interval overlaps 9.\n\n",
+      "content": "# interval_tree\n\n\nA type of [binary search tree](mathematics/binary_search_tree) that stores \n[intervals](mathematics/interval) as its keys, ordered by each interval's start point. Each \n[node](mathematics/node) is additionally annotated with the largest end point found anywhere in its \nsubtree, which lets a search skip over subtrees that cannot possibly contain an overlap. The \n[tree](mathematics/tree) is kept [balanced](mathematics/balanced_binary_tree) to \nguarantee efficient search operations.\n\n---\n\nStoring the [intervals](mathematics/interval) [1, 5], [3, 8], [10, 15], and [20, 25] in an interval \ntree, ordered by start point, could produce a tree whose root is [10, 15] (subtree annotation 25), with [3, 8]\n(subtree annotation 8) as its left [child](mathematics/child) and [20, 25] (subtree annotation 25) as its\nright child; [1, 5]\n(subtree annotation 5) is in turn the left child of [3, 8].\n\nA search for an interval overlapping the point 9 starts at the root [10, 15]: 9 does not fall inside [10, 15], so \nthe search must pick a child to continue into. Since the left child's annotation (8) is less than 9, no interval \nanywhere in the left subtree — [3, 8] or [1, 5] — can possibly reach as far as 9, so that whole subtree is skipped \nwithout being visited. The search continues into the right child [20, 25], which also does not contain 9 and has \nno children left to check, so it correctly concludes that no stored interval overlaps 9.\n\n",
       "aliases": [],
       "deps": [
         "mathematics/binary_search_tree",
         "mathematics/interval",
         "mathematics/node",
         "mathematics/tree",
-        "mathematics/balanced_binary_tree"
+        "mathematics/balanced_binary_tree",
+        "mathematics/child"
       ],
-      "level": 15
+      "level": 16
     },
     {
       "id": "mathematics/red_black_tree",
       "title": "red_black_tree",
-      "content": "# red black tree (RB tree)\n\n\nA type of [self-balancing](mathematics/balanced_binary_tree) \n[binary search tree](mathematics/binary_search_tree). The red-black tree is named after the colors \nused to represent the [nodes](mathematics/node). It maintains the following properties, which are\nnot themselves what make [operations](mathematics/operation) fast, but instead guarantee that the\ntree's height stays low:\n\n\n1. Each node is either red or black.\n\n2. The [root](mathematics/root) node is always black.\n\n3. Every empty child position (where a node has no left or right child) is treated as black.\n\n4. If a node is red, both of its children are black.\n\n5. Every [path](mathematics/path) from a node down to an empty child position passes through the\nsame [number](mathematics/number) of black nodes.\n\n\nProperties 4 and 5 together bound the height of the tree: since two red nodes can never appear in a row, no\npath can contain more red nodes than black ones, so the longest possible path is at most twice as long as the\nshortest. This keeps the tree's height proportional to the logarithm of the number of nodes, no matter what\norder values are inserted or removed in — unlike a plain binary search tree, whose height can degrade to the\nnumber of nodes in the [worst case](mathematics/worst_case). It is this logarithmic height,\ncombined with the ordering that any binary search tree already provides, that makes search, insertion, and\ndeletion [efficient](mathematics/efficiency): each of these operations walks at most one path\nfrom the root to an empty child position, so their cost is proportional to the height rather than to the\nnumber of nodes in the tree.\n\n---\n\nInserting the values 10, 20, and 30 into an initially empty red-black tree could produce this arrangement: root\nnode 20 (black), with left child 10 (red) and right child 30 (red). The root is black, and both red nodes have\nonly empty child positions, which count as black, so no red node has a red child. Every path from the root to an\nempty child position passes through exactly one black node — the root itself — so the black-node count is the\nsame on every path, and the tree satisfies all five properties.\n\n",
+      "content": "# red black tree (RB tree)\n\n\nA type of [self-balancing](mathematics/balanced_binary_tree) \n[binary search tree](mathematics/binary_search_tree). The red-black tree is named after the colors \nused to represent the [nodes](mathematics/node). It maintains the following properties, which are\nnot themselves what make [operations](mathematics/operation) fast, but instead guarantee that the\ntree's height stays low:\n\n\n1. Each node is either red or black.\n\n2. The [root](mathematics/root) node is always black.\n\n3. Every empty [child](mathematics/child) position (where a node has no left or right child) is treated as black.\n\n4. If a node is red, both of its children are black.\n\n5. Every [path](mathematics/path) from a node down to an empty child position passes through the\nsame [number](mathematics/number) of black nodes.\n\n\nProperties 4 and 5 together bound the height of the tree: since two red nodes can never appear in a row, no\npath can contain more red nodes than black ones, so the longest possible path is at most twice as long as the\nshortest. This keeps the tree's height proportional to the logarithm of the number of nodes, no matter what\norder values are inserted or removed in — unlike a plain binary search tree, whose height can degrade to the\nnumber of nodes in the [worst case](mathematics/worst_case). It is this logarithmic height,\ncombined with the ordering that any binary search tree already provides, that makes search, insertion, and\ndeletion [efficient](mathematics/efficiency): each of these operations walks at most one path\nfrom the root to an empty child position, so their cost is proportional to the height rather than to the\nnumber of nodes in the tree.\n\n---\n\nInserting the values 10, 20, and 30 into an initially empty red-black tree could produce this arrangement: root\nnode 20 (black), with left child 10 (red) and right child 30 (red). The root is black, and both red nodes have\nonly empty child positions, which count as black, so no red node has a red child. Every path from the root to an\nempty child position passes through exactly one black node — the root itself — so the black-node count is the\nsame on every path, and the tree satisfies all five properties.\n\n",
       "aliases": [
         "RB tree"
       ],
@@ -2802,67 +2854,76 @@
         "mathematics/node",
         "mathematics/operation",
         "mathematics/root",
+        "mathematics/child",
         "mathematics/path",
         "mathematics/number",
         "mathematics/worst_case",
         "mathematics/efficiency"
       ],
-      "level": 15
+      "level": 16
     },
     {
       "id": "mathematics/heap_tree",
       "title": "heap_tree",
-      "content": "# heap_tree (heap)\n\n\nA type of [tree](mathematics/tree) data structure \nthat satisfies the heap property: the value of \neach [node](mathematics/node) is greater than or equal to (or less than or equal to) the values of \nits children. This property allows for [efficient](mathematics/efficiency) retrieval of the minimum \n(or maximum) [element](mathematics/item) in the tree.\n\n---\n\nArrange [nodes](mathematics/node) in a [tree](mathematics/tree) so the \n[root](mathematics/root) holds \n\"9\" with children \"5\" and \"4\", and \"5\" has a child \"2\". Every parent's value is greater than or equal to its \nchildren's (\"9\" ≥ \"5\" and \"4\"; \"5\" ≥ \"2\"), so the heap property holds and the maximum \n[element](mathematics/item) \"9\" sits at the \n[root](mathematics/root), ready to be read in a single step.\n\n",
+      "content": "# heap_tree (heap)\n\n\nA type of [tree](mathematics/tree) data structure \nthat satisfies the heap property: the value of \neach [node](mathematics/node) is greater than or equal to (or less than or equal to) the values of \nits [children](mathematics/child). This property allows for [efficient](mathematics/efficiency) retrieval of the minimum \n(or maximum) [element](mathematics/item) in the tree.\n\n---\n\nArrange [nodes](mathematics/node) in a [tree](mathematics/tree) so the \n[root](mathematics/root) holds \n\"9\" with children \"5\" and \"4\", and \"5\" has a child \"2\". Every [parent](mathematics/parent)'s value is greater than or equal to its \nchildren's (\"9\" ≥ \"5\" and \"4\"; \"5\" ≥ \"2\"), so the heap property holds and the maximum \n[element](mathematics/item) \"9\" sits at the \n[root](mathematics/root), ready to be read in a single step.\n\n",
       "aliases": [
         "heap"
       ],
       "deps": [
         "mathematics/tree",
         "mathematics/node",
+        "mathematics/child",
         "mathematics/efficiency",
         "mathematics/item",
-        "mathematics/root"
+        "mathematics/root",
+        "mathematics/parent"
       ],
       "level": 15
     },
     {
       "id": "mathematics/binary_heap",
       "title": "binary_heap",
-      "content": "# binary heap\n\n\nA [heap](mathematics/heap_tree) that is structured as a\n[complete binary tree](mathematics/complete_binary_tree).\n\n---\n\nArrange values in a [complete binary tree](mathematics/complete_binary_tree): the root \"9\" has children \n\"7\" and \"6\", and \"7\" has children \"3\" and \"5\". Every level is filled from left to right, so the shape is a \ncomplete binary tree, and each parent is at least as large as its children (\"9\" ≥ \"7\" and \"6\"; \"7\" ≥ \"3\" and \"5\"), \nsatisfying the [heap](mathematics/heap_tree) property. Together these make it a binary heap.\n\n",
+      "content": "# binary heap\n\n\nA [heap](mathematics/heap_tree) that is structured as a\n[complete binary tree](mathematics/complete_binary_tree).\n\n---\n\nArrange values in a [complete binary tree](mathematics/complete_binary_tree): the root \"9\" has [children](mathematics/child) \n\"7\" and \"6\", and \"7\" has children \"3\" and \"5\". Every level is filled from left to right, so the shape is a \ncomplete binary tree, and each [parent](mathematics/parent) is at least as large as its children (\"9\" ≥ \"7\" and \"6\"; \"7\" ≥ \"3\" and \"5\"), \nsatisfying the [heap](mathematics/heap_tree) property. Together these make it a binary heap.\n\n",
       "aliases": [],
       "deps": [
         "mathematics/heap_tree",
-        "mathematics/complete_binary_tree"
+        "mathematics/complete_binary_tree",
+        "mathematics/child",
+        "mathematics/parent"
       ],
       "level": 16
     },
     {
       "id": "mathematics/min_heap",
       "title": "min_heap",
-      "content": "# min-heap (minimum heap)\n\n\nA [binary heap](mathematics/binary_heap) in which the key at each\n[node](mathematics/node) is less than or equal to the keys of its children.\n\nEquivalently, the minimum [element](mathematics/item) is stored at the [root](mathematics/root).\n\n---\n\nArrange values in a [binary heap](mathematics/binary_heap): the [root](mathematics/root) \"1\" has \nchildren \"3\" and \"2\", and \"3\" has children \"5\" and \"4\". Every parent's key \nis less than or equal to its children's \n(\"1\" ≤ \"3\" and \"2\"; \"3\" ≤ \"5\" and \"4\"), so the smallest [element](mathematics/item) \n\"1\" sits at the root and can be read in a single step.\n\n",
+      "content": "# min-heap (minimum heap)\n\n\nA [binary heap](mathematics/binary_heap) in which the key at each\n[node](mathematics/node) is less than or equal to the keys of its [children](mathematics/child).\n\nEquivalently, the minimum [element](mathematics/item) is stored at the [root](mathematics/root).\n\n---\n\nArrange values in a [binary heap](mathematics/binary_heap): the [root](mathematics/root) \"1\" has \nchildren \"3\" and \"2\", and \"3\" has children \"5\" and \"4\". Every [parent](mathematics/parent)'s key \nis less than or equal to its children's \n(\"1\" ≤ \"3\" and \"2\"; \"3\" ≤ \"5\" and \"4\"), so the smallest [element](mathematics/item) \n\"1\" sits at the root and can be read in a single step.\n\n",
       "aliases": [
         "minimum heap"
       ],
       "deps": [
         "mathematics/binary_heap",
         "mathematics/node",
+        "mathematics/child",
         "mathematics/item",
-        "mathematics/root"
+        "mathematics/root",
+        "mathematics/parent"
       ],
       "level": 17
     },
     {
       "id": "mathematics/max_heap",
       "title": "max_heap",
-      "content": "# max-heap (maximum heap)\n\n\nA [binary heap](mathematics/binary_heap) in which the key at each\n[node](mathematics/node) is greater than or equal to the keys of its children.\n\nEquivalently, the maximum [element](mathematics/item) is stored at the [root](mathematics/root).\n\n---\n\nArrange values in a [binary heap](mathematics/binary_heap): the [root](mathematics/root) \"9\" has \nchildren \"7\" and \"6\", and \"7\" has children \"3\" and \"5\". Every parent's key \nis greater than or equal to its \nchildren's (\"9\" ≥ \"7\" and \"6\"; \"7\" ≥ \"3\" and \"5\"), so the largest [element](mathematics/item) \n\"9\" sits at the root and can be read in a single step.\n\n",
+      "content": "# max-heap (maximum heap)\n\n\nA [binary heap](mathematics/binary_heap) in which the key at each\n[node](mathematics/node) is greater than or equal to the keys of its [children](mathematics/child).\n\nEquivalently, the maximum [element](mathematics/item) is stored at the [root](mathematics/root).\n\n---\n\nArrange values in a [binary heap](mathematics/binary_heap): the [root](mathematics/root) \"9\" has \nchildren \"7\" and \"6\", and \"7\" has children \"3\" and \"5\". Every [parent](mathematics/parent)'s key \nis greater than or equal to its \nchildren's (\"9\" ≥ \"7\" and \"6\"; \"7\" ≥ \"3\" and \"5\"), so the largest [element](mathematics/item) \n\"9\" sits at the root and can be read in a single step.\n\n",
       "aliases": [
         "maximum heap"
       ],
       "deps": [
         "mathematics/binary_heap",
         "mathematics/node",
+        "mathematics/child",
         "mathematics/item",
-        "mathematics/root"
+        "mathematics/root",
+        "mathematics/parent"
       ],
       "level": 17
     },
@@ -3221,18 +3282,19 @@
     {
       "id": "mathematics/b_tree",
       "title": "b_tree",
-      "content": "# b_tree (B-tree)\n\n\nA self-balancing [tree](mathematics/tree) data structure \nin which each \n[node](mathematics/node) can hold multiple keys, kept in sorted order, \nand have multiple children. \nThe keys of a node [partition](mathematics/partitioning) \nthe values stored in its child \n[subtrees](mathematics/subtree), so that every key in a given subtree falls within the range marked \nby the surrounding keys. All [leaves](mathematics/leaf) are kept at the same depth.\n\n---\n\nConsider a B-tree whose root [node](mathematics/node) holds the two keys \"10\" and \"20\" and has \nthree children. Its left child [subtree](mathematics/subtree) holds keys less than \"10\" (such as \n\"5\"), its middle child holds keys between \"10\" and \"20\" (such as \"15\"), and its right child holds keys greater \nthan \"20\" (such as \"25\"). All three child [leaves](mathematics/leaf) sit at the same depth.\n\n",
+      "content": "# b_tree (B-tree)\n\n\nA self-balancing [tree](mathematics/tree) data structure \nin which each \n[node](mathematics/node) can hold multiple keys, kept in sorted order, \nand have multiple [children](mathematics/child).\nThe keys of a node [partition](mathematics/partitioning) \nthe values stored in its child \n[subtrees](mathematics/subtree), so that every key in a given subtree falls within the range marked \nby the surrounding keys. All [leaves](mathematics/leaf) are kept at the same depth.\n\n---\n\nConsider a B-tree whose root [node](mathematics/node) holds the two keys \"10\" and \"20\" and has \nthree children. Its left child [subtree](mathematics/subtree) holds keys less than \"10\" (such as \n\"5\"), its middle child holds keys between \"10\" and \"20\" (such as \"15\"), and its right child holds keys greater \nthan \"20\" (such as \"25\"). All three child [leaves](mathematics/leaf) sit at the same depth.\n\n",
       "aliases": [
         "B-tree"
       ],
       "deps": [
         "mathematics/tree",
         "mathematics/node",
+        "mathematics/child",
         "mathematics/partitioning",
         "mathematics/subtree",
         "mathematics/leaf"
       ],
-      "level": 14
+      "level": 15
     },
     {
       "id": "mathematics/bucket_sort",
@@ -3582,7 +3644,7 @@
     {
       "id": "mathematics/quadtree",
       "title": "quadtree",
-      "content": "# quadtree (quad-tree, Q-tree)\n\n\nA quadtree is a [tree](mathematics/tree) data structure \nused for [recursive](mathematics/recursion) \n[partitioning](mathematics/partitioning) of a two-dimensional \n[space](mathematics/problem_space). Each internal \n[node](mathematics/node) represents a region and has four children corresponding to four \nsubregions, often called [quadrants](mathematics/quadrant).\n\n---\n\nA 2D area containing several points can be organized into a quadtree: the root [node](mathematics/node)\nrepresents the whole area. Whenever a region holds more points than a chosen limit, it is split into four equal\nquadrants — northwest, northeast, southwest, and southeast — each becoming a child node, and the split repeats\nwithin any child that still holds too many points. A search for points near a given location can then skip entire\nquadrants that do not overlap the search area, instead of checking every point individually.\n\n",
+      "content": "# quadtree (quad-tree, Q-tree)\n\n\nA quadtree is a [tree](mathematics/tree) data structure \nused for [recursive](mathematics/recursion) \n[partitioning](mathematics/partitioning) of a two-dimensional \n[space](mathematics/problem_space). Each internal \n[node](mathematics/node) represents a region and has four [children](mathematics/child) corresponding to four \nsubregions, often called [quadrants](mathematics/quadrant).\n\n---\n\nA 2D area containing several points can be organized into a quadtree: the root [node](mathematics/node)\nrepresents the whole area. Whenever a region holds more points than a chosen limit, it is split into four equal\nquadrants — northwest, northeast, southwest, and southeast — each becoming a child node, and the split repeats\nwithin any child that still holds too many points. A search for points near a given location can then skip entire\nquadrants that do not overlap the search area, instead of checking every point individually.\n\n",
       "aliases": [
         "quad-tree",
         "Q-tree"
@@ -3593,9 +3655,10 @@
         "mathematics/partitioning",
         "mathematics/problem_space",
         "mathematics/node",
+        "mathematics/child",
         "mathematics/quadrant"
       ],
-      "level": 10
+      "level": 13
     },
     {
       "id": "mathematics/reflection",
@@ -5128,7 +5191,7 @@
     {
       "id": "computer_science/trie",
       "title": "trie",
-      "content": "# trie (prefix tree, digital tree)\n\n\nA type of [tree](mathematics/tree) [data structure](computer_science/data_structure) \nused to store a dynamic \n[set](mathematics/set) of [strings](computer_science/string), where each \n[node](mathematics/node) represents a single [character](computer_science/character) of a \nstring. The path from the [root](mathematics/root) to a node represents a prefix shared by every \nstring that passes through it. The main advantage of a trie is efficient retrieval of strings with common prefixes.\n\n---\n\nStoring the words `tea`, `ten`, and `in` starts at a root node. Under the root, a child `t` and a child `i` branch \noff. From `t`, a child `e` is added, which then has two children `a` and `n` to complete `tea` and `ten`. From `i`, a \nchild `n` completes `in`. Looking up any word means walking from the root along its characters one node at a time.\n\n",
+      "content": "# trie (prefix tree, digital tree)\n\n\nA type of [tree](mathematics/tree) [data structure](computer_science/data_structure) \nused to store a dynamic \n[set](mathematics/set) of [strings](computer_science/string), where each \n[node](mathematics/node) represents a single [character](computer_science/character) of a \nstring. The path from the [root](mathematics/root) to a node represents a prefix shared by every \nstring that passes through it. The main advantage of a trie is efficient retrieval of strings with common prefixes.\n\n---\n\nStoring the words `tea`, `ten`, and `in` starts at a root node. Under the root, a [child](mathematics/child) `t` and a child `i` branch \noff. From `t`, a child `e` is added, which then has two children `a` and `n` to complete `tea` and `ten`. From `i`, a \nchild `n` completes `in`. Looking up any word means walking from the root along its characters one node at a time.\n\n",
       "aliases": [
         "prefix tree",
         "digital tree"
@@ -5140,7 +5203,8 @@
         "computer_science/string",
         "mathematics/node",
         "computer_science/character",
-        "mathematics/root"
+        "mathematics/root",
+        "mathematics/child"
       ],
       "level": 19
     },
@@ -5509,7 +5573,7 @@
         "mathematics/unbalanced_binary_tree",
         "mathematics/node"
       ],
-      "level": 16
+      "level": 17
     },
     {
       "id": "computer_science/null",
@@ -5950,86 +6014,6 @@
       "target": "mathematics/node"
     },
     {
-      "source": "mathematics/n_ary_tree",
-      "target": "mathematics/tree"
-    },
-    {
-      "source": "mathematics/n_ary_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/binary_tree",
-      "target": "mathematics/tree"
-    },
-    {
-      "source": "mathematics/binary_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/binary_tree",
-      "target": "mathematics/n_ary_tree"
-    },
-    {
-      "source": "mathematics/binary_search_tree",
-      "target": "mathematics/binary_tree"
-    },
-    {
-      "source": "mathematics/binary_search_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/binary_tree_traversal",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/binary_tree_traversal",
-      "target": "mathematics/binary_tree"
-    },
-    {
-      "source": "mathematics/complete_binary_tree",
-      "target": "mathematics/binary_tree"
-    },
-    {
-      "source": "mathematics/complete_binary_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/leaf",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/leaf",
-      "target": "mathematics/tree"
-    },
-    {
-      "source": "mathematics/full_binary_tree",
-      "target": "mathematics/binary_tree"
-    },
-    {
-      "source": "mathematics/full_binary_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/full_binary_tree",
-      "target": "mathematics/leaf"
-    },
-    {
-      "source": "mathematics/perfect_binary_tree",
-      "target": "mathematics/binary_tree"
-    },
-    {
-      "source": "mathematics/perfect_binary_tree",
-      "target": "mathematics/leaf"
-    },
-    {
-      "source": "mathematics/perfect_binary_tree",
-      "target": "mathematics/node"
-    },
-    {
-      "source": "mathematics/perfect_binary_tree",
-      "target": "mathematics/full_binary_tree"
-    },
-    {
       "source": "mathematics/merge",
       "target": "mathematics/operation"
     },
@@ -6334,6 +6318,26 @@
       "target": "mathematics/node"
     },
     {
+      "source": "mathematics/parent",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/parent",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/parent",
+      "target": "mathematics/uniqueness"
+    },
+    {
+      "source": "mathematics/parent",
+      "target": "mathematics/edge"
+    },
+    {
+      "source": "mathematics/parent",
+      "target": "mathematics/root"
+    },
+    {
       "source": "mathematics/ancestor",
       "target": "mathematics/tree"
     },
@@ -6350,6 +6354,22 @@
       "target": "mathematics/root"
     },
     {
+      "source": "mathematics/ancestor",
+      "target": "mathematics/parent"
+    },
+    {
+      "source": "mathematics/child",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/child",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/child",
+      "target": "mathematics/parent"
+    },
+    {
       "source": "mathematics/descendant",
       "target": "mathematics/tree"
     },
@@ -6359,7 +6379,127 @@
     },
     {
       "source": "mathematics/descendant",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/descendant",
       "target": "mathematics/ancestor"
+    },
+    {
+      "source": "mathematics/descendant",
+      "target": "mathematics/parent"
+    },
+    {
+      "source": "mathematics/n_ary_tree",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/n_ary_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/n_ary_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/binary_tree",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/binary_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/binary_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/binary_tree",
+      "target": "mathematics/n_ary_tree"
+    },
+    {
+      "source": "mathematics/binary_search_tree",
+      "target": "mathematics/binary_tree"
+    },
+    {
+      "source": "mathematics/binary_search_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/binary_search_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/binary_tree_traversal",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/binary_tree_traversal",
+      "target": "mathematics/binary_tree"
+    },
+    {
+      "source": "mathematics/binary_tree_traversal",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/complete_binary_tree",
+      "target": "mathematics/binary_tree"
+    },
+    {
+      "source": "mathematics/complete_binary_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/complete_binary_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/leaf",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/leaf",
+      "target": "mathematics/tree"
+    },
+    {
+      "source": "mathematics/leaf",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/full_binary_tree",
+      "target": "mathematics/binary_tree"
+    },
+    {
+      "source": "mathematics/full_binary_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/full_binary_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/full_binary_tree",
+      "target": "mathematics/leaf"
+    },
+    {
+      "source": "mathematics/perfect_binary_tree",
+      "target": "mathematics/binary_tree"
+    },
+    {
+      "source": "mathematics/perfect_binary_tree",
+      "target": "mathematics/leaf"
+    },
+    {
+      "source": "mathematics/perfect_binary_tree",
+      "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/perfect_binary_tree",
+      "target": "mathematics/full_binary_tree"
+    },
+    {
+      "source": "mathematics/perfect_binary_tree",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/lowest_common_ancestor",
@@ -6372,6 +6512,10 @@
     {
       "source": "mathematics/lowest_common_ancestor",
       "target": "mathematics/ancestor"
+    },
+    {
+      "source": "mathematics/lowest_common_ancestor",
+      "target": "mathematics/parent"
     },
     {
       "source": "mathematics/subtree",
@@ -6386,6 +6530,10 @@
       "target": "mathematics/descendant"
     },
     {
+      "source": "mathematics/subtree",
+      "target": "mathematics/parent"
+    },
+    {
       "source": "mathematics/balanced_binary_tree",
       "target": "mathematics/binary_tree"
     },
@@ -6396,6 +6544,10 @@
     {
       "source": "mathematics/balanced_binary_tree",
       "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/balanced_binary_tree",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/height_balanced_binary_search_tree",
@@ -6414,6 +6566,10 @@
       "target": "mathematics/subtree"
     },
     {
+      "source": "mathematics/height_balanced_binary_search_tree",
+      "target": "mathematics/child"
+    },
+    {
       "source": "mathematics/in_order_traversal",
       "target": "mathematics/binary_tree_traversal"
     },
@@ -6430,6 +6586,10 @@
       "target": "mathematics/subtree"
     },
     {
+      "source": "mathematics/in_order_traversal",
+      "target": "mathematics/child"
+    },
+    {
       "source": "mathematics/pre_order_traversal",
       "target": "mathematics/binary_tree_traversal"
     },
@@ -6446,6 +6606,10 @@
       "target": "mathematics/subtree"
     },
     {
+      "source": "mathematics/pre_order_traversal",
+      "target": "mathematics/child"
+    },
+    {
       "source": "mathematics/post_order_traversal",
       "target": "mathematics/binary_tree_traversal"
     },
@@ -6460,6 +6624,10 @@
     {
       "source": "mathematics/post_order_traversal",
       "target": "mathematics/subtree"
+    },
+    {
+      "source": "mathematics/post_order_traversal",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/tree_rotation",
@@ -6480,6 +6648,10 @@
     {
       "source": "mathematics/tree_rotation",
       "target": "mathematics/item"
+    },
+    {
+      "source": "mathematics/tree_rotation",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/tree_rotation",
@@ -6510,6 +6682,10 @@
       "target": "mathematics/root"
     },
     {
+      "source": "mathematics/avl_tree",
+      "target": "mathematics/child"
+    },
+    {
       "source": "mathematics/unbalanced_binary_tree",
       "target": "mathematics/binary_tree"
     },
@@ -6524,6 +6700,10 @@
     {
       "source": "mathematics/unbalanced_binary_tree",
       "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/unbalanced_binary_tree",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/distinctness",
@@ -8818,6 +8998,10 @@
       "target": "mathematics/balanced_binary_tree"
     },
     {
+      "source": "mathematics/interval_tree",
+      "target": "mathematics/child"
+    },
+    {
       "source": "mathematics/red_black_tree",
       "target": "mathematics/balanced_binary_tree"
     },
@@ -8836,6 +9020,10 @@
     {
       "source": "mathematics/red_black_tree",
       "target": "mathematics/root"
+    },
+    {
+      "source": "mathematics/red_black_tree",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/red_black_tree",
@@ -8863,6 +9051,10 @@
     },
     {
       "source": "mathematics/heap_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/heap_tree",
       "target": "mathematics/efficiency"
     },
     {
@@ -8874,6 +9066,10 @@
       "target": "mathematics/root"
     },
     {
+      "source": "mathematics/heap_tree",
+      "target": "mathematics/parent"
+    },
+    {
       "source": "mathematics/binary_heap",
       "target": "mathematics/heap_tree"
     },
@@ -8882,12 +9078,24 @@
       "target": "mathematics/complete_binary_tree"
     },
     {
+      "source": "mathematics/binary_heap",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/binary_heap",
+      "target": "mathematics/parent"
+    },
+    {
       "source": "mathematics/min_heap",
       "target": "mathematics/binary_heap"
     },
     {
       "source": "mathematics/min_heap",
       "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/min_heap",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/min_heap",
@@ -8898,6 +9106,10 @@
       "target": "mathematics/root"
     },
     {
+      "source": "mathematics/min_heap",
+      "target": "mathematics/parent"
+    },
+    {
       "source": "mathematics/max_heap",
       "target": "mathematics/binary_heap"
     },
@@ -8907,11 +9119,19 @@
     },
     {
       "source": "mathematics/max_heap",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/max_heap",
       "target": "mathematics/item"
     },
     {
       "source": "mathematics/max_heap",
       "target": "mathematics/root"
+    },
+    {
+      "source": "mathematics/max_heap",
+      "target": "mathematics/parent"
     },
     {
       "source": "mathematics/polynomial_reduction",
@@ -9439,6 +9659,10 @@
     },
     {
       "source": "mathematics/b_tree",
+      "target": "mathematics/child"
+    },
+    {
+      "source": "mathematics/b_tree",
       "target": "mathematics/partitioning"
     },
     {
@@ -9828,6 +10052,10 @@
     {
       "source": "mathematics/quadtree",
       "target": "mathematics/node"
+    },
+    {
+      "source": "mathematics/quadtree",
+      "target": "mathematics/child"
     },
     {
       "source": "mathematics/quadtree",
@@ -11826,6 +12054,10 @@
       "target": "mathematics/root"
     },
     {
+      "source": "computer_science/trie",
+      "target": "mathematics/child"
+    },
+    {
       "source": "computer_science/graph_labeling",
       "target": "mathematics/problem"
     },
@@ -12837,6 +13069,7 @@
         "mathematics/bucket_sort",
         "mathematics/bud",
         "mathematics/cartesian_plane",
+        "mathematics/child",
         "mathematics/co_np_class",
         "mathematics/collection",
         "mathematics/combination",
@@ -12959,6 +13192,7 @@
         "mathematics/overlapping_subproblems",
         "mathematics/p_class",
         "mathematics/palindrome",
+        "mathematics/parent",
         "mathematics/partitioning",
         "mathematics/path",
         "mathematics/patience_sorting",
